@@ -1,0 +1,334 @@
+// ============================================================
+// NITYASĀDHANĀ (नित्यसाधना) — PRODUCTION PRISMA SCHEMA
+// Target Database: PostgreSQL
+// ============================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  GURU
+  SHISHYA
+  ADMIN
+}
+
+enum AccountStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+}
+
+enum RelationshipType {
+  PRIMARY_GURU
+  MENTOR
+  CO_MENTOR
+  COUNSELOR
+}
+
+enum RelationshipStatus {
+  ACTIVE
+  INACTIVE
+  ENDED
+}
+
+enum InvitationStatus {
+  PENDING
+  USED
+  EXPIRED
+  REVOKED
+}
+
+enum ReportStatus {
+  DRAFT
+  SUBMITTED
+}
+
+enum FollowUpStatus {
+  UPCOMING
+  DUE_TODAY
+  OVERDUE
+  COMPLETED
+}
+
+enum SankalpaCategory {
+  WAKE_UP
+  JAPA
+  READING
+  HEARING
+  STUDY
+  TIME_MANAGEMENT
+  SLEEP
+  ROUTINE
+  SELF_DISCIPLINE
+  REFLECTION
+  OTHER
+}
+
+enum SankalpaStatus {
+  ACTIVE
+  COMPLETED
+  INCOMPLETE
+  CANCELLED
+}
+
+enum AuditAction {
+  INVITATION_CREATED
+  INVITATION_REVOKED
+  INVITATION_USED
+  SHISHYA_CONNECTED
+  SHISHYA_DEACTIVATED
+  REPORT_CREATED
+  REPORT_EDITED
+  REPORT_SUBMITTED
+  CORRECTION_REQUESTED
+  FOLLOW_UP_CREATED
+  FOLLOW_UP_COMPLETED
+  PRIVATE_NOTE_CREATED
+  PRIVATE_NOTE_DELETED
+  SANKALPA_CREATED
+  SANKALPA_COMPLETED
+  SANKALPA_CANCELLED
+  SANKALPA_REFLECTED
+}
+
+model User {
+  id              String         @id @default(cuid())
+  authProviderId  String         @unique
+  role            UserRole       @default(SHISHYA)
+  name            String
+  email           String         @unique
+  spiritualName   String?
+  ashramId        String?
+  status          AccountStatus  @default(ACTIVE)
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  // Guru-side relationships (as Guru)
+  guidedMentorships Mentorship[] @relation("GuruMentorships")
+
+  // Shishya-side relationships (as Shishya)
+  studentMentorships Mentorship[] @relation("ShishyaMentorships")
+
+  // Invitations created (as Guru)
+  createdInvitations Invitation[] @relation("CreatedInvitations")
+
+  // Invitations used (as Shishya)
+  usedInvitations Invitation[]   @relation("UsedInvitations")
+
+  // Daily reports submitted (as Shishya)
+  dailyReports    DailyReport[]
+
+  // Weekly Sankalpas (as Shishya)
+  weeklySankalpas WeeklySankalpa[] @relation("StudentSankalpas")
+
+  // Weekly Reflections (as Shishya)
+  weeklyReflections WeeklyReflection[] @relation("StudentWeeklyReflections")
+
+  // Guru follow-ups created (as Guru)
+  createdFollowUps GuruFollowUp[] @relation("GuruAuthoredFollowUps")
+
+  // Follow-ups regarding this Shishya
+  shishyaFollowUps GuruFollowUp[] @relation("ShishyaFollowUps")
+
+  // Private Guru notes authored
+  createdPrivateNotes GuruPrivateNote[] @relation("GuruAuthoredNotes")
+
+  // Private notes about this Shishya
+  shishyaPrivateNotes GuruPrivateNote[] @relation("ShishyaNotes")
+
+  // Audit records authored by this user
+  auditLogs       AuditLog[]     @relation("UserAuditLogs")
+
+  @@index([role, status])
+  @@index([email])
+}
+
+model Mentorship {
+  id              String             @id @default(cuid())
+  guruId          String
+  shishyaId       String
+  relationshipType RelationshipType  @default(PRIMARY_GURU)
+  status          RelationshipStatus @default(ACTIVE)
+  isPrimary       Boolean            @default(true)
+  startedAt       DateTime           @default(now())
+  endedAt         DateTime?
+  deactivatedAt   DateTime?
+  deactivatedBy   String?
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+
+  guru            User               @relation("GuruMentorships", fields: [guruId], references: [id], onDelete: Cascade)
+  shishya         User               @relation("ShishyaMentorships", fields: [shishyaId], references: [id], onDelete: Cascade)
+
+  @@index([guruId, status])
+  @@index([shishyaId, isPrimary, status])
+  @@index([shishyaId, status])
+}
+
+model Invitation {
+  id              String           @id @default(cuid())
+  tokenHash       String           @unique
+  codeHash        String           @unique
+  rawCodeMasked   String
+  createdByUserId String
+  intendedRole    UserRole         @default(SHISHYA)
+  status          InvitationStatus @default(PENDING)
+  expiresAt       DateTime
+  usedAt          DateTime?
+  usedByUserId    String?
+  revokedAt       DateTime?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  creator         User             @relation("CreatedInvitations", fields: [createdByUserId], references: [id], onDelete: Cascade)
+  usedBy          User?            @relation("UsedInvitations", fields: [usedByUserId], references: [id])
+
+  @@index([tokenHash])
+  @@index([codeHash])
+  @@index([createdByUserId, status])
+}
+
+model DailyReport {
+  id                          String       @id @default(cuid())
+  studentId                   String
+  practiceDate                String       // Format: YYYY-MM-DD
+  status                      ReportStatus @default(SUBMITTED)
+  timezone                    String       @default("Asia/Kolkata")
+  sleepTime                   String?
+  wakeUpTime                  String?
+  sleepDurationMinutes        Int?
+  japaRounds                  Int          @default(0)
+  extraRounds                 Int          @default(0)
+  totalRounds                 Int          @default(0)
+  readingDurationMinutes      Int          @default(0)
+  readingBookName             String?
+  readingChapterVerse         String?
+  hearingDurationMinutes      Int          @default(0)
+  hearingTopicSpeaker         String?
+  collegeStudyDurationMinutes Int          @default(0)
+  selfStudyDurationMinutes    Int          @default(0)
+  totalStudyDurationMinutes   Int          @default(0)
+  dayRestDurationMinutes      Int          @default(0)
+  timeWastedDurationMinutes   Int          @default(0)
+  notes                       String?
+  submittedAt                 DateTime     @default(now())
+  createdAt                   DateTime     @default(now())
+  updatedAt                   DateTime     @updatedAt
+
+  student                     User         @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, practiceDate])
+  @@index([studentId, practiceDate(sort: Desc)])
+  @@index([studentId, status])
+}
+
+model WeeklySankalpa {
+  id               String           @id @default(cuid())
+  studentId        String
+  category         SankalpaCategory @default(OTHER)
+  title            String
+  description      String?
+  targetType       String           @default("metric_based") // "metric_based" | "custom"
+  targetConfig     Json?            // e.g. { metric: "wake_up_time", targetValue: "03:30", comparison: "at_or_before" }
+  startDate        String           // Format: YYYY-MM-DD
+  endDate          String           // Format: YYYY-MM-DD
+  status           SankalpaStatus   @default(ACTIVE)
+  progress         Json?            // Cached/derived daily progress structure
+  reflection       Json?            // End-of-week reflection { content, whatHelped, whatDifficult, whatContinue, submittedAt }
+  completedAt      DateTime?
+  cancelledAt      DateTime?
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  student          User             @relation("StudentSankalpas", fields: [studentId], references: [id], onDelete: Cascade)
+  reflections      WeeklyReflection[]
+
+  @@index([studentId, status])
+  @@index([studentId, startDate(sort: Desc)])
+  @@index([studentId, endDate])
+}
+
+enum ReflectionState {
+  STEADY
+  GOOD
+  MIXED
+  DIFFICULT
+  REFLECTIVE
+}
+
+model WeeklyReflection {
+  id               String          @id @default(cuid())
+  studentId        String
+  sankalpaId       String?
+  weekStartDate    String          // Format: YYYY-MM-DD
+  weekEndDate      String          // Format: YYYY-MM-DD
+  state            ReflectionState @default(STEADY)
+  wentWell         String?         // Max 300 chars
+  difficult        String?         // Max 300 chars
+  improve          String?         // Max 300 chars
+  guruMessage      String?         // Max 300 chars (Optional message for Guru)
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+  submittedAt      DateTime        @default(now())
+
+  student          User            @relation("StudentWeeklyReflections", fields: [studentId], references: [id], onDelete: Cascade)
+  sankalpa         WeeklySankalpa? @relation(fields: [sankalpaId], references: [id], onDelete: SetNull)
+
+  @@unique([studentId, weekStartDate])
+  @@index([studentId, weekStartDate(sort: Desc)])
+  @@index([studentId, sankalpaId])
+}
+
+model GuruFollowUp {
+  id               String         @id @default(cuid())
+  guruId           String
+  studentId        String
+  note             String
+  followUpDate     String         // Format: YYYY-MM-DD (discussion date)
+  nextFollowUpDate String?        // Format: YYYY-MM-DD (optional next date)
+  status           FollowUpStatus @default(UPCOMING)
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+
+  guru             User           @relation("GuruAuthoredFollowUps", fields: [guruId], references: [id], onDelete: Cascade)
+  student          User           @relation("ShishyaFollowUps", fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@index([guruId, studentId, followUpDate(sort: Desc)])
+  @@index([guruId, status])
+}
+
+model GuruPrivateNote {
+  id               String         @id @default(cuid())
+  guruId           String
+  studentId        String
+  content          String
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+
+  guru             User           @relation("GuruAuthoredNotes", fields: [guruId], references: [id], onDelete: Cascade)
+  student          User           @relation("ShishyaNotes", fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@index([guruId, studentId, createdAt(sort: Desc)])
+}
+
+model AuditLog {
+  id          String      @id @default(cuid())
+  actorId     String
+  action      AuditAction
+  entityType  String      // "Invitation" | "Mentorship" | "DailyReport" | "User" | "FollowUp" | "PrivateNote" | "WeeklySankalpa"
+  entityId    String
+  timestamp   DateTime    @default(now())
+  metadata    Json?
+
+  actor       User        @relation("UserAuditLogs", fields: [actorId], references: [id], onDelete: Cascade)
+
+  @@index([actorId, timestamp(sort: Desc)])
+  @@index([entityType, entityId])
+  @@index([action, timestamp(sort: Desc)])
+}

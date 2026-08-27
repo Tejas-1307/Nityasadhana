@@ -1,0 +1,28 @@
+import * as React from "react";
+import { Container } from "@/components/layout/container";
+import { Section } from "@/components/layout/section";
+import { Logo } from "@/components/branding/logo";
+import { AcceptInviteCard } from "@/components/invitations/accept-invite-card";
+import { validateInvitationSecretAction } from "@/lib/actions/invitations";
+
+export const dynamic = "force-dynamic";
+
+export default async function InviteTokenPage({ params }: { params: Promise<{ token: string }> }) {
+  const { token } = await params;
+  const decodedToken = decodeURIComponent(token);
+  const details = await validateInvitationSecretAction(decodedToken);
+
+  return (
+    <div className="flex min-h-screen flex-col justify-between bg-[#F7F1E5]">
+      <Section spacing="default" className="flex flex-1 items-center py-10 sm:py-16">
+        <Container size="form">
+          <div className="mb-6 flex flex-col items-center text-center">
+            <Logo size="lg" variant="vertical" className="mb-4" />
+          </div>
+
+          <AcceptInviteCard token={decodedToken} details={details} />
+        </Container>
+      </Section>
+    </div>
+  );
+}
