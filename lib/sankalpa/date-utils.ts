@@ -5,6 +5,8 @@
 // weekly boundaries and timezone-safe date calculations.
 // ============================================================
 
+import { getLocalDateString } from "@/lib/reports/calculations";
+
 export interface SankalpaWeekBoundaries {
   startDate: string; // YYYY-MM-DD (Monday)
   endDate: string; // YYYY-MM-DD (Sunday)
@@ -29,12 +31,11 @@ const MONTH_NAMES_SHORT = [
 
 /**
  * Calculates Monday -> Sunday week boundaries for a reference date.
- * If no reference date is given, defaults to current date.
+ * If no reference date is given, defaults to current date in India timezone.
  */
 export function getSankalpaWeekBoundaries(referenceDateStr?: string): SankalpaWeekBoundaries {
-  const ref = referenceDateStr
-    ? new Date(referenceDateStr + "T00:00:00Z")
-    : new Date();
+  const refDate = referenceDateStr || getLocalDateString();
+  const ref = new Date(refDate + "T00:00:00Z");
 
   // Day of week: 0 = Sunday, 1 = Monday, ..., 6 = Saturday
   const dayOfWeek = ref.getUTCDay();
@@ -90,7 +91,7 @@ export function getSankalpaDaysList(
   endDateStr: string,
   todayDateStr?: string
 ): SankalpaDayInfo[] {
-  const today = todayDateStr || new Date().toISOString().slice(0, 10);
+  const today = todayDateStr || getLocalDateString();
   const start = new Date(startDateStr + "T00:00:00Z");
   const end = new Date(endDateStr + "T00:00:00Z");
 

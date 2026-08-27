@@ -8,6 +8,7 @@
 import { dbStore } from "@/lib/db/store";
 import { DbWeeklyReflection, ReflectionState } from "@/lib/db/schema";
 import { getSankalpaWeekBoundaries } from "@/lib/sankalpa/date-utils";
+import { getLocalDateString } from "@/lib/reports/calculations";
 
 export interface ReflectionStateOption {
   key: ReflectionState;
@@ -88,7 +89,7 @@ export class ReflectionService {
     input: SaveReflectionInput,
     currentDateStr?: string
   ): Promise<SaveReflectionResult> {
-    const today = currentDateStr || new Date().toISOString().slice(0, 10);
+    const today = currentDateStr || getLocalDateString();
     const boundaries = getSankalpaWeekBoundaries(today);
 
     const weekStartDate = input.weekStartDate || boundaries.startDate;

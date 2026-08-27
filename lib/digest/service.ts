@@ -12,6 +12,7 @@ import {
   shiftSankalpaWeek,
   getSankalpaDaysList,
 } from "@/lib/sankalpa/date-utils";
+import { getLocalDateString } from "@/lib/reports/calculations";
 import {
   GuruWeeklyDigest,
   DigestSummary,
@@ -32,11 +33,11 @@ export class DigestService {
     guruId: string,
     referenceDateOrMonday?: string
   ): Promise<GuruWeeklyDigest> {
-    const week = getSankalpaWeekBoundaries(referenceDateOrMonday);
+    const today = getLocalDateString();
+    const week = getSankalpaWeekBoundaries(referenceDateOrMonday || today);
     const prevWeek = shiftSankalpaWeek(week.startDate, -1);
     const nextWeek = shiftSankalpaWeek(week.startDate, 1);
 
-    const today = new Date().toISOString().slice(0, 10);
     const isWeekInProgress = today >= week.startDate && today <= week.endDate;
 
     // 1. Fetch authorized active Shishyas for this Guru

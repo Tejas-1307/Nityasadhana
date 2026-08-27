@@ -19,6 +19,7 @@ import {
 } from "@/lib/db/schema";
 import { SankalpaService } from "@/lib/sankalpa/service";
 import { ReflectionService } from "@/lib/reflection/service";
+import { getLocalDateString } from "@/lib/reports/calculations";
 import {
   evaluateAttention,
   AttentionAssessment,
@@ -123,7 +124,7 @@ export class GuruService {
     guruId: string,
     currentDateStr?: string
   ): Promise<GuruDashboardOverview> {
-    const today = currentDateStr || new Date().toISOString().slice(0, 10);
+    const today = currentDateStr || getLocalDateString();
 
     const [activeList, inactiveList] = await Promise.all([
       dbStore.getShishyasByGuru(guruId, "active"),
@@ -248,7 +249,7 @@ export class GuruService {
       return null;
     }
 
-    const today = currentDateStr || new Date().toISOString().slice(0, 10);
+    const today = currentDateStr || getLocalDateString();
 
     // Fetch past 30 days of reports for trend calculation
     const { reports: allReports, total } = await dbStore.getReportsByStudent(shishyaId, 30, 0);
@@ -570,6 +571,15 @@ export class GuruService {
     };
 
     return dbStore.createPrivateNote(record);
+  }
+
+  /**
+   * Retrieves private Guru notes for a student, strictly verifying relationship ownership.
+   */
+  static async getPrivateNotes(guruId: string, studentId: string): Promise<DbGuruPrivateNote[]> {
+    const isConnected = await dbStore.isShishyaConnectedToGuru(guruId, studentId);
+    if (!isConnected) return [];
+    return dbStore.getPrivateNotes(guruId, studentId);
   }
 
   /**

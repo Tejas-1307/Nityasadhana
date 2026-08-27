@@ -16,6 +16,7 @@ import {
 } from "@/lib/db/schema";
 import { getSankalpaWeekBoundaries } from "./date-utils";
 import { evaluateSankalpaProgress } from "./progress";
+import { getLocalDateString } from "@/lib/reports/calculations";
 
 export interface CreateSankalpaInput {
   studentId: string;
@@ -37,7 +38,7 @@ export class SankalpaService {
     studentId: string,
     currentDateStr?: string
   ): Promise<DbWeeklySankalpa | null> {
-    const today = currentDateStr || new Date().toISOString().slice(0, 10);
+    const today = currentDateStr || getLocalDateString();
     const active = await dbStore.getActiveSankalpa(studentId);
     if (!active) return null;
 
@@ -65,7 +66,7 @@ export class SankalpaService {
     input: CreateSankalpaInput,
     currentDateStr?: string
   ): Promise<{ sankalpa?: DbWeeklySankalpa; error?: string }> {
-    const today = currentDateStr || new Date().toISOString().slice(0, 10);
+    const today = currentDateStr || getLocalDateString();
 
     // 1. Enforce single active Sankalpa rule
     const existingActive = await dbStore.getActiveSankalpa(input.studentId);
@@ -136,7 +137,7 @@ export class SankalpaService {
     offset: number = 0,
     currentDateStr?: string
   ): Promise<{ sankalpas: DbWeeklySankalpa[]; total: number }> {
-    const today = currentDateStr || new Date().toISOString().slice(0, 10);
+    const today = currentDateStr || getLocalDateString();
     const { sankalpas, total } = await dbStore.getSankalpasByStudent(studentId, limit, offset);
 
     // Fetch reports to populate evaluated progress
@@ -162,7 +163,7 @@ export class SankalpaService {
     sankalpaId: string,
     currentDateStr?: string
   ): Promise<DbWeeklySankalpa | null> {
-    const today = currentDateStr || new Date().toISOString().slice(0, 10);
+    const today = currentDateStr || getLocalDateString();
     const record = await dbStore.getSankalpaById(sankalpaId);
     if (!record || record.studentId !== studentId) {
       return null;
@@ -195,7 +196,7 @@ export class SankalpaService {
     };
     currentDateStr?: string;
   }): Promise<{ sankalpa?: DbWeeklySankalpa; error?: string }> {
-    const today = params.currentDateStr || new Date().toISOString().slice(0, 10);
+    const today = params.currentDateStr || getLocalDateString();
     const existing = await dbStore.getSankalpaById(params.sankalpaId);
 
     if (!existing || existing.studentId !== params.studentId) {

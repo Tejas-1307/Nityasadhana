@@ -14,7 +14,7 @@ import {
   SankalpaTargetConfig,
 } from "@/lib/db/schema";
 import { getSankalpaDaysList } from "./date-utils";
-import { timeToMinutes, formatTime12Hour, formatDuration } from "@/lib/reports/calculations";
+import { timeToMinutes, formatTime12Hour, formatDuration, getLocalDateString } from "@/lib/reports/calculations";
 
 export function evaluateSankalpaProgress(params: {
   sankalpa: DbWeeklySankalpa;
@@ -22,7 +22,7 @@ export function evaluateSankalpaProgress(params: {
   currentDateStr?: string;
 }): SankalpaProgress {
   const { sankalpa, reports } = params;
-  const today = params.currentDateStr || new Date().toISOString().slice(0, 10);
+  const today = params.currentDateStr || getLocalDateString();
 
   const daysList = getSankalpaDaysList(sankalpa.startDate, sankalpa.endDate, today);
   const dailyProgress: SankalpaDailyProgress[] = [];
