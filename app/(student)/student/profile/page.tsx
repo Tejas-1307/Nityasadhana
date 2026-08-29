@@ -17,6 +17,8 @@ import {
   Mail,
 } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export default async function StudentProfilePage() {
   // Server-authoritative role guard (enforces role === 'shishya')
   const user = await requireShishya();

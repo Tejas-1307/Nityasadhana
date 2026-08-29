@@ -78,6 +78,10 @@ export default function RootLayout({
     <html lang="en" className={`${nunitoSans.variable} ${notoSerifDevanagari.variable}`}>
       <body className="min-h-screen bg-[#F7F1E5] text-[#20201D] antialiased selection:bg-[#2457A6] selection:text-white">
         <ClerkProvider
+          publishableKey={
+            process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
+            "pk_test_ZHVtbXktbmV4dC5jbGVyay5hY2NvdW50cy5kZXYk"
+          }
           appearance={{
             variables: {
               colorPrimary: "#2457A6",

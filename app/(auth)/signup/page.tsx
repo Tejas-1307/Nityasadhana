@@ -5,6 +5,8 @@ import { Section } from "@/components/layout/section";
 import { Logo } from "@/components/branding/logo";
 import { SignupForm } from "@/components/auth/signup-form";
 
+export const dynamic = "force-dynamic";
+
 export default function SignupPage() {
   return (
     <div className="flex min-h-screen flex-col justify-between bg-[#F7F1E5]">

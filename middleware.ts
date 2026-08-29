@@ -15,21 +15,23 @@ const isPublicRoute = createRouteMatcher([
   "/icon.svg",
   "/brand/(.*)",
   "/icons/(.*)",
+  "/sw.js",
+  "/workbox-(.*)",
 ]);
 
-const isProtectedRoute = createRouteMatcher(["/guru(.*)", "/student(.*)"]);
-
 export default clerkMiddleware(async (auth, req) => {
-  let response = NextResponse.next();
-
-  if (isProtectedRoute(req)) {
+  // Fail-Closed Security Policy: Enforce authentication on all routes by default
+  // unless explicitly included in the public allowlist
+  if (!isPublicRoute(req)) {
     const { userId } = await auth();
     if (!userId) {
       const signInUrl = new URL("/login", req.url);
       signInUrl.searchParams.set("redirect_url", req.nextUrl.pathname);
-      response = NextResponse.redirect(signInUrl);
+      return NextResponse.redirect(signInUrl);
     }
   }
+
+  const response = NextResponse.next();
 
   // Attach defense-in-depth HTTP security headers
   response.headers.set("X-Frame-Options", "DENY");
