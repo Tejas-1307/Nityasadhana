@@ -33,9 +33,9 @@ export function SegmentedControl<T extends string | number>({
     <div className={cn("flex w-full select-none flex-col gap-1.5", className)}>
       {(label || sanskritLabel) && (
         <div className="flex items-center justify-between">
-          <span className="text-[14px] font-medium text-[#20201D]">{label}</span>
+          <span className="text-[14px] font-medium text-[#193B3B]">{label}</span>
           {sanskritLabel && (
-            <span className="font-serif text-[13px] text-[#D9822B]">{sanskritLabel}</span>
+            <span className="font-serif text-[13px] text-[#A9824D]">{sanskritLabel}</span>
           )}
         </div>
       )}
@@ -43,7 +43,7 @@ export function SegmentedControl<T extends string | number>({
       <div
         role="radiogroup"
         className={cn(
-          "flex w-full items-center rounded-[12px] border border-[rgba(32,32,29,0.08)] bg-[#E8D9BF]/50 p-1",
+          "flex w-full items-center rounded-[12px] border border-[rgba(63,148,149,0.16)] bg-[#F7F5EF] p-1",
           size === "default" ? "h-[52px]" : "h-[44px]"
         )}
       >
@@ -59,10 +59,10 @@ export function SegmentedControl<T extends string | number>({
               disabled={opt.disabled}
               onClick={() => onChange(opt.value)}
               className={cn(
-                "relative flex h-full flex-1 items-center justify-center rounded-[8px] px-2 text-[14px] font-semibold transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2457A6]",
+                "relative flex h-full flex-1 items-center justify-center rounded-[8px] px-2 text-[14px] font-semibold transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3F9495]",
                 isSelected
-                  ? "shadow-xs bg-white text-[#2457A6]"
-                  : "text-[#66635D] hover:text-[#20201D] active:scale-[0.98]",
+                  ? "shadow-xs bg-white text-[#3F9495]"
+                  : "text-[#547070] hover:text-[#193B3B] active:scale-[0.98]",
                 opt.disabled && "pointer-events-none opacity-40"
               )}
             >

@@ -8,7 +8,7 @@ import { ArrowRight } from "lucide-react";
 
 export function LandingNavbar() {
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-[rgba(32,32,29,0.06)] bg-[#F7F1E5]/90 backdrop-blur-md transition-all">
+    <header className="sticky top-0 z-40 w-full border-b border-[rgba(63,148,149,0.14)] bg-[#EAF7F4]/90 backdrop-blur-md transition-all">
       <Container size="default">
         <div className="flex h-16 items-center justify-between sm:h-20">
           {/* Brand Logo */}
@@ -20,25 +20,25 @@ export function LandingNavbar() {
           <nav className="hidden items-center gap-7 md:flex" aria-label="Main Navigation">
             <a
               href="#purpose"
-              className="text-[14px] font-medium text-[#66635D] transition-colors hover:text-[#20201D]"
+              className="text-[14px] font-medium text-[#547070] transition-colors hover:text-[#193B3B]"
             >
               Purpose
             </a>
             <a
               href="#journey"
-              className="text-[14px] font-medium text-[#66635D] transition-colors hover:text-[#20201D]"
+              className="text-[14px] font-medium text-[#547070] transition-colors hover:text-[#193B3B]"
             >
               Daily Journey
             </a>
             <a
               href="#guru-shishya"
-              className="text-[14px] font-medium text-[#66635D] transition-colors hover:text-[#20201D]"
+              className="text-[14px] font-medium text-[#547070] transition-colors hover:text-[#193B3B]"
             >
               Guru–Shishya
             </a>
             <Link
               href="/about"
-              className="text-[14px] font-medium text-[#66635D] transition-colors hover:text-[#20201D]"
+              className="text-[14px] font-medium text-[#547070] transition-colors hover:text-[#193B3B]"
             >
               About
             </Link>
@@ -48,7 +48,7 @@ export function LandingNavbar() {
           <div className="flex items-center gap-2.5">
             <a
               href="#entry"
-              className="group inline-flex rounded-[10px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2457A6] focus-visible:ring-offset-2"
+              className="group inline-flex rounded-[10px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3F9495] focus-visible:ring-offset-2"
             >
               <Button
                 variant="primary"

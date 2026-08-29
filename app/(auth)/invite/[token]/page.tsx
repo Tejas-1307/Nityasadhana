@@ -13,7 +13,7 @@ export default async function InviteTokenPage({ params }: { params: Promise<{ to
   const details = await validateInvitationSecretAction(decodedToken);
 
   return (
-    <div className="flex min-h-screen flex-col justify-between bg-[#F7F1E5]">
+    <div className="flex min-h-screen flex-col justify-between bg-[#EAF7F4]">
       <Section spacing="default" className="flex flex-1 items-center py-10 sm:py-16">
         <Container size="form">
           <div className="mb-6 flex flex-col items-center text-center">

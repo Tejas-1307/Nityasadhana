@@ -54,7 +54,7 @@ export default function DesignSystemShowcase() {
   const [targetRounds, setTargetRounds] = React.useState<number>(16);
 
   return (
-    <div className="min-h-screen bg-[#F7F1E5] pb-24 text-[#20201D]">
+    <div className="min-h-screen bg-[#EAF7F4] pb-24 text-[#193B3B]">
       {/* Top Header */}
       <TopBar
         rightAction={
@@ -69,17 +69,17 @@ export default function DesignSystemShowcase() {
       <main className="py-8">
         <Container size="default">
           {/* Showcase Intro Header */}
-          <div className="mb-12 border-b border-[rgba(32,32,29,0.10)] pb-8">
+          <div className="mb-12 border-b border-[rgba(63,148,149,0.16)] pb-8">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div>
                 <Badge variant="saffron" size="default" className="mb-2">
                   <span className="font-serif">प्रणाली</span>
                   <span>Internal Design System Showcase</span>
                 </Badge>
-                <h1 className="text-[34px] font-bold tracking-tight text-[#20201D] sm:text-[42px]">
+                <h1 className="text-[34px] font-bold tracking-tight text-[#193B3B] sm:text-[42px]">
                   Nityasādhanā Design System
                 </h1>
-                <p className="mt-2 max-w-2xl text-[16px] text-[#66635D]">
+                <p className="mt-2 max-w-2xl text-[16px] text-[#547070]">
                   Ancient Gurukul × Vrindavan × Krishna × Modern Editorial Product Design. The
                   complete source of truth for UI components, tokens, and mobile touch patterns.
                 </p>
@@ -113,7 +113,7 @@ export default function DesignSystemShowcase() {
                       Main brand lockup for navigation bars and desktop headers.
                     </CardDescription>
                   </CardHeader>
-                  <div className="flex h-24 items-center justify-center rounded-xl border border-[rgba(32,32,29,0.06)] bg-[#F7F1E5] p-4">
+                  <div className="flex h-24 items-center justify-center rounded-xl border border-[rgba(63,148,149,0.14)] bg-[#EAF7F4] p-4">
                     <Logo variant="horizontal" size="default" asDiv />
                   </div>
                 </Card>
@@ -124,7 +124,7 @@ export default function DesignSystemShowcase() {
                     <CardTitle>Compact Header Lockup</CardTitle>
                     <CardDescription>Designed for compact 360px mobile viewports.</CardDescription>
                   </CardHeader>
-                  <div className="flex h-24 items-center justify-center rounded-xl border border-[rgba(32,32,29,0.06)] bg-[#F7F1E5] p-4">
+                  <div className="flex h-24 items-center justify-center rounded-xl border border-[rgba(63,148,149,0.14)] bg-[#EAF7F4] p-4">
                     <Logo variant="compact" size="sm" asDiv />
                   </div>
                 </Card>
@@ -137,7 +137,7 @@ export default function DesignSystemShowcase() {
                       For splash screens, login modals, and print media.
                     </CardDescription>
                   </CardHeader>
-                  <div className="flex h-36 items-center justify-center rounded-xl border border-[rgba(32,32,29,0.06)] bg-[#F7F1E5] p-4">
+                  <div className="flex h-36 items-center justify-center rounded-xl border border-[rgba(63,148,149,0.14)] bg-[#EAF7F4] p-4">
                     <Logo variant="vertical" size="lg" asDiv />
                   </div>
                 </Card>
@@ -151,10 +151,10 @@ export default function DesignSystemShowcase() {
                     </CardDescription>
                   </CardHeader>
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="flex h-28 items-center justify-center rounded-xl border border-[rgba(32,32,29,0.06)] bg-[#F7F1E5] p-2">
+                    <div className="flex h-28 items-center justify-center rounded-xl border border-[rgba(63,148,149,0.14)] bg-[#EAF7F4] p-2">
                       <Logo variant="monochrome" size="default" asDiv />
                     </div>
-                    <div className="flex h-28 items-center justify-center rounded-xl bg-[#20201D] p-2">
+                    <div className="flex h-28 items-center justify-center rounded-xl bg-[#193B3B] p-2">
                       <Logo variant="dark" size="default" asDiv />
                     </div>
                   </div>
@@ -170,30 +170,30 @@ export default function DesignSystemShowcase() {
                     from 16px favicon to 128px hero icon.
                   </CardDescription>
                 </CardHeader>
-                <div className="flex flex-wrap items-end justify-between gap-6 rounded-xl border border-[rgba(32,32,29,0.06)] bg-[#F7F1E5] p-6">
+                <div className="flex flex-wrap items-end justify-between gap-6 rounded-xl border border-[rgba(63,148,149,0.14)] bg-[#EAF7F4] p-6">
                   <div className="flex flex-col items-center gap-2">
                     <BrandMark size={16} />
-                    <span className="font-mono text-[11px] text-[#66635D]">16px</span>
+                    <span className="font-mono text-[11px] text-[#547070]">16px</span>
                   </div>
                   <div className="flex flex-col items-center gap-2">
                     <BrandMark size={24} />
-                    <span className="font-mono text-[11px] text-[#66635D]">24px</span>
+                    <span className="font-mono text-[11px] text-[#547070]">24px</span>
                   </div>
                   <div className="flex flex-col items-center gap-2">
                     <BrandMark size={32} />
-                    <span className="font-mono text-[11px] text-[#66635D]">32px</span>
+                    <span className="font-mono text-[11px] text-[#547070]">32px</span>
                   </div>
                   <div className="flex flex-col items-center gap-2">
                     <BrandMark size={48} />
-                    <span className="font-mono text-[11px] text-[#66635D]">48px</span>
+                    <span className="font-mono text-[11px] text-[#547070]">48px</span>
                   </div>
                   <div className="flex flex-col items-center gap-2">
                     <BrandMark size={64} />
-                    <span className="font-mono text-[11px] text-[#66635D]">64px</span>
+                    <span className="font-mono text-[11px] text-[#547070]">64px</span>
                   </div>
                   <div className="flex flex-col items-center gap-2">
                     <BrandMark size={96} />
-                    <span className="font-mono text-[11px] text-[#66635D]">96px</span>
+                    <span className="font-mono text-[11px] text-[#547070]">96px</span>
                   </div>
                 </div>
               </Card>
@@ -204,105 +204,105 @@ export default function DesignSystemShowcase() {
               <PageHeader
                 title="2. Color System & Ratios"
                 sanskritSubtitle="वर्णसन्तुलनम्"
-                description="Target balance: 65% Warm Ivory/Sand, 18% Deep Charcoal, 10% Krishna Blue, 5% Gurukul Saffron, 2% Peacock/Feather Green."
+                description="Target balance: 55–65% Serene Aqua Atmosphere, 20–30% Warm Ivory, 5–10% Muted Antique Gold, 5–10% Deep Teal Text."
               />
 
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
-                {/* Warm Ivory */}
-                <div className="shadow-xs rounded-xl border border-[rgba(32,32,29,0.1)] bg-white p-3">
-                  <div className="mb-2 h-16 w-full rounded-lg border border-[rgba(32,32,29,0.08)] bg-[#F7F1E5]" />
-                  <p className="text-[13px] font-bold text-[#20201D]">Warm Ivory</p>
-                  <p className="font-mono text-[11px] text-[#66635D]">#F7F1E5</p>
+                {/* Aqua Deep */}
+                <div className="shadow-xs rounded-xl border border-[rgba(63,148,149,0.16)] bg-white p-3">
+                  <div className="mb-2 h-16 w-full rounded-lg bg-[#3F9495]" />
+                  <p className="text-[13px] font-bold text-[#193B3B]">Deep Aqua</p>
+                  <p className="font-mono text-[11px] text-[#547070]">#3F9495</p>
+                  <Badge variant="krishna" size="sm" className="mt-1">
+                    Primary Accent
+                  </Badge>
+                </div>
+
+                {/* Aqua Primary */}
+                <div className="shadow-xs rounded-xl border border-[rgba(63,148,149,0.16)] bg-white p-3">
+                  <div className="mb-2 h-16 w-full rounded-lg bg-[#56BFC0]" />
+                  <p className="text-[13px] font-bold text-[#193B3B]">Medium Aqua</p>
+                  <p className="font-mono text-[11px] text-[#547070]">#56BFC0</p>
+                  <Badge variant="feather" size="sm" className="mt-1">
+                    Turquoise Accent
+                  </Badge>
+                </div>
+
+                {/* Aqua Background */}
+                <div className="shadow-xs rounded-xl border border-[rgba(63,148,149,0.16)] bg-white p-3">
+                  <div className="mb-2 h-16 w-full rounded-lg border border-[rgba(63,148,149,0.2)] bg-[#EAF7F4]" />
+                  <p className="text-[13px] font-bold text-[#193B3B]">Aqua Atmosphere</p>
+                  <p className="font-mono text-[11px] text-[#547070]">#EAF7F4</p>
                   <Badge variant="sand" size="sm" className="mt-1">
-                    Primary Bg (65%)
+                    Primary Bg (60%)
                   </Badge>
                 </div>
 
-                {/* Soft Sand */}
-                <div className="shadow-xs rounded-xl border border-[rgba(32,32,29,0.1)] bg-white p-3">
-                  <div className="mb-2 h-16 w-full rounded-lg bg-[#E8D9BF]" />
-                  <p className="text-[13px] font-bold text-[#20201D]">Soft Sand</p>
-                  <p className="font-mono text-[11px] text-[#66635D]">#E8D9BF</p>
+                {/* Warm Ivory */}
+                <div className="shadow-xs rounded-xl border border-[rgba(63,148,149,0.16)] bg-white p-3">
+                  <div className="mb-2 h-16 w-full rounded-lg border border-[rgba(63,148,149,0.14)] bg-[#F7F5EF]" />
+                  <p className="text-[13px] font-bold text-[#193B3B]">Warm Ivory</p>
+                  <p className="font-mono text-[11px] text-[#547070]">#F7F5EF</p>
                   <Badge variant="neutral" size="sm" className="mt-1">
-                    Secondary Surface
+                    Card Surface (25%)
                   </Badge>
                 </div>
 
-                {/* Deep Charcoal */}
-                <div className="shadow-xs rounded-xl border border-[rgba(32,32,29,0.1)] bg-white p-3">
-                  <div className="mb-2 h-16 w-full rounded-lg bg-[#20201D]" />
-                  <p className="text-[13px] font-bold text-[#20201D]">Deep Charcoal</p>
-                  <p className="font-mono text-[11px] text-[#66635D]">#20201D</p>
-                  <Badge variant="neutral" size="sm" className="mt-1">
-                    Primary Text (18%)
-                  </Badge>
-                </div>
-
-                {/* Krishna Blue */}
-                <div className="shadow-xs rounded-xl border border-[rgba(32,32,29,0.1)] bg-white p-3">
-                  <div className="mb-2 h-16 w-full rounded-lg bg-[#2457A6]" />
-                  <p className="text-[13px] font-bold text-[#20201D]">Krishna Blue</p>
-                  <p className="font-mono text-[11px] text-[#66635D]">#2457A6</p>
-                  <Badge variant="krishna" size="sm" className="mt-1">
-                    Primary Accent (10%)
-                  </Badge>
-                </div>
-
-                {/* Gurukul Saffron */}
-                <div className="shadow-xs rounded-xl border border-[rgba(32,32,29,0.1)] bg-white p-3">
-                  <div className="mb-2 h-16 w-full rounded-lg bg-[#D9822B]" />
-                  <p className="text-[13px] font-bold text-[#20201D]">Gurukul Saffron</p>
-                  <p className="font-mono text-[11px] text-[#66635D]">#D9822B</p>
+                {/* Antique Gold */}
+                <div className="shadow-xs rounded-xl border border-[rgba(63,148,149,0.16)] bg-white p-3">
+                  <div className="mb-2 h-16 w-full rounded-lg bg-[#A9824D]" />
+                  <p className="text-[13px] font-bold text-[#193B3B]">Antique Gold</p>
+                  <p className="font-mono text-[11px] text-[#547070]">#A9824D</p>
                   <Badge variant="saffron" size="sm" className="mt-1">
-                    Spiritual Accent (5%)
+                    Muted Gold (8%)
                   </Badge>
                 </div>
 
-                {/* Peacock Blue */}
-                <div className="shadow-xs rounded-xl border border-[rgba(32,32,29,0.1)] bg-white p-3">
-                  <div className="mb-2 h-16 w-full rounded-lg bg-[#167D8D]" />
-                  <p className="text-[13px] font-bold text-[#20201D]">Peacock Blue</p>
-                  <p className="font-mono text-[11px] text-[#66635D]">#167D8D</p>
-                  <Badge variant="krishna" size="sm" className="mt-1">
-                    Secondary Accent
+                {/* Deep Teal Text */}
+                <div className="shadow-xs rounded-xl border border-[rgba(63,148,149,0.16)] bg-white p-3">
+                  <div className="mb-2 h-16 w-full rounded-lg bg-[#193B3B]" />
+                  <p className="text-[13px] font-bold text-[#193B3B]">Deep Teal Text</p>
+                  <p className="font-mono text-[11px] text-[#547070]">#193B3B</p>
+                  <Badge variant="neutral" size="sm" className="mt-1">
+                    Primary Text
                   </Badge>
                 </div>
 
                 {/* Feather Green */}
-                <div className="shadow-xs rounded-xl border border-[rgba(32,32,29,0.1)] bg-white p-3">
-                  <div className="mb-2 h-16 w-full rounded-lg bg-[#3D765B]" />
-                  <p className="text-[13px] font-bold text-[#20201D]">Feather Green</p>
-                  <p className="font-mono text-[11px] text-[#66635D]">#3D765B</p>
+                <div className="shadow-xs rounded-xl border border-[rgba(63,148,149,0.16)] bg-white p-3">
+                  <div className="mb-2 h-16 w-full rounded-lg bg-[#328A7A]" />
+                  <p className="text-[13px] font-bold text-[#193B3B]">Calm Teal-Green</p>
+                  <p className="font-mono text-[11px] text-[#547070]">#328A7A</p>
                   <Badge variant="feather" size="sm" className="mt-1">
-                    Success / Flora
+                    Success / Growth
                   </Badge>
                 </div>
 
-                {/* Deep Saffron */}
-                <div className="shadow-xs rounded-xl border border-[rgba(32,32,29,0.1)] bg-white p-3">
-                  <div className="mb-2 h-16 w-full rounded-lg bg-[#A95620]" />
-                  <p className="text-[13px] font-bold text-[#20201D]">Deep Saffron</p>
-                  <p className="font-mono text-[11px] text-[#66635D]">#A95620</p>
-                  <Badge variant="saffron" size="sm" className="mt-1">
-                    Darker Accent
+                {/* Champagne */}
+                <div className="shadow-xs rounded-xl border border-[rgba(63,148,149,0.16)] bg-white p-3">
+                  <div className="mb-2 h-16 w-full rounded-lg bg-[#D0B27A]" />
+                  <p className="text-[13px] font-bold text-[#193B3B]">Champagne Sand</p>
+                  <p className="font-mono text-[11px] text-[#547070]">#D0B27A</p>
+                  <Badge variant="sand" size="sm" className="mt-1">
+                    Warm Neutral
                   </Badge>
                 </div>
 
-                {/* Muted Charcoal */}
-                <div className="shadow-xs rounded-xl border border-[rgba(32,32,29,0.1)] bg-white p-3">
-                  <div className="mb-2 h-16 w-full rounded-lg bg-[#66635D]" />
-                  <p className="text-[13px] font-bold text-[#20201D]">Muted Charcoal</p>
-                  <p className="font-mono text-[11px] text-[#66635D]">#66635D</p>
+                {/* Muted Teal Text */}
+                <div className="shadow-xs rounded-xl border border-[rgba(63,148,149,0.16)] bg-white p-3">
+                  <div className="mb-2 h-16 w-full rounded-lg bg-[#547070]" />
+                  <p className="text-[13px] font-bold text-[#193B3B]">Muted Teal-Gray</p>
+                  <p className="font-mono text-[11px] text-[#547070]">#547070</p>
                   <Badge variant="neutral" size="sm" className="mt-1">
                     Secondary Text
                   </Badge>
                 </div>
 
                 {/* Subtle Border */}
-                <div className="shadow-xs rounded-xl border border-[rgba(32,32,29,0.1)] bg-white p-3">
-                  <div className="mb-2 h-16 w-full rounded-lg bg-[rgba(32,32,29,0.08)]" />
-                  <p className="text-[13px] font-bold text-[#20201D]">Warm Border</p>
-                  <p className="font-mono text-[11px] text-[#66635D]">rgba(32,32,29,0.08)</p>
+                <div className="shadow-xs rounded-xl border border-[rgba(63,148,149,0.16)] bg-white p-3">
+                  <div className="mb-2 h-16 w-full rounded-lg bg-[rgba(63,148,149,0.16)]" />
+                  <p className="text-[13px] font-bold text-[#193B3B]">Aqua Border</p>
+                  <p className="font-mono text-[11px] text-[#547070]">rgba(63,148,149,0.16)</p>
                   <Badge variant="neutral" size="sm" className="mt-1">
                     1px Subtle
                   </Badge>
@@ -319,8 +319,8 @@ export default function DesignSystemShowcase() {
               />
 
               <Card className="space-y-6">
-                <div className="border-b border-[rgba(32,32,29,0.08)] pb-4">
-                  <span className="font-mono text-[12px] text-[#D9822B]">
+                <div className="border-b border-[rgba(63,148,149,0.16)] pb-4">
+                  <span className="font-mono text-[12px] text-[#A9824D]">
                     Display / 52px Desktop • 36px Mobile
                   </span>
                   <Heading level="display" className="mt-1">
@@ -328,8 +328,8 @@ export default function DesignSystemShowcase() {
                   </Heading>
                 </div>
 
-                <div className="border-b border-[rgba(32,32,29,0.08)] pb-4">
-                  <span className="font-mono text-[12px] text-[#D9822B]">
+                <div className="border-b border-[rgba(63,148,149,0.16)] pb-4">
+                  <span className="font-mono text-[12px] text-[#A9824D]">
                     Heading 1 / 36px Desktop • 28px Mobile
                   </span>
                   <Heading level="h1" className="mt-1">
@@ -337,22 +337,22 @@ export default function DesignSystemShowcase() {
                   </Heading>
                 </div>
 
-                <div className="border-b border-[rgba(32,32,29,0.08)] pb-4">
-                  <span className="font-mono text-[12px] text-[#D9822B]">Heading 2 / 28px</span>
+                <div className="border-b border-[rgba(63,148,149,0.16)] pb-4">
+                  <span className="font-mono text-[12px] text-[#A9824D]">Heading 2 / 28px</span>
                   <Heading level="h2" className="mt-1">
                     Guru–Shishya Daily Reflections
                   </Heading>
                 </div>
 
-                <div className="border-b border-[rgba(32,32,29,0.08)] pb-4">
-                  <span className="font-mono text-[12px] text-[#D9822B]">Heading 3 / 22px</span>
+                <div className="border-b border-[rgba(63,148,149,0.16)] pb-4">
+                  <span className="font-mono text-[12px] text-[#A9824D]">Heading 3 / 22px</span>
                   <Heading level="h3" className="mt-1">
                     Japa Meditation & Scripture Study
                   </Heading>
                 </div>
 
-                <div className="border-b border-[rgba(32,32,29,0.08)] pb-4">
-                  <span className="font-mono text-[12px] text-[#D9822B]">Body Text / 16px</span>
+                <div className="border-b border-[rgba(63,148,149,0.16)] pb-4">
+                  <span className="font-mono text-[12px] text-[#A9824D]">Body Text / 16px</span>
                   <Text className="mt-1 max-w-2xl leading-relaxed">
                     Technology should reduce the administrative burden of seva, not create more
                     work. Shishyas record their Sadhana in under 30 seconds every morning.
@@ -360,7 +360,7 @@ export default function DesignSystemShowcase() {
                 </div>
 
                 <div>
-                  <span className="font-mono text-[12px] text-[#D9822B]">
+                  <span className="font-mono text-[12px] text-[#A9824D]">
                     Devanagari Sanskrit Shloka Component
                   </span>
                   <div className="mt-2 max-w-xl">
@@ -385,11 +385,11 @@ export default function DesignSystemShowcase() {
 
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <Card className="space-y-4">
-                  <h3 className="text-[16px] font-semibold text-[#20201D]">Button Variants</h3>
+                  <h3 className="text-[16px] font-semibold text-[#193B3B]">Button Variants</h3>
                   <div className="flex flex-wrap gap-3">
-                    <Button variant="primary">Primary (Krishna Blue)</Button>
-                    <Button variant="secondary">Secondary (Warm Sand)</Button>
-                    <Button variant="saffron">Saffron Action</Button>
+                    <Button variant="primary">Primary (Deep Aqua)</Button>
+                    <Button variant="secondary">Secondary (Warm Ivory)</Button>
+                    <Button variant="saffron">Antique Gold Action</Button>
                     <Button variant="outline">Outline</Button>
                     <Button variant="ghost">Ghost Button</Button>
                     <Button variant="destructive">Destructive</Button>
@@ -397,7 +397,7 @@ export default function DesignSystemShowcase() {
                 </Card>
 
                 <Card className="space-y-4">
-                  <h3 className="text-[16px] font-semibold text-[#20201D]">
+                  <h3 className="text-[16px] font-semibold text-[#193B3B]">
                     Button States & Touch Targets
                   </h3>
                   <div className="flex flex-wrap items-center gap-3">
@@ -411,7 +411,7 @@ export default function DesignSystemShowcase() {
                       Disabled State
                     </Button>
                     <IconButton aria-label="Quick action" variant="secondary">
-                      <Sun className="h-5 w-5 text-[#D9822B]" />
+                      <Sun className="h-5 w-5 text-[#A9824D]" />
                     </IconButton>
                     <IconButton aria-label="Compass" variant="primary">
                       <Compass className="h-5 w-5 text-white" />
@@ -611,14 +611,14 @@ export default function DesignSystemShowcase() {
                 <InfoCard
                   title="Mindful Japa Principle"
                   description="Complete minimum 16 rounds of the Hare Krishna Maha-mantra with attentive hearing before noon."
-                  icon={<Sparkles className="h-5 w-5 text-[#2457A6]" />}
+                  icon={<Sparkles className="h-5 w-5 text-[#3F9495]" />}
                   variant="krishna"
                 />
 
                 <InfoCard
                   title="Guru–Shishya Confidentiality"
                   description="Your daily Sadhana reflections are private between you and your guiding Guru."
-                  icon={<ShieldCheck className="h-5 w-5 text-[#D9822B]" />}
+                  icon={<ShieldCheck className="h-5 w-5 text-[#A9824D]" />}
                   variant="saffron"
                 />
               </div>

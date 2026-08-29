@@ -15,19 +15,19 @@ export default function StudentError({
   return (
     <main className="py-12 sm:py-16">
       <Container size="reading">
-        <Card className="border-[rgba(32,32,29,0.08)] bg-white p-8 text-center shadow-level2 sm:p-10">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#F7F1E5] text-[#D9822B]">
+        <Card className="border-[rgba(63,148,149,0.16)] bg-white p-8 text-center shadow-level2 sm:p-10">
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#EAF7F4] text-[#A9824D]">
             <HeartHandshake className="h-7 w-7 stroke-[1.75]" />
           </div>
 
           <div className="mt-4 space-y-2">
-            <span className="font-serif text-[13px] text-[#D9822B]">
+            <span className="font-serif text-[13px] text-[#A9824D]">
               शान्तिः • धैर्यम्
             </span>
-            <h2 className="text-[20px] font-bold text-[#20201D]">
+            <h2 className="text-[20px] font-bold text-[#193B3B]">
               We couldn&apos;t load this page right now
             </h2>
-            <p className="mx-auto max-w-sm text-[14px] leading-relaxed text-[#66635D]">
+            <p className="mx-auto max-w-sm text-[14px] leading-relaxed text-[#547070]">
               A temporary interruption occurred. Please take a mindful breath and try again.
             </p>
           </div>

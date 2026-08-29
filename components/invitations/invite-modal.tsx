@@ -116,28 +116,28 @@ export function InviteModal({
       {isOpen && (
         <div className="animate-in fade-in fixed inset-0 z-50 flex items-end justify-center bg-black/50 p-0 backdrop-blur-sm duration-200 sm:items-center sm:p-4">
           <div
-            className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-t-3xl border border-[rgba(32,32,29,0.08)] bg-white p-6 shadow-2xl sm:rounded-3xl sm:p-8"
+            className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-t-3xl border border-[rgba(63,148,149,0.16)] bg-white p-6 shadow-2xl sm:rounded-3xl sm:p-8"
             role="dialog"
             aria-modal="true"
           >
             {/* Header */}
             <div className="mb-5 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#D9822B]/10 text-[#D9822B]">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#A9824D]/10 text-[#A9824D]">
                   <Sparkles className="h-5 w-5" />
                 </div>
                 <div>
-                  <h2 className="text-[18px] font-bold text-[#20201D]">
+                  <h2 className="text-[18px] font-bold text-[#193B3B]">
                     {invitation ? "Invitation Ready" : "Invite a Shishya"}
                   </h2>
-                  <p className="text-[12px] text-[#66635D]">
+                  <p className="text-[12px] text-[#547070]">
                     {invitation ? "Share with your student" : "शिष्यसंयोजनम्"}
                   </p>
                 </div>
               </div>
               <button
                 onClick={handleClose}
-                className="rounded-full p-2 text-[#66635D] transition-colors hover:bg-[#F7F1E5]"
+                className="rounded-full p-2 text-[#547070] transition-colors hover:bg-[#EAF7F4]"
                 aria-label="Close dialog"
               >
                 <X className="h-5 w-5" />
@@ -158,17 +158,17 @@ export function InviteModal({
             {!invitation ? (
               /* State 1: Generation Prompt */
               <div className="space-y-5">
-                <p className="text-[14px] leading-relaxed text-[#66635D]">
+                <p className="text-[14px] leading-relaxed text-[#547070]">
                   Create a unique, single-use invitation for your Shishya. Once accepted, they will
                   automatically be connected under your guidance with zero manual configuration.
                 </p>
 
-                <div className="space-y-2 rounded-2xl border border-[rgba(32,32,29,0.06)] bg-[#F7F1E5] p-4">
-                  <div className="flex items-center gap-2 text-[13px] font-semibold text-[#20201D]">
-                    <ShieldCheck className="h-4 w-4 text-[#3D765B]" />
+                <div className="space-y-2 rounded-2xl border border-[rgba(63,148,149,0.14)] bg-[#F7F5EF] p-4">
+                  <div className="flex items-center gap-2 text-[13px] font-semibold text-[#193B3B]">
+                    <ShieldCheck className="h-4 w-4 text-[#328A7A]" />
                     <span>Cryptographically Protected</span>
                   </div>
-                  <ul className="list-inside list-disc space-y-1 text-[12px] text-[#66635D]">
+                  <ul className="list-inside list-disc space-y-1 text-[12px] text-[#547070]">
                     <li>Single-use bearer token (cannot be reused)</li>
                     <li>Valid for 7 days from generation</li>
                     <li>Can be revoked anytime from your dashboard</li>
@@ -200,15 +200,15 @@ export function InviteModal({
             ) : (
               /* State 2: Generated Result */
               <div className="space-y-5">
-                <Card className="space-y-3 border border-[rgba(32,32,29,0.08)] bg-[#F7F1E5] p-5 text-center">
-                  <span className="text-[12px] font-medium uppercase tracking-wider text-[#66635D]">
+                <Card className="space-y-3 border border-[rgba(63,148,149,0.14)] bg-[#F7F5EF] p-5 text-center">
+                  <span className="text-[12px] font-medium uppercase tracking-wider text-[#547070]">
                     Invitation Code
                   </span>
-                  <div className="font-mono text-[22px] font-bold tracking-widest text-[#20201D] selection:bg-[#2457A6] selection:text-white sm:text-[24px]">
+                  <div className="font-mono text-[22px] font-bold tracking-widest text-[#193B3B] selection:bg-[#3F9495] selection:text-white sm:text-[24px]">
                     {invitation.rawCode}
                   </div>
-                  <div className="flex items-center justify-center gap-1.5 text-[12px] text-[#66635D]">
-                    <Calendar className="h-3.5 w-3.5 text-[#D9822B]" />
+                  <div className="flex items-center justify-center gap-1.5 text-[12px] text-[#547070]">
+                    <Calendar className="h-3.5 w-3.5 text-[#A9824D]" />
                     <span>
                       Expires in 7 days (
                       {new Date(invitation.expiresAt).toLocaleDateString("en-IN", {
@@ -220,7 +220,7 @@ export function InviteModal({
                   </div>
                 </Card>
 
-                <p className="text-center text-[13px] text-[#66635D]">
+                <p className="text-center text-[13px] text-[#547070]">
                   Anyone with this invitation can use it once to join under your guidance.
                 </p>
 
@@ -242,7 +242,7 @@ export function InviteModal({
                     onClick={handleCopy}
                     leftIcon={
                       hasCopied ? (
-                        <Check className="h-4 w-4 text-[#3D765B]" />
+                        <Check className="h-4 w-4 text-[#328A7A]" />
                       ) : (
                         <Copy className="h-4 w-4" />
                       )
@@ -258,7 +258,7 @@ export function InviteModal({
                     variant="ghost"
                     size="sm"
                     onClick={handleClose}
-                    className="text-[#66635D]"
+                    className="text-[#547070]"
                   >
                     Done
                   </Button>

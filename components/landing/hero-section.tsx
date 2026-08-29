@@ -10,26 +10,26 @@ export function HeroSection() {
     <Section spacing="default" className="relative overflow-hidden pb-16 pt-8 sm:pb-24 sm:pt-14">
       {/* Editorial Decorative Arcs (Vrindavan Morning Glow) */}
       <div
-        className="pointer-events-none absolute -top-24 left-1/2 -z-10 h-[680px] w-[680px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(232,217,191,0.45)_0%,rgba(247,241,229,0)_70%)] blur-2xl"
+        className="pointer-events-none absolute -top-24 left-1/2 -z-10 h-[680px] w-[680px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(142,217,213,0.45)_0%,rgba(234,247,244,0)_70%)] blur-2xl"
         aria-hidden="true"
       />
 
       <Container size="default">
         <div className="flex flex-col items-center text-center">
           {/* Spiritual Context Badge */}
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[rgba(32,32,29,0.08)] bg-white/80 px-3.5 py-1.5 shadow-level1 backdrop-blur-sm">
-            <span className="font-serif text-[12px] font-semibold text-[#D9822B]">नित्यसाधना</span>
-            <span className="h-3 w-[1px] bg-[rgba(32,32,29,0.15)]" />
-            <span className="text-[12px] font-medium text-[#66635D]">ISKCON Pune</span>
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[rgba(63,148,149,0.16)] bg-white/85 px-3.5 py-1.5 shadow-level1 backdrop-blur-sm">
+            <span className="font-serif text-[12px] font-semibold text-[#A9824D]">नित्यसाधना</span>
+            <span className="h-3 w-[1px] bg-[rgba(63,148,149,0.25)]" />
+            <span className="text-[12px] font-medium text-[#547070]">ISKCON Pune</span>
           </div>
 
           {/* Core Brand Headline */}
-          <h1 className="max-w-3xl text-balance text-[32px] font-bold leading-[1.12] tracking-tight text-[#20201D] sm:text-[44px] md:text-[54px]">
+          <h1 className="max-w-3xl text-balance text-[32px] font-bold leading-[1.12] tracking-tight text-[#193B3B] sm:text-[44px] md:text-[54px]">
             Your daily Sādhanā,{" "}
-            <span className="relative inline-block text-[#2457A6]">
+            <span className="relative inline-block text-[#3F9495]">
               consciously lived.
               <svg
-                className="absolute -bottom-1.5 left-0 w-full text-[#D9822B]/60"
+                className="absolute -bottom-1.5 left-0 w-full text-[#A9824D]/70"
                 viewBox="0 0 100 8"
                 preserveAspectRatio="none"
                 height="6"
@@ -47,7 +47,7 @@ export function HeroSection() {
           </h1>
 
           {/* Meaningful Supporting Narrative */}
-          <p className="mt-5 max-w-xl text-balance text-[16px] leading-relaxed text-[#66635D] sm:text-[18px]">
+          <p className="mt-5 max-w-xl text-balance text-[16px] leading-relaxed text-[#547070] sm:text-[18px]">
             A calm digital companion designed for Brahmacharya students and spiritual teachers to
             nurture daily discipline, reflection, and the sacred Guru–Shishya journey.
           </p>
@@ -55,16 +55,16 @@ export function HeroSection() {
           {/* Editorial Devotional Composition */}
           <div className="relative my-8 flex flex-col items-center sm:my-10">
             {/* Sacred Devotional Aura & Artwork */}
-            <div className="relative flex h-32 w-32 items-center justify-center rounded-full border border-[#E8D9BF] bg-white shadow-level2 sm:h-40 sm:w-40">
-              <div className="absolute inset-2 animate-[spin_120s_linear_infinite] rounded-full border border-dashed border-[#D9822B]/25" />
+            <div className="relative flex h-32 w-32 items-center justify-center rounded-full border border-[rgba(63,148,149,0.22)] bg-white shadow-level2 sm:h-40 sm:w-40">
+              <div className="absolute inset-2 animate-[spin_120s_linear_infinite] rounded-full border border-dashed border-[#A9824D]/30" />
               <ShriKrishnaEditorialArt size={96} className="relative z-10" />
             </div>
 
             {/* Subtle Sanskrit Mantra */}
-            <p className="mt-3.5 font-serif text-[14px] tracking-wider text-[#D9822B]">
+            <p className="mt-3.5 font-serif text-[14px] tracking-wider text-[#A9824D]">
               अभ्यासयोगेन ततो मामिच्छाप्तुं धनञ्जय
             </p>
-            <p className="mt-0.5 text-[12px] text-[#66635D]">
+            <p className="mt-0.5 text-[12px] text-[#547070]">
               &ldquo;By the steady practice of devotion, you will reach Me.&rdquo;
             </p>
           </div>

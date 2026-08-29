@@ -109,14 +109,14 @@ export function LoginForm() {
 
   if (isResolvingRole) {
     return (
-      <Card className="flex min-h-[300px] flex-col items-center justify-center border-[rgba(32,32,29,0.08)] bg-white p-6 text-center shadow-level2 sm:p-8">
-        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#D9822B]/10 text-[#D9822B]">
+      <Card className="flex min-h-[300px] flex-col items-center justify-center border-[rgba(63,148,149,0.16)] bg-white p-6 text-center shadow-level2 sm:p-8">
+        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#A9824D]/10 text-[#A9824D]">
           <Loader2 className="h-6 w-6 animate-spin" />
         </div>
-        <h3 className="mt-4 text-[16px] font-bold text-[#20201D]">
+        <h3 className="mt-4 text-[16px] font-bold text-[#193B3B]">
           Entering Sādhanā Portal...
         </h3>
-        <p className="mt-1 text-[13px] text-[#66635D]">
+        <p className="mt-1 text-[13px] text-[#547070]">
           Verifying your account authorization.
         </p>
       </Card>
@@ -124,12 +124,12 @@ export function LoginForm() {
   }
 
   return (
-    <Card className="border-[rgba(32,32,29,0.08)] bg-white p-6 shadow-level2 sm:p-8">
+    <Card className="border-[rgba(63,148,149,0.16)] bg-white p-6 shadow-level2 sm:p-8">
       {/* Role Intent Banner */}
       {roleHint && (
-        <div className="mb-5 flex items-center justify-between rounded-xl border border-[rgba(32,32,29,0.06)] bg-[#F7F1E5] p-3">
-          <div className="flex items-center gap-2 text-[13px] font-medium text-[#20201D]">
-            <Sparkles className="h-4 w-4 text-[#D9822B]" />
+        <div className="mb-5 flex items-center justify-between rounded-xl border border-[rgba(63,148,149,0.14)] bg-[#F7F5EF] p-3">
+          <div className="flex items-center gap-2 text-[13px] font-medium text-[#193B3B]">
+            <Sparkles className="h-4 w-4 text-[#A9824D]" />
             <span>Signing in as {roleHint === "guru" ? "Guru" : "Shishya"}</span>
           </div>
           <Badge variant={roleHint === "guru" ? "saffron" : "krishna"} size="sm">
@@ -174,7 +174,7 @@ export function LoginForm() {
             </Label>
             <Link
               href="/forgot-password"
-              className="text-[12px] font-medium text-[#2457A6] hover:underline"
+              className="text-[12px] font-medium text-[#3F9495] hover:underline"
               tabIndex={-1}
             >
               Forgot password?
@@ -206,16 +206,16 @@ export function LoginForm() {
       </form>
 
       {/* Footer link to invitation or signup */}
-      <div className="mt-6 space-y-2 border-t border-[rgba(32,32,29,0.06)] pt-5 text-center text-[13px] text-[#66635D]">
+      <div className="mt-6 space-y-2 border-t border-[rgba(63,148,149,0.12)] pt-5 text-center text-[13px] text-[#547070]">
         <div>
           Don&apos;t have an account yet?{" "}
-          <Link href="/signup" className="font-semibold text-[#2457A6] hover:underline">
+          <Link href="/signup" className="font-semibold text-[#3F9495] hover:underline">
             Register
           </Link>
         </div>
         <div>
           Received an invitation from your Guru?{" "}
-          <Link href="/invite" className="font-semibold text-[#D9822B] hover:underline">
+          <Link href="/invite" className="font-semibold text-[#A9824D] hover:underline">
             Accept Invite
           </Link>
         </div>

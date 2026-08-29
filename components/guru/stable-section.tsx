@@ -23,18 +23,18 @@ export function StableSection({ shishyas }: StableSectionProps) {
       <button
         type="button"
         onClick={() => setIsExpanded(!isExpanded)}
-        className="flex w-full items-center justify-between rounded-xl px-1 py-1.5 text-left transition-colors hover:bg-[rgba(32,32,29,0.03)]"
+        className="flex w-full items-center justify-between rounded-xl px-1 py-1.5 text-left transition-colors hover:bg-[rgba(63,148,149,0.06)]"
       >
         <div className="flex items-center gap-2">
-          <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-[#3D765B]/10 text-[#3D765B]">
+          <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-[#328A7A]/10 text-[#328A7A]">
             <CheckCircle2 className="h-3.5 w-3.5" />
           </div>
-          <h2 className="text-[15px] font-bold text-[#20201D]">
+          <h2 className="text-[15px] font-bold text-[#193B3B]">
             Consistent Routine ({shishyas.length})
           </h2>
         </div>
 
-        <div className="flex items-center gap-1.5 text-[12px] font-semibold text-[#66635D]">
+        <div className="flex items-center gap-1.5 text-[12px] font-semibold text-[#547070]">
           <span>{isExpanded ? "Hide" : "Show"}</span>
           {isExpanded ? (
             <ChevronUp className="h-4 w-4" />
@@ -58,17 +58,17 @@ export function StableSection({ shishyas }: StableSectionProps) {
             return (
               <div
                 key={item.shishya.id}
-                className="flex items-center justify-between rounded-xl border border-[rgba(32,32,29,0.06)] bg-white p-3 shadow-sm sm:p-3.5"
+                className="flex items-center justify-between rounded-xl border border-[rgba(63,148,149,0.14)] bg-white p-3 shadow-sm sm:p-3.5"
               >
                 <div className="flex items-center gap-3">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#F7F1E5] font-serif text-[12px] font-bold text-[#20201D]">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#EAF7F4] font-serif text-[12px] font-bold text-[#193B3B]">
                     {initials}
                   </div>
                   <div>
-                    <div className="text-[14px] font-bold text-[#20201D]">
+                    <div className="text-[14px] font-bold text-[#193B3B]">
                       {item.shishya.spiritualName || item.shishya.name}
                     </div>
-                    <div className="flex items-center gap-2 text-[11px] text-[#66635D]">
+                    <div className="flex items-center gap-2 text-[11px] text-[#547070]">
                       <span>Today: {item.todayReport?.totalRounds || 16} rounds</span>
                       {item.todayReport?.wakeUpTime && (
                         <span>· Woke {item.todayReport.wakeUpTime}</span>

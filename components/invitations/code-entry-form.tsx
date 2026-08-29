@@ -43,7 +43,7 @@ export function CodeEntryForm() {
   };
 
   return (
-    <Card className="space-y-4 border-[rgba(32,32,29,0.08)] bg-white p-6 shadow-level2 sm:p-8">
+    <Card className="space-y-4 border-[rgba(63,148,149,0.16)] bg-white p-6 shadow-level2 sm:p-8">
       {errorMessage && (
         <div
           role="alert"
@@ -69,7 +69,7 @@ export function CodeEntryForm() {
             required
             disabled={isLoading}
           />
-          <p className="mt-1.5 text-[12px] text-[#66635D]">
+          <p className="mt-1.5 text-[12px] text-[#547070]">
             Provided in the invitation message from your Guru.
           </p>
         </div>

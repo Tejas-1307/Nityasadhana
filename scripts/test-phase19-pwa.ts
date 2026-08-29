@@ -37,8 +37,8 @@ async function runPhase19PWATests() {
   if (manifestData.orientation !== "portrait") {
     throw new Error(`Expected orientation to be 'portrait', got '${manifestData.orientation}'`);
   }
-  if (manifestData.background_color !== "#F7F1E5" || manifestData.theme_color !== "#F7F1E5") {
-    throw new Error("Manifest colors do not match brand Warm Ivory (#F7F1E5)");
+  if (manifestData.background_color !== "#EAF7F4" || manifestData.theme_color !== "#EAF7F4") {
+    throw new Error("Manifest colors do not match brand Serene Aqua (#EAF7F4)");
   }
   if (!manifestData.icons || manifestData.icons.length < 2) {
     throw new Error("Manifest must provide at least 2 icon sizes (any and maskable)");

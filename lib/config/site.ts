@@ -20,9 +20,9 @@ export const siteConfig = {
     "Bhakti Yoga",
     "Daily Routine",
   ],
-  themeColor: "#F7F1E5",
-  backgroundColor: "#F7F1E5",
-  accentColor: "#2457A6",
+  themeColor: "#EAF7F4",
+  backgroundColor: "#EAF7F4",
+  accentColor: "#3F9495",
 };
 
 export type SiteConfig = typeof siteConfig;

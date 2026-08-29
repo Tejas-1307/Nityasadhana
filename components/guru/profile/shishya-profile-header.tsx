@@ -44,7 +44,7 @@ export function ShishyaProfileHeader({
       <div className="flex items-center justify-between">
         <Link
           href="/guru/shishyas"
-          className="inline-flex items-center gap-1.5 rounded-lg py-1 text-[13px] font-semibold text-[#2457A6] transition-colors hover:text-[#1D4585] hover:underline"
+          className="inline-flex items-center gap-1.5 rounded-lg py-1 text-[13px] font-semibold text-[#3F9495] transition-colors hover:text-[#337B7C] hover:underline"
         >
           <ArrowLeft className="h-4 w-4" />
           <span>Back to Shishyas</span>
@@ -60,7 +60,7 @@ export function ShishyaProfileHeader({
               onClick={onOpenFollowUpModal}
               className="h-8 text-[12px] font-semibold"
             >
-              <MessageSquarePlus className="mr-1 h-3.5 w-3.5 text-[#D9822B]" />
+              <MessageSquarePlus className="mr-1 h-3.5 w-3.5 text-[#A9824D]" />
               <span>+ Follow-up</span>
             </Button>
           )}
@@ -73,7 +73,7 @@ export function ShishyaProfileHeader({
               onClick={onOpenNoteModal}
               className="h-8 text-[12px] font-semibold"
             >
-              <FileText className="mr-1 h-3.5 w-3.5 text-[#2457A6]" />
+              <FileText className="mr-1 h-3.5 w-3.5 text-[#3F9495]" />
               <span>+ Note</span>
             </Button>
           )}
@@ -81,18 +81,18 @@ export function ShishyaProfileHeader({
       </div>
 
       {/* Main Student Identity Card */}
-      <div className="rounded-3xl border border-[rgba(32,32,29,0.08)] bg-white p-5 shadow-level1 sm:p-6">
+      <div className="rounded-3xl border border-[rgba(63,148,149,0.16)] bg-white p-5 shadow-level1 sm:p-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-4">
             {/* Avatar */}
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#F7F1E5] font-serif text-[18px] font-bold text-[#20201D] shadow-xs">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#EAF7F4] font-serif text-[18px] font-bold text-[#193B3B] shadow-xs">
               {initials}
             </div>
 
             {/* Name & Metadata */}
             <div className="space-y-1">
               <div className="flex flex-wrap items-center gap-2">
-                <h1 className="text-[20px] font-bold text-[#20201D] sm:text-[24px]">
+                <h1 className="text-[20px] font-bold text-[#193B3B] sm:text-[24px]">
                   {shishya.spiritualName || shishya.name}
                 </h1>
                 <AttentionBadge level={attentionLevel} size="sm" />
@@ -102,7 +102,7 @@ export function ShishyaProfileHeader({
                     <span>Shishya</span>
                   </Badge>
                 ) : (
-                  <Badge variant="neutral" size="sm" className="text-[#66635D]">
+                  <Badge variant="neutral" size="sm" className="text-[#547070]">
                     <UserX className="mr-1 h-3 w-3" />
                     <span>Relationship inactive</span>
                   </Badge>
@@ -110,16 +110,16 @@ export function ShishyaProfileHeader({
               </div>
 
               {shishya.spiritualName && shishya.name !== shishya.spiritualName && (
-                <p className="text-[13px] text-[#66635D]">Legal Name: {shishya.name}</p>
+                <p className="text-[13px] text-[#547070]">Legal Name: {shishya.name}</p>
               )}
 
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[12px] text-[#66635D]">
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[12px] text-[#547070]">
                 <span className="flex items-center gap-1.5">
-                  <UserCheck className="h-3.5 w-3.5 text-[#3D765B]" />
+                  <UserCheck className="h-3.5 w-3.5 text-[#328A7A]" />
                   <span>{isActive ? "Active mentorship" : "Archived relationship"}</span>
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <Calendar className="h-3.5 w-3.5 text-[#D9822B]" />
+                  <Calendar className="h-3.5 w-3.5 text-[#A9824D]" />
                   <span>With you since {joinedDateFormatted}</span>
                 </span>
               </div>

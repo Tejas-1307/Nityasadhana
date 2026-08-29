@@ -14,8 +14,8 @@ export function TopBar({ className, rightAction, transparent = false, ...props }
       className={cn(
         "sticky top-0 z-40 w-full transition-colors duration-200",
         transparent
-          ? "bg-[#F7F1E5]/80 backdrop-blur-md"
-          : "border-b border-[rgba(32,32,29,0.08)] bg-[#F7F1E5]/95 backdrop-blur-md",
+          ? "bg-[#EAF7F4]/80 backdrop-blur-md"
+          : "border-b border-[rgba(63,148,149,0.14)] bg-[#EAF7F4]/95 backdrop-blur-md",
         className
       )}
       {...props}

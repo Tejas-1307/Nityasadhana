@@ -14,11 +14,11 @@ export function Badge({
   ...props
 }: BadgeProps) {
   const variantStyles = {
-    neutral: "bg-[rgba(32,32,29,0.06)] text-[#20201D] border-[rgba(32,32,29,0.08)]",
-    saffron: "bg-[#D9822B]/15 text-[#A95620] border-[#D9822B]/30",
-    krishna: "bg-[#2457A6]/10 text-[#2457A6] border-[#2457A6]/20",
-    sand: "bg-[#E8D9BF] text-[#20201D] border-[#E8D9BF]",
-    feather: "bg-[#3D765B]/15 text-[#3D765B] border-[#3D765B]/30",
+    neutral: "bg-[rgba(63,148,149,0.08)] text-[#193B3B] border-[rgba(63,148,149,0.18)]",
+    saffron: "bg-[#A9824D]/15 text-[#8A6635] border-[#A9824D]/35",
+    krishna: "bg-[#3F9495]/12 text-[#2A7576] border-[#3F9495]/25",
+    sand: "bg-[#F3EFE5] text-[#193B3B] border-[#D0B27A]/35",
+    feather: "bg-[#56BFC0]/15 text-[#246B6C] border-[#56BFC0]/30",
   };
 
   const sizeStyles = {

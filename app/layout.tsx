@@ -22,7 +22,7 @@ const notoSerifDevanagari = Noto_Serif_Devanagari({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#F7F1E5",
+  themeColor: "#EAF7F4",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -76,7 +76,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${nunitoSans.variable} ${notoSerifDevanagari.variable}`}>
-      <body className="min-h-screen bg-[#F7F1E5] text-[#20201D] antialiased selection:bg-[#2457A6] selection:text-white">
+      <body className="min-h-screen bg-[#EAF7F4] text-[#193B3B] antialiased selection:bg-[#3F9495] selection:text-white">
         <ClerkProvider
           publishableKey={
             process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
@@ -84,10 +84,10 @@ export default function RootLayout({
           }
           appearance={{
             variables: {
-              colorPrimary: "#2457A6",
-              colorBackground: "#F7F1E5",
-              colorText: "#20201D",
-              colorTextSecondary: "#66635D",
+              colorPrimary: "#3F9495",
+              colorBackground: "#FFFFFF",
+              colorText: "#193B3B",
+              colorTextSecondary: "#547070",
               borderRadius: "12px",
               fontFamily: "var(--font-nunito-sans), system-ui, sans-serif",
             },

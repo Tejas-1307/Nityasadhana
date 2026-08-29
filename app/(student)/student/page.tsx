@@ -40,16 +40,16 @@ export default async function StudentDashboardPage() {
       <Container size="reading">
         {/* Contextual Header */}
         <div className="mb-6 space-y-1 sm:mb-8">
-          <div className="flex items-center gap-1.5 text-[13px] font-medium text-[#D9822B]">
+          <div className="flex items-center gap-1.5 text-[13px] font-medium text-[#A9824D]">
             <Sparkles className="h-3.5 w-3.5" />
             <span className="font-serif">नित्यसाधना • मुख्यपृष्ठम्</span>
           </div>
-          <h1 className="text-[24px] font-bold tracking-tight text-[#20201D] sm:text-[28px]">
+          <h1 className="text-[24px] font-bold tracking-tight text-[#193B3B] sm:text-[28px]">
             {greeting.fullGreeting(displayName)}
           </h1>
-          <p className="text-[14px] text-[#66635D]">
+          <p className="text-[14px] text-[#547070]">
             {greeting.timeGreeting}. Today is{" "}
-            <span className="font-medium text-[#20201D]">{todayFormatted}</span>.
+            <span className="font-medium text-[#193B3B]">{todayFormatted}</span>.
           </p>
         </div>
 
@@ -72,11 +72,11 @@ export default async function StudentDashboardPage() {
         {/* 3. SĀDHANĀ METRICS OVERVIEW (2-column mobile-first grid) */}
         <div className="mb-6 space-y-2.5">
           <div className="flex items-center justify-between">
-            <h2 className="text-[15px] font-bold text-[#20201D]">
+            <h2 className="text-[15px] font-bold text-[#193B3B]">
               Today&apos;s Sādhanā Breakdown
             </h2>
             {dashboard.report && (
-              <span className="text-[12px] text-[#66635D]">Recorded values</span>
+              <span className="text-[12px] text-[#547070]">Recorded values</span>
             )}
           </div>
           <SadhanaMetricGrid report={dashboard.report} />
@@ -96,16 +96,16 @@ export default async function StudentDashboardPage() {
         <div className="space-y-3.5 pt-2">
           {/* Connected Guru Card */}
           {dashboard.guidingGuru ? (
-            <div className="flex items-center justify-between gap-3 rounded-2xl border border-[rgba(32,32,29,0.08)] bg-white p-4 shadow-level1">
+            <div className="flex items-center justify-between gap-3 rounded-2xl border border-[rgba(63,148,149,0.16)] bg-white p-4 shadow-level1">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#D9822B]/10 text-[#D9822B]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#A9824D]/10 text-[#A9824D]">
                   <HeartHandshake className="h-5 w-5" />
                 </div>
                 <div>
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#66635D]">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#547070]">
                     Guiding Guru
                   </span>
-                  <div className="text-[14px] font-bold text-[#20201D]">
+                  <div className="text-[14px] font-bold text-[#193B3B]">
                     {dashboard.guidingGuru.spiritualName || dashboard.guidingGuru.name}
                   </div>
                 </div>
@@ -116,16 +116,16 @@ export default async function StudentDashboardPage() {
               </Badge>
             </div>
           ) : (
-            <div className="flex items-center justify-between gap-3 rounded-2xl border border-dashed border-[rgba(32,32,29,0.15)] bg-white/60 p-4">
+            <div className="flex items-center justify-between gap-3 rounded-2xl border border-dashed border-[rgba(63,148,149,0.2)] bg-white/60 p-4">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#66635D]/10 text-[#66635D]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#547070]/10 text-[#547070]">
                   <HeartHandshake className="h-5 w-5" />
                 </div>
                 <div>
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#66635D]">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#547070]">
                     Mentorship
                   </span>
-                  <div className="text-[13px] text-[#66635D]">
+                  <div className="text-[13px] text-[#547070]">
                     Not yet connected with a Guiding Guru
                   </div>
                 </div>
@@ -136,23 +136,23 @@ export default async function StudentDashboardPage() {
           {/* Journey Deep Reflection Link */}
           <Link
             href="/student/journey"
-            className="group flex items-center justify-between gap-3 rounded-2xl border border-[rgba(32,32,29,0.08)] bg-white p-4 shadow-level1 transition-colors hover:border-[#2457A6]/30 hover:bg-[#F7F1E5]/30"
+            className="group flex items-center justify-between gap-3 rounded-2xl border border-[rgba(63,148,149,0.16)] bg-white p-4 shadow-level1 transition-colors hover:border-[#3F9495]/40 hover:bg-[#EAF7F4]/60"
           >
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#2457A6]/10 text-[#2457A6] transition-transform group-hover:scale-105">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#3F9495]/10 text-[#3F9495] transition-transform group-hover:scale-105">
                 <Compass className="h-5 w-5" />
               </div>
               <div>
-                <span className="text-[11px] font-semibold uppercase tracking-wider text-[#66635D]">
+                <span className="text-[11px] font-semibold uppercase tracking-wider text-[#547070]">
                   Long-Term Patterns
                 </span>
-                <div className="text-[14px] font-bold text-[#20201D]">
+                <div className="text-[14px] font-bold text-[#193B3B]">
                   Explore Your Sādhanā Journey &amp; Weekly Focus
                 </div>
               </div>
             </div>
 
-            <ArrowRight className="h-4 w-4 text-[#66635D] transition-transform group-hover:translate-x-0.5 group-hover:text-[#2457A6]" />
+            <ArrowRight className="h-4 w-4 text-[#547070] transition-transform group-hover:translate-x-0.5 group-hover:text-[#3F9495]" />
           </Link>
         </div>
       </Container>

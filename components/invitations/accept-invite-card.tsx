@@ -54,13 +54,13 @@ export function AcceptInviteCard({
   // State 1: Invalid / Expired / Revoked
   if (!details.isValid) {
     return (
-      <Card className="space-y-4 border-[rgba(32,32,29,0.08)] bg-white p-6 text-center shadow-level2 sm:p-8">
+      <Card className="space-y-4 border-[rgba(63,148,149,0.16)] bg-white p-6 text-center shadow-level2 sm:p-8">
         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#B33927]/10 text-[#B33927]">
           <AlertCircle className="h-7 w-7 stroke-[1.75]" />
         </div>
         <div className="space-y-1">
-          <h2 className="text-[20px] font-bold text-[#20201D]">Invitation Unavailable</h2>
-          <p className="text-[14px] leading-relaxed text-[#66635D]">
+          <h2 className="text-[20px] font-bold text-[#193B3B]">Invitation Unavailable</h2>
+          <p className="text-[14px] leading-relaxed text-[#547070]">
             {errorMessage || "This invitation link is invalid or has expired."}
           </p>
         </div>
@@ -83,23 +83,23 @@ export function AcceptInviteCard({
   // State 2: Acceptance Success
   if (connectedGuruName) {
     return (
-      <Card className="animate-in fade-in zoom-in-95 space-y-5 border-[rgba(32,32,29,0.08)] bg-white p-6 text-center shadow-level2 sm:p-8">
-        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#3D765B]/10 text-[#3D765B]">
+      <Card className="animate-in fade-in zoom-in-95 space-y-5 border-[rgba(63,148,149,0.16)] bg-white p-6 text-center shadow-level2 sm:p-8">
+        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#328A7A]/10 text-[#328A7A]">
           <CheckCircle2 className="h-9 w-9 stroke-[1.75]" />
         </div>
 
         <div className="space-y-1.5">
-          <span className="font-serif text-[14px] font-medium text-[#D9822B]">
+          <span className="font-serif text-[14px] font-medium text-[#A9824D]">
             गुरुशिष्यसम्बन्धः • शुभारम्भः
           </span>
-          <h2 className="text-[22px] font-bold text-[#20201D]">Your Journey Begins</h2>
-          <p className="text-[14px] text-[#66635D]">You are now connected under the guidance of</p>
-          <div className="inline-block rounded-xl border border-[rgba(32,32,29,0.08)] bg-[#F7F1E5] px-4 py-2 text-[15px] font-bold text-[#20201D]">
+          <h2 className="text-[22px] font-bold text-[#193B3B]">Your Journey Begins</h2>
+          <p className="text-[14px] text-[#547070]">You are now connected under the guidance of</p>
+          <div className="inline-block rounded-xl border border-[rgba(63,148,149,0.14)] bg-[#F7F5EF] px-4 py-2 text-[15px] font-bold text-[#193B3B]">
             {connectedGuruName}
           </div>
         </div>
 
-        <p className="mx-auto max-w-sm text-[13px] text-[#66635D]">
+        <p className="mx-auto max-w-sm text-[13px] text-[#547070]">
           Your Shishya profile has been activated. You can now record your daily Sadhana and seva.
         </p>
 
@@ -121,30 +121,30 @@ export function AcceptInviteCard({
 
   // State 3: Valid Invitation Prompt
   return (
-    <Card className="space-y-5 border-[rgba(32,32,29,0.08)] bg-white p-6 shadow-level2 sm:p-8">
+    <Card className="space-y-5 border-[rgba(63,148,149,0.16)] bg-white p-6 shadow-level2 sm:p-8">
       <div className="space-y-2 text-center">
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#F7F1E5] text-[#2457A6]">
-          <Sparkles className="h-7 w-7 text-[#D9822B]" />
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#EAF7F4] text-[#3F9495]">
+          <Sparkles className="h-7 w-7 text-[#A9824D]" />
         </div>
         <Badge variant="saffron" size="sm">
           <span className="font-serif text-[11px]">निमन्त्रणम्</span>
         </Badge>
-        <h2 className="text-[22px] font-bold tracking-tight text-[#20201D]">
+        <h2 className="text-[22px] font-bold tracking-tight text-[#193B3B]">
           Nityasādhanā Invitation
         </h2>
-        <p className="text-[14px] text-[#66635D]">
+        <p className="text-[14px] text-[#547070]">
           Your Guru has invited you to begin your daily Sādhanā journey.
         </p>
       </div>
 
       {/* Guru Summary Box */}
-      <div className="space-y-2 rounded-2xl border border-[rgba(32,32,29,0.06)] bg-[#F7F1E5]/70 p-4 text-center">
-        <span className="text-[12px] font-semibold uppercase tracking-wider text-[#66635D]">
+      <div className="space-y-2 rounded-2xl border border-[rgba(63,148,149,0.14)] bg-[#F7F5EF]/70 p-4 text-center">
+        <span className="text-[12px] font-semibold uppercase tracking-wider text-[#547070]">
           Invited By
         </span>
-        <div className="text-[16px] font-bold text-[#20201D]">{details.guruName}</div>
-        <div className="flex items-center justify-center gap-1.5 text-[12px] text-[#66635D]">
-          <Calendar className="h-3.5 w-3.5 text-[#D9822B]" />
+        <div className="text-[16px] font-bold text-[#193B3B]">{details.guruName}</div>
+        <div className="flex items-center justify-center gap-1.5 text-[12px] text-[#547070]">
+          <Calendar className="h-3.5 w-3.5 text-[#A9824D]" />
           <span>
             Valid until{" "}
             {new Date(details.expiresAt).toLocaleDateString("en-IN", {
@@ -207,7 +207,7 @@ export function AcceptInviteCard({
       </div>
 
       <div className="pt-2 text-center">
-        <Link href="/" className="text-[13px] text-[#66635D] hover:underline">
+        <Link href="/" className="text-[13px] text-[#547070] hover:underline">
           ← Return to Home
         </Link>
       </div>

@@ -64,43 +64,43 @@ export function SankalpaReflectionModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-xs">
-      <div className="w-full max-w-lg rounded-3xl border border-[rgba(32,32,29,0.08)] bg-white p-5 shadow-level3 sm:p-6">
+      <div className="w-full max-w-lg rounded-3xl border border-[rgba(63,148,149,0.16)] bg-white p-5 shadow-level3 sm:p-6">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-[rgba(32,32,29,0.06)] pb-3">
+        <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.12)] pb-3">
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#3D765B]/10 text-[#3D765B]">
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#328A7A]/10 text-[#328A7A]">
               <MessageSquare className="h-4 w-4" />
             </div>
-            <h2 className="text-[16px] font-bold text-[#20201D] sm:text-[17px]">
+            <h2 className="text-[16px] font-bold text-[#193B3B] sm:text-[17px]">
               End of Week Reflection
             </h2>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-full p-1 text-[#66635D] hover:bg-[#F7F1E5]"
+            className="rounded-full p-1 text-[#547070] hover:bg-[#EAF7F4]"
           >
             <X className="h-4 w-4" />
           </button>
         </div>
 
         {/* Sankalpa Context Box */}
-        <div className="mt-4 rounded-2xl border border-[rgba(32,32,29,0.06)] bg-[#F7F1E5]/30 p-3.5">
+        <div className="mt-4 rounded-2xl border border-[rgba(63,148,149,0.14)] bg-[#F7F5EF]/60 p-3.5">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-[#3D765B]">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#328A7A]">
               {formattedRange}
             </span>
-            <span className="text-[12px] font-bold text-[#20201D]">
+            <span className="text-[12px] font-bold text-[#193B3B]">
               {alignedDays} / {totalDays} days aligned
             </span>
           </div>
-          <h3 className="mt-1 text-[15px] font-bold text-[#20201D]">{sankalpa.title}</h3>
+          <h3 className="mt-1 text-[15px] font-bold text-[#193B3B]">{sankalpa.title}</h3>
         </div>
 
         <form onSubmit={handleSubmit} className="mt-4 space-y-3.5">
           {/* Main Reflection Box */}
           <div>
-            <label className="block text-[12px] font-semibold text-[#66635D]">
+            <label className="block text-[12px] font-semibold text-[#547070]">
               How was your experience with this focus?
             </label>
             <textarea
@@ -109,7 +109,7 @@ export function SankalpaReflectionModal({
               placeholder="What did you notice about your rhythm and practice this week?"
               rows={3}
               required
-              className="mt-1.5 w-full rounded-xl border border-[rgba(32,32,29,0.12)] bg-white p-3 text-[13px] text-[#20201D] placeholder:text-[#66635D]/50 focus:border-[#3D765B] focus:outline-hidden focus:ring-1 focus:ring-[#3D765B]"
+              className="mt-1.5 w-full rounded-xl border border-[rgba(63,148,149,0.18)] bg-white p-3 text-[13px] text-[#193B3B] placeholder:text-[#547070]/50 focus:border-[#3F9495] focus:outline-hidden focus:ring-1 focus:ring-[#3F9495]"
             />
           </div>
 
@@ -118,16 +118,16 @@ export function SankalpaReflectionModal({
             <button
               type="button"
               onClick={() => setShowPrompts(!showPrompts)}
-              className="inline-flex items-center gap-1.5 text-[12px] font-bold text-[#2457A6] hover:underline"
+              className="inline-flex items-center gap-1.5 text-[12px] font-bold text-[#3F9495] hover:underline"
             >
               <Sparkles className="h-3.5 w-3.5" />
               <span>{showPrompts ? "Hide optional questions" : "Answer optional guiding questions"}</span>
             </button>
 
             {showPrompts && (
-              <div className="mt-2.5 space-y-2.5 rounded-2xl border border-[rgba(32,32,29,0.06)] bg-[#F7F1E5]/20 p-3 text-[12px]">
+              <div className="mt-2.5 space-y-2.5 rounded-2xl border border-[rgba(63,148,149,0.14)] bg-[#F7F5EF]/40 p-3 text-[12px]">
                 <div>
-                  <label className="block font-medium text-[#66635D]">
+                  <label className="block font-medium text-[#547070]">
                     What helped you stay consistent?
                   </label>
                   <input
@@ -135,12 +135,12 @@ export function SankalpaReflectionModal({
                     value={whatHelped}
                     onChange={(e) => setWhatHelped(e.target.value)}
                     placeholder="E.g. Sleeping before 10 PM..."
-                    className="mt-1 w-full rounded-lg border border-[rgba(32,32,29,0.1)] bg-white px-2.5 py-1.5 text-[12px] text-[#20201D]"
+                    className="mt-1 w-full rounded-lg border border-[rgba(63,148,149,0.18)] bg-white px-2.5 py-1.5 text-[12px] text-[#193B3B]"
                   />
                 </div>
 
                 <div>
-                  <label className="block font-medium text-[#66635D]">
+                  <label className="block font-medium text-[#547070]">
                     What made it difficult?
                   </label>
                   <input
@@ -148,12 +148,12 @@ export function SankalpaReflectionModal({
                     value={whatDifficult}
                     onChange={(e) => setWhatDifficult(e.target.value)}
                     placeholder="E.g. Travel, late study schedule..."
-                    className="mt-1 w-full rounded-lg border border-[rgba(32,32,29,0.1)] bg-white px-2.5 py-1.5 text-[12px] text-[#20201D]"
+                    className="mt-1 w-full rounded-lg border border-[rgba(63,148,149,0.18)] bg-white px-2.5 py-1.5 text-[12px] text-[#193B3B]"
                   />
                 </div>
 
                 <div>
-                  <label className="block font-medium text-[#66635D]">
+                  <label className="block font-medium text-[#547070]">
                     What would you like to continue next week?
                   </label>
                   <input
@@ -161,7 +161,7 @@ export function SankalpaReflectionModal({
                     value={whatContinue}
                     onChange={(e) => setWhatContinue(e.target.value)}
                     placeholder="E.g. Keep waking at 03:30 AM..."
-                    className="mt-1 w-full rounded-lg border border-[rgba(32,32,29,0.1)] bg-white px-2.5 py-1.5 text-[12px] text-[#20201D]"
+                    className="mt-1 w-full rounded-lg border border-[rgba(63,148,149,0.18)] bg-white px-2.5 py-1.5 text-[12px] text-[#193B3B]"
                   />
                 </div>
               </div>
@@ -173,7 +173,7 @@ export function SankalpaReflectionModal({
           )}
 
           {/* Action Buttons */}
-          <div className="flex items-center justify-end gap-2 border-t border-[rgba(32,32,29,0.06)] pt-3">
+          <div className="flex items-center justify-end gap-2 border-t border-[rgba(63,148,149,0.12)] pt-3">
             <Button
               type="button"
               variant="ghost"

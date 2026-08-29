@@ -13,12 +13,12 @@ export function JourneyComparisonCard({ analytics, className }: JourneyCompariso
   const renderDirectionIcon = (direction: MetricComparison["direction"]) => {
     switch (direction) {
       case "increased":
-        return <ArrowUpRight className="h-4 w-4 text-[#2457A6]" />;
+        return <ArrowUpRight className="h-4 w-4 text-[#3F9495]" />;
       case "decreased":
-        return <ArrowDownRight className="h-4 w-4 text-[#66635D]" />;
+        return <ArrowDownRight className="h-4 w-4 text-[#547070]" />;
       case "stable":
       default:
-        return <ArrowRight className="h-4 w-4 text-[#66635D]" />;
+        return <ArrowRight className="h-4 w-4 text-[#547070]" />;
     }
   };
 
@@ -30,8 +30,8 @@ export function JourneyComparisonCard({ analytics, className }: JourneyCompariso
     return (
       <div className="flex items-center justify-between py-2.5">
         <div>
-          <div className="text-[13px] font-bold text-[#20201D]">{label}</div>
-          {subtitle && <div className="text-[11px] text-[#66635D]">{subtitle}</div>}
+          <div className="text-[13px] font-bold text-[#193B3B]">{label}</div>
+          {subtitle && <div className="text-[11px] text-[#547070]">{subtitle}</div>}
         </div>
 
         <div className="flex items-center gap-1.5 text-right">
@@ -41,17 +41,17 @@ export function JourneyComparisonCard({ analytics, className }: JourneyCompariso
               <span
                 className={`text-[13px] font-bold ${
                   comp.direction === "increased"
-                    ? "text-[#2457A6]"
+                    ? "text-[#3F9495]"
                     : comp.direction === "decreased"
-                      ? "text-[#20201D]"
-                      : "text-[#66635D]"
+                      ? "text-[#193B3B]"
+                      : "text-[#547070]"
                 }`}
               >
                 {comp.label}
               </span>
             </>
           ) : (
-            <span className="text-[12px] text-[#66635D]">Need more days</span>
+            <span className="text-[12px] text-[#547070]">Need more days</span>
           )}
         </div>
       </div>
@@ -60,23 +60,23 @@ export function JourneyComparisonCard({ analytics, className }: JourneyCompariso
 
   return (
     <div
-      className={`rounded-3xl border border-[rgba(32,32,29,0.08)] bg-white p-5 shadow-level2 sm:p-6 ${
+      className={`rounded-3xl border border-[rgba(63,148,149,0.16)] bg-white p-5 shadow-level2 sm:p-6 ${
         className || ""
       }`}
     >
-      <div className="flex items-center justify-between border-b border-[rgba(32,32,29,0.06)] pb-3">
+      <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.12)] pb-3">
         <div>
-          <h3 className="text-[15px] font-bold text-[#20201D]">
+          <h3 className="text-[15px] font-bold text-[#193B3B]">
             Personal Progress Comparison
           </h3>
-          <span className="text-[12px] text-[#66635D]">
+          <span className="text-[12px] text-[#547070]">
             Compared with your previous {rangeDays} days
           </span>
         </div>
-        <Sparkles className="h-4 w-4 text-[#D9822B]" />
+        <Sparkles className="h-4 w-4 text-[#A9824D]" />
       </div>
 
-      <div className="mt-2 divide-y divide-[rgba(32,32,29,0.06)]">
+      <div className="mt-2 divide-y divide-[rgba(63,148,149,0.12)]">
         {renderComparisonRow(
           "Japa Chanting",
           comparison.japa,
@@ -110,7 +110,7 @@ export function JourneyComparisonCard({ analytics, className }: JourneyCompariso
       </div>
 
       {!hasEnoughData && (
-        <div className="mt-4 rounded-xl bg-[#F7F1E5]/60 p-3 text-[12px] text-[#66635D]">
+        <div className="mt-4 rounded-xl bg-[#F7F5EF]/80 p-3 text-[12px] text-[#547070]">
           Keep submitting your daily Sādhanā. Once you record at least 3 reports, personal trend comparisons will automatically emerge here.
         </div>
       )}

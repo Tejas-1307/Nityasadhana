@@ -62,13 +62,13 @@ export function Logo({
       ? "monochrome"
       : "full";
 
-  const titleColor = isDark ? "text-white" : isMonochrome ? "text-[#20201D]" : "text-[#20201D]";
+  const titleColor = isDark ? "text-white" : isMonochrome ? "text-[#193B3B]" : "text-[#193B3B]";
 
   const sanskritColor = isDark
     ? "text-white/80"
     : isMonochrome
-      ? "text-[#66635D]"
-      : "text-[#D9822B]";
+      ? "text-[#547070]"
+      : "text-[#A9824D]";
 
   const content = (
     <>
@@ -110,7 +110,7 @@ export function Logo({
   );
 
   const containerClasses = cn(
-    "group inline-flex items-center gap-2.5 sm:gap-3 rounded-[8px] transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2457A6]",
+    "group inline-flex items-center gap-2.5 sm:gap-3 rounded-[8px] transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3F9495]",
     isVertical ? "flex-col" : "flex-row",
     className
   );

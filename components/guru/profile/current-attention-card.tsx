@@ -20,10 +20,10 @@ export function CurrentAttentionCard({ assessment, signals }: CurrentAttentionCa
     <Card
       className={`border p-5 shadow-level1 transition-all sm:p-6 ${
         isStable
-          ? "border-[#3D765B]/20 bg-[#3D765B]/5"
+          ? "border-[#328A7A]/25 bg-[#328A7A]/5"
           : isFollowUp
-          ? "border-[#2457A6]/25 bg-[#2457A6]/5"
-          : "border-[#D9822B]/25 bg-[#D9822B]/5"
+          ? "border-[#3F9495]/25 bg-[#3F9495]/5"
+          : "border-[#A9824D]/25 bg-[#A9824D]/5"
       }`}
     >
       <div className="space-y-3">
@@ -31,13 +31,13 @@ export function CurrentAttentionCard({ assessment, signals }: CurrentAttentionCa
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             {isStable ? (
-              <CheckCircle2 className="h-5 w-5 text-[#3D765B]" />
+              <CheckCircle2 className="h-5 w-5 text-[#328A7A]" />
             ) : isFollowUp ? (
-              <AlertCircle className="h-5 w-5 text-[#2457A6]" />
+              <AlertCircle className="h-5 w-5 text-[#3F9495]" />
             ) : (
-              <Eye className="h-5 w-5 text-[#D9822B]" />
+              <Eye className="h-5 w-5 text-[#A9824D]" />
             )}
-            <span className="text-[12px] font-bold uppercase tracking-wider text-[#66635D]">
+            <span className="text-[12px] font-bold uppercase tracking-wider text-[#547070]">
               Current Attention State
             </span>
           </div>
@@ -47,21 +47,21 @@ export function CurrentAttentionCard({ assessment, signals }: CurrentAttentionCa
 
         {/* Primary Observation */}
         <div className="space-y-1">
-          <h3 className="text-[16px] font-bold text-[#20201D] sm:text-[17px]">
+          <h3 className="text-[16px] font-bold text-[#193B3B] sm:text-[17px]">
             {assessment.summaryHeadline}
           </h3>
-          <p className="text-[13px] leading-relaxed text-[#66635D]">
+          <p className="text-[13px] leading-relaxed text-[#547070]">
             {assessment.summaryDetail}
           </p>
         </div>
 
         {/* Multi-Signal Details Toggle */}
         {signals.length > 1 && (
-          <div className="border-t border-[rgba(32,32,29,0.06)] pt-3">
+          <div className="border-t border-[rgba(63,148,149,0.12)] pt-3">
             <button
               type="button"
               onClick={() => setIsExpanded(!isExpanded)}
-              className="inline-flex items-center gap-1.5 text-[12px] font-bold text-[#2457A6] hover:underline"
+              className="inline-flex items-center gap-1.5 text-[12px] font-bold text-[#3F9495] hover:underline"
             >
               <span>
                 {isExpanded
@@ -80,15 +80,15 @@ export function CurrentAttentionCard({ assessment, signals }: CurrentAttentionCa
                 {signals.map((sig, idx) => (
                   <div
                     key={idx}
-                    className="rounded-xl border border-[rgba(32,32,29,0.08)] bg-white p-3 text-[12px]"
+                    className="rounded-xl border border-[rgba(63,148,149,0.14)] bg-white p-3 text-[12px]"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="font-bold text-[#20201D]">{sig.title}</span>
+                      <span className="font-bold text-[#193B3B]">{sig.title}</span>
                       {sig.metric && (
-                        <span className="font-semibold text-[#66635D]">{sig.metric}</span>
+                        <span className="font-semibold text-[#547070]">{sig.metric}</span>
                       )}
                     </div>
-                    <p className="mt-1 text-[#66635D]">{sig.reason}</p>
+                    <p className="mt-1 text-[#547070]">{sig.reason}</p>
                   </div>
                 ))}
               </div>

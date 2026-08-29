@@ -32,7 +32,7 @@ export function WeeklyDigestView({ initialDigest }: WeeklyDigestViewProps) {
   return (
     <div className="space-y-6">
       {/* 1. Week Selector Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[rgba(32,32,29,0.08)] bg-white p-3.5 shadow-sm sm:p-4">
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[rgba(63,148,149,0.16)] bg-white p-3.5 shadow-sm sm:p-4">
         {/* Navigation Buttons */}
         <div className="flex items-center gap-1.5 sm:gap-2">
           <Button
@@ -41,13 +41,13 @@ export function WeeklyDigestView({ initialDigest }: WeeklyDigestViewProps) {
             onClick={() => navigateToWeek(digest.prevWeekMonday)}
             leftIcon={<ChevronLeft className="h-4 w-4" />}
             disabled={isNavigating}
-            className="text-[12px] font-semibold text-[#66635D] hover:text-[#20201D]"
+            className="text-[12px] font-semibold text-[#547070] hover:text-[#193B3B]"
           >
             <span className="hidden sm:inline">Previous Week</span>
             <span className="sm:hidden">Prev</span>
           </Button>
 
-          <div className="mx-1 h-4 w-px bg-[rgba(32,32,29,0.12)]" />
+          <div className="mx-1 h-4 w-px bg-[rgba(63,148,149,0.16)]" />
 
           <Button
             variant="ghost"
@@ -55,7 +55,7 @@ export function WeeklyDigestView({ initialDigest }: WeeklyDigestViewProps) {
             onClick={() => navigateToWeek(digest.nextWeekMonday)}
             rightIcon={<ChevronRight className="h-4 w-4" />}
             disabled={isNavigating}
-            className="text-[12px] font-semibold text-[#66635D] hover:text-[#20201D]"
+            className="text-[12px] font-semibold text-[#547070] hover:text-[#193B3B]"
           >
             <span className="hidden sm:inline">Next Week</span>
             <span className="sm:hidden">Next</span>
@@ -72,7 +72,7 @@ export function WeeklyDigestView({ initialDigest }: WeeklyDigestViewProps) {
                 setIsNavigating(true);
                 router.push("/guru/digest");
               }}
-              className="text-[11px] font-semibold text-[#D9822B]"
+              className="text-[11px] font-semibold text-[#A9824D]"
             >
               Current Week
             </Button>
@@ -82,7 +82,7 @@ export function WeeklyDigestView({ initialDigest }: WeeklyDigestViewProps) {
             variant="ghost"
             size="sm"
             onClick={() => router.refresh()}
-            className="h-8 w-8 p-0 text-[#66635D] hover:text-[#20201D]"
+            className="h-8 w-8 p-0 text-[#547070] hover:text-[#193B3B]"
             aria-label="Refresh digest"
           >
             <RefreshCw className={`h-3.5 w-3.5 ${isNavigating ? "animate-spin" : ""}`} />
@@ -128,10 +128,10 @@ export function WeeklyDigestView({ initialDigest }: WeeklyDigestViewProps) {
           )}
 
           {/* 10. Footer Link to All Students Directory */}
-          <div className="flex items-center justify-between rounded-2xl border border-[rgba(32,32,29,0.08)] bg-white p-4 shadow-sm">
+          <div className="flex items-center justify-between rounded-2xl border border-[rgba(63,148,149,0.16)] bg-white p-4 shadow-sm">
             <div className="flex items-center gap-2.5">
-              <Users className="h-4 w-4 text-[#66635D]" />
-              <span className="text-[13px] font-semibold text-[#20201D]">
+              <Users className="h-4 w-4 text-[#547070]" />
+              <span className="text-[13px] font-semibold text-[#193B3B]">
                 View all {digest.summary.totalActiveShishyas} Shishyas
               </span>
             </div>

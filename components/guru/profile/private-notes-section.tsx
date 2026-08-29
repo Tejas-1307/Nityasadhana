@@ -80,23 +80,23 @@ export function PrivateNotesSection({
   };
 
   return (
-    <Card className="border-[rgba(32,32,29,0.08)] bg-white p-5 shadow-level1 sm:p-6">
+    <Card className="border-[rgba(63,148,149,0.16)] bg-white p-5 shadow-level1 sm:p-6">
       <div className="space-y-4">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-[rgba(32,32,29,0.06)] pb-3">
+        <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.12)] pb-3">
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#2457A6]/10 text-[#2457A6]">
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#3F9495]/10 text-[#3F9495]">
               <Lock className="h-4 w-4" />
             </div>
             <div>
-              <h2 className="text-[16px] font-bold text-[#20201D] sm:text-[17px]">
+              <h2 className="text-[16px] font-bold text-[#193B3B] sm:text-[17px]">
                 Private Guru Notes
               </h2>
             </div>
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="hidden items-center gap-1 text-[11px] font-medium text-[#66635D] sm:inline-flex">
+            <span className="hidden items-center gap-1 text-[11px] font-medium text-[#547070] sm:inline-flex">
               <Lock className="h-3 w-3" /> Private to you
             </span>
             <Button
@@ -117,15 +117,15 @@ export function PrivateNotesSection({
 
         {/* Quick Note Composer */}
         {showLocalComposer && (
-          <div className="rounded-2xl border border-[#2457A6]/30 bg-[#F7F1E5]/40 p-4 sm:p-5">
-            <div className="flex items-center justify-between border-b border-[rgba(32,32,29,0.06)] pb-2.5">
-              <span className="text-[13px] font-bold text-[#20201D]">
+          <div className="rounded-2xl border border-[#3F9495]/30 bg-[#F7F5EF]/80 p-4 sm:p-5">
+            <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.12)] pb-2.5">
+              <span className="text-[13px] font-bold text-[#193B3B]">
                 New Private Note
               </span>
               <button
                 type="button"
                 onClick={handleClose}
-                className="rounded-full p-1 text-[#66635D] hover:bg-white"
+                className="rounded-full p-1 text-[#547070] hover:bg-white"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -133,7 +133,7 @@ export function PrivateNotesSection({
 
             <form onSubmit={handleSave} className="mt-3 space-y-3">
               <div>
-                <label className="block text-[12px] font-semibold text-[#66635D]">
+                <label className="block text-[12px] font-semibold text-[#547070]">
                   What would you like to remember?
                 </label>
                 <textarea
@@ -142,16 +142,16 @@ export function PrivateNotesSection({
                   placeholder="Personal observations, devotional guidance topics, health notes..."
                   rows={3}
                   required
-                  className="mt-1 w-full rounded-xl border border-[rgba(32,32,29,0.12)] bg-white p-3 text-[13px] text-[#20201D] placeholder:text-[#66635D]/50 focus:border-[#2457A6] focus:outline-hidden focus:ring-1 focus:ring-[#2457A6]"
+                  className="mt-1 w-full rounded-xl border border-[rgba(63,148,149,0.18)] bg-white p-3 text-[13px] text-[#193B3B] placeholder:text-[#547070]/50 focus:border-[#3F9495] focus:outline-hidden focus:ring-1 focus:ring-[#3F9495]"
                 />
               </div>
 
               {feedback && (
-                <p className="text-[12px] font-semibold text-[#3D765B]">{feedback}</p>
+                <p className="text-[12px] font-semibold text-[#328A7A]">{feedback}</p>
               )}
 
               <div className="flex items-center justify-between pt-1">
-                <span className="text-[11px] text-[#66635D]">
+                <span className="text-[11px] text-[#547070]">
                   🔒 Visible only to you as Guru
                 </span>
                 <div className="flex items-center gap-2">
@@ -183,8 +183,8 @@ export function PrivateNotesSection({
 
         {/* Notes List */}
         {notes.length === 0 && !showLocalComposer ? (
-          <div className="rounded-2xl border border-dashed border-[rgba(32,32,29,0.12)] bg-[#F7F1E5]/30 p-6 text-center">
-            <p className="text-[13px] text-[#66635D]">No private notes yet.</p>
+          <div className="rounded-2xl border border-dashed border-[rgba(63,148,149,0.2)] bg-[#F7F5EF]/60 p-6 text-center">
+            <p className="text-[13px] text-[#547070]">No private notes yet.</p>
             <Button
               type="button"
               variant="outline"
@@ -208,14 +208,14 @@ export function PrivateNotesSection({
               return (
                 <div
                   key={note.id}
-                  className="group rounded-2xl border border-[rgba(32,32,29,0.08)] bg-white p-3.5 shadow-xs"
+                  className="group rounded-2xl border border-[rgba(63,148,149,0.16)] bg-white p-3.5 shadow-xs"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="space-y-1">
-                      <span className="text-[11px] font-bold text-[#66635D]">
+                      <span className="text-[11px] font-bold text-[#547070]">
                         {formattedDate}
                       </span>
-                      <p className="text-[13px] leading-relaxed text-[#20201D] whitespace-pre-wrap">
+                      <p className="text-[13px] leading-relaxed text-[#193B3B] whitespace-pre-wrap">
                         {note.content}
                       </p>
                     </div>
@@ -224,7 +224,7 @@ export function PrivateNotesSection({
                       type="button"
                       onClick={() => handleDelete(note.id)}
                       title="Delete note"
-                      className="rounded-full p-1 text-[#66635D]/40 opacity-0 transition-all hover:bg-[#F7F1E5] hover:text-[#C53030] group-hover:opacity-100"
+                      className="rounded-full p-1 text-[#547070]/40 opacity-0 transition-all hover:bg-[#EAF7F4] hover:text-[#C53030] group-hover:opacity-100"
                     >
                       <Trash2 className="h-3.5 w-3.5" />
                     </button>

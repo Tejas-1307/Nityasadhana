@@ -30,7 +30,7 @@ export function Toggle({
   const toggleId = id || generatedId;
 
   const activeColor =
-    variant === "saffron" ? "bg-[#D9822B] border-[#D9822B]" : "bg-[#2457A6] border-[#2457A6]";
+    variant === "saffron" ? "bg-[#A9824D] border-[#A9824D]" : "bg-[#3F9495] border-[#3F9495]";
 
   return (
     <div
@@ -43,12 +43,12 @@ export function Toggle({
       {(label || sanskritLabel || description) && (
         <label htmlFor={toggleId} className="flex cursor-pointer flex-col text-left">
           <div className="flex items-center gap-2">
-            {label && <span className="text-[15px] font-medium text-[#20201D]">{label}</span>}
+            {label && <span className="text-[15px] font-medium text-[#193B3B]">{label}</span>}
             {sanskritLabel && (
-              <span className="font-serif text-[13px] text-[#D9822B]">({sanskritLabel})</span>
+              <span className="font-serif text-[13px] text-[#A9824D]">({sanskritLabel})</span>
             )}
           </div>
-          {description && <span className="mt-0.5 text-[13px] text-[#66635D]">{description}</span>}
+          {description && <span className="mt-0.5 text-[13px] text-[#547070]">{description}</span>}
         </label>
       )}
 
@@ -61,8 +61,8 @@ export function Toggle({
         disabled={disabled}
         onClick={() => onChange(!checked)}
         className={cn(
-          "relative inline-flex h-8 min-h-[48px] w-14 min-w-[48px] shrink-0 cursor-pointer items-center justify-center rounded-full border-2 p-1 transition-colors duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2457A6] focus-visible:ring-offset-2",
-          checked ? activeColor : "border-transparent bg-[rgba(32,32,29,0.12)]"
+          "relative inline-flex h-8 min-h-[48px] w-14 min-w-[48px] shrink-0 cursor-pointer items-center justify-center rounded-full border-2 p-1 transition-colors duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3F9495] focus-visible:ring-offset-2",
+          checked ? activeColor : "border-transparent bg-[rgba(63,148,149,0.2)]"
         )}
       >
         <span

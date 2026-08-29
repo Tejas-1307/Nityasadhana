@@ -23,13 +23,13 @@ export function LoadingState({
       aria-live="polite"
     >
       <div className="relative mb-4 flex h-12 w-12 items-center justify-center">
-        <div className="absolute h-12 w-12 animate-spin rounded-full border-2 border-[rgba(32,32,29,0.1)] border-t-[#2457A6]" />
-        <Sparkles className="h-5 w-5 animate-pulse text-[#D9822B]" />
+        <div className="absolute h-12 w-12 animate-spin rounded-full border-2 border-[rgba(63,148,149,0.16)] border-t-[#3F9495]" />
+        <Sparkles className="h-5 w-5 animate-pulse text-[#A9824D]" />
       </div>
       {sanskritMessage && (
-        <p className="mb-0.5 font-serif text-[13px] text-[#D9822B]">{sanskritMessage}</p>
+        <p className="mb-0.5 font-serif text-[13px] text-[#A9824D]">{sanskritMessage}</p>
       )}
-      <p className="text-[14px] font-medium text-[#66635D]">{message}</p>
+      <p className="text-[14px] font-medium text-[#547070]">{message}</p>
     </div>
   );
 }

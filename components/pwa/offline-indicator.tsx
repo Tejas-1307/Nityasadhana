@@ -42,16 +42,16 @@ export function OfflineIndicator() {
       aria-live="polite"
     >
       {!isOnline ? (
-        <div className="flex items-center gap-2 rounded-full border border-[rgba(32,32,29,0.12)] bg-[#FFFFFF] px-3.5 py-1.5 shadow-md backdrop-blur-md">
-          <WifiOff className="h-3.5 w-3.5 text-[#D9822B]" />
-          <span className="text-[12px] font-semibold text-[#20201D]">
+        <div className="flex items-center gap-2 rounded-full border border-[rgba(63,148,149,0.16)] bg-[#FFFFFF] px-3.5 py-1.5 shadow-md backdrop-blur-md">
+          <WifiOff className="h-3.5 w-3.5 text-[#A9824D]" />
+          <span className="text-[12px] font-semibold text-[#193B3B]">
             Offline · Reports saved safely on device
           </span>
         </div>
       ) : (
-        <div className="flex items-center gap-2 rounded-full border border-[#3D765B]/20 bg-[#FFFFFF] px-3.5 py-1.5 shadow-md backdrop-blur-md">
-          <Check className="h-3.5 w-3.5 text-[#3D765B]" />
-          <span className="text-[12px] font-semibold text-[#3D765B]">
+        <div className="flex items-center gap-2 rounded-full border border-[#328A7A]/20 bg-[#FFFFFF] px-3.5 py-1.5 shadow-md backdrop-blur-md">
+          <Check className="h-3.5 w-3.5 text-[#328A7A]" />
+          <span className="text-[12px] font-semibold text-[#328A7A]">
             Back online · Connection restored
           </span>
         </div>

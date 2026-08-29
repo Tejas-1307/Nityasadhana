@@ -31,17 +31,17 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variantStyles = {
       primary:
-        "bg-[#2457A6] text-white hover:bg-[#1D4685] active:bg-[#183B70] focus-visible:ring-[#2457A6] shadow-sm",
+        "bg-[#3F9495] text-white hover:bg-[#337B7C] active:bg-[#286364] focus-visible:ring-[#3F9495] shadow-sm",
       secondary:
-        "bg-[#F7F1E5] text-[#20201D] border border-[rgba(32,32,29,0.12)] hover:bg-[#E8D9BF]/40 active:bg-[#E8D9BF]/70 focus-visible:ring-[#2457A6]",
+        "bg-[#D8F1EE]/60 text-[#193B3B] border border-[rgba(63,148,149,0.22)] hover:bg-[#8ED9D5]/30 active:bg-[#8ED9D5]/50 focus-visible:ring-[#3F9495]",
       saffron:
-        "bg-[#D9822B] text-white hover:bg-[#C27222] active:bg-[#A95620] focus-visible:ring-[#D9822B] shadow-sm",
+        "bg-[#A9824D] text-white hover:bg-[#96723E] active:bg-[#826132] focus-visible:ring-[#A9824D] shadow-sm",
       destructive:
         "bg-[#B33927] text-white hover:bg-[#992E1E] active:bg-[#802517] focus-visible:ring-[#B33927]",
       ghost:
-        "bg-transparent text-[#20201D] hover:bg-[rgba(32,32,29,0.05)] active:bg-[rgba(32,32,29,0.08)] focus-visible:ring-[#2457A6]",
+        "bg-transparent text-[#193B3B] hover:bg-[rgba(63,148,149,0.08)] active:bg-[rgba(63,148,149,0.14)] focus-visible:ring-[#3F9495]",
       outline:
-        "bg-transparent text-[#2457A6] border border-[#2457A6]/30 hover:border-[#2457A6] hover:bg-[#2457A6]/5 active:bg-[#2457A6]/10 focus-visible:ring-[#2457A6]",
+        "bg-transparent text-[#3F9495] border border-[#3F9495]/35 hover:border-[#3F9495] hover:bg-[#3F9495]/10 active:bg-[#3F9495]/15 focus-visible:ring-[#3F9495]",
     };
 
     const sizeStyles = {

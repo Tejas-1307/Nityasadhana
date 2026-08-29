@@ -25,18 +25,18 @@ export function EmptyState({
   return (
     <div
       className={cn(
-        "flex flex-col items-center justify-center rounded-[16px] border border-dashed border-[rgba(32,32,29,0.15)] bg-[#F7F1E5]/60 p-8 text-center",
+        "flex flex-col items-center justify-center rounded-[16px] border border-dashed border-[rgba(63,148,149,0.2)] bg-[#F7F5EF]/60 p-8 text-center",
         className
       )}
     >
-      <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#E8D9BF]/60 text-[#2457A6]">
+      <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#D8F1EE]/60 text-[#3F9495]">
         {icon || <Compass className="h-7 w-7 stroke-[1.75]" />}
       </div>
       {sanskritSubtitle && (
-        <p className="mb-1 font-serif text-[13px] font-medium text-[#D9822B]">{sanskritSubtitle}</p>
+        <p className="mb-1 font-serif text-[13px] font-medium text-[#A9824D]">{sanskritSubtitle}</p>
       )}
-      <h4 className="text-[18px] font-semibold text-[#20201D]">{title}</h4>
-      <p className="mt-1.5 max-w-sm text-[14px] text-[#66635D]">{description}</p>
+      <h4 className="text-[18px] font-semibold text-[#193B3B]">{title}</h4>
+      <p className="mt-1.5 max-w-sm text-[14px] text-[#547070]">{description}</p>
       {actionLabel && onAction && (
         <div className="mt-5">
           <Button variant="primary" size="default" onClick={onAction}>

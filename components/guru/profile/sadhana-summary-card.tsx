@@ -69,15 +69,15 @@ export function SadhanaSummaryCard({ trendData, baseline }: SadhanaSummaryCardPr
     baseline.medianStudyMinutes !== null ? formatDuration(baseline.medianStudyMinutes) : "—";
 
   return (
-    <Card className="border-[rgba(32,32,29,0.08)] bg-white p-5 shadow-level1 sm:p-6">
+    <Card className="border-[rgba(63,148,149,0.16)] bg-white p-5 shadow-level1 sm:p-6">
       <div className="space-y-4">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-[rgba(32,32,29,0.06)] pb-3">
+        <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.12)] pb-3">
           <div>
-            <span className="text-[11px] font-bold uppercase tracking-wider text-[#66635D]">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#547070]">
               Sādhanā · Last 7 Days
             </span>
-            <h2 className="text-[17px] font-bold text-[#20201D] sm:text-[18px]">
+            <h2 className="text-[17px] font-bold text-[#193B3B] sm:text-[18px]">
               Recent Routine Summary
             </h2>
           </div>
@@ -89,85 +89,85 @@ export function SadhanaSummaryCard({ trendData, baseline }: SadhanaSummaryCardPr
         {/* 6-Grid Metrics Matrix */}
         <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-3">
           {/* 1. Wake-up */}
-          <div className="rounded-2xl border border-[rgba(32,32,29,0.06)] bg-[#F7F1E5]/40 p-3.5">
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#66635D]">
-              <Moon className="h-3.5 w-3.5 text-[#2457A6]" />
+          <div className="rounded-2xl border border-[rgba(63,148,149,0.14)] bg-[#F7F5EF]/60 p-3.5">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#547070]">
+              <Moon className="h-3.5 w-3.5 text-[#3F9495]" />
               <span>Wake-up</span>
             </div>
-            <div className="mt-1 text-[18px] font-bold text-[#20201D]">
+            <div className="mt-1 text-[18px] font-bold text-[#193B3B]">
               {validWakeCount > 0 ? `${avgWakeFormatted} AM` : "—"}
             </div>
-            <div className="mt-0.5 text-[11px] text-[#66635D]">
-              base: <strong className="font-semibold text-[#20201D]">{baseWakeFormatted}</strong>
+            <div className="mt-0.5 text-[11px] text-[#547070]">
+              base: <strong className="font-semibold text-[#193B3B]">{baseWakeFormatted}</strong>
             </div>
           </div>
 
           {/* 2. Japa */}
-          <div className="rounded-2xl border border-[rgba(32,32,29,0.06)] bg-[#F7F1E5]/40 p-3.5">
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#66635D]">
-              <CircleDot className="h-3.5 w-3.5 text-[#D9822B]" />
+          <div className="rounded-2xl border border-[rgba(63,148,149,0.14)] bg-[#F7F5EF]/60 p-3.5">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#547070]">
+              <CircleDot className="h-3.5 w-3.5 text-[#A9824D]" />
               <span>Japa</span>
             </div>
-            <div className="mt-1 text-[18px] font-bold text-[#20201D]">
+            <div className="mt-1 text-[18px] font-bold text-[#193B3B]">
               {submittedDays.length > 0 ? `${avgRounds} avg` : "—"}
             </div>
-            <div className="mt-0.5 text-[11px] text-[#66635D]">
-              base: <strong className="font-semibold text-[#20201D]">{baseRounds}</strong>
+            <div className="mt-0.5 text-[11px] text-[#547070]">
+              base: <strong className="font-semibold text-[#193B3B]">{baseRounds}</strong>
             </div>
           </div>
 
           {/* 3. Reading */}
-          <div className="rounded-2xl border border-[rgba(32,32,29,0.06)] bg-[#F7F1E5]/40 p-3.5">
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#66635D]">
-              <BookOpen className="h-3.5 w-3.5 text-[#3D765B]" />
+          <div className="rounded-2xl border border-[rgba(63,148,149,0.14)] bg-[#F7F5EF]/60 p-3.5">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#547070]">
+              <BookOpen className="h-3.5 w-3.5 text-[#328A7A]" />
               <span>Reading</span>
             </div>
-            <div className="mt-1 text-[18px] font-bold text-[#20201D]">
+            <div className="mt-1 text-[18px] font-bold text-[#193B3B]">
               {submittedDays.length > 0 ? formatDuration(avgReading) : "—"}
             </div>
-            <div className="mt-0.5 text-[11px] text-[#66635D]">
-              base: <strong className="font-semibold text-[#20201D]">{baseReading}</strong>
+            <div className="mt-0.5 text-[11px] text-[#547070]">
+              base: <strong className="font-semibold text-[#193B3B]">{baseReading}</strong>
             </div>
           </div>
 
           {/* 4. Hearing */}
-          <div className="rounded-2xl border border-[rgba(32,32,29,0.06)] bg-[#F7F1E5]/40 p-3.5">
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#66635D]">
-              <Headphones className="h-3.5 w-3.5 text-[#2457A6]" />
+          <div className="rounded-2xl border border-[rgba(63,148,149,0.14)] bg-[#F7F5EF]/60 p-3.5">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#547070]">
+              <Headphones className="h-3.5 w-3.5 text-[#3F9495]" />
               <span>Hearing</span>
             </div>
-            <div className="mt-1 text-[18px] font-bold text-[#20201D]">
+            <div className="mt-1 text-[18px] font-bold text-[#193B3B]">
               {submittedDays.length > 0 ? formatDuration(avgHearing) : "—"}
             </div>
-            <div className="mt-0.5 text-[11px] text-[#66635D]">
-              base: <strong className="font-semibold text-[#20201D]">{baseHearing}</strong>
+            <div className="mt-0.5 text-[11px] text-[#547070]">
+              base: <strong className="font-semibold text-[#193B3B]">{baseHearing}</strong>
             </div>
           </div>
 
           {/* 5. Study */}
-          <div className="rounded-2xl border border-[rgba(32,32,29,0.06)] bg-[#F7F1E5]/40 p-3.5">
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#66635D]">
-              <GraduationCap className="h-3.5 w-3.5 text-[#66635D]" />
+          <div className="rounded-2xl border border-[rgba(63,148,149,0.14)] bg-[#F7F5EF]/60 p-3.5">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#547070]">
+              <GraduationCap className="h-3.5 w-3.5 text-[#547070]" />
               <span>Study</span>
             </div>
-            <div className="mt-1 text-[18px] font-bold text-[#20201D]">
+            <div className="mt-1 text-[18px] font-bold text-[#193B3B]">
               {submittedDays.length > 0 ? formatDuration(avgStudy) : "—"}
             </div>
-            <div className="mt-0.5 text-[11px] text-[#66635D]">
-              base: <strong className="font-semibold text-[#20201D]">{baseStudy}</strong>
+            <div className="mt-0.5 text-[11px] text-[#547070]">
+              base: <strong className="font-semibold text-[#193B3B]">{baseStudy}</strong>
             </div>
           </div>
 
           {/* 6. Unused / Waste */}
-          <div className="rounded-2xl border border-[rgba(32,32,29,0.06)] bg-[#F7F1E5]/40 p-3.5">
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#66635D]">
-              <Clock className="h-3.5 w-3.5 text-[#8F5B1E]" />
+          <div className="rounded-2xl border border-[rgba(63,148,149,0.14)] bg-[#F7F5EF]/60 p-3.5">
+            <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#547070]">
+              <Clock className="h-3.5 w-3.5 text-[#A9824D]" />
               <span>Unused Time</span>
             </div>
-            <div className="mt-1 text-[18px] font-bold text-[#20201D]">
+            <div className="mt-1 text-[18px] font-bold text-[#193B3B]">
               {submittedDays.length > 0 ? formatDuration(avgUnused) : "—"}
             </div>
-            <div className="mt-0.5 text-[11px] text-[#66635D]">
+            <div className="mt-0.5 text-[11px] text-[#547070]">
               daily average
             </div>
           </div>

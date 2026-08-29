@@ -24,9 +24,9 @@ export default async function GuruWeeklyDigestPage({ searchParams }: GuruWeeklyD
   const digest = await DigestService.getGuruWeeklyDigest(user.id, weekParam);
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#F7F1E5] pb-20 md:pb-10">
+    <div className="flex min-h-screen flex-col bg-[#EAF7F4] pb-20 md:pb-10">
       {/* Authenticated Top Bar */}
-      <header className="sticky top-0 z-40 w-full border-b border-[rgba(32,32,29,0.08)] bg-white/90 backdrop-blur-md">
+      <header className="sticky top-0 z-40 w-full border-b border-[rgba(63,148,149,0.16)] bg-white/90 backdrop-blur-md">
         <Container size="default">
           <div className="flex h-16 items-center justify-between sm:h-20">
             <Logo size="default" href="/" />
@@ -51,16 +51,16 @@ export default async function GuruWeeklyDigestPage({ searchParams }: GuruWeeklyD
           <div className="space-y-6">
             {/* Digest Header */}
             <div className="flex flex-col gap-1">
-              <div className="flex items-center gap-2 text-[#D9822B]">
+              <div className="flex items-center gap-2 text-[#A9824D]">
                 <Sparkles className="h-4 w-4" />
                 <span className="text-[12px] font-bold uppercase tracking-wider">
                   Weekly Mentorship Intelligence • साप्ताहिक विवरणम्
                 </span>
               </div>
-              <h1 className="text-[24px] font-bold text-[#20201D] sm:text-[28px]">
+              <h1 className="text-[24px] font-bold text-[#193B3B] sm:text-[28px]">
                 Weekly Sādhanā Digest
               </h1>
-              <p className="text-[13px] text-[#66635D]">
+              <p className="text-[13px] text-[#547070]">
                 A concise 2–5 minute summary of reporting rhythms, personal pattern changes, and active follow-ups.
               </p>
             </div>

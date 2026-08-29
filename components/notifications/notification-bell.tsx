@@ -38,7 +38,7 @@ export function NotificationBell({ role = "shishya" }: NotificationBellProps) {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="relative flex h-9 w-9 items-center justify-center rounded-xl border border-[rgba(32,32,29,0.08)] bg-white text-[#66635D] shadow-2xs transition-colors hover:border-[rgba(32,32,29,0.15)] hover:text-[#20201D]"
+        className="relative flex h-9 w-9 items-center justify-center rounded-xl border border-[rgba(63,148,149,0.16)] bg-white text-[#547070] shadow-2xs transition-colors hover:border-[rgba(63,148,149,0.28)] hover:text-[#193B3B]"
         aria-label={
           unreadCount > 0
             ? `${unreadCount} unread reminders`
@@ -47,7 +47,7 @@ export function NotificationBell({ role = "shishya" }: NotificationBellProps) {
       >
         <Bell className="h-4 w-4" />
         {unreadCount > 0 && (
-          <span className="absolute -top-1 -right-1 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-[#D9822B] px-1 text-[10px] font-bold text-white shadow-xs">
+          <span className="absolute -top-1 -right-1 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-[#A9824D] px-1 text-[10px] font-bold text-white shadow-xs">
             {unreadCount}
           </span>
         )}

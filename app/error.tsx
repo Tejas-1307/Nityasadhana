@@ -28,13 +28,13 @@ export default function RootError({
           </div>
 
           <div className="space-y-1.5">
-            <p className="font-serif text-[13px] font-medium text-[#D9822B]">
+            <p className="font-serif text-[13px] font-medium text-[#A9824D]">
               शान्तिः • विघ्नशान्तिः
             </p>
-            <h2 className="text-[22px] font-bold tracking-tight text-[#20201D]">
+            <h2 className="text-[22px] font-bold tracking-tight text-[#193B3B]">
               An unexpected pause occurred
             </h2>
-            <p className="mx-auto max-w-sm text-[14px] text-[#66635D]">
+            <p className="mx-auto max-w-sm text-[14px] text-[#547070]">
               The application encountered a temporary pause. Please try reloading or return to the
               home screen.
             </p>

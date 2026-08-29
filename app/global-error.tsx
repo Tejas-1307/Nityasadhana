@@ -23,8 +23,8 @@ export default function GlobalError({
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#F7F1E5",
-          color: "#20201D",
+          backgroundColor: "#EAF7F4",
+          color: "#193B3B",
           fontFamily: "system-ui, -apple-system, sans-serif",
           textAlign: "center",
         }}
@@ -35,22 +35,22 @@ export default function GlobalError({
             padding: "32px",
             backgroundColor: "#FFFFFF",
             borderRadius: "16px",
-            border: "1px solid rgba(32, 32, 29, 0.1)",
-            boxShadow: "0 4px 20px rgba(32, 32, 29, 0.06)",
+            border: "1px solid rgba(63, 148, 149, 0.18)",
+            boxShadow: "0 4px 20px rgba(63, 148, 149, 0.08)",
           }}
         >
           <div
-            style={{ color: "#D9822B", fontSize: "14px", fontWeight: "600", marginBottom: "8px" }}
+            style={{ color: "#A9824D", fontSize: "14px", fontWeight: "600", marginBottom: "8px" }}
           >
             नित्यसाधना • विघ्नशान्तिः
           </div>
           <h1
-            style={{ fontSize: "24px", fontWeight: "700", margin: "0 0 12px 0", color: "#20201D" }}
+            style={{ fontSize: "24px", fontWeight: "700", margin: "0 0 12px 0", color: "#193B3B" }}
           >
             Application Error
           </h1>
           <p
-            style={{ fontSize: "15px", color: "#66635D", lineHeight: "1.5", margin: "0 0 24px 0" }}
+            style={{ fontSize: "15px", color: "#547070", lineHeight: "1.5", margin: "0 0 24px 0" }}
           >
             A critical error occurred while loading the application shell. Please refresh the page.
           </p>
@@ -60,7 +60,7 @@ export default function GlobalError({
             style={{
               height: "52px",
               padding: "0 24px",
-              backgroundColor: "#2457A6",
+              backgroundColor: "#3F9495",
               color: "#FFFFFF",
               border: "none",
               borderRadius: "12px",

@@ -94,7 +94,7 @@ export function ForgotPasswordForm() {
   };
 
   return (
-    <Card className="border-[rgba(32,32,29,0.08)] bg-white p-6 shadow-level2 sm:p-8">
+    <Card className="border-[rgba(63,148,149,0.16)] bg-white p-6 shadow-level2 sm:p-8">
       {/* Error Feedback */}
       {errorMessage && (
         <div
@@ -110,7 +110,7 @@ export function ForgotPasswordForm() {
       {successMessage && (
         <div
           role="status"
-          className="mb-5 flex items-start gap-2.5 rounded-xl border border-[#3D765B]/20 bg-[#3D765B]/10 p-3.5 text-[13px] text-[#3D765B]"
+          className="mb-5 flex items-start gap-2.5 rounded-xl border border-[#328A7A]/20 bg-[#328A7A]/10 p-3.5 text-[13px] text-[#328A7A]"
         >
           <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" />
           <span>{successMessage}</span>
@@ -197,9 +197,9 @@ export function ForgotPasswordForm() {
       )}
 
       {/* Footer Return Link */}
-      <div className="mt-6 border-t border-[rgba(32,32,29,0.06)] pt-5 text-center text-[13px] text-[#66635D]">
+      <div className="mt-6 border-t border-[rgba(63,148,149,0.12)] pt-5 text-center text-[13px] text-[#547070]">
         Remembered your password?{" "}
-        <Link href="/login" className="font-semibold text-[#2457A6] hover:underline">
+        <Link href="/login" className="font-semibold text-[#3F9495] hover:underline">
           Return to Sign In
         </Link>
       </div>

@@ -26,20 +26,20 @@ export function BrandMark({ size = 40, variant = "full", className, ...props }: 
   const peacockColor = isWhite
     ? "#FFFFFF"
     : isMonochrome
-      ? "#20201D"
+      ? "#193B3B"
       : isSubtle
-        ? "#66635D"
-        : "#167D8D";
+        ? "#547070"
+        : "#56BFC0";
 
   const innerSurfaceColor = isWhite
     ? "rgba(255, 255, 255, 0.15)"
     : isMonochrome
-      ? "rgba(32, 32, 29, 0.08)"
-      : "#E8D9BF";
+      ? "rgba(25, 59, 59, 0.08)"
+      : "#D8F1EE";
 
-  const primaryBlueColor = isWhite ? "#FFFFFF" : isMonochrome ? "#20201D" : "#2457A6";
+  const primaryBlueColor = isWhite ? "#FFFFFF" : isMonochrome ? "#193B3B" : "#3F9495";
 
-  const saffronColor = isWhite ? "#FFFFFF" : isMonochrome ? "#20201D" : "#D9822B";
+  const saffronColor = isWhite ? "#FFFFFF" : isMonochrome ? "#193B3B" : "#A9824D";
 
   // For very small sizes (<=20px), slightly adjust stroke width for maximum optical clarity
   const strokeW = typeof size === "number" && size <= 20 ? 3 : 2.5;

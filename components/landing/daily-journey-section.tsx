@@ -22,7 +22,7 @@ const steps: TimelineStep[] = [
     description:
       "Rising in the tranquil auspicious hours before dawn with peaceful mind and gratitude.",
     metric: "Conscious rise",
-    icon: <Sun className="h-5 w-5 text-[#D9822B]" />,
+    icon: <Sun className="h-5 w-5 text-[#A9824D]" />,
   },
   {
     time: "04:30 AM",
@@ -31,7 +31,7 @@ const steps: TimelineStep[] = [
     description:
       "Beginning the day before the Deities in community kirtana, prayer, and morning darshan.",
     metric: "Temple attendance",
-    icon: <Sparkles className="h-5 w-5 text-[#2457A6]" />,
+    icon: <Sparkles className="h-5 w-5 text-[#3F9495]" />,
   },
   {
     time: "05:15 AM",
@@ -40,7 +40,7 @@ const steps: TimelineStep[] = [
     description:
       "Attentive, focused chanting of the Hare Krishna Mahamantra on sacred Tulasi beads.",
     metric: "16 sacred rounds",
-    icon: <Heart className="h-5 w-5 text-[#3D765B]" />,
+    icon: <Heart className="h-5 w-5 text-[#328A7A]" />,
   },
   {
     time: "07:30 AM",
@@ -49,7 +49,7 @@ const steps: TimelineStep[] = [
     description:
       "Hearing Śrīmad-Bhāgavatam and deep study of Śrīla Prabhupāda's foundational literature.",
     metric: "45 minutes study",
-    icon: <BookOpen className="h-5 w-5 text-[#167D8D]" />,
+    icon: <BookOpen className="h-5 w-5 text-[#56BFC0]" />,
   },
   {
     time: "09:00 PM",
@@ -58,23 +58,23 @@ const steps: TimelineStep[] = [
     description:
       "Closing the day with self-reflection, a brief personal realization, and readiness for rest.",
     metric: "30-second tap log",
-    icon: <Moon className="h-5 w-5 text-[#66635D]" />,
+    icon: <Moon className="h-5 w-5 text-[#547070]" />,
   },
 ];
 
 export function DailyJourneySection() {
   return (
-    <Section id="journey" spacing="default" className="relative bg-[#F7F1E5]">
+    <Section id="journey" spacing="default" className="relative bg-[#EAF7F4]">
       <Container size="default">
         {/* Header */}
         <div className="mx-auto mb-12 max-w-2xl text-center sm:mb-16">
           <Badge variant="krishna" size="default" className="mb-3">
             <span className="font-serif">नित्यक्रमः</span> • Daily Cadence
           </Badge>
-          <h2 className="text-balance text-[26px] font-bold tracking-tight text-[#20201D] sm:text-[34px]">
+          <h2 className="text-balance text-[26px] font-bold tracking-tight text-[#193B3B] sm:text-[34px]">
             The sacred rhythm of daily Sādhanā.
           </h2>
-          <p className="mt-3 text-[15px] leading-relaxed text-[#66635D] sm:text-[16px]">
+          <p className="mt-3 text-[15px] leading-relaxed text-[#547070] sm:text-[16px]">
             Every day is an intentional spiritual offering. Nityasādhanā mirrors the natural Gurukul
             routine from morning wake-up to evening rest.
           </p>
@@ -84,7 +84,7 @@ export function DailyJourneySection() {
         <div className="relative mx-auto max-w-2xl">
           {/* Vertical Connecting Sacred Cord */}
           <div
-            className="absolute bottom-6 left-[23px] top-6 w-[2px] bg-gradient-to-b from-[#D9822B] via-[#2457A6] to-[#66635D]/30 sm:left-[27px]"
+            className="absolute bottom-6 left-[23px] top-6 w-[2px] bg-gradient-to-b from-[#A9824D] via-[#3F9495] to-[#547070]/30 sm:left-[27px]"
             aria-hidden="true"
           />
 
@@ -92,26 +92,26 @@ export function DailyJourneySection() {
             {steps.map((step, idx) => (
               <div key={idx} className="group relative flex items-start gap-4 sm:gap-6">
                 {/* Timeline Node */}
-                <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[rgba(32,32,29,0.12)] bg-white shadow-level1 transition-transform group-hover:scale-105 sm:h-14 sm:w-14">
+                <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[rgba(63,148,149,0.22)] bg-white shadow-level1 transition-transform group-hover:scale-105 sm:h-14 sm:w-14">
                   {step.icon}
                 </div>
 
                 {/* Content Card */}
-                <Card className="flex-1 border-[rgba(32,32,29,0.08)] bg-white/80 p-5 shadow-level1 transition-all hover:shadow-level2 sm:p-6">
+                <Card className="flex-1 border-[rgba(63,148,149,0.16)] bg-white/85 p-5 shadow-level1 transition-all hover:shadow-level2 sm:p-6">
                   <div className="mb-2 flex flex-col justify-between gap-1 sm:flex-row sm:items-center">
                     <div className="flex items-center gap-2">
-                      <span className="font-serif text-[13px] font-semibold text-[#D9822B]">
+                      <span className="font-serif text-[13px] font-semibold text-[#A9824D]">
                         {step.sanskrit}
                       </span>
-                      <span className="font-mono text-[13px] text-[#66635D]">{step.time}</span>
+                      <span className="font-mono text-[13px] text-[#547070]">{step.time}</span>
                     </div>
-                    <span className="bg-[#2457A6]/8 inline-flex items-center self-start rounded-full px-2.5 py-0.5 text-[12px] font-semibold text-[#2457A6] sm:self-auto">
+                    <span className="bg-[#3F9495]/10 inline-flex items-center self-start rounded-full px-2.5 py-0.5 text-[12px] font-semibold text-[#3F9495] sm:self-auto">
                       {step.metric}
                     </span>
                   </div>
 
-                  <h3 className="mb-1 text-[17px] font-semibold text-[#20201D]">{step.title}</h3>
-                  <p className="text-[14px] leading-relaxed text-[#66635D]">{step.description}</p>
+                  <h3 className="mb-1 text-[17px] font-semibold text-[#193B3B]">{step.title}</h3>
+                  <p className="text-[14px] leading-relaxed text-[#547070]">{step.description}</p>
                 </Card>
               </div>
             ))}

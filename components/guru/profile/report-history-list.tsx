@@ -31,26 +31,26 @@ export function ReportHistoryList({
 
   if (reports.length === 0) {
     return (
-      <Card className="border-[rgba(32,32,29,0.08)] bg-white p-6 text-center shadow-level1">
-        <p className="text-[13px] text-[#66635D]">No past daily reports found for this student.</p>
+      <Card className="border-[rgba(63,148,149,0.16)] bg-white p-6 text-center shadow-level1">
+        <p className="text-[13px] text-[#547070]">No past daily reports found for this student.</p>
       </Card>
     );
   }
 
   return (
     <>
-      <Card className="border-[rgba(32,32,29,0.08)] bg-white p-5 shadow-level1 sm:p-6">
+      <Card className="border-[rgba(63,148,149,0.16)] bg-white p-5 shadow-level1 sm:p-6">
         <div className="space-y-4">
-          <div className="flex items-center justify-between border-b border-[rgba(32,32,29,0.06)] pb-3">
+          <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.12)] pb-3">
             <div>
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#66635D]">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#547070]">
                 Report History
               </span>
-              <h2 className="text-[17px] font-bold text-[#20201D] sm:text-[18px]">
+              <h2 className="text-[17px] font-bold text-[#193B3B] sm:text-[18px]">
                 Past Sādhanā Submissions ({reports.length})
               </h2>
             </div>
-            <span className="text-[12px] text-[#66635D]">Tap to inspect full report</span>
+            <span className="text-[12px] text-[#547070]">Tap to inspect full report</span>
           </div>
 
           <div className="space-y-2">
@@ -58,16 +58,16 @@ export function ReportHistoryList({
               <div
                 key={rep.id}
                 onClick={() => setSelectedReport(rep)}
-                className="flex cursor-pointer items-center justify-between rounded-xl border border-[rgba(32,32,29,0.06)] bg-white p-3 transition-all hover:border-[#D9822B]/40 hover:bg-[#F7F1E5]/20 sm:p-3.5"
+                className="flex cursor-pointer items-center justify-between rounded-xl border border-[rgba(63,148,149,0.14)] bg-white p-3 transition-all hover:border-[#3F9495]/40 hover:bg-[#EAF7F4] sm:p-3.5"
               >
                 <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#F7F1E5] text-[#20201D]">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#EAF7F4] text-[#193B3B]">
                     <Calendar className="h-4 w-4" />
                   </div>
 
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="text-[14px] font-bold text-[#20201D]">
+                      <span className="text-[14px] font-bold text-[#193B3B]">
                         {rep.practiceDate}
                       </span>
                       {rep.status === "submitted" ? (
@@ -81,7 +81,7 @@ export function ReportHistoryList({
                       )}
                     </div>
 
-                    <div className="flex items-center gap-2 text-[12px] text-[#66635D]">
+                    <div className="flex items-center gap-2 text-[12px] text-[#547070]">
                       <span>{rep.totalRounds || rep.japaRounds || 0} rds</span>
                       {rep.wakeUpTime && <span>· Woke {rep.wakeUpTime}</span>}
                       {rep.readingDurationMinutes ? (
@@ -104,20 +104,20 @@ export function ReportHistoryList({
       {/* READ-ONLY Report Detail Modal */}
       {selectedReport && (
         <div className="animate-in fade-in fixed inset-0 z-50 flex items-end justify-center bg-black/40 p-0 backdrop-blur-sm sm:items-center sm:p-4">
-          <div className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-t-3xl border border-[rgba(32,32,29,0.08)] bg-white p-6 shadow-2xl sm:rounded-3xl sm:p-8">
-            <div className="flex items-center justify-between border-b border-[rgba(32,32,29,0.08)] pb-4">
+          <div className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-t-3xl border border-[rgba(63,148,149,0.16)] bg-white p-6 shadow-2xl sm:rounded-3xl sm:p-8">
+            <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.12)] pb-4">
               <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#66635D]">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#547070]">
                   Read-Only Inspection
                 </span>
-                <h3 className="text-[18px] font-bold text-[#20201D]">
+                <h3 className="text-[18px] font-bold text-[#193B3B]">
                   Sādhanā for {selectedReport.practiceDate}
                 </h3>
               </div>
               <button
                 type="button"
                 onClick={() => setSelectedReport(null)}
-                className="rounded-full p-2 text-[#66635D] hover:bg-[#F7F1E5]"
+                className="rounded-full p-2 text-[#547070] hover:bg-[#EAF7F4]"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -126,27 +126,27 @@ export function ReportHistoryList({
             {/* Structured Report Breakdown */}
             <div className="mt-4 space-y-4">
               {/* Sleep */}
-              <div className="rounded-xl border border-[rgba(32,32,29,0.06)] bg-[#F7F1E5]/30 p-3.5">
-                <div className="flex items-center justify-between text-[13px] font-bold text-[#20201D]">
+              <div className="rounded-xl border border-[rgba(63,148,149,0.14)] bg-[#F7F5EF]/60 p-3.5">
+                <div className="flex items-center justify-between text-[13px] font-bold text-[#193B3B]">
                   <span className="flex items-center gap-1.5">
-                    <Moon className="h-4 w-4 text-[#2457A6]" /> Sleep &amp; Wake
+                    <Moon className="h-4 w-4 text-[#3F9495]" /> Sleep &amp; Wake
                   </span>
                   <span>{formatDuration(selectedReport.sleepDurationMinutes || 0)}</span>
                 </div>
-                <div className="mt-2 text-[12px] text-[#66635D]">
+                <div className="mt-2 text-[12px] text-[#547070]">
                   Slept: {selectedReport.sleepTime} · Woke: {selectedReport.wakeUpTime}
                 </div>
               </div>
 
               {/* Japa */}
-              <div className="rounded-xl border border-[rgba(32,32,29,0.06)] bg-[#F7F1E5]/30 p-3.5">
-                <div className="flex items-center justify-between text-[13px] font-bold text-[#20201D]">
+              <div className="rounded-xl border border-[rgba(63,148,149,0.14)] bg-[#F7F5EF]/60 p-3.5">
+                <div className="flex items-center justify-between text-[13px] font-bold text-[#193B3B]">
                   <span className="flex items-center gap-1.5">
-                    <CircleDot className="h-4 w-4 text-[#D9822B]" /> Japa Meditation
+                    <CircleDot className="h-4 w-4 text-[#A9824D]" /> Japa Meditation
                   </span>
                   <span>{selectedReport.totalRounds || selectedReport.japaRounds} rounds</span>
                 </div>
-                <div className="mt-2 text-[12px] text-[#66635D]">
+                <div className="mt-2 text-[12px] text-[#547070]">
                   Standard: {selectedReport.japaRounds}
                   {selectedReport.extraRounds ? ` · Extra: +${selectedReport.extraRounds}` : ""}
                   {selectedReport.japaCompletedAt ? ` · Completed: ${selectedReport.japaCompletedAt}` : ""}
@@ -154,22 +154,22 @@ export function ReportHistoryList({
               </div>
 
               {/* Reading / Hearing */}
-              <div className="rounded-xl border border-[rgba(32,32,29,0.06)] bg-[#F7F1E5]/30 p-3.5">
-                <div className="flex items-center gap-1.5 text-[13px] font-bold text-[#20201D]">
-                  <BookOpen className="h-4 w-4 text-[#3D765B]" /> Hearing &amp; Reading
+              <div className="rounded-xl border border-[rgba(63,148,149,0.14)] bg-[#F7F5EF]/60 p-3.5">
+                <div className="flex items-center gap-1.5 text-[13px] font-bold text-[#193B3B]">
+                  <BookOpen className="h-4 w-4 text-[#328A7A]" /> Hearing &amp; Reading
                 </div>
-                <div className="mt-2 space-y-1 text-[12px] text-[#66635D]">
+                <div className="mt-2 space-y-1 text-[12px] text-[#547070]">
                   <div>Reading: {formatDuration(selectedReport.readingDurationMinutes || 0)} {selectedReport.readingNote && `(${selectedReport.readingNote})`}</div>
                   <div>Hearing: {formatDuration(selectedReport.hearingDurationMinutes || 0)} {selectedReport.hearingNote && `(${selectedReport.hearingNote})`}</div>
                 </div>
               </div>
 
               {/* Study / Rest */}
-              <div className="rounded-xl border border-[rgba(32,32,29,0.06)] bg-[#F7F1E5]/30 p-3.5">
-                <div className="flex items-center gap-1.5 text-[13px] font-bold text-[#20201D]">
-                  <GraduationCap className="h-4 w-4 text-[#66635D]" /> Study &amp; Time
+              <div className="rounded-xl border border-[rgba(63,148,149,0.14)] bg-[#F7F5EF]/60 p-3.5">
+                <div className="flex items-center gap-1.5 text-[13px] font-bold text-[#193B3B]">
+                  <GraduationCap className="h-4 w-4 text-[#547070]" /> Study &amp; Time
                 </div>
-                <div className="mt-2 space-y-1 text-[12px] text-[#66635D]">
+                <div className="mt-2 space-y-1 text-[12px] text-[#547070]">
                   <div>College Study: {formatDuration(selectedReport.collegeStudyDurationMinutes || 0)}</div>
                   <div>Self Study: {formatDuration(selectedReport.selfStudyDurationMinutes || 0)}</div>
                   {selectedReport.timeWastedDurationMinutes ? (
@@ -180,11 +180,11 @@ export function ReportHistoryList({
 
               {/* Optional Reflection */}
               {selectedReport.notes && (
-                <div className="rounded-xl border border-[rgba(32,32,29,0.08)] bg-white p-3.5">
-                  <div className="flex items-center gap-1.5 text-[13px] font-bold text-[#20201D]">
-                    <Sparkles className="h-4 w-4 text-[#D9822B]" /> Student Reflection
+                <div className="rounded-xl border border-[rgba(63,148,149,0.16)] bg-white p-3.5">
+                  <div className="flex items-center gap-1.5 text-[13px] font-bold text-[#193B3B]">
+                    <Sparkles className="h-4 w-4 text-[#A9824D]" /> Student Reflection
                   </div>
-                  <blockquote className="mt-2 text-[12px] italic text-[#20201D]">
+                  <blockquote className="mt-2 text-[12px] italic text-[#193B3B]">
                     &ldquo;{selectedReport.notes}&rdquo;
                   </blockquote>
                 </div>
@@ -192,8 +192,8 @@ export function ReportHistoryList({
             </div>
 
             {/* Read-Only Notice and Dismiss */}
-            <div className="mt-6 flex items-center justify-between border-t border-[rgba(32,32,29,0.08)] pt-4">
-              <span className="text-[11px] text-[#66635D]">Read-only Guru inspection mode</span>
+            <div className="mt-6 flex items-center justify-between border-t border-[rgba(63,148,149,0.12)] pt-4">
+              <span className="text-[11px] text-[#547070]">Read-only Guru inspection mode</span>
               <Button
                 type="button"
                 variant="secondary"

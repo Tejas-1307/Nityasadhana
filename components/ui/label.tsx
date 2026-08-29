@@ -12,17 +12,17 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
       <label
         ref={ref}
         className={cn(
-          "mb-1.5 flex items-center justify-between text-[14px] font-medium text-[#20201D]",
+          "mb-1.5 flex items-center justify-between text-[14px] font-medium text-[#193B3B]",
           className
         )}
         {...props}
       >
         <span className="inline-flex items-center gap-1">
           {children}
-          {required && <span className="text-[#D9822B]">*</span>}
+          {required && <span className="text-[#A9824D]">*</span>}
         </span>
         {sanskritHint && (
-          <span className="font-serif text-[13px] italic text-[#66635D]/80">{sanskritHint}</span>
+          <span className="font-serif text-[13px] italic text-[#547070]">{sanskritHint}</span>
         )}
       </label>
     );

@@ -118,12 +118,12 @@ export function SignupForm() {
   };
 
   return (
-    <Card className="border-[rgba(32,32,29,0.08)] bg-white p-6 shadow-level2 sm:p-8">
+    <Card className="border-[rgba(63,148,149,0.16)] bg-white p-6 shadow-level2 sm:p-8">
       {/* Role Intent Banner */}
       {roleParam && (
-        <div className="mb-5 flex items-center justify-between rounded-xl border border-[rgba(32,32,29,0.06)] bg-[#F7F1E5] p-3">
-          <div className="flex items-center gap-2 text-[13px] font-medium text-[#20201D]">
-            <Sparkles className="h-4 w-4 text-[#D9822B]" />
+        <div className="mb-5 flex items-center justify-between rounded-xl border border-[rgba(63,148,149,0.14)] bg-[#F7F5EF] p-3">
+          <div className="flex items-center gap-2 text-[13px] font-medium text-[#193B3B]">
+            <Sparkles className="h-4 w-4 text-[#A9824D]" />
             <span>Signing up as {roleParam === "guru" ? "Guru" : "Shishya"}</span>
           </div>
           <Badge variant={roleParam === "guru" ? "saffron" : "krishna"} size="sm">
@@ -206,7 +206,7 @@ export function SignupForm() {
               required
               disabled={isLoading}
             />
-            <p className="mt-1 text-[12px] text-[#66635D]">Must be at least 8 characters long.</p>
+            <p className="mt-1 text-[12px] text-[#547070]">Must be at least 8 characters long.</p>
           </div>
 
           <Button
@@ -223,13 +223,13 @@ export function SignupForm() {
       ) : (
         <form onSubmit={handleVerify} className="space-y-4">
           <div className="mb-4 text-center">
-            <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-[#3D765B]/10 text-[#3D765B]">
+            <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-[#328A7A]/10 text-[#328A7A]">
               <CheckCircle2 className="h-6 w-6" />
             </div>
-            <h3 className="text-[17px] font-bold text-[#20201D]">Verify your email</h3>
-            <p className="mt-1 text-[13px] text-[#66635D]">
+            <h3 className="text-[17px] font-bold text-[#193B3B]">Verify your email</h3>
+            <p className="mt-1 text-[13px] text-[#547070]">
               We have sent a verification code to{" "}
-              <span className="font-semibold text-[#20201D]">{email}</span>.
+              <span className="font-semibold text-[#193B3B]">{email}</span>.
             </p>
           </div>
 
@@ -264,9 +264,9 @@ export function SignupForm() {
       )}
 
       {/* Footer link to sign in */}
-      <div className="mt-6 border-t border-[rgba(32,32,29,0.06)] pt-5 text-center text-[13px] text-[#66635D]">
+      <div className="mt-6 border-t border-[rgba(63,148,149,0.12)] pt-5 text-center text-[13px] text-[#547070]">
         Already have an account?{" "}
-        <Link href="/login" className="font-semibold text-[#2457A6] hover:underline">
+        <Link href="/login" className="font-semibold text-[#3F9495] hover:underline">
           Sign In
         </Link>
       </div>

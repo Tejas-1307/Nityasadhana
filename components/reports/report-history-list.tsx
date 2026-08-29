@@ -48,14 +48,14 @@ export function ReportHistoryList({ reports }: ReportHistoryListProps) {
 
   if (!reports || reports.length === 0) {
     return (
-      <Card className="border-[rgba(32,32,29,0.08)] bg-white p-6 text-center shadow-level1">
-        <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-[#F7F1E5] text-[#2457A6]">
+      <Card className="border-[rgba(63,148,149,0.16)] bg-white p-6 text-center shadow-level1">
+        <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-[#EAF7F4] text-[#3F9495]">
           <History className="h-5 w-5" />
         </div>
-        <h4 className="mt-2 text-[14px] font-bold text-[#20201D]">
+        <h4 className="mt-2 text-[14px] font-bold text-[#193B3B]">
           Your previous reports will appear here
         </h4>
-        <p className="mt-1 text-[12px] text-[#66635D]">
+        <p className="mt-1 text-[12px] text-[#547070]">
           As you submit daily reports, your historical entries and practice reflections will be
           organized here.
         </p>
@@ -72,17 +72,17 @@ export function ReportHistoryList({ reports }: ReportHistoryListProps) {
         return (
           <div
             key={report.id}
-            className="overflow-hidden rounded-2xl border border-[rgba(32,32,29,0.08)] bg-white shadow-level1 transition-all duration-200"
+            className="overflow-hidden rounded-2xl border border-[rgba(63,148,149,0.16)] bg-white shadow-level1 transition-all duration-200"
           >
             {/* Header / Summary Bar (Click to expand) */}
             <button
               type="button"
               onClick={() => toggleExpand(report.id)}
-              className="flex w-full items-center justify-between p-4 text-left hover:bg-[#F7F1E5]/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2457A6]"
+              className="flex w-full items-center justify-between p-4 text-left hover:bg-[#EAF7F4]/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3F9495]"
             >
               <div className="space-y-1.5">
                 <div className="flex items-center gap-2">
-                  <span className="text-[15px] font-bold text-[#20201D]">
+                  <span className="text-[15px] font-bold text-[#193B3B]">
                     {report.practiceDate}
                   </span>
                   <Badge
@@ -94,19 +94,19 @@ export function ReportHistoryList({ reports }: ReportHistoryListProps) {
                 </div>
 
                 {/* Quick metrics pills */}
-                <div className="flex flex-wrap items-center gap-2 text-[12px] text-[#66635D]">
-                  <span className="flex items-center gap-1 font-medium text-[#20201D]">
-                    <Moon className="h-3.5 w-3.5 text-[#2457A6]" />
+                <div className="flex flex-wrap items-center gap-2 text-[12px] text-[#547070]">
+                  <span className="flex items-center gap-1 font-medium text-[#193B3B]">
+                    <Moon className="h-3.5 w-3.5 text-[#3F9495]" />
                     <span>{formatDuration(report.sleepDurationMinutes)}</span>
                   </span>
                   <span>•</span>
-                  <span className="flex items-center gap-1 font-medium text-[#20201D]">
-                    <CircleDot className="h-3.5 w-3.5 text-[#D9822B]" />
+                  <span className="flex items-center gap-1 font-medium text-[#193B3B]">
+                    <CircleDot className="h-3.5 w-3.5 text-[#A9824D]" />
                     <span>{report.totalRounds} rounds</span>
                   </span>
                   <span>•</span>
-                  <span className="flex items-center gap-1 font-medium text-[#20201D]">
-                    <BookOpen className="h-3.5 w-3.5 text-[#3D765B]" />
+                  <span className="flex items-center gap-1 font-medium text-[#193B3B]">
+                    <BookOpen className="h-3.5 w-3.5 text-[#328A7A]" />
                     <span>{formatDuration(report.readingDurationMinutes)}</span>
                   </span>
                 </div>
@@ -134,7 +134,7 @@ export function ReportHistoryList({ reports }: ReportHistoryListProps) {
                   )}
                 </Button>
 
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg text-[#66635D]">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg text-[#547070]">
                   {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
                 </div>
               </div>
@@ -142,7 +142,7 @@ export function ReportHistoryList({ reports }: ReportHistoryListProps) {
 
             {/* Expanded Detailed Breakdown */}
             {isExpanded && (
-              <div className="border-t border-[rgba(32,32,29,0.06)] bg-[#F7F1E5]/20 p-4">
+              <div className="border-t border-[rgba(63,148,149,0.12)] bg-[#F7F5EF]/30 p-4">
                 <ReportReviewCard
                   practiceDate={report.practiceDate}
                   sleepTime={report.sleepTime}

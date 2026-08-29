@@ -38,14 +38,14 @@ export default async function StudentJourneyPage() {
       <Container size="reading">
         {/* Calm Editorial Header */}
         <div className="mb-6 space-y-1 sm:mb-8">
-          <div className="flex items-center gap-1.5 text-[13px] font-medium text-[#D9822B]">
+          <div className="flex items-center gap-1.5 text-[13px] font-medium text-[#A9824D]">
             <Sparkles className="h-3.5 w-3.5" />
             <span className="font-serif">अभ्यासयोगः • यात्रा</span>
           </div>
-          <h1 className="text-[24px] font-bold tracking-tight text-[#20201D] sm:text-[28px]">
+          <h1 className="text-[24px] font-bold tracking-tight text-[#193B3B] sm:text-[28px]">
             Your Journey
           </h1>
-          <p className="text-[14px] text-[#66635D]">
+          <p className="text-[14px] text-[#547070]">
             A quiet reflection of your daily Sādhanā patterns, weekly intentions, and personal progress.
           </p>
         </div>

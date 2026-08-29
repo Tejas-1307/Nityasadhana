@@ -21,15 +21,15 @@ export function SankalpaHistoryList({ sankalpas, total: _total }: SankalpaHistor
 
   if (pastSankalpas.length === 0) {
     return (
-      <Card className="border-[rgba(32,32,29,0.08)] bg-white p-5 shadow-level1 sm:p-6">
-        <div className="flex items-center justify-between border-b border-[rgba(32,32,29,0.06)] pb-3">
+      <Card className="border-[rgba(63,148,149,0.16)] bg-white p-5 shadow-level1 sm:p-6">
+        <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.12)] pb-3">
           <div className="flex items-center gap-2">
-            <History className="h-4 w-4 text-[#66635D]" />
-            <h2 className="text-[16px] font-bold text-[#20201D]">Sankalpa Journey</h2>
+            <History className="h-4 w-4 text-[#547070]" />
+            <h2 className="text-[16px] font-bold text-[#193B3B]">Sankalpa Journey</h2>
           </div>
-          <span className="text-[11px] text-[#66635D]">Weekly archives</span>
+          <span className="text-[11px] text-[#547070]">Weekly archives</span>
         </div>
-        <p className="mt-4 text-center text-[13px] text-[#66635D]">
+        <p className="mt-4 text-center text-[13px] text-[#547070]">
           No past weekly Sankalpas yet. As you complete your weekly intentions, your growth journal will appear here.
         </p>
       </Card>
@@ -38,19 +38,19 @@ export function SankalpaHistoryList({ sankalpas, total: _total }: SankalpaHistor
 
   return (
     <>
-      <Card className="border-[rgba(32,32,29,0.08)] bg-white p-5 shadow-level1 sm:p-6">
+      <Card className="border-[rgba(63,148,149,0.16)] bg-white p-5 shadow-level1 sm:p-6">
         <div className="space-y-4">
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-[rgba(32,32,29,0.06)] pb-3">
+          <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.12)] pb-3">
             <div>
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#66635D]">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#547070]">
                 Personal Growth Journal
               </span>
-              <h2 className="text-[17px] font-bold text-[#20201D] sm:text-[18px]">
+              <h2 className="text-[17px] font-bold text-[#193B3B] sm:text-[18px]">
                 Past Weekly Sankalpas ({pastSankalpas.length})
               </h2>
             </div>
-            <span className="text-[11px] text-[#66635D]">Step-by-step progress</span>
+            <span className="text-[11px] text-[#547070]">Step-by-step progress</span>
           </div>
 
           {/* List Items */}
@@ -65,11 +65,11 @@ export function SankalpaHistoryList({ sankalpas, total: _total }: SankalpaHistor
                 <div
                   key={item.id}
                   onClick={() => setSelectedSankalpa(item)}
-                  className="group flex cursor-pointer items-start justify-between gap-3 rounded-2xl border border-[rgba(32,32,29,0.08)] bg-white p-3.5 shadow-xs transition-all hover:border-[#3D765B]/40 hover:bg-[#F7F1E5]/20"
+                  className="group flex cursor-pointer items-start justify-between gap-3 rounded-2xl border border-[rgba(63,148,149,0.16)] bg-white p-3.5 shadow-xs transition-all hover:border-[#328A7A]/40 hover:bg-[#EAF7F4]/30"
                 >
                   <div className="space-y-1">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-[11px] font-bold text-[#66635D]">
+                      <span className="text-[11px] font-bold text-[#547070]">
                         {formattedRange}
                       </span>
                       {isCompleted ? (
@@ -88,18 +88,18 @@ export function SankalpaHistoryList({ sankalpas, total: _total }: SankalpaHistor
                       )}
                     </div>
 
-                    <h3 className="text-[14px] font-bold text-[#20201D]">
+                    <h3 className="text-[14px] font-bold text-[#193B3B]">
                       {item.title}
                     </h3>
 
                     {item.reflection && (
-                      <p className="mt-1 line-clamp-1 text-[12px] text-[#66635D] italic">
+                      <p className="mt-1 line-clamp-1 text-[12px] text-[#547070] italic">
                         &ldquo;{item.reflection.content}&rdquo;
                       </p>
                     )}
                   </div>
 
-                  <ChevronRight className="mt-1 h-4 w-4 shrink-0 text-[#66635D]/40 transition-transform group-hover:translate-x-0.5 group-hover:text-[#20201D]" />
+                  <ChevronRight className="mt-1 h-4 w-4 shrink-0 text-[#547070]/40 transition-transform group-hover:translate-x-0.5 group-hover:text-[#193B3B]" />
                 </div>
               );
             })}

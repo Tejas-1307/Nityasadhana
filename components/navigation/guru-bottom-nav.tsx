@@ -32,7 +32,7 @@ export function GuruBottomNav() {
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-[rgba(32,32,29,0.08)] bg-white/95 px-3 py-2 backdrop-blur-md md:hidden">
+    <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-[rgba(63,148,149,0.14)] bg-white/95 px-3 py-2 backdrop-blur-md md:hidden">
       <div className="mx-auto flex max-w-md items-center justify-around">
         {navItems.map((item) => {
           const Icon = item.icon;
@@ -43,8 +43,8 @@ export function GuruBottomNav() {
               className={cn(
                 "flex flex-col items-center gap-1 rounded-xl px-4 py-1.5 transition-all",
                 item.isActive
-                  ? "text-[#D9822B] font-bold"
-                  : "text-[#66635D] hover:text-[#20201D]"
+                  ? "text-[#3F9495] font-bold"
+                  : "text-[#547070] hover:text-[#193B3B]"
               )}
             >
               <Icon className={cn("h-5 w-5", item.isActive && "stroke-[2.5px]")} />

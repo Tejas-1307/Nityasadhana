@@ -30,7 +30,7 @@ export function AttentionBadge({
   if (level === "STABLE") {
     return (
       <span
-        className={`inline-flex items-center rounded-full font-bold border border-[#3D765B]/20 bg-[#3D765B]/10 text-[#3D765B] ${sizeClasses[size]} ${className}`}
+        className={`inline-flex items-center rounded-full font-bold border border-[#328A7A]/25 bg-[#328A7A]/10 text-[#328A7A] ${sizeClasses[size]} ${className}`}
       >
         {showIcon && <CheckCircle2 className={`${iconSizes[size]} shrink-0`} />}
         <span>Stable</span>
@@ -41,7 +41,7 @@ export function AttentionBadge({
   if (level === "OBSERVE") {
     return (
       <span
-        className={`inline-flex items-center rounded-full font-bold border border-[#D9822B]/20 bg-[#D9822B]/10 text-[#D9822B] ${sizeClasses[size]} ${className}`}
+        className={`inline-flex items-center rounded-full font-bold border border-[#A9824D]/25 bg-[#A9824D]/10 text-[#A9824D] ${sizeClasses[size]} ${className}`}
       >
         {showIcon && <Eye className={`${iconSizes[size]} shrink-0`} />}
         <span>Observe</span>
@@ -52,7 +52,7 @@ export function AttentionBadge({
   // FOLLOW_UP_SUGGESTED
   return (
     <span
-      className={`inline-flex items-center rounded-full font-bold border border-[#2457A6]/20 bg-[#2457A6]/10 text-[#2457A6] ${sizeClasses[size]} ${className}`}
+      className={`inline-flex items-center rounded-full font-bold border border-[#3F9495]/25 bg-[#3F9495]/10 text-[#3F9495] ${sizeClasses[size]} ${className}`}
     >
       {showIcon && <AlertCircle className={`${iconSizes[size]} shrink-0`} />}
       <span>Follow-up Suggested</span>

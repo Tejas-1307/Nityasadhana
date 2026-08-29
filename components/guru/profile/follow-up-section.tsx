@@ -103,16 +103,16 @@ export function FollowUpSection({
   };
 
   return (
-    <Card className="border-[rgba(32,32,29,0.08)] bg-white p-5 shadow-level1 sm:p-6">
+    <Card className="border-[rgba(63,148,149,0.16)] bg-white p-5 shadow-level1 sm:p-6">
       <div className="space-y-4">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-[rgba(32,32,29,0.06)] pb-3">
+        <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.12)] pb-3">
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#D9822B]/10 text-[#D9822B]">
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#A9824D]/10 text-[#A9824D]">
               <MessageSquare className="h-4 w-4" />
             </div>
             <div>
-              <h2 className="text-[16px] font-bold text-[#20201D] sm:text-[17px]">
+              <h2 className="text-[16px] font-bold text-[#193B3B] sm:text-[17px]">
                 Follow-up History ({followUps.length})
               </h2>
             </div>
@@ -135,13 +135,13 @@ export function FollowUpSection({
 
         {/* Quick Composer Modal / Overlay */}
         {showLocalComposer && (
-          <div className="rounded-2xl border border-[#D9822B]/30 bg-[#F7F1E5]/40 p-4 sm:p-5">
-            <div className="flex items-center justify-between border-b border-[rgba(32,32,29,0.06)] pb-2.5">
-              <span className="text-[13px] font-bold text-[#20201D]">Record Discussion &amp; Follow-up</span>
+          <div className="rounded-2xl border border-[#A9824D]/30 bg-[#F7F5EF]/80 p-4 sm:p-5">
+            <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.12)] pb-2.5">
+              <span className="text-[13px] font-bold text-[#193B3B]">Record Discussion &amp; Follow-up</span>
               <button
                 type="button"
                 onClick={handleClose}
-                className="rounded-full p-1 text-[#66635D] hover:bg-white"
+                className="rounded-full p-1 text-[#547070] hover:bg-white"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -150,7 +150,7 @@ export function FollowUpSection({
             <form onSubmit={handleSave} className="mt-3 space-y-3.5">
               {/* Note Content */}
               <div>
-                <label className="block text-[12px] font-semibold text-[#66635D]">
+                <label className="block text-[12px] font-semibold text-[#547070]">
                   What did you discuss?
                 </label>
                 <textarea
@@ -159,13 +159,13 @@ export function FollowUpSection({
                   placeholder="Discussed wake-up routine, chanting pace, study schedule..."
                   rows={3}
                   required
-                  className="mt-1 w-full rounded-xl border border-[rgba(32,32,29,0.12)] bg-white p-3 text-[13px] text-[#20201D] placeholder:text-[#66635D]/50 focus:border-[#D9822B] focus:outline-hidden focus:ring-1 focus:ring-[#D9822B]"
+                  className="mt-1 w-full rounded-xl border border-[rgba(63,148,149,0.18)] bg-white p-3 text-[13px] text-[#193B3B] placeholder:text-[#547070]/50 focus:border-[#A9824D] focus:outline-hidden focus:ring-1 focus:ring-[#A9824D]"
                 />
               </div>
 
               {/* Discussion Date Presets */}
               <div>
-                <label className="block text-[12px] font-semibold text-[#66635D]">
+                <label className="block text-[12px] font-semibold text-[#547070]">
                   Discussion Date
                 </label>
                 <div className="mt-1 flex flex-wrap gap-2">
@@ -174,8 +174,8 @@ export function FollowUpSection({
                     onClick={() => setFollowUpDate(todayStr)}
                     className={`rounded-lg px-2.5 py-1 text-[11px] font-bold ${
                       followUpDate === todayStr
-                        ? "bg-[#20201D] text-white"
-                        : "border border-[rgba(32,32,29,0.08)] bg-white text-[#66635D]"
+                        ? "bg-[#193B3B] text-white"
+                        : "border border-[rgba(63,148,149,0.16)] bg-white text-[#547070]"
                     }`}
                   >
                     Today
@@ -184,19 +184,19 @@ export function FollowUpSection({
                     type="date"
                     value={followUpDate}
                     onChange={(e) => setFollowUpDate(e.target.value)}
-                    className="rounded-lg border border-[rgba(32,32,29,0.12)] bg-white px-2.5 py-1 text-[12px] text-[#20201D]"
+                    className="rounded-lg border border-[rgba(63,148,149,0.18)] bg-white px-2.5 py-1 text-[12px] text-[#193B3B]"
                   />
                 </div>
               </div>
 
               {/* Optional Next Follow-up Date */}
-              <div className="border-t border-[rgba(32,32,29,0.06)] pt-2.5">
-                <label className="flex items-center gap-2 text-[12px] font-semibold text-[#66635D]">
+              <div className="border-t border-[rgba(63,148,149,0.12)] pt-2.5">
+                <label className="flex items-center gap-2 text-[12px] font-semibold text-[#547070]">
                   <input
                     type="checkbox"
                     checked={hasNextDate}
                     onChange={(e) => setHasNextDate(e.target.checked)}
-                    className="rounded text-[#D9822B] focus:ring-[#D9822B]"
+                    className="rounded text-[#A9824D] focus:ring-[#A9824D]"
                   />
                   <span>Schedule next follow-up target date</span>
                 </label>
@@ -207,14 +207,14 @@ export function FollowUpSection({
                       type="date"
                       value={nextDate}
                       onChange={(e) => setNextDate(e.target.value)}
-                      className="rounded-lg border border-[rgba(32,32,29,0.12)] bg-white px-2.5 py-1 text-[12px] text-[#20201D]"
+                      className="rounded-lg border border-[rgba(63,148,149,0.18)] bg-white px-2.5 py-1 text-[12px] text-[#193B3B]"
                     />
                   </div>
                 )}
               </div>
 
               {feedback && (
-                <p className="text-[12px] font-semibold text-[#3D765B]">{feedback}</p>
+                <p className="text-[12px] font-semibold text-[#328A7A]">{feedback}</p>
               )}
 
               {/* Action Buttons */}
@@ -246,8 +246,8 @@ export function FollowUpSection({
 
         {/* Follow-up List */}
         {followUps.length === 0 && !showLocalComposer ? (
-          <div className="rounded-2xl border border-dashed border-[rgba(32,32,29,0.12)] bg-[#F7F1E5]/30 p-6 text-center">
-            <p className="text-[13px] text-[#66635D]">No follow-up records yet.</p>
+          <div className="rounded-2xl border border-dashed border-[rgba(63,148,149,0.2)] bg-[#F7F5EF]/60 p-6 text-center">
+            <p className="text-[13px] text-[#547070]">No follow-up records yet.</p>
             <Button
               type="button"
               variant="outline"
@@ -274,14 +274,14 @@ export function FollowUpSection({
                   key={item.id}
                   className={`rounded-2xl border p-3.5 transition-all ${
                     isCompleted
-                      ? "border-[rgba(32,32,29,0.06)] bg-[#F7F1E5]/20 opacity-80"
-                      : "border-[rgba(32,32,29,0.08)] bg-white shadow-xs"
+                      ? "border-[rgba(63,148,149,0.12)] bg-[#F7F5EF]/40 opacity-80"
+                      : "border-[rgba(63,148,149,0.16)] bg-white shadow-xs"
                   }`}
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="space-y-1.5">
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="text-[12px] font-bold text-[#66635D]">
+                        <span className="text-[12px] font-bold text-[#547070]">
                           {formattedDate}
                         </span>
                         {item.nextFollowUpDate && (
@@ -298,7 +298,7 @@ export function FollowUpSection({
                         )}
                       </div>
 
-                      <p className="text-[13px] leading-relaxed text-[#20201D] whitespace-pre-wrap">
+                      <p className="text-[13px] leading-relaxed text-[#193B3B] whitespace-pre-wrap">
                         {item.note}
                       </p>
                     </div>
@@ -309,8 +309,8 @@ export function FollowUpSection({
                       title={isCompleted ? "Mark as upcoming" : "Mark as completed"}
                       className={`shrink-0 rounded-full p-1.5 transition-colors ${
                         isCompleted
-                          ? "bg-[#3D765B]/10 text-[#3D765B] hover:bg-[#3D765B]/20"
-                          : "border border-[rgba(32,32,29,0.12)] text-[#66635D] hover:bg-[#F7F1E5]"
+                          ? "bg-[#328A7A]/10 text-[#328A7A] hover:bg-[#328A7A]/20"
+                          : "border border-[rgba(63,148,149,0.18)] text-[#547070] hover:bg-[#EAF7F4]"
                       }`}
                     >
                       <CheckCircle2 className="h-4 w-4" />

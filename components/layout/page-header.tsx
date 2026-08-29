@@ -19,22 +19,22 @@ export function PageHeader({
   return (
     <div
       className={cn(
-        "mb-6 flex flex-col gap-4 border-b border-[rgba(32,32,29,0.06)] pb-5 sm:flex-row sm:items-end sm:justify-between",
+        "mb-6 flex flex-col gap-4 border-b border-[rgba(63,148,149,0.12)] pb-5 sm:flex-row sm:items-end sm:justify-between",
         className
       )}
       {...props}
     >
       <div>
         {sanskritSubtitle && (
-          <p className="font-serif text-[13px] font-medium tracking-wide text-[#D9822B]">
+          <p className="font-serif text-[13px] font-medium tracking-wide text-[#A9824D]">
             {sanskritSubtitle}
           </p>
         )}
-        <h1 className="text-[26px] font-bold tracking-tight text-[#20201D] sm:text-[30px]">
+        <h1 className="text-[26px] font-bold tracking-tight text-[#193B3B] sm:text-[30px]">
           {title}
         </h1>
         {description && (
-          <p className="mt-1 text-[14px] text-[#66635D] sm:text-[15px]">{description}</p>
+          <p className="mt-1 text-[14px] text-[#547070] sm:text-[15px]">{description}</p>
         )}
       </div>
       {action && <div className="shrink-0">{action}</div>}

@@ -1,12 +1,12 @@
 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Outer Feather Arc (Peacock Blue) -->
-  <path d="M32 4C32 4 48 16 48 32C48 42 41 50 32 58C23 50 16 42 16 32C16 16 32 4 32 4Z" fill="#167D8D" fill-opacity="0.18" stroke="#167D8D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Inner Pathway / Flame (Soft Sand / Krishna Blue outline) -->
-  <path d="M32 14C32 14 42 24 42 34C42 40 37.5 45 32 50C26.5 45 22 40 22 34C22 24 32 14 32 14Z" fill="#E8D9BF" stroke="#2457A6" stroke-width="2"/>
-  <!-- Core Eye (Krishna Blue) -->
-  <ellipse cx="32" cy="34" rx="5.5" ry="7.5" fill="#2457A6"/>
-  <!-- Spiritual Bindu (Gurukul Saffron) -->
-  <circle cx="32" cy="33" r="2.5" fill="#D9822B"/>
+  <!-- Outer Feather Arc (Aqua Primary / Deep) -->
+  <path d="M32 4C32 4 48 16 48 32C48 42 41 50 32 58C23 50 16 42 16 32C16 16 32 4 32 4Z" fill="#56BFC0" fill-opacity="0.22" stroke="#3F9495" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Inner Pathway / Flame (Warm Ivory / Deep Aqua outline) -->
+  <path d="M32 14C32 14 42 24 42 34C42 40 37.5 45 32 50C26.5 45 22 40 22 34C22 24 32 14 32 14Z" fill="#F7F5EF" stroke="#3F9495" stroke-width="2"/>
+  <!-- Core Eye (Deep Aqua) -->
+  <ellipse cx="32" cy="34" rx="5.5" ry="7.5" fill="#3F9495"/>
+  <!-- Spiritual Bindu (Antique Gold) -->
+  <circle cx="32" cy="33" r="2.5" fill="#A9824D"/>
   <!-- Upward Discipline Axis -->
-  <path d="M32 50V60" stroke="#2457A6" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M32 50V60" stroke="#3F9495" stroke-width="2.5" stroke-linecap="round"/>
 </svg>

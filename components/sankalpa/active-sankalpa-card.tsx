@@ -39,16 +39,16 @@ export function ActiveSankalpaCard({
   // Empty State: When student has no active Sankalpa
   if (!sankalpa) {
     return (
-      <Card className="border-[rgba(32,32,29,0.08)] bg-white p-5 shadow-level1 sm:p-6">
+      <Card className="border-[rgba(63,148,149,0.16)] bg-white p-5 shadow-level1 sm:p-6">
         <div className="flex flex-col items-center justify-center space-y-3.5 py-4 text-center">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#3D765B]/10 text-[#3D765B]">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#328A7A]/10 text-[#328A7A]">
             <Sprout className="h-6 w-6" />
           </div>
           <div className="space-y-1">
-            <h2 className="text-[17px] font-bold text-[#20201D] sm:text-[18px]">
+            <h2 className="text-[17px] font-bold text-[#193B3B] sm:text-[18px]">
               Choose your focus for this week
             </h2>
-            <p className="max-w-md text-[13px] leading-relaxed text-[#66635D]">
+            <p className="max-w-md text-[13px] leading-relaxed text-[#547070]">
               One small intention. One week. One step forward in your personal Sādhanā.
             </p>
           </div>
@@ -80,19 +80,19 @@ export function ActiveSankalpaCard({
   const renderCategoryIcon = () => {
     switch (sankalpa.category) {
       case "wake_up":
-        return <Moon className="h-4 w-4 text-[#2457A6]" />;
+        return <Moon className="h-4 w-4 text-[#3F9495]" />;
       case "japa":
-        return <CircleDot className="h-4 w-4 text-[#D9822B]" />;
+        return <CircleDot className="h-4 w-4 text-[#A9824D]" />;
       case "reading":
-        return <BookOpen className="h-4 w-4 text-[#3D765B]" />;
+        return <BookOpen className="h-4 w-4 text-[#328A7A]" />;
       case "hearing":
-        return <Headphones className="h-4 w-4 text-[#2457A6]" />;
+        return <Headphones className="h-4 w-4 text-[#3F9495]" />;
       case "study":
-        return <GraduationCap className="h-4 w-4 text-[#66635D]" />;
+        return <GraduationCap className="h-4 w-4 text-[#547070]" />;
       case "time_management":
-        return <Clock className="h-4 w-4 text-[#8F5B1E]" />;
+        return <Clock className="h-4 w-4 text-[#A9824D]" />;
       default:
-        return <Sprout className="h-4 w-4 text-[#3D765B]" />;
+        return <Sprout className="h-4 w-4 text-[#328A7A]" />;
     }
   };
 
@@ -104,26 +104,26 @@ export function ActiveSankalpaCard({
   };
 
   return (
-    <Card className="border-[rgba(32,32,29,0.08)] bg-white p-5 shadow-level1 sm:p-6">
+    <Card className="border-[rgba(63,148,149,0.16)] bg-white p-5 shadow-level1 sm:p-6">
       <div className="space-y-4">
         {/* Top Header */}
-        <div className="flex items-start justify-between gap-3 border-b border-[rgba(32,32,29,0.06)] pb-3">
+        <div className="flex items-start justify-between gap-3 border-b border-[rgba(63,148,149,0.12)] pb-3">
           <div className="space-y-1">
-            <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#3D765B]">
+            <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#328A7A]">
               <Sprout className="h-3.5 w-3.5" />
               <span>This Week&apos;s Focus</span>
             </div>
-            <h2 className="text-[18px] font-bold text-[#20201D] sm:text-[20px]">
+            <h2 className="text-[18px] font-bold text-[#193B3B] sm:text-[20px]">
               {sankalpa.title}
             </h2>
-            <div className="flex items-center gap-2 text-[12px] text-[#66635D]">
+            <div className="flex items-center gap-2 text-[12px] text-[#547070]">
               <span className="flex items-center gap-1 font-medium">
                 {renderCategoryIcon()}
                 <span>{categoryDef.label}</span>
               </span>
               <span>•</span>
               <span className="flex items-center gap-1">
-                <Calendar className="h-3.5 w-3.5 text-[#66635D]" />
+                <Calendar className="h-3.5 w-3.5 text-[#547070]" />
                 <span>{formattedRange}</span>
               </span>
             </div>
@@ -137,8 +137,8 @@ export function ActiveSankalpaCard({
         {/* 7-Day Progress Dots & Daily Grid */}
         <div className="space-y-2.5">
           <div className="flex items-center justify-between text-[12px]">
-            <span className="font-semibold text-[#66635D]">Weekly Progress</span>
-            <span className="font-bold text-[#20201D]">
+            <span className="font-semibold text-[#547070]">Weekly Progress</span>
+            <span className="font-bold text-[#193B3B]">
               {alignedDays} / {totalDays} days
             </span>
           </div>
@@ -155,27 +155,27 @@ export function ActiveSankalpaCard({
                   key={idx}
                   className={`flex flex-col items-center rounded-xl border p-2 text-center transition-all ${
                     isCompleted
-                      ? "border-[#3D765B]/30 bg-[#3D765B]/10 text-[#20201D]"
+                      ? "border-[#328A7A]/30 bg-[#328A7A]/10 text-[#193B3B]"
                       : isPending
-                      ? "border-[#D9822B]/30 bg-[#D9822B]/10 text-[#20201D]"
+                      ? "border-[#A9824D]/30 bg-[#A9824D]/10 text-[#193B3B]"
                       : isFuture
-                      ? "border-[rgba(32,32,29,0.06)] bg-[#F7F1E5]/20 text-[#66635D]/60"
-                      : "border-[rgba(32,32,29,0.1)] bg-[#F7F1E5]/40 text-[#66635D]"
+                      ? "border-[rgba(63,148,149,0.1)] bg-[#F7F5EF]/30 text-[#547070]/60"
+                      : "border-[rgba(63,148,149,0.14)] bg-[#F7F5EF]/60 text-[#547070]"
                   }`}
                 >
                   <span className="text-[10px] font-bold">{day.dayLabel}</span>
                   <div className="my-1 flex h-6 w-6 items-center justify-center">
                     {isCompleted ? (
-                      <CheckCircle2 className="h-4 w-4 text-[#3D765B]" />
+                      <CheckCircle2 className="h-4 w-4 text-[#328A7A]" />
                     ) : isPending ? (
-                      <span className="h-2 w-2 rounded-full bg-[#D9822B] animate-pulse" />
+                      <span className="h-2 w-2 rounded-full bg-[#A9824D] animate-pulse" />
                     ) : isFuture ? (
-                      <span className="h-2 w-2 rounded-full bg-[rgba(32,32,29,0.2)]" />
+                      <span className="h-2 w-2 rounded-full bg-[rgba(63,148,149,0.25)]" />
                     ) : (
-                      <span className="text-[12px] font-semibold text-[#66635D]">—</span>
+                      <span className="text-[12px] font-semibold text-[#547070]">—</span>
                     )}
                   </div>
-                  <span className="text-[9px] font-medium text-[#66635D]">
+                  <span className="text-[9px] font-medium text-[#547070]">
                     {isCompleted ? "Aligned" : isPending ? "Today" : isFuture ? "Upcoming" : "—"}
                   </span>
                 </div>
@@ -185,7 +185,7 @@ export function ActiveSankalpaCard({
         </div>
 
         {/* Action Controls: End-of-week reflection / Cancel */}
-        <div className="flex flex-wrap items-center justify-between gap-2 border-t border-[rgba(32,32,29,0.06)] pt-3 text-[12px]">
+        <div className="flex flex-wrap items-center justify-between gap-2 border-t border-[rgba(63,148,149,0.12)] pt-3 text-[12px]">
           {onReflectClick && (
             <Button
               type="button"
@@ -194,14 +194,14 @@ export function ActiveSankalpaCard({
               onClick={() => onReflectClick(sankalpa)}
               className="text-[12px] font-semibold"
             >
-              <MessageSquare className="mr-1.5 h-3.5 w-3.5 text-[#3D765B]" />
+              <MessageSquare className="mr-1.5 h-3.5 w-3.5 text-[#328A7A]" />
               <span>Reflect on this week</span>
             </Button>
           )}
 
           {showConfirmCancel ? (
             <div className="flex items-center gap-2">
-              <span className="text-[11px] text-[#66635D]">End this focus?</span>
+              <span className="text-[11px] text-[#547070]">End this focus?</span>
               <button
                 type="button"
                 onClick={handleCancel}
@@ -213,7 +213,7 @@ export function ActiveSankalpaCard({
               <button
                 type="button"
                 onClick={() => setShowConfirmCancel(false)}
-                className="text-[#66635D] hover:underline"
+                className="text-[#547070] hover:underline"
               >
                 Cancel
               </button>
@@ -222,7 +222,7 @@ export function ActiveSankalpaCard({
             <button
               type="button"
               onClick={() => setShowConfirmCancel(true)}
-              className="text-[11px] text-[#66635D] hover:text-[#20201D] hover:underline"
+              className="text-[11px] text-[#547070] hover:text-[#193B3B] hover:underline"
             >
               End focus early
             </button>

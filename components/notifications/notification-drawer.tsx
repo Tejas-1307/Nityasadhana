@@ -101,17 +101,17 @@ export function NotificationDrawer({
   const getTypeIcon = (type: NotificationType) => {
     switch (type) {
       case "daily_report_reminder":
-        return <Calendar className="h-4 w-4 text-[#D9822B]" />;
+        return <Calendar className="h-4 w-4 text-[#A9824D]" />;
       case "weekly_reflection_reminder":
-        return <HeartHandshake className="h-4 w-4 text-[#2457A6]" />;
+        return <HeartHandshake className="h-4 w-4 text-[#3F9495]" />;
       case "sankalpa_reminder":
-        return <Sparkles className="h-4 w-4 text-[#3D765B]" />;
+        return <Sparkles className="h-4 w-4 text-[#328A7A]" />;
       case "guru_daily_summary":
-        return <Users className="h-4 w-4 text-[#D9822B]" />;
+        return <Users className="h-4 w-4 text-[#A9824D]" />;
       case "guru_follow_up_reminder":
-        return <Clock className="h-4 w-4 text-[#2457A6]" />;
+        return <Clock className="h-4 w-4 text-[#3F9495]" />;
       default:
-        return <Bell className="h-4 w-4 text-[#66635D]" />;
+        return <Bell className="h-4 w-4 text-[#547070]" />;
     }
   };
 
@@ -120,16 +120,16 @@ export function NotificationDrawer({
       {/* Drawer Card */}
       <div className="flex h-full w-full max-w-md flex-col bg-white shadow-2xl animate-in slide-in-from-right duration-200">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-[rgba(32,32,29,0.08)] px-5 py-4">
+        <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.16)] px-5 py-4">
           <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#D9822B]/10 text-[#D9822B]">
+            <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#A9824D]/12 text-[#A9824D]">
               <Bell className="h-4 w-4" />
             </div>
             <div>
-              <h2 className="text-[16px] font-bold text-[#20201D]">
+              <h2 className="text-[16px] font-bold text-[#193B3B]">
                 Reminders • स्मृतयः
               </h2>
-              <span className="text-[11px] text-[#66635D]">
+              <span className="text-[11px] text-[#547070]">
                 Peaceful, non-intrusive notifications
               </span>
             </div>
@@ -139,7 +139,7 @@ export function NotificationDrawer({
             variant="ghost"
             size="sm"
             onClick={onClose}
-            className="h-8 w-8 p-0 text-[#66635D] hover:text-[#20201D]"
+            className="h-8 w-8 p-0 text-[#547070] hover:text-[#193B3B]"
             aria-label="Close reminders drawer"
           >
             <X className="h-4 w-4" />
@@ -147,14 +147,14 @@ export function NotificationDrawer({
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex items-center justify-between border-b border-[rgba(32,32,29,0.06)] bg-[#F7F1E5]/30 px-5 py-2">
+        <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.12)] bg-[#F7F5EF]/60 px-5 py-2">
           <div className="flex items-center gap-1">
             <button
               onClick={() => setActiveTab("all")}
               className={`rounded-lg px-2.5 py-1 text-[12px] font-semibold transition-all ${
                 activeTab === "all"
-                  ? "bg-white text-[#20201D] shadow-xs"
-                  : "text-[#66635D] hover:text-[#20201D]"
+                  ? "bg-white text-[#193B3B] shadow-xs"
+                  : "text-[#547070] hover:text-[#193B3B]"
               }`}
             >
               All
@@ -163,13 +163,13 @@ export function NotificationDrawer({
               onClick={() => setActiveTab("unread")}
               className={`flex items-center gap-1 rounded-lg px-2.5 py-1 text-[12px] font-semibold transition-all ${
                 activeTab === "unread"
-                  ? "bg-white text-[#20201D] shadow-xs"
-                  : "text-[#66635D] hover:text-[#20201D]"
+                  ? "bg-white text-[#193B3B] shadow-xs"
+                  : "text-[#547070] hover:text-[#193B3B]"
               }`}
             >
               <span>Unread</span>
               {unreadCount > 0 && (
-                <span className="flex h-4 min-w-[16px] items-center justify-center rounded-full bg-[#D9822B] px-1 text-[10px] font-bold text-white">
+                <span className="flex h-4 min-w-[16px] items-center justify-center rounded-full bg-[#A9824D] px-1 text-[10px] font-bold text-white">
                   {unreadCount}
                 </span>
               )}
@@ -178,8 +178,8 @@ export function NotificationDrawer({
               onClick={() => setActiveTab("preferences")}
               className={`flex items-center gap-1 rounded-lg px-2.5 py-1 text-[12px] font-semibold transition-all ${
                 activeTab === "preferences"
-                  ? "bg-white text-[#20201D] shadow-xs"
-                  : "text-[#66635D] hover:text-[#20201D]"
+                  ? "bg-white text-[#193B3B] shadow-xs"
+                  : "text-[#547070] hover:text-[#193B3B]"
               }`}
             >
               <Settings className="h-3 w-3" />
@@ -190,7 +190,7 @@ export function NotificationDrawer({
           {activeTab !== "preferences" && unreadCount > 0 && (
             <button
               onClick={handleMarkAllAsRead}
-              className="flex items-center gap-1 text-[11px] font-semibold text-[#66635D] hover:text-[#D9822B]"
+              className="flex items-center gap-1 text-[11px] font-semibold text-[#547070] hover:text-[#A9824D]"
             >
               <CheckCheck className="h-3.5 w-3.5" />
               <span>Mark all read</span>
@@ -208,7 +208,7 @@ export function NotificationDrawer({
                 onSaved={fetchNotifications}
               />
             ) : (
-              <div className="p-4 text-center text-[13px] text-[#66635D]">
+              <div className="p-4 text-center text-[13px] text-[#547070]">
                 Loading preferences...
               </div>
             )
@@ -217,19 +217,19 @@ export function NotificationDrawer({
               {[1, 2, 3].map((i) => (
                 <div
                   key={i}
-                  className="h-20 animate-pulse rounded-2xl bg-[rgba(32,32,29,0.04)]"
+                  className="h-20 animate-pulse rounded-2xl bg-[rgba(63,148,149,0.08)]"
                 />
               ))}
             </div>
           ) : filteredNotifications.length === 0 ? (
             <div className="my-auto flex flex-col items-center justify-center py-16 text-center">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#3D765B]/10 text-[#3D765B]">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#328A7A]/10 text-[#328A7A]">
                 <Sparkles className="h-6 w-6" />
               </div>
-              <h3 className="mt-3 text-[15px] font-bold text-[#20201D]">
+              <h3 className="mt-3 text-[15px] font-bold text-[#193B3B]">
                 All quiet and peaceful 🙏
               </h3>
-              <p className="mt-1 max-w-xs text-[12px] text-[#66635D]">
+              <p className="mt-1 max-w-xs text-[12px] text-[#547070]">
                 {activeTab === "unread"
                   ? "No unread reminders. Your Sādhanā routine is flowing smoothly."
                   : "No notifications recorded yet. Gentle reminders will appear here when relevant."}
@@ -245,8 +245,8 @@ export function NotificationDrawer({
                     key={n.id}
                     className={`group relative flex flex-col gap-2 rounded-2xl border p-3.5 transition-all ${
                       isUnread
-                        ? "border-[#D9822B]/25 bg-[#D9822B]/5 shadow-xs"
-                        : "border-[rgba(32,32,29,0.06)] bg-white"
+                        ? "border-[#A9824D]/30 bg-[#A9824D]/5 shadow-xs"
+                        : "border-[rgba(63,148,149,0.14)] bg-white"
                     }`}
                   >
                     <div className="flex items-start justify-between gap-2">
@@ -256,7 +256,7 @@ export function NotificationDrawer({
                         </div>
                         <div>
                           <div className="flex items-center gap-1.5">
-                            <span className="text-[13px] font-bold text-[#20201D]">
+                            <span className="text-[13px] font-bold text-[#193B3B]">
                               {n.title}
                             </span>
                             {isUnread && (
@@ -265,7 +265,7 @@ export function NotificationDrawer({
                               </Badge>
                             )}
                           </div>
-                          <p className="mt-1 text-[12px] leading-relaxed text-[#66635D]">
+                          <p className="mt-1 text-[12px] leading-relaxed text-[#547070]">
                             {n.message}
                           </p>
                         </div>
@@ -274,7 +274,7 @@ export function NotificationDrawer({
                       {isUnread && (
                         <button
                           onClick={() => handleMarkAsRead(n.id)}
-                          className="text-[#66635D] opacity-0 transition-opacity hover:text-[#3D765B] group-hover:opacity-100"
+                          className="text-[#547070] opacity-0 transition-opacity hover:text-[#328A7A] group-hover:opacity-100"
                           title="Mark as read"
                           aria-label="Mark as read"
                         >
@@ -284,7 +284,7 @@ export function NotificationDrawer({
                     </div>
 
                     {/* Action Link & Timestamp */}
-                    <div className="flex items-center justify-between pt-1 text-[11px] text-[#66635D]">
+                    <div className="flex items-center justify-between pt-1 text-[11px] text-[#547070]">
                       <span>{n.scheduledForDate}</span>
                       {n.actionUrl && (
                         <Link
@@ -293,7 +293,7 @@ export function NotificationDrawer({
                             if (isUnread) handleMarkAsRead(n.id);
                             onClose();
                           }}
-                          className="flex items-center gap-1 font-semibold text-[#D9822B] hover:underline"
+                          className="flex items-center gap-1 font-semibold text-[#A9824D] hover:underline"
                         >
                           <span>Open</span>
                           <ArrowRight className="h-3 w-3" />

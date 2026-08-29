@@ -13,16 +13,16 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
   ({ className, variant = "default", padding = "default", children, ...props }, ref) => {
     const variantStyles: Record<CardVariant, string> = {
       default:
-        "bg-white border border-[rgba(32,32,29,0.08)] shadow-[0_2px_8px_rgba(32,32,29,0.04)]",
+        "bg-white border border-[rgba(63,148,149,0.14)] shadow-[0_2px_8px_rgba(25,59,59,0.04)]",
       elevated:
-        "bg-white border border-[rgba(32,32,29,0.08)] shadow-[0_8px_32px_rgba(32,32,29,0.08)]",
-      sand: "bg-[#E8D9BF]/40 border border-[rgba(32,32,29,0.08)]",
+        "bg-white border border-[rgba(63,148,149,0.14)] shadow-[0_8px_32px_rgba(25,59,59,0.08)]",
+      sand: "bg-[#D8F1EE]/40 border border-[rgba(63,148,149,0.14)]",
       interactive:
-        "bg-white border border-[rgba(32,32,29,0.08)] shadow-[0_2px_8px_rgba(32,32,29,0.04)] hover:border-[#2457A6]/50 hover:shadow-[0_4px_20px_rgba(36,87,166,0.08)] active:scale-[0.99] transition-all cursor-pointer",
+        "bg-white border border-[rgba(63,148,149,0.14)] shadow-[0_2px_8px_rgba(25,59,59,0.04)] hover:border-[#3F9495]/50 hover:shadow-[0_4px_20px_rgba(63,148,149,0.10)] active:scale-[0.99] transition-all cursor-pointer",
       highlightSaffron:
-        "bg-white border-l-4 border-l-[#D9822B] border-y border-r border-[rgba(32,32,29,0.08)] shadow-[0_2px_8px_rgba(32,32,29,0.04)]",
+        "bg-white border-l-4 border-l-[#A9824D] border-y border-r border-[rgba(63,148,149,0.14)] shadow-[0_2px_8px_rgba(25,59,59,0.04)]",
       highlightBlue:
-        "bg-white border-l-4 border-l-[#2457A6] border-y border-r border-[rgba(32,32,29,0.08)] shadow-[0_2px_8px_rgba(32,32,29,0.04)]",
+        "bg-white border-l-4 border-l-[#3F9495] border-y border-r border-[rgba(63,148,149,0.14)] shadow-[0_2px_8px_rgba(25,59,59,0.04)]",
     };
 
     const paddingStyles = {
@@ -36,7 +36,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
       <div
         ref={ref}
         className={cn(
-          "rounded-[16px] text-[#20201D] transition-colors",
+          "rounded-[16px] text-[#193B3B] transition-colors",
           variantStyles[variant],
           paddingStyles[padding],
           className
@@ -59,7 +59,7 @@ export function CardTitle({ className, ...props }: React.HTMLAttributes<HTMLHead
   return (
     <h3
       className={cn(
-        "text-[17px] font-semibold leading-tight text-[#20201D] sm:text-[18px]",
+        "text-[17px] font-semibold leading-tight text-[#193B3B] sm:text-[18px]",
         className
       )}
       {...props}
@@ -71,7 +71,7 @@ export function CardDescription({
   className,
   ...props
 }: React.HTMLAttributes<HTMLParagraphElement>) {
-  return <p className={cn("text-[13px] text-[#66635D] sm:text-[14px]", className)} {...props} />;
+  return <p className={cn("text-[13px] text-[#547070] sm:text-[14px]", className)} {...props} />;
 }
 
 export function CardContent({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
@@ -82,7 +82,7 @@ export function CardFooter({ className, ...props }: React.HTMLAttributes<HTMLDiv
   return (
     <div
       className={cn(
-        "mt-4 flex items-center justify-between border-t border-[rgba(32,32,29,0.06)] pt-3 text-[13px] text-[#66635D]",
+        "mt-4 flex items-center justify-between border-t border-[rgba(63,148,149,0.12)] pt-3 text-[13px] text-[#547070]",
         className
       )}
       {...props}
@@ -117,9 +117,9 @@ export function MetricCard({
   ...props
 }: MetricCardProps) {
   const iconColors = {
-    default: "bg-[#E8D9BF]/50 text-[#20201D]",
-    krishna: "bg-[#2457A6]/10 text-[#2457A6]",
-    saffron: "bg-[#D9822B]/15 text-[#D9822B]",
+    default: "bg-[#D8F1EE] text-[#193B3B]",
+    krishna: "bg-[#3F9495]/12 text-[#3F9495]",
+    saffron: "bg-[#A9824D]/15 text-[#A9824D]",
   };
 
   return (
@@ -132,9 +132,9 @@ export function MetricCard({
       <div className="flex items-start justify-between">
         <div>
           {sanskritLabel && (
-            <p className="font-serif text-[12px] text-[#D9822B]">{sanskritLabel}</p>
+            <p className="font-serif text-[12px] text-[#A9824D]">{sanskritLabel}</p>
           )}
-          <p className="text-[13px] font-medium text-[#66635D]">{label}</p>
+          <p className="text-[13px] font-medium text-[#547070]">{label}</p>
         </div>
         {icon && (
           <div
@@ -149,13 +149,13 @@ export function MetricCard({
       </div>
 
       <div className="mt-3 flex items-baseline gap-1.5">
-        <span className="text-[26px] font-bold tracking-tight text-[#20201D] sm:text-[30px]">
+        <span className="text-[26px] font-bold tracking-tight text-[#193B3B] sm:text-[30px]">
           {value}
         </span>
-        {unit && <span className="text-[14px] font-medium text-[#66635D]">{unit}</span>}
+        {unit && <span className="text-[14px] font-medium text-[#547070]">{unit}</span>}
       </div>
 
-      {trend && <p className="mt-2 text-[12px] font-medium text-[#3D765B]">{trend}</p>}
+      {trend && <p className="mt-2 text-[12px] font-medium text-[#328A7A]">{trend}</p>}
     </Card>
   );
 }
@@ -179,9 +179,9 @@ export function InfoCard({
   ...props
 }: InfoCardProps) {
   const variantStyles = {
-    neutral: "bg-[#E8D9BF]/30 border-[rgba(32,32,29,0.08)]",
-    saffron: "bg-[#D9822B]/10 border-[#D9822B]/20",
-    krishna: "bg-[#2457A6]/5 border-[#2457A6]/15",
+    neutral: "bg-[#D8F1EE]/40 border-[rgba(63,148,149,0.16)]",
+    saffron: "bg-[#A9824D]/10 border-[#A9824D]/25",
+    krishna: "bg-[#3F9495]/8 border-[#3F9495]/20",
   };
 
   return (
@@ -195,8 +195,8 @@ export function InfoCard({
     >
       {icon && <div className="shrink-0 pt-0.5">{icon}</div>}
       <div className="space-y-0.5">
-        <h4 className="text-[14px] font-semibold text-[#20201D]">{title}</h4>
-        <p className="text-[13px] leading-relaxed text-[#66635D]">{description}</p>
+        <h4 className="text-[14px] font-semibold text-[#193B3B]">{title}</h4>
+        <p className="text-[13px] leading-relaxed text-[#547070]">{description}</p>
       </div>
     </div>
   );

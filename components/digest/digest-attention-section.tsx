@@ -18,23 +18,23 @@ export function DigestAttentionSection({ attentionSuggestions }: DigestAttention
   }
 
   return (
-    <Card className="border-[rgba(32,32,29,0.08)] bg-white p-5 shadow-level2 sm:p-7">
+    <Card className="border-[rgba(63,148,149,0.16)] bg-white p-5 shadow-level2 sm:p-7">
       {/* Section Header */}
-      <div className="flex items-center justify-between border-b border-[rgba(32,32,29,0.06)] pb-4">
+      <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.12)] pb-4">
         <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#2457A6]/10 text-[#2457A6]">
+          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#3F9495]/10 text-[#3F9495]">
             <Eye className="h-4 w-4" />
           </div>
           <div>
-            <span className="text-[11px] font-bold uppercase tracking-wider text-[#2457A6]">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#3F9495]">
               Attention Suggested
             </span>
-            <h2 className="text-[17px] font-bold text-[#20201D] sm:text-[18px]">
+            <h2 className="text-[17px] font-bold text-[#193B3B] sm:text-[18px]">
               Patterns Requiring Mentorship Review ({attentionSuggestions.length})
             </h2>
           </div>
         </div>
-        <span className="text-[11px] text-[#66635D]">What matters now</span>
+        <span className="text-[11px] text-[#547070]">What matters now</span>
       </div>
 
       {/* Attention Cards List */}
@@ -47,18 +47,18 @@ export function DigestAttentionSection({ attentionSuggestions }: DigestAttention
               key={item.shishya.id}
               className={`rounded-2xl border p-4 transition-all ${
                 isFollowUp
-                  ? "border-[#2457A6]/30 bg-[#2457A6]/5"
-                  : "border-[#D9822B]/30 bg-[#D9822B]/5"
+                  ? "border-[#3F9495]/30 bg-[#3F9495]/5"
+                  : "border-[#A9824D]/30 bg-[#A9824D]/5"
               }`}
             >
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <span className="text-[14px] font-bold text-[#20201D]">
+                    <span className="text-[14px] font-bold text-[#193B3B]">
                       {item.shishya.spiritualName || item.shishya.name}
                     </span>
                     {item.shishya.spiritualName && item.shishya.name && (
-                      <span className="text-[12px] text-[#66635D]">
+                      <span className="text-[12px] text-[#547070]">
                         ({item.shishya.name})
                       </span>
                     )}
@@ -75,14 +75,14 @@ export function DigestAttentionSection({ attentionSuggestions }: DigestAttention
                     )}
                   </div>
 
-                  <p className="text-[13px] font-semibold text-[#20201D]">
+                  <p className="text-[13px] font-semibold text-[#193B3B]">
                     {item.headline}
                   </p>
 
-                  <ul className="mt-1.5 space-y-1 text-[12px] text-[#66635D]">
+                  <ul className="mt-1.5 space-y-1 text-[12px] text-[#547070]">
                     {item.reasons.map((r, i) => (
                       <li key={i} className="flex items-start gap-1.5">
-                        <span className="text-[#20201D]">•</span>
+                        <span className="text-[#193B3B]">•</span>
                         <span>{r}</span>
                       </li>
                     ))}

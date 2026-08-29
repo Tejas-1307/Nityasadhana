@@ -49,14 +49,14 @@ export function JourneyTrendChart({
   const getThemeColor = () => {
     switch (colorTheme) {
       case "saffron":
-        return { stroke: "#D9822B", fill: "#D9822B", bg: "bg-[#D9822B]/10" };
+        return { stroke: "#A9824D", fill: "#A9824D", bg: "bg-[#A9824D]/10" };
       case "forest":
-        return { stroke: "#3D765B", fill: "#3D765B", bg: "bg-[#3D765B]/10" };
+        return { stroke: "#328A7A", fill: "#328A7A", bg: "bg-[#328A7A]/10" };
       case "neutral":
-        return { stroke: "#66635D", fill: "#66635D", bg: "bg-[#66635D]/10" };
+        return { stroke: "#547070", fill: "#547070", bg: "bg-[#547070]/10" };
       case "krishna":
       default:
-        return { stroke: "#2457A6", fill: "#2457A6", bg: "bg-[#2457A6]/10" };
+        return { stroke: "#3F9495", fill: "#3F9495", bg: "bg-[#3F9495]/10" };
     }
   };
 
@@ -64,34 +64,34 @@ export function JourneyTrendChart({
 
   return (
     <div
-      className={`rounded-3xl border border-[rgba(32,32,29,0.08)] bg-white p-5 shadow-level1 sm:p-6 ${
+      className={`rounded-3xl border border-[rgba(63,148,149,0.16)] bg-white p-5 shadow-level1 sm:p-6 ${
         className || ""
       }`}
     >
       {/* Chart Header */}
-      <div className="flex items-start justify-between gap-2 border-b border-[rgba(32,32,29,0.06)] pb-3">
+      <div className="flex items-start justify-between gap-2 border-b border-[rgba(63,148,149,0.12)] pb-3">
         <div>
-          <h4 className="text-[14px] font-bold text-[#20201D]">{title}</h4>
-          {subtitle && <p className="text-[11px] text-[#66635D]">{subtitle}</p>}
+          <h4 className="text-[14px] font-bold text-[#193B3B]">{title}</h4>
+          {subtitle && <p className="text-[11px] text-[#547070]">{subtitle}</p>}
         </div>
 
         {/* Selected Data Point Tooltip Pill */}
         {selectedPoint ? (
-          <div className="rounded-xl border border-[rgba(32,32,29,0.1)] bg-[#F7F1E5] px-2.5 py-1 text-right text-[11px]">
-            <span className="font-bold text-[#20201D]">
+          <div className="rounded-xl border border-[rgba(63,148,149,0.16)] bg-[#F7F5EF] px-2.5 py-1 text-right text-[11px]">
+            <span className="font-bold text-[#193B3B]">
               {selectedPoint.formattedValue || (selectedPoint.value !== undefined ? selectedPoint.value : "Missing")}
             </span>
-            <span className="text-[#66635D]"> · {selectedPoint.date}</span>
+            <span className="text-[#547070]"> · {selectedPoint.date}</span>
           </div>
         ) : (
-          <span className="text-[11px] text-[#66635D]">Tap bar to view</span>
+          <span className="text-[11px] text-[#547070]">Tap bar to view</span>
         )}
       </div>
 
       {/* SVG Chart Area */}
       <div className="mt-4">
         {!hasData ? (
-          <div className="flex h-36 items-center justify-center rounded-2xl bg-[#F7F1E5]/40 text-[12px] text-[#66635D]">
+          <div className="flex h-36 items-center justify-center rounded-2xl bg-[#F7F5EF]/60 text-[12px] text-[#547070]">
             {emptyLabel}
           </div>
         ) : (
@@ -108,7 +108,7 @@ export function JourneyTrendChart({
                 y1={chartHeight - paddingY}
                 x2={chartWidth - paddingX}
                 y2={chartHeight - paddingY}
-                stroke="rgba(32,32,29,0.12)"
+                stroke="rgba(63,148,149,0.18)"
                 strokeDasharray="2 2"
               />
 
@@ -133,7 +133,7 @@ export function JourneyTrendChart({
                             cx={x + barWidth / 2}
                             cy={chartHeight - paddingY}
                             r={2}
-                            fill="rgba(32,32,29,0.25)"
+                            fill="rgba(63,148,149,0.25)"
                           />
                         </g>
                       );
@@ -213,7 +213,7 @@ export function JourneyTrendChart({
                           cx={x}
                           cy={chartHeight - paddingY}
                           r={2}
-                          fill="rgba(32,32,29,0.2)"
+                          fill="rgba(63,148,149,0.25)"
                           onClick={() => setSelectedPoint(point)}
                           className="cursor-pointer"
                         />
@@ -245,7 +245,7 @@ export function JourneyTrendChart({
             </svg>
 
             {/* X-Axis Date Labels */}
-            <div className="mt-1 flex justify-between px-2 text-[10px] text-[#66635D]">
+            <div className="mt-1 flex justify-between px-2 text-[10px] text-[#547070]">
               <span>{data[0]?.label}</span>
               {data.length > 2 && (
                 <span>{data[Math.floor(data.length / 2)]?.label}</span>
@@ -257,11 +257,11 @@ export function JourneyTrendChart({
       </div>
 
       {/* Accessible Collapsible Data Table */}
-      <div className="mt-3 border-t border-[rgba(32,32,29,0.06)] pt-2">
+      <div className="mt-3 border-t border-[rgba(63,148,149,0.12)] pt-2">
         <button
           type="button"
           onClick={() => setShowDataTable((prev) => !prev)}
-          className="flex items-center gap-1 text-[11px] font-semibold text-[#66635D] hover:text-[#20201D]"
+          className="flex items-center gap-1 text-[11px] font-semibold text-[#547070] hover:text-[#193B3B]"
         >
           <span>{showDataTable ? "Hide detailed log" : "View detailed log"}</span>
           {showDataTable ? (
@@ -272,19 +272,19 @@ export function JourneyTrendChart({
         </button>
 
         {showDataTable && (
-          <div className="mt-2 max-h-36 overflow-y-auto rounded-xl border border-[rgba(32,32,29,0.08)] bg-[#F7F1E5]/30 p-2 text-[11px]">
+          <div className="mt-2 max-h-36 overflow-y-auto rounded-xl border border-[rgba(63,148,149,0.16)] bg-[#F7F5EF]/60 p-2 text-[11px]">
             <table className="w-full text-left">
               <thead>
-                <tr className="border-b border-[rgba(32,32,29,0.08)] text-[#66635D]">
+                <tr className="border-b border-[rgba(63,148,149,0.12)] text-[#547070]">
                   <th className="pb-1 font-semibold">Date</th>
                   <th className="pb-1 text-right font-semibold">Value</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[rgba(32,32,29,0.04)]">
+              <tbody className="divide-y divide-[rgba(63,148,149,0.08)]">
                 {data.map((d) => (
                   <tr key={d.date} className="py-1">
-                    <td className="py-1 text-[#20201D]">{d.date}</td>
-                    <td className="py-1 text-right font-bold text-[#20201D]">
+                    <td className="py-1 text-[#193B3B]">{d.date}</td>
+                    <td className="py-1 text-right font-bold text-[#193B3B]">
                       {d.formattedValue ||
                         (d.value !== undefined ? yAxisFormatter(d.value) : "Missing")}
                     </td>

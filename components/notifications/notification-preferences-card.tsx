@@ -63,30 +63,30 @@ export function NotificationPreferencesCard({
   };
 
   return (
-    <Card className="border-[rgba(32,32,29,0.08)] bg-white p-5 shadow-sm sm:p-6">
+    <Card className="border-[rgba(63,148,149,0.16)] bg-white p-5 shadow-sm sm:p-6">
       <form onSubmit={handleSave} className="space-y-6">
         {/* Section 1: Reminders (Role-adapted) */}
         <div>
-          <div className="flex items-center gap-2 border-b border-[rgba(32,32,29,0.06)] pb-2.5">
-            <Bell className="h-4 w-4 text-[#D9822B]" />
-            <h3 className="text-[14px] font-bold text-[#20201D]">
+          <div className="flex items-center gap-2 border-b border-[rgba(63,148,149,0.12)] pb-2.5">
+            <Bell className="h-4 w-4 text-[#A9824D]" />
+            <h3 className="text-[14px] font-bold text-[#193B3B]">
               Gentle Reminders • स्मृतयः
             </h3>
           </div>
-          <p className="mt-1 text-[12px] text-[#66635D]">
+          <p className="mt-1 text-[12px] text-[#547070]">
             Control which peaceful reminders reach you. Maximum 1 routine reminder per day.
           </p>
 
-          <div className="mt-3 divide-y divide-[rgba(32,32,29,0.06)]">
+          <div className="mt-3 divide-y divide-[rgba(63,148,149,0.12)]">
             {role === "shishya" ? (
               <>
                 {/* Student: Daily Sādhanā Reminder */}
                 <div className="flex items-center justify-between py-3">
                   <div>
-                    <div className="text-[13px] font-semibold text-[#20201D]">
+                    <div className="text-[13px] font-semibold text-[#193B3B]">
                       Daily Sādhanā Report
                     </div>
-                    <div className="text-[11px] text-[#66635D]">
+                    <div className="text-[11px] text-[#547070]">
                       Gentle reminder when today&apos;s report is ready. Automatically cancels when submitted.
                     </div>
                   </div>
@@ -94,7 +94,7 @@ export function NotificationPreferencesCard({
                     type="button"
                     onClick={() => handleToggle("dailyReportReminder")}
                     className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-hidden ${
-                      prefs.dailyReportReminder ? "bg-[#3D765B]" : "bg-[rgba(32,32,29,0.2)]"
+                      prefs.dailyReportReminder ? "bg-[#328A7A]" : "bg-[rgba(63,148,149,0.25)]"
                     }`}
                     role="switch"
                     aria-checked={prefs.dailyReportReminder}
@@ -111,10 +111,10 @@ export function NotificationPreferencesCard({
                 {/* Student: Weekly Reflection Reminder */}
                 <div className="flex items-center justify-between py-3">
                   <div>
-                    <div className="text-[13px] font-semibold text-[#20201D]">
+                    <div className="text-[13px] font-semibold text-[#193B3B]">
                       Weekly Reflection
                     </div>
-                    <div className="text-[11px] text-[#66635D]">
+                    <div className="text-[11px] text-[#547070]">
                       Gentle reminder when the weekly reflection period opens.
                     </div>
                   </div>
@@ -122,7 +122,7 @@ export function NotificationPreferencesCard({
                     type="button"
                     onClick={() => handleToggle("weeklyReflectionReminder")}
                     className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-hidden ${
-                      prefs.weeklyReflectionReminder ? "bg-[#3D765B]" : "bg-[rgba(32,32,29,0.2)]"
+                      prefs.weeklyReflectionReminder ? "bg-[#328A7A]" : "bg-[rgba(63,148,149,0.25)]"
                     }`}
                     role="switch"
                     aria-checked={prefs.weeklyReflectionReminder}
@@ -139,10 +139,10 @@ export function NotificationPreferencesCard({
                 {/* Student: Sankalpa Reminder */}
                 <div className="flex items-center justify-between py-3">
                   <div>
-                    <div className="text-[13px] font-semibold text-[#20201D]">
+                    <div className="text-[13px] font-semibold text-[#193B3B]">
                       Weekly Sankalpa Focus
                     </div>
-                    <div className="text-[11px] text-[#66635D]">
+                    <div className="text-[11px] text-[#547070]">
                       Peaceful reminder supporting your chosen spiritual intention.
                     </div>
                   </div>
@@ -150,7 +150,7 @@ export function NotificationPreferencesCard({
                     type="button"
                     onClick={() => handleToggle("sankalpaReminder")}
                     className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-hidden ${
-                      prefs.sankalpaReminder ? "bg-[#3D765B]" : "bg-[rgba(32,32,29,0.2)]"
+                      prefs.sankalpaReminder ? "bg-[#328A7A]" : "bg-[rgba(63,148,149,0.25)]"
                     }`}
                     role="switch"
                     aria-checked={prefs.sankalpaReminder}
@@ -169,10 +169,10 @@ export function NotificationPreferencesCard({
                 {/* Guru: Daily Summary */}
                 <div className="flex items-center justify-between py-3">
                   <div>
-                    <div className="text-[13px] font-semibold text-[#20201D]">
+                    <div className="text-[13px] font-semibold text-[#193B3B]">
                       Daily Group Summary
                     </div>
-                    <div className="text-[11px] text-[#66635D]">
+                    <div className="text-[11px] text-[#547070]">
                       One compact summary of Shishya reporting rhythms per day.
                     </div>
                   </div>
@@ -180,7 +180,7 @@ export function NotificationPreferencesCard({
                     type="button"
                     onClick={() => handleToggle("guruDailySummary")}
                     className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-hidden ${
-                      prefs.guruDailySummary ? "bg-[#D9822B]" : "bg-[rgba(32,32,29,0.2)]"
+                      prefs.guruDailySummary ? "bg-[#A9824D]" : "bg-[rgba(63,148,149,0.25)]"
                     }`}
                     role="switch"
                     aria-checked={prefs.guruDailySummary}
@@ -197,10 +197,10 @@ export function NotificationPreferencesCard({
                 {/* Guru: Follow-up Reminder */}
                 <div className="flex items-center justify-between py-3">
                   <div>
-                    <div className="text-[13px] font-semibold text-[#20201D]">
+                    <div className="text-[13px] font-semibold text-[#193B3B]">
                       Scheduled Follow-up Reminders
                     </div>
-                    <div className="text-[11px] text-[#66635D]">
+                    <div className="text-[11px] text-[#547070]">
                       Reminder on dates where you intentionally scheduled a Shishya discussion.
                     </div>
                   </div>
@@ -208,7 +208,7 @@ export function NotificationPreferencesCard({
                     type="button"
                     onClick={() => handleToggle("guruFollowUpReminder")}
                     className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-hidden ${
-                      prefs.guruFollowUpReminder ? "bg-[#D9822B]" : "bg-[rgba(32,32,29,0.2)]"
+                      prefs.guruFollowUpReminder ? "bg-[#A9824D]" : "bg-[rgba(63,148,149,0.25)]"
                     }`}
                     role="switch"
                     aria-checked={prefs.guruFollowUpReminder}
@@ -228,13 +228,13 @@ export function NotificationPreferencesCard({
 
         {/* Section 2: Quiet Hours */}
         <div>
-          <div className="flex items-center gap-2 border-b border-[rgba(32,32,29,0.06)] pb-2.5">
-            <Moon className="h-4 w-4 text-[#2457A6]" />
-            <h3 className="text-[14px] font-bold text-[#20201D]">
+          <div className="flex items-center gap-2 border-b border-[rgba(63,148,149,0.12)] pb-2.5">
+            <Moon className="h-4 w-4 text-[#3F9495]" />
+            <h3 className="text-[14px] font-bold text-[#193B3B]">
               Quiet Hours • प्रशान्ति-कालः
             </h3>
           </div>
-          <p className="mt-1 text-[12px] text-[#66635D]">
+          <p className="mt-1 text-[12px] text-[#547070]">
             During quiet hours, no push notifications are dispatched to protect sleep and morning Japa.
           </p>
 
@@ -251,7 +251,7 @@ export function NotificationPreferencesCard({
                   onChange={(e) =>
                     setPrefs((prev) => ({ ...prev, quietHoursStart: e.target.value }))
                   }
-                  className="w-full rounded-xl border border-[rgba(32,32,29,0.12)] bg-[#F7F1E5]/40 px-3 py-2 text-[13px] font-semibold text-[#20201D]"
+                  className="w-full rounded-xl border border-[rgba(63,148,149,0.18)] bg-[#F7F5EF]/60 px-3 py-2 text-[13px] font-semibold text-[#193B3B]"
                 />
               </div>
             </div>
@@ -268,7 +268,7 @@ export function NotificationPreferencesCard({
                   onChange={(e) =>
                     setPrefs((prev) => ({ ...prev, quietHoursEnd: e.target.value }))
                   }
-                  className="w-full rounded-xl border border-[rgba(32,32,29,0.12)] bg-[#F7F1E5]/40 px-3 py-2 text-[13px] font-semibold text-[#20201D]"
+                  className="w-full rounded-xl border border-[rgba(63,148,149,0.18)] bg-[#F7F5EF]/60 px-3 py-2 text-[13px] font-semibold text-[#193B3B]"
                 />
               </div>
             </div>
@@ -277,9 +277,9 @@ export function NotificationPreferencesCard({
 
         {/* Section 3: Timezone */}
         <div>
-          <div className="flex items-center gap-2 border-b border-[rgba(32,32,29,0.06)] pb-2.5">
-            <Clock className="h-4 w-4 text-[#66635D]" />
-            <h3 className="text-[14px] font-bold text-[#20201D]">
+          <div className="flex items-center gap-2 border-b border-[rgba(63,148,149,0.12)] pb-2.5">
+            <Clock className="h-4 w-4 text-[#547070]" />
+            <h3 className="text-[14px] font-bold text-[#193B3B]">
               Timezone • देश-कालः
             </h3>
           </div>
@@ -289,7 +289,7 @@ export function NotificationPreferencesCard({
               onChange={(e) =>
                 setPrefs((prev) => ({ ...prev, timezone: e.target.value }))
               }
-              className="w-full rounded-xl border border-[rgba(32,32,29,0.12)] bg-[#F7F1E5]/40 px-3 py-2 text-[13px] font-medium text-[#20201D]"
+              className="w-full rounded-xl border border-[rgba(63,148,149,0.18)] bg-[#F7F5EF]/60 px-3 py-2 text-[13px] font-medium text-[#193B3B]"
             >
               <option value="Asia/Kolkata">Asia/Kolkata (IST · UTC+5:30)</option>
               <option value="America/New_York">America/New_York (EST · UTC-5:00)</option>
@@ -303,7 +303,7 @@ export function NotificationPreferencesCard({
         {/* Submit & Confirmation */}
         <div className="flex items-center justify-between pt-2">
           {savedSuccess ? (
-            <div className="flex items-center gap-1.5 text-[12px] font-semibold text-[#3D765B]">
+            <div className="flex items-center gap-1.5 text-[12px] font-semibold text-[#328A7A]">
               <Check className="h-4 w-4" />
               <span>Preferences saved peacefully.</span>
             </div>

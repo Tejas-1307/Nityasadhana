@@ -85,17 +85,17 @@ export function InstallPrompt() {
 
   return (
     <div className="fixed right-4 bottom-20 left-4 z-40 mx-auto max-w-md animate-in fade-in slide-in-from-bottom-4 sm:bottom-6 sm:left-auto">
-      <Card className="border-[rgba(32,32,29,0.12)] bg-[#FFFFFF] p-4 shadow-xl backdrop-blur-md sm:p-5">
+      <Card className="border-[rgba(63,148,149,0.16)] bg-[#FFFFFF] p-4 shadow-xl backdrop-blur-md sm:p-5">
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-start gap-3">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#2457A6]/10 text-[#2457A6]">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#3F9495]/12 text-[#3F9495]">
               <Sparkles className="h-4 w-4" />
             </div>
             <div>
-              <h4 className="text-[14px] font-bold text-[#20201D]">
+              <h4 className="text-[14px] font-bold text-[#193B3B]">
                 Keep Nityasādhanā close 🙏
               </h4>
-              <p className="mt-1 text-[12px] leading-relaxed text-[#66635D]">
+              <p className="mt-1 text-[12px] leading-relaxed text-[#547070]">
                 Install on your phone for a fast, focused, and distraction-free daily Sādhanā routine.
               </p>
             </div>
@@ -103,7 +103,7 @@ export function InstallPrompt() {
 
           <button
             onClick={handleDismiss}
-            className="text-[#66635D] hover:text-[#20201D]"
+            className="text-[#547070] hover:text-[#193B3B]"
             aria-label="Dismiss install banner"
           >
             <X className="h-4 w-4" />
@@ -113,14 +113,14 @@ export function InstallPrompt() {
         {/* Content & Actions */}
         <div className="mt-3 pt-2">
           {isIosSafari ? (
-            <div className="rounded-xl bg-[#F7F1E5]/70 p-2.5 text-[11px] text-[#20201D]">
-              <div className="flex items-center gap-1.5 font-semibold text-[#2457A6]">
+            <div className="rounded-xl bg-[#F7F5EF]/80 p-2.5 text-[11px] text-[#193B3B]">
+              <div className="flex items-center gap-1.5 font-semibold text-[#3F9495]">
                 <Share className="h-3.5 w-3.5" />
                 <span>How to install on iPhone / iPad:</span>
               </div>
-              <p className="mt-1 text-[#66635D]">
-                Tap <span className="font-semibold text-[#20201D]">Share</span> at the bottom of Safari, then select{" "}
-                <span className="inline-flex items-center gap-0.5 font-semibold text-[#20201D]">
+              <p className="mt-1 text-[#547070]">
+                Tap <span className="font-semibold text-[#193B3B]">Share</span> at the bottom of Safari, then select{" "}
+                <span className="inline-flex items-center gap-0.5 font-semibold text-[#193B3B]">
                   <PlusSquare className="inline h-3 w-3" /> Add to Home Screen
                 </span>.
               </p>
@@ -141,7 +141,7 @@ export function InstallPrompt() {
                 variant="ghost"
                 size="sm"
                 onClick={handleDismiss}
-                className="h-8 text-[12px] text-[#66635D]"
+                className="h-8 text-[12px] text-[#547070]"
               >
                 Not now
               </Button>

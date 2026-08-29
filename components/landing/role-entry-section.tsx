@@ -12,7 +12,7 @@ export function RoleEntrySection() {
     <Section
       id="entry"
       spacing="default"
-      className="border-t border-[rgba(32,32,29,0.06)] bg-white/70"
+      className="border-t border-[rgba(63,148,149,0.14)] bg-white/70"
     >
       <Container size="default">
         {/* Section Header */}
@@ -20,10 +20,10 @@ export function RoleEntrySection() {
           <Badge variant="krishna" size="default" className="mb-3">
             <span className="font-serif">प्रवेशद्वारम्</span> • Gateway
           </Badge>
-          <h2 className="text-balance text-[28px] font-bold tracking-tight text-[#20201D] sm:text-[36px]">
+          <h2 className="text-balance text-[28px] font-bold tracking-tight text-[#193B3B] sm:text-[36px]">
             Begin your daily journey.
           </h2>
-          <p className="mt-3 text-[15px] leading-relaxed text-[#66635D] sm:text-[16px]">
+          <p className="mt-3 text-[15px] leading-relaxed text-[#547070] sm:text-[16px]">
             Nityasādhanā is built to make recording simple, so the practice itself can remain the
             sacred focus. Choose your entry pathway below.
           </p>
@@ -32,10 +32,10 @@ export function RoleEntrySection() {
         {/* Dual Role Entry Cards */}
         <div className="mx-auto grid max-w-3xl grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
           {/* Shishya Entry Card */}
-          <Card className="flex flex-col justify-between border-[#2457A6]/30 bg-[#F7F1E5]/60 p-7 transition-all hover:shadow-level2 sm:p-8">
+          <Card className="flex flex-col justify-between border-[#3F9495]/35 bg-[#F7F5EF]/80 p-7 transition-all hover:shadow-level2 sm:p-8">
             <div>
               <div className="mb-4 flex items-center justify-between">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-[#2457A6] shadow-sm">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-[#3F9495] shadow-sm">
                   <Users className="h-6 w-6" />
                 </div>
                 <Badge variant="krishna" size="sm">
@@ -43,8 +43,8 @@ export function RoleEntrySection() {
                 </Badge>
               </div>
 
-              <h3 className="mb-2 text-[20px] font-bold text-[#20201D]">Shishya Entry</h3>
-              <p className="mb-6 text-[14px] leading-relaxed text-[#66635D]">
+              <h3 className="mb-2 text-[20px] font-bold text-[#193B3B]">Shishya Entry</h3>
+              <p className="mb-6 text-[14px] leading-relaxed text-[#547070]">
                 Log today&apos;s Japa rounds, temple morning programs, and evening reflections in 30
                 seconds.
               </p>
@@ -63,10 +63,10 @@ export function RoleEntrySection() {
           </Card>
 
           {/* Guru Entry Card */}
-          <Card className="flex flex-col justify-between border-[#D9822B]/30 bg-[#F7F1E5]/60 p-7 transition-all hover:shadow-level2 sm:p-8">
+          <Card className="flex flex-col justify-between border-[#A9824D]/35 bg-[#F7F5EF]/80 p-7 transition-all hover:shadow-level2 sm:p-8">
             <div>
               <div className="mb-4 flex items-center justify-between">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-[#D9822B] shadow-sm">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-[#A9824D] shadow-sm">
                   <Eye className="h-6 w-6" />
                 </div>
                 <Badge variant="saffron" size="sm">
@@ -74,8 +74,8 @@ export function RoleEntrySection() {
                 </Badge>
               </div>
 
-              <h3 className="mb-2 text-[20px] font-bold text-[#20201D]">Guru Entry</h3>
-              <p className="mb-6 text-[14px] leading-relaxed text-[#66635D]">
+              <h3 className="mb-2 text-[20px] font-bold text-[#193B3B]">Guru Entry</h3>
+              <p className="mb-6 text-[14px] leading-relaxed text-[#547070]">
                 Review your students&apos; daily consistency, understand routine patterns, and guide
                 with spiritual care.
               </p>
@@ -85,7 +85,7 @@ export function RoleEntrySection() {
               <Button
                 variant="secondary"
                 size="lg"
-                className="w-full border-[rgba(32,32,29,0.15)] bg-white hover:bg-[#E8D9BF]/40"
+                className="w-full border-[rgba(63,148,149,0.22)] bg-white hover:bg-[#D8F1EE]/50"
                 rightIcon={<ArrowRight className="h-4 w-4" />}
               >
                 Enter as Guru

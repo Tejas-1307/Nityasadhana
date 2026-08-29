@@ -5,38 +5,60 @@
 @layer base {
   :root {
     /* Backgrounds */
-    --color-bg-primary: #f7f1e5; /* Warm Ivory */
-    --color-bg-secondary: #e8d9bf; /* Soft Sand */
-    --color-bg-surface: #ffffff; /* Pure White Elevation */
+    --color-bg-primary: #EAF7F4; /* Serene Aqua Background (~55-65% atmospheric coverage) */
+    --color-bg-secondary: #D8F1EE; /* Aqua Mist */
+    --color-bg-surface: #FFFFFF; /* Pure White Elevation */
+    --color-bg-ivory: #F7F5EF; /* Warm Ivory Content Surface */
+    --color-bg-ivory-warm: #F3EFE5; /* Deep Warm Ivory */
 
     /* Foregrounds / Typography */
-    --color-text-primary: #20201d; /* Deep Charcoal */
-    --color-text-secondary: #66635d; /* Muted Charcoal */
+    --color-text-primary: #193B3B; /* Deep Blue-Green / Charcoal */
+    --color-text-secondary: #547070; /* Muted Teal-Gray */
+    --color-text-muted: #789090; /* Soft Gray-Teal */
 
-    /* Accents */
-    --color-krishna-blue: #2457a6;
-    --color-krishna-blue-hover: #1d4685;
-    --color-krishna-blue-subtle: rgba(36, 87, 166, 0.08);
+    /* Aqua & Turquoise Palette */
+    --color-aqua-deep: #3F9495;
+    --color-aqua-deep-hover: #337B7C;
+    --color-aqua-deep-active: #286364;
+    --color-aqua-deep-subtle: rgba(63, 148, 149, 0.08);
 
-    --color-peacock-blue: #167d8d;
-    --color-peacock-blue-subtle: rgba(22, 125, 141, 0.08);
+    --color-aqua-primary: #56BFC0;
+    --color-aqua-primary-subtle: rgba(86, 191, 192, 0.12);
 
-    --color-gurukul-saffron: #d9822b;
-    --color-deep-saffron: #a95620;
-    --color-saffron-subtle: rgba(217, 130, 43, 0.1);
+    --color-aqua-soft: #8ED9D5;
+    --color-aqua-mist: #D8F1EE;
 
-    --color-feather-green: #3d765b;
-    --color-feather-green-subtle: rgba(61, 118, 91, 0.1);
+    /* Muted Antique Gold & Champagne Palette */
+    --color-gold-muted: #A9824D;
+    --color-gold-deep: #8A6635;
+    --color-gold-subtle: rgba(169, 130, 77, 0.12);
+    --color-champagne: #D0B27A;
+    --color-sand: #C8A86D;
+
+    /* Semantic & Backward-Compatible Aliases */
+    --color-krishna-blue: var(--color-aqua-deep);
+    --color-krishna-blue-hover: var(--color-aqua-deep-hover);
+    --color-krishna-blue-subtle: var(--color-aqua-deep-subtle);
+
+    --color-peacock-blue: var(--color-aqua-primary);
+    --color-peacock-blue-subtle: var(--color-aqua-primary-subtle);
+
+    --color-gurukul-saffron: var(--color-gold-muted);
+    --color-deep-saffron: var(--color-gold-deep);
+    --color-saffron-subtle: var(--color-gold-subtle);
+
+    --color-feather-green: #328A7A;
+    --color-feather-green-subtle: rgba(50, 138, 122, 0.10);
 
     /* Borders */
-    --color-border-subtle: rgba(32, 32, 29, 0.08);
-    --color-border-medium: rgba(32, 32, 29, 0.15);
+    --color-border-subtle: rgba(63, 148, 149, 0.16);
+    --color-border-medium: rgba(63, 148, 149, 0.28);
 
     /* Status */
-    --color-destructive: #b33927;
+    --color-destructive: #B33927;
     --color-destructive-subtle: rgba(179, 57, 39, 0.08);
-    --color-success: #3d765b;
-    --color-success-subtle: rgba(61, 118, 91, 0.1);
+    --color-success: #328A7A;
+    --color-success-subtle: rgba(50, 138, 122, 0.10);
 
     /* Radii */
     --radius-sm: 8px;
@@ -46,9 +68,9 @@
     --radius-pill: 9999px;
 
     /* Elevation Levels */
-    --shadow-level1: 0 2px 8px rgba(32, 32, 29, 0.04);
-    --shadow-level2: 0 4px 20px rgba(32, 32, 29, 0.06);
-    --shadow-level3: 0 8px 32px rgba(32, 32, 29, 0.08);
+    --shadow-level1: 0 2px 8px rgba(25, 59, 59, 0.04);
+    --shadow-level2: 0 4px 20px rgba(25, 59, 59, 0.06);
+    --shadow-level3: 0 8px 32px rgba(25, 59, 59, 0.08);
   }
 
   * {
@@ -79,7 +101,7 @@
 
   /* Custom selection highlight */
   ::selection {
-    background-color: #2457a6;
+    background-color: #3F9495;
     color: #ffffff;
   }
 }

@@ -137,21 +137,21 @@ export function CreateSankalpaModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-xs">
-      <div className="w-full max-w-lg rounded-3xl border border-[rgba(32,32,29,0.08)] bg-white p-5 shadow-level3 sm:p-6">
+      <div className="w-full max-w-lg rounded-3xl border border-[rgba(63,148,149,0.16)] bg-white p-5 shadow-level3 sm:p-6">
         {/* Modal Header */}
-        <div className="flex items-center justify-between border-b border-[rgba(32,32,29,0.06)] pb-3">
+        <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.12)] pb-3">
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#3D765B]/10 text-[#3D765B]">
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#328A7A]/10 text-[#328A7A]">
               <Sprout className="h-4 w-4" />
             </div>
-            <h2 className="text-[16px] font-bold text-[#20201D] sm:text-[17px]">
+            <h2 className="text-[16px] font-bold text-[#193B3B] sm:text-[17px]">
               {step === "select" ? "Set Weekly Sankalpa" : "Confirm Your Intention"}
             </h2>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-full p-1 text-[#66635D] hover:bg-[#F7F1E5]"
+            className="rounded-full p-1 text-[#547070] hover:bg-[#EAF7F4]"
           >
             <X className="h-4 w-4" />
           </button>
@@ -162,7 +162,7 @@ export function CreateSankalpaModal({
           <div className="mt-4 space-y-4">
             {/* 1. Category Selection Chips */}
             <div>
-              <label className="block text-[11px] font-bold uppercase tracking-wider text-[#66635D]">
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-[#547070]">
                 What would you like to focus on?
               </label>
               <div className="mt-2 flex flex-wrap gap-1.5 sm:gap-2">
@@ -175,8 +175,8 @@ export function CreateSankalpaModal({
                       onClick={() => setSelectedCategory(cat.key)}
                       className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[12px] font-bold transition-all ${
                         isSelected
-                          ? "bg-[#20201D] text-white shadow-xs"
-                          : "border border-[rgba(32,32,29,0.08)] bg-[#F7F1E5]/40 text-[#66635D] hover:bg-[#F7F1E5]"
+                          ? "bg-[#193B3B] text-white shadow-xs"
+                          : "border border-[rgba(63,148,149,0.16)] bg-[#F7F5EF]/60 text-[#547070] hover:bg-[#EAF7F4]"
                       }`}
                     >
                       {renderCategoryIcon(cat.key)}
@@ -190,7 +190,7 @@ export function CreateSankalpaModal({
             {/* 2. Suggested Intentions */}
             {selectedCategory !== "other" && (
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-[#66635D]">
+                <label className="block text-[11px] font-bold uppercase tracking-wider text-[#547070]">
                   Suggested Focus
                 </label>
                 <div className="mt-1.5 space-y-1.5">
@@ -206,12 +206,12 @@ export function CreateSankalpaModal({
                         }}
                         className={`flex w-full items-center justify-between rounded-xl border p-3 text-left text-[13px] font-medium transition-all ${
                           isSelected
-                            ? "border-[#3D765B]/40 bg-[#3D765B]/10 text-[#20201D] font-semibold"
-                            : "border-[rgba(32,32,29,0.08)] bg-white text-[#20201D] hover:bg-[#F7F1E5]/40"
+                            ? "border-[#328A7A]/40 bg-[#328A7A]/10 text-[#193B3B] font-semibold"
+                            : "border-[rgba(63,148,149,0.16)] bg-white text-[#193B3B] hover:bg-[#EAF7F4]/50"
                         }`}
                       >
                         <span>{sugTitle}</span>
-                        {isSelected && <Check className="h-4 w-4 text-[#3D765B]" />}
+                        {isSelected && <Check className="h-4 w-4 text-[#328A7A]" />}
                       </button>
                     );
                   })}
@@ -221,7 +221,7 @@ export function CreateSankalpaModal({
 
             {/* 3. Custom Intention Input */}
             <div>
-              <label className="block text-[11px] font-bold uppercase tracking-wider text-[#66635D]">
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-[#547070]">
                 {selectedCategory === "other"
                   ? "Your Custom Intention"
                   : "Or write your own intention"}
@@ -236,9 +236,9 @@ export function CreateSankalpaModal({
                 }
                 maxLength={160}
                 rows={2}
-                className="mt-1.5 w-full rounded-xl border border-[rgba(32,32,29,0.12)] bg-white p-3 text-[13px] text-[#20201D] placeholder:text-[#66635D]/50 focus:border-[#3D765B] focus:outline-hidden focus:ring-1 focus:ring-[#3D765B]"
+                className="mt-1.5 w-full rounded-xl border border-[rgba(63,148,149,0.18)] bg-white p-3 text-[13px] text-[#193B3B] placeholder:text-[#547070]/50 focus:border-[#3F9495] focus:outline-hidden focus:ring-1 focus:ring-[#3F9495]"
               />
-              <div className="mt-1 flex justify-between text-[11px] text-[#66635D]">
+              <div className="mt-1 flex justify-between text-[11px] text-[#547070]">
                 <span>Concise commitment for the week</span>
                 <span>{customTitle.length}/160</span>
               </div>
@@ -249,7 +249,7 @@ export function CreateSankalpaModal({
             )}
 
             {/* Step Navigation */}
-            <div className="flex items-center justify-end gap-2 border-t border-[rgba(32,32,29,0.06)] pt-3">
+            <div className="flex items-center justify-end gap-2 border-t border-[rgba(63,148,149,0.12)] pt-3">
               <Button type="button" variant="ghost" size="sm" onClick={onClose} className="text-[12px]">
                 Cancel
               </Button>
@@ -268,22 +268,22 @@ export function CreateSankalpaModal({
         ) : (
           /* Step 2: Calm Confirmation */
           <div className="mt-4 space-y-4">
-            <div className="rounded-2xl border border-[#3D765B]/20 bg-[#3D765B]/5 p-4 text-center sm:p-5">
-              <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-xl bg-[#3D765B]/15 text-[#3D765B]">
+            <div className="rounded-2xl border border-[#328A7A]/20 bg-[#328A7A]/5 p-4 text-center sm:p-5">
+              <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-xl bg-[#328A7A]/15 text-[#328A7A]">
                 <Sprout className="h-5 w-5" />
               </div>
-              <span className="mt-2 block text-[11px] font-bold uppercase tracking-wider text-[#3D765B]">
+              <span className="mt-2 block text-[11px] font-bold uppercase tracking-wider text-[#328A7A]">
                 🌱 Your Sankalpa
               </span>
-              <h3 className="mt-1 text-[17px] font-bold text-[#20201D]">
+              <h3 className="mt-1 text-[17px] font-bold text-[#193B3B]">
                 {currentTitle}
               </h3>
-              <p className="mt-1 text-[12px] text-[#66635D]">
+              <p className="mt-1 text-[12px] text-[#547070]">
                 {weekBoundaries.formattedRange}
               </p>
             </div>
 
-            <p className="text-center text-[13px] text-[#66635D]">
+            <p className="text-center text-[13px] text-[#547070]">
               Ready to begin this conscious weekly focus?
             </p>
 
@@ -293,7 +293,7 @@ export function CreateSankalpaModal({
               </p>
             )}
 
-            <div className="flex items-center justify-between border-t border-[rgba(32,32,29,0.06)] pt-3">
+            <div className="flex items-center justify-between border-t border-[rgba(63,148,149,0.12)] pt-3">
               <Button
                 type="button"
                 variant="ghost"

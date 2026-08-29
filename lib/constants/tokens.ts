@@ -1,49 +1,67 @@
 /**
  * Nityasādhanā Design System Tokens
  *
- * Core Design Language: Ancient Gurukul × Vrindavan × Krishna × Modern Editorial
+ * Core Design Language: Aqua × Turquoise × Warm Ivory × Muted Antique Gold
  *
- * Color Balance Target:
- * - 65% Warm Ivory (#F7F1E5) / Soft Sand (#E8D9BF)
- * - 18% Deep Charcoal (#20201D) / Muted Charcoal (#66635D)
- * - 10% Krishna Blue (#2457A6)
- * - 5% Gurukul Saffron (#D9822B) / Deep Saffron (#A95620)
- * - 2% Peacock Blue (#167D8D) / Feather Green (#3D765B)
+ * Visual Balance Target:
+ * - 55-65% Aqua Family (#EAF7F4, #D8F1EE, #8ED9D5, #56BFC0, #3F9495)
+ * - 20-30% Warm Ivory (#F7F5EF, #F3EFE5, #FFFFFF)
+ * - 5-10% Muted Antique Gold / Champagne (#A9824D, #D0B27A, #C8A86D)
+ * - 5-10% Deep Blue-Green Charcoal (#193B3B, #547070)
  */
 
 export const COLORS = {
   background: {
-    primary: "#F7F1E5", // Warm Ivory (Handmade natural paper feel)
-    secondary: "#E8D9BF", // Soft Sand (Secondary surface / containers)
-    surface: "#FFFFFF", // Elevated Surface (Cards / Modals)
+    primary: "#EAF7F4", // Serene Aqua Background
+    secondary: "#D8F1EE", // Aqua Mist
+    surface: "#FFFFFF", // Elevated Surface
+    ivory: "#F7F5EF", // Warm Ivory
+    ivoryWarm: "#F3EFE5", // Deep Warm Ivory
   },
   foreground: {
-    primary: "#20201D", // Deep Charcoal (High contrast, softer than pure black)
-    secondary: "#66635D", // Muted Charcoal (Subtle labels & captions)
+    primary: "#193B3B", // Deep Blue-Green
+    secondary: "#547070", // Muted Teal-Gray
+    muted: "#789090", // Soft Gray-Teal
+  },
+  aqua: {
+    deep: "#3F9495", // Primary button, active states
+    deepHover: "#337B7C",
+    deepActive: "#286364",
+    primary: "#56BFC0", // Medium Aqua / Turquoise
+    soft: "#8ED9D5", // Soft Light Aqua
+    mist: "#D8F1EE", // Aqua Mist
+    bg: "#EAF7F4", // Serene Aqua Background
+  },
+  gold: {
+    muted: "#A9824D", // Muted Antique Gold
+    deep: "#8A6635",
+    champagne: "#D0B27A",
+    sand: "#C8A86D",
+    subtle: "rgba(169, 130, 77, 0.12)",
   },
   accent: {
-    krishnaBlue: "#2457A6", // Primary action, links, active navigation
-    krishnaBlueHover: "#1D4685",
-    krishnaBlueSubtle: "rgba(36, 87, 166, 0.08)",
-    peacockBlue: "#167D8D", // Secondary highlights, selective data accents
-    peacockBlueSubtle: "rgba(22, 125, 141, 0.08)",
-    gurukulSaffron: "#D9822B", // Spiritual highlights, secondary badges
-    deepSaffron: "#A95620", // Darker saffron text/states
-    saffronSubtle: "rgba(217, 130, 43, 0.10)",
-    featherGreen: "#3D765B", // Minimal sacred flora / success accents
-    featherGreenSubtle: "rgba(61, 118, 91, 0.10)",
+    krishnaBlue: "#3F9495", // Mapped to Deep Aqua
+    krishnaBlueHover: "#337B7C",
+    krishnaBlueSubtle: "rgba(63, 148, 149, 0.08)",
+    peacockBlue: "#56BFC0", // Mapped to Medium Aqua
+    peacockBlueSubtle: "rgba(86, 191, 192, 0.12)",
+    gurukulSaffron: "#A9824D", // Mapped to Muted Antique Gold
+    deepSaffron: "#8A6635",
+    saffronSubtle: "rgba(169, 130, 77, 0.12)",
+    featherGreen: "#328A7A", // Mapped to Teal Green
+    featherGreenSubtle: "rgba(50, 138, 122, 0.10)",
   },
   border: {
-    subtle: "rgba(32, 32, 29, 0.08)",
-    medium: "rgba(32, 32, 29, 0.15)",
-    krishna: "#2457A6",
-    saffron: "#D9822B",
+    subtle: "rgba(63, 148, 149, 0.16)",
+    medium: "rgba(63, 148, 149, 0.28)",
+    krishna: "#3F9495",
+    saffron: "#A9824D",
   },
   status: {
     destructive: "#B33927", // Muted red
     destructiveSubtle: "rgba(179, 57, 39, 0.08)",
-    success: "#3D765B",
-    successSubtle: "rgba(61, 118, 91, 0.10)",
+    success: "#328A7A",
+    successSubtle: "rgba(50, 138, 122, 0.10)",
   },
 } as const;
 

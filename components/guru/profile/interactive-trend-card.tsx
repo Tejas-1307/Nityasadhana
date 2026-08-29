@@ -95,28 +95,28 @@ export function InteractiveTrendCard({
   const minVal = metric === "wakeUp" ? Math.min(...values, baselineVal ?? 180, 180) : 0;
 
   return (
-    <Card className="border-[rgba(32,32,29,0.08)] bg-white p-5 shadow-level1 sm:p-6">
+    <Card className="border-[rgba(63,148,149,0.16)] bg-white p-5 shadow-level1 sm:p-6">
       <div className="space-y-4">
         {/* Top Controls Header */}
         <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
           <div>
-            <span className="text-[11px] font-bold uppercase tracking-wider text-[#66635D]">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#547070]">
               Trends &amp; Patterns
             </span>
-            <h2 className="text-[17px] font-bold text-[#20201D] sm:text-[18px]">
+            <h2 className="text-[17px] font-bold text-[#193B3B] sm:text-[18px]">
               {period === "7d" ? "7-Day Weekly View" : "30-Day Monthly Perspective"}
             </h2>
           </div>
 
           {/* Period Toggle Switch */}
-          <div className="inline-flex rounded-xl border border-[rgba(32,32,29,0.08)] bg-[#F7F1E5]/60 p-1">
+          <div className="inline-flex rounded-xl border border-[rgba(63,148,149,0.16)] bg-[#F7F5EF]/80 p-1">
             <button
               type="button"
               onClick={() => setPeriod("7d")}
               className={`rounded-lg px-3 py-1 text-[12px] font-bold transition-all ${
                 period === "7d"
-                  ? "bg-white text-[#20201D] shadow-xs"
-                  : "text-[#66635D] hover:text-[#20201D]"
+                  ? "bg-white text-[#193B3B] shadow-xs"
+                  : "text-[#547070] hover:text-[#193B3B]"
               }`}
             >
               7 Days
@@ -126,8 +126,8 @@ export function InteractiveTrendCard({
               onClick={() => setPeriod("30d")}
               className={`rounded-lg px-3 py-1 text-[12px] font-bold transition-all ${
                 period === "30d"
-                  ? "bg-white text-[#20201D] shadow-xs"
-                  : "text-[#66635D] hover:text-[#20201D]"
+                  ? "bg-white text-[#193B3B] shadow-xs"
+                  : "text-[#547070] hover:text-[#193B3B]"
               }`}
             >
               30 Days
@@ -146,8 +146,8 @@ export function InteractiveTrendCard({
                 onClick={() => setMetric(m.key)}
                 className={`flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-[12px] font-bold transition-all ${
                   isSelected
-                    ? "bg-[#20201D] text-white shadow-xs"
-                    : "border border-[rgba(32,32,29,0.08)] bg-[#F7F1E5]/40 text-[#66635D] hover:bg-[#F7F1E5]"
+                    ? "bg-[#193B3B] text-white shadow-xs"
+                    : "border border-[rgba(63,148,149,0.16)] bg-[#F7F5EF]/60 text-[#547070] hover:bg-[#EAF7F4]"
                 }`}
               >
                 {m.icon}
@@ -159,7 +159,7 @@ export function InteractiveTrendCard({
 
         {/* SVG/CSS Visual Trend Bar Chart */}
         {submittedDays.length === 0 ? (
-          <div className="rounded-2xl border border-dashed border-[rgba(32,32,29,0.12)] bg-[#F7F1E5]/30 p-8 text-center text-[13px] text-[#66635D]">
+          <div className="rounded-2xl border border-dashed border-[rgba(63,148,149,0.2)] bg-[#F7F5EF]/60 p-8 text-center text-[13px] text-[#547070]">
             Not enough history recorded for this period yet.
           </div>
         ) : period === "7d" ? (
@@ -173,24 +173,24 @@ export function InteractiveTrendCard({
                   key={idx}
                   className={`flex flex-col items-center rounded-xl border p-2 text-center transition-all ${
                     day.isSubmitted
-                      ? "border-[#3D765B]/20 bg-[#3D765B]/5 text-[#20201D]"
-                      : "border-dashed border-[rgba(32,32,29,0.12)] bg-[#F7F1E5]/20 text-[#66635D]"
+                      ? "border-[#328A7A]/20 bg-[#328A7A]/5 text-[#193B3B]"
+                      : "border-dashed border-[rgba(63,148,149,0.18)] bg-[#F7F5EF]/60 text-[#547070]"
                   }`}
                 >
                   <span className="text-[11px] font-bold">{day.dayLabel}</span>
-                  <span className="text-[9px] text-[#66635D]">{day.date.slice(8)}</span>
+                  <span className="text-[9px] text-[#547070]">{day.date.slice(8)}</span>
 
                   <div className="my-2 flex h-8 w-8 items-center justify-center rounded-full bg-white font-bold shadow-xs">
                     {day.isSubmitted ? (
-                      <span className="text-[11px] font-bold text-[#20201D]">
+                      <span className="text-[11px] font-bold text-[#193B3B]">
                         {formatValueLabel(val)}
                       </span>
                     ) : (
-                      <span className="text-[10px] text-[#66635D]/50">—</span>
+                      <span className="text-[10px] text-[#547070]/50">—</span>
                     )}
                   </div>
 
-                  <span className="text-[9px] font-medium text-[#66635D]">
+                  <span className="text-[9px] font-medium text-[#547070]">
                     {day.isSubmitted ? "Received" : "Missing"}
                   </span>
                 </div>
@@ -199,7 +199,7 @@ export function InteractiveTrendCard({
           </div>
         ) : (
           /* 30-Day Responsive Bar Series */
-          <div className="rounded-2xl border border-[rgba(32,32,29,0.06)] bg-[#F7F1E5]/20 p-4">
+          <div className="rounded-2xl border border-[rgba(63,148,149,0.14)] bg-[#F7F5EF]/40 p-4">
             <div className="flex h-32 items-end gap-1 sm:gap-1.5">
               {thirtyDayTrend.map((day, idx) => {
                 const val = getValue(day);
@@ -215,7 +215,7 @@ export function InteractiveTrendCard({
                     className="group relative flex flex-1 flex-col items-center"
                   >
                     {/* Tooltip on hover */}
-                    <div className="pointer-events-none absolute -top-8 z-10 hidden whitespace-nowrap rounded-md bg-[#20201D] px-1.5 py-0.5 text-[10px] font-bold text-white shadow-xs group-hover:block">
+                    <div className="pointer-events-none absolute -top-8 z-10 hidden whitespace-nowrap rounded-md bg-[#193B3B] px-1.5 py-0.5 text-[10px] font-bold text-white shadow-xs group-hover:block">
                       {day.date.slice(5)}: {formatValueLabel(val)}
                     </div>
 
@@ -223,15 +223,15 @@ export function InteractiveTrendCard({
                       style={{ height: `${heightPercent}%` }}
                       className={`w-full rounded-t-sm transition-all ${
                         day.isSubmitted
-                          ? "bg-[#3D765B] group-hover:bg-[#20201D]"
-                          : "bg-[rgba(32,32,29,0.1)]"
+                          ? "bg-[#328A7A] group-hover:bg-[#193B3B]"
+                          : "bg-[rgba(63,148,149,0.18)]"
                       }`}
                     />
                   </div>
                 );
               })}
             </div>
-            <div className="mt-2 flex justify-between text-[10px] text-[#66635D]">
+            <div className="mt-2 flex justify-between text-[10px] text-[#547070]">
               <span>30 days ago</span>
               <span>15 days ago</span>
               <span>Today</span>
@@ -240,8 +240,8 @@ export function InteractiveTrendCard({
         )}
 
         {/* Factual Non-Judgmental Interpretation Note */}
-        <div className="flex items-start gap-2 rounded-xl border border-[rgba(32,32,29,0.06)] bg-[#F7F1E5]/40 p-3 text-[12px] text-[#20201D]">
-          <Sparkles className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#D9822B]" />
+        <div className="flex items-start gap-2 rounded-xl border border-[rgba(63,148,149,0.16)] bg-[#F7F5EF]/60 p-3 text-[12px] text-[#193B3B]">
+          <Sparkles className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#A9824D]" />
           <span>{summaryText}</span>
         </div>
       </div>

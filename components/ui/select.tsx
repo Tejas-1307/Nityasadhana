@@ -26,10 +26,10 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             ref={ref}
             disabled={disabled}
             className={cn(
-              "h-[52px] w-full appearance-none rounded-[12px] border bg-white pl-4 pr-11 text-[15px] text-[#20201D] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 disabled:cursor-not-allowed disabled:bg-[#E8D9BF]/20 disabled:opacity-60",
+              "h-[52px] w-full appearance-none rounded-[12px] border bg-white pl-4 pr-11 text-[15px] text-[#193B3B] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 disabled:cursor-not-allowed disabled:bg-[#F7F5EF]/60 disabled:opacity-60",
               error
                 ? "border-[#B33927] focus:border-[#B33927] focus:ring-[#B33927]/20"
-                : "border-[rgba(32,32,29,0.12)] hover:border-[rgba(32,32,29,0.25)] focus:border-[#2457A6] focus:ring-[#2457A6]/20",
+                : "border-[rgba(63,148,149,0.16)] hover:border-[rgba(63,148,149,0.3)] focus:border-[#3F9495] focus:ring-[#3F9495]/20",
               className
             )}
             aria-invalid={!!error}
@@ -47,7 +47,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
               </option>
             ))}
           </select>
-          <div className="pointer-events-none absolute right-4 text-[#66635D]">
+          <div className="pointer-events-none absolute right-4 text-[#547070]">
             <ChevronDown className="h-4 w-4 stroke-[2]" />
           </div>
         </div>
@@ -56,7 +56,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             {error}
           </p>
         ) : helperText ? (
-          <p id={`${id}-helper`} className="mt-1.5 text-[13px] text-[#66635D]">
+          <p id={`${id}-helper`} className="mt-1.5 text-[13px] text-[#547070]">
             {helperText}
           </p>
         ) : null}

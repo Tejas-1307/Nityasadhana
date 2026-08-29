@@ -326,7 +326,7 @@ export function ReportForm({
           <button
             type="button"
             onClick={() => setStep("form")}
-            className="flex items-center gap-1.5 text-[13px] font-semibold text-[#2457A6] hover:underline"
+            className="flex items-center gap-1.5 text-[13px] font-semibold text-[#3F9495] hover:underline"
           >
             <ArrowLeft className="h-4 w-4" />
             <span>Back to Edit Form</span>
@@ -354,11 +354,11 @@ export function ReportForm({
           timeWastedDurationMinutes={timeWastedMinutes}
           notes={notes}
           status="submitted"
-          className="border-[rgba(32,32,29,0.08)] bg-white p-5 shadow-level2 sm:p-6"
+          className="border-[rgba(63,148,149,0.16)] bg-white p-5 shadow-level2 sm:p-6"
         />
 
         {/* Final Confirmation Buttons */}
-        <div className="rounded-2xl border border-[rgba(32,32,29,0.12)] bg-[#F7F1E5]/95 p-4 shadow-level2">
+        <div className="rounded-2xl border border-[rgba(63,148,149,0.16)] bg-[#EAF7F4]/95 p-4 shadow-level2">
           <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
             <Button
               type="button"
@@ -400,7 +400,7 @@ export function ReportForm({
     <form onSubmit={(e) => { e.preventDefault(); setStep("review"); }} className="space-y-5">
       {/* Read-only warning if outside edit window */}
       {!isEditable && (
-        <div className="flex items-center gap-2 rounded-xl border border-[rgba(32,32,29,0.1)] bg-amber-50 p-4 text-[13px] text-amber-900">
+        <div className="flex items-center gap-2 rounded-xl border border-[rgba(63,148,149,0.16)] bg-amber-50 p-4 text-[13px] text-amber-900">
           <AlertCircle className="h-4 w-4 shrink-0 text-amber-700" />
           <span>
             This report is outside the allowed {REPORT_CONFIG.REPORT_EDIT_WINDOW_DAYS}-day edit window
@@ -428,7 +428,7 @@ export function ReportForm({
       {/* Progress & Sync Status Indicator */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <span className="text-[12px] font-bold text-[#20201D]">
+          <span className="text-[12px] font-bold text-[#193B3B]">
             Sādhanā Sections ({completedSections}/5 completed)
           </span>
           {(() => {
@@ -446,14 +446,14 @@ export function ReportForm({
       {/* FAST PATH HELPER: "Fill from yesterday" */}
       {previousReport && isEditable && (!initialReport || initialReport.status === "draft") && (
         <div className="space-y-2.5">
-          <div className="flex items-center justify-between gap-3 rounded-2xl border border-[rgba(32,32,29,0.08)] bg-white p-3.5 shadow-level1">
-            <div className="flex items-center gap-2.5 text-[13px] text-[#20201D]">
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#D9822B]/10 text-[#D9822B]">
+          <div className="flex items-center justify-between gap-3 rounded-2xl border border-[rgba(63,148,149,0.16)] bg-white p-3.5 shadow-level1">
+            <div className="flex items-center gap-2.5 text-[13px] text-[#193B3B]">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#A9824D]/10 text-[#A9824D]">
                 <Zap className="h-4 w-4" />
               </div>
               <div>
                 <div className="font-bold">Fast Path</div>
-                <div className="text-[11px] text-[#66635D]">Routine similar to yesterday?</div>
+                <div className="text-[11px] text-[#547070]">Routine similar to yesterday?</div>
               </div>
             </div>
             <Button
@@ -469,7 +469,7 @@ export function ReportForm({
 
           {/* Yesterday Loaded Detail Summary */}
           {yesterdaySummary && (
-            <div className="flex items-start gap-2.5 rounded-xl border border-[rgba(36,87,166,0.15)] bg-[#2457A6]/5 p-3 text-[12px] text-[#2457A6]">
+            <div className="flex items-start gap-2.5 rounded-xl border border-[rgba(63,148,149,0.22)] bg-[#3F9495]/8 p-3 text-[12px] text-[#3F9495]">
               <Info className="mt-0.5 h-4 w-4 shrink-0" />
               <div className="flex-1 leading-relaxed">
                 {yesterdaySummary}
@@ -487,13 +487,13 @@ export function ReportForm({
       )}
 
       {/* SECTION 1: SLEEP & WAKE */}
-      <Card className="border-[rgba(32,32,29,0.08)] bg-white p-4 shadow-level1 sm:p-5">
-        <div className="flex items-center justify-between border-b border-[rgba(32,32,29,0.06)] pb-2.5">
+      <Card className="border-[rgba(63,148,149,0.16)] bg-white p-4 shadow-level1 sm:p-5">
+        <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.12)] pb-2.5">
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#2457A6]/10 text-[#2457A6]">
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#3F9495]/12 text-[#3F9495]">
               <Moon className="h-3.5 w-3.5" />
             </div>
-            <h3 className="text-[14px] font-bold text-[#20201D]">1. Sleep & Wake</h3>
+            <h3 className="text-[14px] font-bold text-[#193B3B]">1. Sleep & Wake</h3>
           </div>
           {sleepTime && wakeUpTime && (
             <Badge variant="krishna" size="sm">
@@ -506,7 +506,7 @@ export function ReportForm({
           <div>
             <label
               htmlFor="sleepTime"
-              className="block text-[11px] font-semibold uppercase tracking-wider text-[#66635D]"
+              className="block text-[11px] font-semibold uppercase tracking-wider text-[#547070]"
             >
               Slept at
             </label>
@@ -516,7 +516,7 @@ export function ReportForm({
               disabled={!isEditable}
               value={sleepTime}
               onChange={(e) => setSleepTime(e.target.value)}
-              className="mt-1 h-11 w-full rounded-xl border border-[rgba(32,32,29,0.15)] bg-[#F7F1E5]/20 px-2.5 text-[14px] font-bold text-[#20201D] focus:border-[#2457A6] focus:outline-none focus:ring-2 focus:ring-[#2457A6]/20 disabled:opacity-60"
+              className="mt-1 h-11 w-full rounded-xl border border-[rgba(63,148,149,0.18)] bg-[#F7F5EF]/30 px-2.5 text-[14px] font-bold text-[#193B3B] focus:border-[#3F9495] focus:outline-none focus:ring-2 focus:ring-[#3F9495]/20 disabled:opacity-60"
               required
             />
           </div>
@@ -524,7 +524,7 @@ export function ReportForm({
           <div>
             <label
               htmlFor="wakeUpTime"
-              className="block text-[11px] font-semibold uppercase tracking-wider text-[#66635D]"
+              className="block text-[11px] font-semibold uppercase tracking-wider text-[#547070]"
             >
               Woke up at
             </label>
@@ -534,7 +534,7 @@ export function ReportForm({
               disabled={!isEditable}
               value={wakeUpTime}
               onChange={(e) => setWakeUpTime(e.target.value)}
-              className="mt-1 h-11 w-full rounded-xl border border-[rgba(32,32,29,0.15)] bg-[#F7F1E5]/20 px-2.5 text-[14px] font-bold text-[#20201D] focus:border-[#2457A6] focus:outline-none focus:ring-2 focus:ring-[#2457A6]/20 disabled:opacity-60"
+              className="mt-1 h-11 w-full rounded-xl border border-[rgba(63,148,149,0.18)] bg-[#F7F5EF]/30 px-2.5 text-[14px] font-bold text-[#193B3B] focus:border-[#3F9495] focus:outline-none focus:ring-2 focus:ring-[#3F9495]/20 disabled:opacity-60"
               required
             />
           </div>
@@ -542,13 +542,13 @@ export function ReportForm({
       </Card>
 
       {/* SECTION 2: JAPA */}
-      <Card className="border-[rgba(32,32,29,0.08)] bg-white p-4 shadow-level1 sm:p-5">
-        <div className="flex items-center justify-between border-b border-[rgba(32,32,29,0.06)] pb-2.5">
+      <Card className="border-[rgba(63,148,149,0.16)] bg-white p-4 shadow-level1 sm:p-5">
+        <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.12)] pb-2.5">
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#D9822B]/10 text-[#D9822B]">
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#A9824D]/12 text-[#A9824D]">
               <CircleDot className="h-3.5 w-3.5" />
             </div>
-            <h3 className="text-[14px] font-bold text-[#20201D]">2. Japa Meditation</h3>
+            <h3 className="text-[14px] font-bold text-[#193B3B]">2. Japa Meditation</h3>
           </div>
           <Badge variant="saffron" size="sm">
             <span>{totalRounds} rounds</span>
@@ -581,9 +581,9 @@ export function ReportForm({
           <div>
             <label
               htmlFor="japaCompletedAt"
-              className="block text-[11px] font-semibold uppercase tracking-wider text-[#66635D]"
+              className="block text-[11px] font-semibold uppercase tracking-wider text-[#547070]"
             >
-              Completed At <span className="text-[10px] lowercase text-[#66635D]">(optional)</span>
+              Completed At <span className="text-[10px] lowercase text-[#547070]">(optional)</span>
             </label>
             <input
               id="japaCompletedAt"
@@ -591,20 +591,20 @@ export function ReportForm({
               disabled={!isEditable}
               value={japaCompletedAt}
               onChange={(e) => setJapaCompletedAt(e.target.value)}
-              className="mt-1 h-12 w-full rounded-xl border border-[rgba(32,32,29,0.15)] bg-[#F7F1E5]/20 px-2.5 text-[14px] font-medium text-[#20201D] focus:border-[#2457A6] focus:outline-none focus:ring-2 focus:ring-[#2457A6]/20 disabled:opacity-60"
+              className="mt-1 h-12 w-full rounded-xl border border-[rgba(63,148,149,0.18)] bg-[#F7F5EF]/30 px-2.5 text-[14px] font-medium text-[#193B3B] focus:border-[#3F9495] focus:outline-none focus:ring-2 focus:ring-[#3F9495]/20 disabled:opacity-60"
             />
           </div>
         </div>
       </Card>
 
       {/* SECTION 3: READING & HEARING */}
-      <Card className="border-[rgba(32,32,29,0.08)] bg-white p-4 shadow-level1 sm:p-5">
-        <div className="flex items-center justify-between border-b border-[rgba(32,32,29,0.06)] pb-2.5">
+      <Card className="border-[rgba(63,148,149,0.16)] bg-white p-4 shadow-level1 sm:p-5">
+        <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.12)] pb-2.5">
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#3D765B]/10 text-[#3D765B]">
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#328A7A]/12 text-[#328A7A]">
               <BookOpen className="h-3.5 w-3.5" />
             </div>
-            <h3 className="text-[14px] font-bold text-[#20201D]">3. Reading & Hearing</h3>
+            <h3 className="text-[14px] font-bold text-[#193B3B]">3. Reading & Hearing</h3>
           </div>
         </div>
 
@@ -626,7 +626,7 @@ export function ReportForm({
             notePlaceholder="Book title e.g. Coming Back (optional)"
           />
 
-          <div className="border-t border-[rgba(32,32,29,0.06)] pt-3.5">
+          <div className="border-t border-[rgba(63,148,149,0.12)] pt-3.5">
             <QuickDurationPicker
               id="hearingDuration"
               label="Hearing"
@@ -648,13 +648,13 @@ export function ReportForm({
       </Card>
 
       {/* SECTION 4: STUDY */}
-      <Card className="border-[rgba(32,32,29,0.08)] bg-white p-4 shadow-level1 sm:p-5">
-        <div className="flex items-center justify-between border-b border-[rgba(32,32,29,0.06)] pb-2.5">
+      <Card className="border-[rgba(63,148,149,0.16)] bg-white p-4 shadow-level1 sm:p-5">
+        <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.12)] pb-2.5">
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#66635D]/10 text-[#66635D]">
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#547070]/12 text-[#547070]">
               <GraduationCap className="h-3.5 w-3.5" />
             </div>
-            <h3 className="text-[14px] font-bold text-[#20201D]">4. Study & Seva</h3>
+            <h3 className="text-[14px] font-bold text-[#193B3B]">4. Study & Seva</h3>
           </div>
           <Badge variant="neutral" size="sm">
             <span>Total {formatDuration(totalStudy)}</span>
@@ -676,7 +676,7 @@ export function ReportForm({
             themeColor="neutral"
           />
 
-          <div className="border-t border-[rgba(32,32,29,0.06)] pt-3.5">
+          <div className="border-t border-[rgba(63,148,149,0.12)] pt-3.5">
             <QuickDurationPicker
               id="selfStudy"
               label="Self Study"
@@ -695,13 +695,13 @@ export function ReportForm({
       </Card>
 
       {/* SECTION 5: REST & TIME */}
-      <Card className="border-[rgba(32,32,29,0.08)] bg-white p-4 shadow-level1 sm:p-5">
-        <div className="flex items-center justify-between border-b border-[rgba(32,32,29,0.06)] pb-2.5">
+      <Card className="border-[rgba(63,148,149,0.16)] bg-white p-4 shadow-level1 sm:p-5">
+        <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.12)] pb-2.5">
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#66635D]/10 text-[#66635D]">
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#547070]/12 text-[#547070]">
               <Clock className="h-3.5 w-3.5" />
             </div>
-            <h3 className="text-[14px] font-bold text-[#20201D]">5. Rest & Awareness</h3>
+            <h3 className="text-[14px] font-bold text-[#193B3B]">5. Rest & Awareness</h3>
           </div>
         </div>
 
@@ -719,7 +719,7 @@ export function ReportForm({
             themeColor="neutral"
           />
 
-          <div className="border-t border-[rgba(32,32,29,0.06)] pt-3.5">
+          <div className="border-t border-[rgba(63,148,149,0.12)] pt-3.5">
             <QuickDurationPicker
               id="timeWasted"
               label="Unused Time (Reflection)"
@@ -737,18 +737,18 @@ export function ReportForm({
       </Card>
 
       {/* SECTION 6: REFLECTION (OPTIONAL) */}
-      <Card className="border-[rgba(32,32,29,0.08)] bg-white p-4 shadow-level1 sm:p-5">
-        <div className="flex items-center justify-between border-b border-[rgba(32,32,29,0.06)] pb-2.5">
+      <Card className="border-[rgba(63,148,149,0.16)] bg-white p-4 shadow-level1 sm:p-5">
+        <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.12)] pb-2.5">
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#D9822B]/10 text-[#D9822B]">
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#A9824D]/12 text-[#A9824D]">
               <Sparkles className="h-3.5 w-3.5" />
             </div>
             <div>
-              <h3 className="text-[14px] font-bold text-[#20201D]">6. Reflection</h3>
-              <span className="text-[11px] text-[#66635D]">Optional personal notes</span>
+              <h3 className="text-[14px] font-bold text-[#193B3B]">6. Reflection</h3>
+              <span className="text-[11px] text-[#547070]">Optional personal notes</span>
             </div>
           </div>
-          <span className="text-[11px] text-[#66635D]">
+          <span className="text-[11px] text-[#547070]">
             {notes.length}/{REPORT_CONFIG.MAX_NOTES_LENGTH}
           </span>
         </div>
@@ -760,7 +760,7 @@ export function ReportForm({
             disabled={!isEditable}
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
-            className="w-full rounded-xl border border-[rgba(32,32,29,0.15)] bg-[#F7F1E5]/20 p-2.5 text-[13px] leading-relaxed text-[#20201D] placeholder:text-[#66635D]/60 focus:border-[#2457A6] focus:outline-none focus:ring-2 focus:ring-[#2457A6]/20 disabled:opacity-60"
+            className="w-full rounded-xl border border-[rgba(63,148,149,0.18)] bg-[#F7F5EF]/30 p-2.5 text-[13px] leading-relaxed text-[#193B3B] placeholder:text-[#547070]/60 focus:border-[#3F9495] focus:outline-none focus:ring-2 focus:ring-[#3F9495]/20 disabled:opacity-60"
             placeholder="Anything to remember from today's practice..."
           />
         </div>
@@ -768,7 +768,7 @@ export function ReportForm({
 
       {/* STICKY BOTTOM ACTIONS BAR */}
       {isEditable && (
-        <div className="sticky bottom-20 z-20 rounded-2xl border border-[rgba(32,32,29,0.12)] bg-[#F7F1E5]/95 p-3 shadow-level3 backdrop-blur-md sm:bottom-6 sm:p-4">
+        <div className="sticky bottom-20 z-20 rounded-2xl border border-[rgba(63,148,149,0.16)] bg-[#EAF7F4]/95 p-3 shadow-level3 backdrop-blur-md sm:bottom-6 sm:p-4">
           <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
             <Button
               type="button"

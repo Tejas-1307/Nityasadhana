@@ -51,9 +51,9 @@ export default async function ShishyaProfilePage({ params }: ShishyaProfilePageP
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#F7F1E5] pb-20 md:pb-10">
+    <div className="flex min-h-screen flex-col bg-[#EAF7F4] pb-20 md:pb-10">
       {/* Top Header Bar */}
-      <header className="sticky top-0 z-40 w-full border-b border-[rgba(32,32,29,0.08)] bg-white/90 backdrop-blur-md">
+      <header className="sticky top-0 z-40 w-full border-b border-[rgba(63,148,149,0.16)] bg-white/90 backdrop-blur-md">
         <Container size="default">
           <div className="flex h-16 items-center justify-between sm:h-20">
             <Logo size="default" href="/" />

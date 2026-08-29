@@ -32,15 +32,15 @@ export function TodaySummaryCard({
   const isDraft = status === "draft";
 
   return (
-    <div className="relative overflow-hidden rounded-3xl border border-[rgba(32,32,29,0.08)] bg-white p-5 shadow-level2 sm:p-6">
+    <div className="relative overflow-hidden rounded-3xl border border-[rgba(63,148,149,0.16)] bg-white p-5 shadow-level2 sm:p-6">
       {/* Decorative calm background accent */}
-      <div className="pointer-events-none absolute top-0 right-0 h-32 w-32 rounded-full bg-[#2457A6]/5 blur-2xl" />
+      <div className="pointer-events-none absolute top-0 right-0 h-32 w-32 rounded-full bg-[#3F9495]/5 blur-2xl" />
 
       <div className="relative flex flex-col justify-between gap-5">
         {/* Card Header: Practice Date & Status Badge */}
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-2 text-[13px] font-semibold text-[#66635D]">
-            <Calendar className="h-4 w-4 text-[#2457A6]" />
+          <div className="flex items-center gap-2 text-[13px] font-semibold text-[#547070]">
+            <Calendar className="h-4 w-4 text-[#3F9495]" />
             <span>Today · {formattedDate}</span>
           </div>
 
@@ -55,12 +55,12 @@ export function TodaySummaryCard({
               </span>
             ) : isDraft ? (
               <span className="flex items-center gap-1">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#D9822B]" />
+                <span className="h-1.5 w-1.5 rounded-full bg-[#A9824D]" />
                 <span>In progress (Draft)</span>
               </span>
             ) : (
               <span className="flex items-center gap-1">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#66635D]" />
+                <span className="h-1.5 w-1.5 rounded-full bg-[#547070]" />
                 <span>Not recorded yet</span>
               </span>
             )}
@@ -71,28 +71,28 @@ export function TodaySummaryCard({
         <div>
           {isSubmitted ? (
             <div className="space-y-1">
-              <h2 className="text-[20px] font-bold tracking-tight text-[#20201D] sm:text-[24px]">
+              <h2 className="text-[20px] font-bold tracking-tight text-[#193B3B] sm:text-[24px]">
                 Today&apos;s Sādhanā is Recorded
               </h2>
-              <p className="text-[13px] text-[#66635D]">
+              <p className="text-[13px] text-[#547070]">
                 Your daily practice has been peacefully documented.
               </p>
             </div>
           ) : isDraft ? (
             <div className="space-y-1">
-              <h2 className="text-[20px] font-bold tracking-tight text-[#20201D] sm:text-[24px]">
+              <h2 className="text-[20px] font-bold tracking-tight text-[#193B3B] sm:text-[24px]">
                 Continue Today&apos;s Sādhanā
               </h2>
-              <p className="text-[13px] text-[#66635D]">
+              <p className="text-[13px] text-[#547070]">
                 You have an unfinished draft from earlier today.
               </p>
             </div>
           ) : (
             <div className="space-y-1">
-              <h2 className="text-[20px] font-bold tracking-tight text-[#20201D] sm:text-[24px]">
+              <h2 className="text-[20px] font-bold tracking-tight text-[#193B3B] sm:text-[24px]">
                 Begin Today&apos;s Sādhanā Record
               </h2>
-              <p className="text-[13px] text-[#66635D]">
+              <p className="text-[13px] text-[#547070]">
                 A quiet moment to observe your rounds, study, and routine.
               </p>
             </div>
@@ -101,14 +101,14 @@ export function TodaySummaryCard({
 
         {/* Quick Highlights if Data Recorded */}
         {report && (
-          <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-[rgba(32,32,29,0.06)]">
-            <span className="rounded-xl bg-[#F7F1E5] px-3 py-1.5 text-[12px] font-semibold text-[#20201D]">
+          <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-[rgba(63,148,149,0.12)]">
+            <span className="rounded-xl bg-[#EAF7F4] px-3 py-1.5 text-[12px] font-semibold text-[#193B3B]">
               🌙 {formatDuration(report.sleepDurationMinutes)} sleep
             </span>
-            <span className="rounded-xl bg-[#F7F1E5] px-3 py-1.5 text-[12px] font-semibold text-[#20201D]">
+            <span className="rounded-xl bg-[#EAF7F4] px-3 py-1.5 text-[12px] font-semibold text-[#193B3B]">
               📿 {report.totalRounds} rounds
             </span>
-            <span className="rounded-xl bg-[#F7F1E5] px-3 py-1.5 text-[12px] font-semibold text-[#20201D]">
+            <span className="rounded-xl bg-[#EAF7F4] px-3 py-1.5 text-[12px] font-semibold text-[#193B3B]">
               📚 {formatDuration(report.totalStudyDurationMinutes)} study
             </span>
           </div>

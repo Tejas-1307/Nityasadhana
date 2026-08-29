@@ -43,7 +43,7 @@ export function BottomNavigation({ items, className }: BottomNavigationProps) {
     <nav
       aria-label="Bottom Navigation"
       className={cn(
-        "fixed bottom-0 left-0 right-0 z-40 block border-t border-[rgba(32,32,29,0.08)] bg-[#F7F1E5]/95 pb-[env(safe-area-inset-bottom)] backdrop-blur-md md:hidden",
+        "fixed bottom-0 left-0 right-0 z-40 block border-t border-[rgba(63,148,149,0.14)] bg-[#EAF7F4]/95 pb-[env(safe-area-inset-bottom)] backdrop-blur-md md:hidden",
         className
       )}
     >
@@ -57,13 +57,13 @@ export function BottomNavigation({ items, className }: BottomNavigationProps) {
               key={item.href}
               href={item.href}
               className={cn(
-                "group relative flex h-14 min-h-[48px] w-16 min-w-[48px] flex-col items-center justify-center rounded-[12px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2457A6]",
-                isActive ? "text-[#2457A6]" : "text-[#66635D] hover:text-[#20201D]"
+                "group relative flex h-14 min-h-[48px] w-16 min-w-[48px] flex-col items-center justify-center rounded-[12px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3F9495]",
+                isActive ? "text-[#3F9495]" : "text-[#547070] hover:text-[#193B3B]"
               )}
             >
               {isActive && (
                 <span
-                  className="absolute top-1 h-1 w-5 rounded-full bg-[#2457A6]"
+                  className="absolute top-1 h-1 w-5 rounded-full bg-[#3F9495]"
                   aria-hidden="true"
                 />
               )}
@@ -76,7 +76,7 @@ export function BottomNavigation({ items, className }: BottomNavigationProps) {
               <span
                 className={cn(
                   "mt-1 text-[11px] font-medium tracking-tight",
-                  isActive ? "font-semibold text-[#2457A6]" : "text-[#66635D]"
+                  isActive ? "font-semibold text-[#3F9495]" : "text-[#547070]"
                 )}
               >
                 {item.title}

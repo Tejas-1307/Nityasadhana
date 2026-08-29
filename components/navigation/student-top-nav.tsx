@@ -29,7 +29,7 @@ export function StudentTopNav({ userName, userEmail, className }: StudentTopNavP
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 w-full border-b border-[rgba(32,32,29,0.08)] bg-[#F7F1E5]/95 backdrop-blur-md",
+        "sticky top-0 z-40 w-full border-b border-[rgba(63,148,149,0.14)] bg-[#EAF7F4]/95 backdrop-blur-md",
         className
       )}
     >
@@ -53,16 +53,16 @@ export function StudentTopNav({ userName, userEmail, className }: StudentTopNavP
                     key={item.href}
                     href={item.href}
                     className={cn(
-                      "group relative flex h-10 items-center gap-2 rounded-xl px-3.5 text-[14px] font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2457A6]",
+                      "group relative flex h-10 items-center gap-2 rounded-xl px-3.5 text-[14px] font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3F9495]",
                       isActive
-                        ? "bg-[#2457A6]/10 font-semibold text-[#2457A6]"
-                        : "text-[#66635D] hover:bg-[#E8D9BF]/30 hover:text-[#20201D]"
+                        ? "bg-[#3F9495]/12 font-semibold text-[#3F9495]"
+                        : "text-[#547070] hover:bg-[#D8F1EE]/40 hover:text-[#193B3B]"
                     )}
                   >
                     <IconComponent
                       className={cn(
                         "h-4 w-4 transition-transform group-active:scale-95",
-                        isActive ? "text-[#2457A6] stroke-[2.25px]" : "text-[#66635D] stroke-[1.75px]"
+                        isActive ? "text-[#3F9495] stroke-[2.25px]" : "text-[#547070] stroke-[1.75px]"
                       )}
                     />
                     <span>{item.title}</span>

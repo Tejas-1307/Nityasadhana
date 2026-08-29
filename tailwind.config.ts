@@ -11,43 +11,67 @@ const config: Config = {
     extend: {
       colors: {
         background: {
-          primary: "var(--color-bg-primary)", // #F7F1E5 Warm Ivory
-          secondary: "var(--color-bg-secondary)", // #E8D9BF Soft Sand
+          primary: "var(--color-bg-primary)", // #EAF7F4 Aqua Background
+          secondary: "var(--color-bg-secondary)", // #D8F1EE Aqua Mist
           surface: "var(--color-bg-surface)", // #FFFFFF Elevated Surface
+          ivory: "var(--color-bg-ivory)", // #F7F5EF Warm Ivory Surface
+          ivoryWarm: "var(--color-bg-ivory-warm)", // #F3EFE5 Deep Warm Ivory
         },
         foreground: {
-          primary: "var(--color-text-primary)", // #20201D Deep Charcoal
-          secondary: "var(--color-text-secondary)", // #66635D Muted Charcoal
+          primary: "var(--color-text-primary)", // #193B3B Deep Blue-Green / Charcoal
+          secondary: "var(--color-text-secondary)", // #547070 Muted Teal-Gray
+          muted: "var(--color-text-muted)", // #789090 Soft Gray-Teal
+        },
+        aqua: {
+          DEFAULT: "var(--color-aqua-primary)", // #56BFC0
+          deep: "var(--color-aqua-deep)", // #3F9495
+          deepHover: "var(--color-aqua-deep-hover)", // #337B7C
+          deepActive: "var(--color-aqua-deep-active)", // #286364
+          soft: "var(--color-aqua-soft)", // #8ED9D5
+          mist: "var(--color-aqua-mist)", // #D8F1EE
+          bg: "var(--color-bg-primary)", // #EAF7F4
+          subtle: "var(--color-aqua-primary-subtle)",
+        },
+        gold: {
+          DEFAULT: "var(--color-gold-muted)", // #A9824D
+          deep: "var(--color-gold-deep)", // #8A6635
+          subtle: "var(--color-gold-subtle)", // rgba(169, 130, 77, 0.12)
+          champagne: "var(--color-champagne)", // #D0B27A
+          sand: "var(--color-sand)", // #C8A86D
+        },
+        ivory: {
+          DEFAULT: "var(--color-bg-ivory)", // #F7F5EF
+          warm: "var(--color-bg-ivory-warm)", // #F3EFE5
         },
         krishna: {
-          DEFAULT: "var(--color-krishna-blue)", // #2457A6
-          hover: "var(--color-krishna-blue-hover)", // #1D4685
-          subtle: "var(--color-krishna-blue-subtle)", // rgba(36, 87, 166, 0.08)
+          DEFAULT: "var(--color-krishna-blue)", // #3F9495
+          hover: "var(--color-krishna-blue-hover)", // #337B7C
+          subtle: "var(--color-krishna-blue-subtle)", // rgba(63, 148, 149, 0.08)
         },
         peacock: {
-          DEFAULT: "var(--color-peacock-blue)", // #167D8D
-          subtle: "var(--color-peacock-blue-subtle)", // rgba(22, 125, 141, 0.08)
+          DEFAULT: "var(--color-peacock-blue)", // #56BFC0
+          subtle: "var(--color-peacock-blue-subtle)", // rgba(86, 191, 192, 0.12)
         },
         saffron: {
-          DEFAULT: "var(--color-gurukul-saffron)", // #D9822B
-          deep: "var(--color-deep-saffron)", // #A95620
-          subtle: "var(--color-saffron-subtle)", // rgba(217, 130, 43, 0.10)
+          DEFAULT: "var(--color-gurukul-saffron)", // #A9824D
+          deep: "var(--color-deep-saffron)", // #8A6635
+          subtle: "var(--color-saffron-subtle)", // rgba(169, 130, 77, 0.12)
         },
         feather: {
-          DEFAULT: "var(--color-feather-green)", // #3D765B
-          subtle: "var(--color-feather-green-subtle)", // rgba(61, 118, 91, 0.10)
+          DEFAULT: "var(--color-feather-green)", // #328A7A
+          subtle: "var(--color-feather-green-subtle)", // rgba(50, 138, 122, 0.10)
         },
         border: {
-          subtle: "var(--color-border-subtle)", // rgba(32, 32, 29, 0.08)
-          medium: "var(--color-border-medium)", // rgba(32, 32, 29, 0.15)
+          subtle: "var(--color-border-subtle)", // rgba(63, 148, 149, 0.16)
+          medium: "var(--color-border-medium)", // rgba(63, 148, 149, 0.28)
         },
         destructive: {
           DEFAULT: "var(--color-destructive)", // #B33927 (Muted Red)
           subtle: "var(--color-destructive-subtle)", // rgba(179, 57, 39, 0.08)
         },
         success: {
-          DEFAULT: "var(--color-success)", // #3D765B
-          subtle: "var(--color-success-subtle)", // rgba(61, 118, 91, 0.10)
+          DEFAULT: "var(--color-success)", // #328A7A
+          subtle: "var(--color-success-subtle)", // rgba(50, 138, 122, 0.10)
         },
       },
       fontFamily: {

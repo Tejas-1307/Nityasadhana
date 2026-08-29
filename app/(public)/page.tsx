@@ -15,7 +15,7 @@ import {
 
 export default function LandingPage() {
   return (
-    <div className="relative min-h-screen bg-[#F7F1E5] text-[#20201D] selection:bg-[#2457A6] selection:text-white">
+    <div className="relative min-h-screen bg-[#EAF7F4] text-[#193B3B] selection:bg-[#3F9495] selection:text-white">
       {/* Subtle Vrindavan Atmosphere */}
       <VrindavanAtmosphere />
 

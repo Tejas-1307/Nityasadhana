@@ -9,15 +9,15 @@ export const dynamic = "force-dynamic";
 
 export default function LoginPage() {
   return (
-    <div className="flex min-h-screen flex-col justify-between bg-[#F7F1E5]">
+    <div className="flex min-h-screen flex-col justify-between bg-[#EAF7F4]">
       <Section spacing="default" className="flex flex-1 items-center py-10 sm:py-16">
         <Container size="form">
           <div className="mb-6 flex flex-col items-center text-center">
             <Logo size="lg" variant="vertical" className="mb-4" />
-            <h1 className="text-[24px] font-bold tracking-tight text-[#20201D] sm:text-[28px]">
+            <h1 className="text-[24px] font-bold tracking-tight text-[#193B3B] sm:text-[28px]">
               Welcome to Nityasādhanā
             </h1>
-            <p className="mt-1 text-[14px] text-[#66635D]">
+            <p className="mt-1 text-[14px] text-[#547070]">
               Sign in to continue your daily spiritual discipline and seva.
             </p>
           </div>
@@ -27,7 +27,7 @@ export default function LoginPage() {
           </React.Suspense>
 
           <div className="mt-6 text-center">
-            <Link href="/" className="text-[13px] text-[#66635D] hover:underline">
+            <Link href="/" className="text-[13px] text-[#547070] hover:underline">
               ← Return to Home
             </Link>
           </div>

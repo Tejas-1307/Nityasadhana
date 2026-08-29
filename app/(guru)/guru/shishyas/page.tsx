@@ -21,9 +21,9 @@ export default async function GuruShishyasPage() {
   ]);
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#F7F1E5] pb-20 md:pb-10">
+    <div className="flex min-h-screen flex-col bg-[#EAF7F4] pb-20 md:pb-10">
       {/* Top Header Bar */}
-      <header className="sticky top-0 z-40 w-full border-b border-[rgba(32,32,29,0.08)] bg-white/90 backdrop-blur-md">
+      <header className="sticky top-0 z-40 w-full border-b border-[rgba(63,148,149,0.16)] bg-white/90 backdrop-blur-md">
         <Container size="default">
           <div className="flex h-16 items-center justify-between sm:h-20">
             <Logo size="default" href="/" />
@@ -41,10 +41,10 @@ export default async function GuruShishyasPage() {
       <main className="flex-1 py-6 sm:py-10">
         <Container size="default">
           <div className="mb-6">
-            <h1 className="text-[22px] font-bold tracking-tight text-[#20201D] sm:text-[26px]">
+            <h1 className="text-[22px] font-bold tracking-tight text-[#193B3B] sm:text-[26px]">
               My Shishyas
             </h1>
-            <p className="text-[14px] text-[#66635D]">
+            <p className="text-[14px] text-[#547070]">
               Guide and care for your {overview.totalActiveShishyas} active students on their spiritual journey.
             </p>
           </div>
@@ -54,8 +54,8 @@ export default async function GuruShishyasPage() {
             <ShishyaDirectory shishyas={overview.allShishyas} />
 
             {/* Pending & Historical Invitations */}
-            <div className="border-t border-[rgba(32,32,29,0.08)] pt-8">
-              <h2 className="mb-4 text-[18px] font-bold text-[#20201D]">
+            <div className="border-t border-[rgba(63,148,149,0.12)] pt-8">
+              <h2 className="mb-4 text-[18px] font-bold text-[#193B3B]">
                 Active Invitations
               </h2>
               <PendingInvitationsList invitations={invitations} />

@@ -13,7 +13,7 @@ export default async function StudentLayout({
   const user = await requireShishya();
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#F7F1E5]">
+    <div className="flex min-h-screen flex-col bg-[#EAF7F4]">
       {/* Top Navigation Bar (Mobile Header + Desktop Navigation) */}
       <StudentTopNav userName={user.name} userEmail={user.email} />
 

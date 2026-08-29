@@ -22,13 +22,13 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
   ) => {
     const variantStyles = {
       ghost:
-        "text-[#20201D] hover:bg-[rgba(32,32,29,0.06)] active:bg-[rgba(32,32,29,0.10)] focus-visible:ring-[#2457A6]",
+        "text-[#193B3B] hover:bg-[rgba(63,148,149,0.08)] active:bg-[rgba(63,148,149,0.14)] focus-visible:ring-[#3F9495]",
       secondary:
-        "bg-white border border-[rgba(32,32,29,0.10)] text-[#20201D] hover:bg-[#F7F1E5] active:bg-[#E8D9BF]/60 focus-visible:ring-[#2457A6]",
+        "bg-white border border-[rgba(63,148,149,0.16)] text-[#193B3B] hover:bg-[#EAF7F4] active:bg-[#D8F1EE]/60 focus-visible:ring-[#3F9495]",
       primary:
-        "bg-[#2457A6] text-white hover:bg-[#1D4685] active:bg-[#183B70] focus-visible:ring-[#2457A6]",
+        "bg-[#3F9495] text-white hover:bg-[#337B7C] active:bg-[#286364] focus-visible:ring-[#3F9495]",
       saffron:
-        "bg-[#D9822B] text-white hover:bg-[#C27222] active:bg-[#A95620] focus-visible:ring-[#D9822B]",
+        "bg-[#A9824D] text-white hover:bg-[#8A6635] active:bg-[#72532A] focus-visible:ring-[#A9824D]",
     };
 
     const sizeStyles = {

@@ -26,10 +26,10 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         <textarea
           id={id}
           className={cn(
-            "min-h-[100px] w-full rounded-[12px] border bg-white p-4 text-[15px] text-[#20201D] transition-colors placeholder:text-[#66635D]/60 focus:outline-none focus:ring-2 focus:ring-offset-1 disabled:cursor-not-allowed disabled:bg-[#E8D9BF]/20 disabled:opacity-60",
+            "min-h-[100px] w-full rounded-[12px] border bg-white p-4 text-[15px] text-[#193B3B] transition-colors placeholder:text-[#547070]/60 focus:outline-none focus:ring-2 focus:ring-offset-1 disabled:cursor-not-allowed disabled:bg-[#F7F5EF]/60 disabled:opacity-60",
             error
               ? "border-[#B33927] focus:border-[#B33927] focus:ring-[#B33927]/20"
-              : "border-[rgba(32,32,29,0.12)] hover:border-[rgba(32,32,29,0.25)] focus:border-[#2457A6] focus:ring-[#2457A6]/20",
+              : "border-[rgba(63,148,149,0.16)] hover:border-[rgba(63,148,149,0.3)] focus:border-[#3F9495] focus:ring-[#3F9495]/20",
             className
           )}
           ref={ref}
@@ -46,7 +46,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
               {error}
             </p>
           ) : helperText ? (
-            <p id={`${id}-helper`} className="text-[13px] text-[#66635D]">
+            <p id={`${id}-helper`} className="text-[13px] text-[#547070]">
               {helperText}
             </p>
           ) : (
@@ -54,7 +54,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           )}
 
           {maxCharacters && (
-            <span className="text-[12px] text-[#66635D]">
+            <span className="text-[12px] text-[#547070]">
               {charCount}/{maxCharacters}
             </span>
           )}

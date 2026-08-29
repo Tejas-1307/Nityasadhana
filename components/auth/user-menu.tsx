@@ -32,7 +32,7 @@ export function UserMenu({ role = "shishya", userName, userEmail }: UserMenuProp
         <Avatar name={displayName} size="sm" />
         <div className="hidden flex-col text-left sm:flex">
           <div className="flex items-center gap-1.5">
-            <span className="max-w-[140px] truncate text-[13px] font-semibold text-[#20201D]">
+            <span className="max-w-[140px] truncate text-[13px] font-semibold text-[#193B3B]">
               {displayName}
             </span>
             <Badge variant={displayRole === "guru" ? "saffron" : "krishna"} size="sm">
@@ -42,7 +42,7 @@ export function UserMenu({ role = "shishya", userName, userEmail }: UserMenuProp
             </Badge>
           </div>
           {displayEmail && (
-            <span className="max-w-[140px] truncate text-[11px] text-[#66635D]">
+            <span className="max-w-[140px] truncate text-[11px] text-[#547070]">
               {displayEmail}
             </span>
           )}
@@ -54,7 +54,7 @@ export function UserMenu({ role = "shishya", userName, userEmail }: UserMenuProp
         <Button
           variant="ghost"
           size="sm"
-          className="hover:bg-[#B33927]/8 px-2.5 text-[#66635D] hover:text-[#B33927]"
+          className="hover:bg-[#B33927]/8 px-2.5 text-[#547070] hover:text-[#B33927]"
           aria-label="Sign out of Nityasādhanā"
         >
           <LogOut className="h-4 w-4 sm:mr-1.5" />

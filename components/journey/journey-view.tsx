@@ -101,14 +101,14 @@ export function JourneyView({
   return (
     <div className="space-y-6">
       {/* Top Workspace Tab Switcher */}
-      <div className="flex border-b border-[rgba(32,32,29,0.08)]">
+      <div className="flex border-b border-[rgba(63,148,149,0.16)]">
         <button
           type="button"
           onClick={() => setActiveTab("sankalpa")}
           className={`flex items-center gap-2 border-b-2 px-4 py-2.5 text-[14px] font-bold transition-all ${
             activeTab === "sankalpa"
-              ? "border-[#3D765B] text-[#3D765B]"
-              : "border-transparent text-[#66635D] hover:text-[#20201D]"
+              ? "border-[#328A7A] text-[#328A7A]"
+              : "border-transparent text-[#547070] hover:text-[#193B3B]"
           }`}
         >
           <Sprout className="h-4 w-4" />
@@ -120,8 +120,8 @@ export function JourneyView({
           onClick={() => setActiveTab("trends")}
           className={`flex items-center gap-2 border-b-2 px-4 py-2.5 text-[14px] font-bold transition-all ${
             activeTab === "trends"
-              ? "border-[#2457A6] text-[#2457A6]"
-              : "border-transparent text-[#66635D] hover:text-[#20201D]"
+              ? "border-[#3F9495] text-[#3F9495]"
+              : "border-transparent text-[#547070] hover:text-[#193B3B]"
           }`}
         >
           <BarChart3 className="h-4 w-4" />
@@ -144,7 +144,7 @@ export function JourneyView({
         <div className={`space-y-6 ${isLoading ? "opacity-60 pointer-events-none" : ""}`}>
           {/* Range Selector */}
           <div className="flex items-center justify-between">
-            <div className="text-[13px] font-semibold text-[#66635D]">
+            <div className="text-[13px] font-semibold text-[#547070]">
               Observational Range
             </div>
             <JourneyRangeSelector
@@ -166,8 +166,8 @@ export function JourneyView({
           {/* Detailed Trend Charts */}
           <div className="space-y-4 pt-2">
             <div className="flex items-center gap-2">
-              <Sparkles className="h-4 w-4 text-[#2457A6]" />
-              <h3 className="text-[16px] font-bold text-[#20201D]">
+              <Sparkles className="h-4 w-4 text-[#3F9495]" />
+              <h3 className="text-[16px] font-bold text-[#193B3B]">
                 Daily Practice Patterns
               </h3>
             </div>
@@ -242,14 +242,14 @@ export function JourneyView({
           </div>
 
           {/* Peaceful Personal Reflection Footer */}
-          <div className="rounded-3xl border border-[rgba(32,32,29,0.08)] bg-white/70 p-5 text-center shadow-level1">
-            <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-xl bg-[#D9822B]/10 text-[#D9822B]">
+          <div className="rounded-3xl border border-[rgba(63,148,149,0.16)] bg-white/70 p-5 text-center shadow-level1">
+            <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-xl bg-[#A9824D]/10 text-[#A9824D]">
               <Sparkles className="h-4 w-4" />
             </div>
-            <h4 className="mt-3 text-[14px] font-bold text-[#20201D]">
+            <h4 className="mt-3 text-[14px] font-bold text-[#193B3B]">
               Continuity Over Perfection
             </h4>
-            <p className="mx-auto mt-1 max-w-md text-[12px] leading-relaxed text-[#66635D]">
+            <p className="mx-auto mt-1 max-w-md text-[12px] leading-relaxed text-[#547070]">
               True spiritual growth is quiet and steady. Every sincere round and every moment dedicated to hearing builds a lasting inner foundation.
             </p>
           </div>
