@@ -4,6 +4,8 @@ import { Container } from "@/components/layout/container";
 import { Logo } from "@/components/branding/logo";
 import { Button } from "@/components/ui/button";
 
+import { ArrowRight } from "lucide-react";
+
 export function LandingNavbar() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-[rgba(32,32,29,0.06)] bg-[#F7F1E5]/90 backdrop-blur-md transition-all">
@@ -44,9 +46,20 @@ export function LandingNavbar() {
 
           {/* Direct Role Entry Action */}
           <div className="flex items-center gap-2.5">
-            <a href="#entry">
-              <Button variant="primary" size="sm" className="px-4 text-[13px] sm:text-[14px]">
-                Enter
+            <a
+              href="#entry"
+              className="group inline-flex rounded-[10px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2457A6] focus-visible:ring-offset-2"
+            >
+              <Button
+                variant="primary"
+                size="sm"
+                className="px-4 text-[13px] transition-all duration-200 active:scale-[0.97] sm:px-5 sm:text-[14px]"
+                rightIcon={
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 ease-out group-hover:translate-x-1" />
+                }
+              >
+                <span className="inline sm:hidden">Begin</span>
+                <span className="hidden sm:inline">Begin Journey</span>
               </Button>
             </a>
           </div>

@@ -5,6 +5,7 @@ import { TopBar } from "@/components/navigation/top-bar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { SanskritQuote } from "@/components/typography/sanskrit-quote";
+import { LandingFooter } from "@/components/landing/landing-footer";
 import { ArrowLeft, Sparkles, Users } from "lucide-react";
 
 export default function AboutPage() {
@@ -86,9 +87,9 @@ export default function AboutPage() {
               </div>
 
               <div className="pt-4 text-center">
-                <Link href="/student">
+                <Link href="/login">
                   <Button variant="primary" size="default">
-                    Enter Platform →
+                    Begin Journey →
                   </Button>
                 </Link>
               </div>
@@ -96,6 +97,8 @@ export default function AboutPage() {
           </Container>
         </Section>
       </main>
+
+      <LandingFooter />
     </div>
   );
 }

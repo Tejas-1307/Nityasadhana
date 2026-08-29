@@ -7,6 +7,7 @@ import { PageHeader } from "@/components/layout/page-header";
 import { TopBar } from "@/components/navigation/top-bar";
 import { BrandMark } from "@/components/branding/brand-mark";
 import { Logo } from "@/components/branding/logo";
+import { LandingFooter } from "@/components/landing/landing-footer";
 import { Button } from "@/components/ui/button";
 import { IconButton } from "@/components/ui/icon-button";
 import { Input } from "@/components/ui/input";
@@ -744,6 +745,8 @@ export default function DesignSystemShowcase() {
           </div>
         </Container>
       </main>
+
+      <LandingFooter />
     </div>
   );
 }
