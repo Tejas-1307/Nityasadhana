@@ -75,27 +75,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider
-      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
-      appearance={{
-        variables: {
-          colorPrimary: "#2457A6",
-          colorBackground: "#F7F1E5",
-          colorText: "#20201D",
-          colorTextSecondary: "#66635D",
-          borderRadius: "12px",
-          fontFamily: "var(--font-nunito-sans), system-ui, sans-serif",
-        },
-      }}
-    >
-      <html lang="en" className={`${nunitoSans.variable} ${notoSerifDevanagari.variable}`}>
-        <body className="min-h-screen bg-[#F7F1E5] text-[#20201D] antialiased selection:bg-[#2457A6] selection:text-white">
+    <html lang="en" className={`${nunitoSans.variable} ${notoSerifDevanagari.variable}`}>
+      <body className="min-h-screen bg-[#F7F1E5] text-[#20201D] antialiased selection:bg-[#2457A6] selection:text-white">
+        <ClerkProvider
+          appearance={{
+            variables: {
+              colorPrimary: "#2457A6",
+              colorBackground: "#F7F1E5",
+              colorText: "#20201D",
+              colorTextSecondary: "#66635D",
+              borderRadius: "12px",
+              fontFamily: "var(--font-nunito-sans), system-ui, sans-serif",
+            },
+          }}
+        >
           <ServiceWorkerRegister />
           <OfflineIndicator />
           <InstallPrompt />
           {children}
-        </body>
-      </html>
-    </ClerkProvider>
+        </ClerkProvider>
+      </body>
+    </html>
   );
 }
+
