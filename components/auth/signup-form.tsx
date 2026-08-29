@@ -8,13 +8,15 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { User, Mail, Lock, KeyRound, ArrowRight, AlertCircle, CheckCircle2 } from "lucide-react";
+import { User, Mail, Lock, KeyRound, ArrowRight, AlertCircle, CheckCircle2, Sparkles } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import { resolvePostLoginRedirectAction } from "@/lib/actions/auth";
 
 export function SignupForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const invitationToken = searchParams.get("invitation_token");
+  const roleParam = searchParams.get("role"); // "guru" | "student" | "shishya"
 
   const { isLoaded, signUp, setActive } = useSignUp();
 
@@ -42,11 +44,16 @@ export function SignupForm() {
     setIsLoading(true);
 
     try {
+      const roleIntent = roleParam === "guru" ? "guru" : "shishya";
       await signUp.create({
         firstName,
         lastName,
         emailAddress: email,
         password,
+        unsafeMetadata: {
+          roleIntent,
+          invitationToken: invitationToken || undefined,
+        },
       });
 
       // Trigger email verification code from Clerk
@@ -112,6 +119,19 @@ export function SignupForm() {
 
   return (
     <Card className="border-[rgba(32,32,29,0.08)] bg-white p-6 shadow-level2 sm:p-8">
+      {/* Role Intent Banner */}
+      {roleParam && (
+        <div className="mb-5 flex items-center justify-between rounded-xl border border-[rgba(32,32,29,0.06)] bg-[#F7F1E5] p-3">
+          <div className="flex items-center gap-2 text-[13px] font-medium text-[#20201D]">
+            <Sparkles className="h-4 w-4 text-[#D9822B]" />
+            <span>Signing up as {roleParam === "guru" ? "Guru" : "Shishya"}</span>
+          </div>
+          <Badge variant={roleParam === "guru" ? "saffron" : "krishna"} size="sm">
+            <span className="font-serif">{roleParam === "guru" ? "गुरुमार्गः" : "शिष्यमार्गः"}</span>
+          </Badge>
+        </div>
+      )}
+
       {/* Error Feedback */}
       {errorMessage && (
         <div

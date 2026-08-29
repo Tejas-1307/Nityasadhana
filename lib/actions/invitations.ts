@@ -150,6 +150,19 @@ export async function acceptInvitationAction(secret: string): Promise<{
     });
 
     if (result.success) {
+      // Sync authoritative role to Clerk publicMetadata
+      try {
+        const { clerkClient } = await import("@clerk/nextjs/server");
+        const client = await clerkClient();
+        await client.users.updateUserMetadata(authUser.id, {
+          publicMetadata: {
+            role: "shishya",
+          },
+        });
+      } catch (err) {
+        console.warn(`[Auth] Clerk role sync skipped in acceptInvitationAction:`, err instanceof Error ? err.message : err);
+      }
+
       revalidatePath("/student");
       revalidatePath("/guru/shishyas");
     }

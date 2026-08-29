@@ -1,8 +1,8 @@
-import { auth, currentUser } from "@clerk/nextjs/server";
+import { auth, currentUser, clerkClient } from "@clerk/nextjs/server";
 import { UserRole, AuthenticatedUser } from "@/types/auth";
 import { isValidRole } from "./roles";
 import { dbStore } from "@/lib/db/store";
-import { ensureDevGuruProvisioned } from "@/lib/db/dev-seeder";
+import { DbUser } from "@/lib/db/schema";
 
 function isDynamicServerError(err: unknown): boolean {
   if (typeof err === "object" && err !== null && "digest" in err) {
@@ -12,69 +12,94 @@ function isDynamicServerError(err: unknown): boolean {
 }
 
 /**
- * Checks if the user should be designated as a Development Guru account.
- * In development environment, all authenticated accounts (such as crohitpote17@gmail.com)
- * are provisioned with Guru test access.
- * Strictly active ONLY in non-production environments.
+ * Safely synchronizes the authoritative role to Clerk publicMetadata.
+ * Non-blocking if Clerk Admin API is unreachable.
  */
-function isDevGuruDesignated(_email?: string): boolean {
-  const isDev =
-    process.env.NODE_ENV === "development" ||
-    process.env.NEXT_PUBLIC_APP_ENV !== "production";
-
-  if (!isDev) return false;
-
-  return true;
+async function syncClerkRoleMetadata(userId: string, role: UserRole): Promise<void> {
+  try {
+    const client = await clerkClient();
+    await client.users.updateUserMetadata(userId, {
+      publicMetadata: {
+        role,
+      },
+    });
+  } catch (err) {
+    if (isDynamicServerError(err)) throw err;
+    console.warn(`[Auth] Clerk publicMetadata sync skipped for user ${userId}`);
+  }
 }
 
 /**
  * Extracts the authenticated user's server-authoritative role.
- * Resolves from Clerk publicMetadata first, then application database record.
- * In development environment, automatically provisions dev Guru accounts.
- * Fails closed (returns null) if no valid role is found.
+ * Resolves from Clerk publicMetadata first, then application database record,
+ * and falls back to signup roleIntent for new accounts.
+ * Fails closed (returns null) if no authenticated session exists.
  */
 export async function getCurrentRole(): Promise<UserRole | null> {
   try {
     const user = await currentUser();
     if (!user) return null;
 
-    const email = user.emailAddresses?.[0]?.emailAddress?.toLowerCase();
+    const email = user.emailAddresses?.[0]?.emailAddress?.toLowerCase() || "";
 
     // 1. Check Clerk publicMetadata first
     const metadataRole = user.publicMetadata?.role;
     if (isValidRole(metadataRole)) {
-      if (metadataRole === "guru") {
-        await ensureDevGuruProvisioned({
+      // Ensure application database user record exists with clean data
+      const dbUser = await dbStore.getUserById(user.id);
+      if (!dbUser) {
+        await dbStore.upsertUser({
           id: user.id,
-          email: email || `${user.id}@nityasadhana.org`,
-          name: `${user.firstName || ""} ${user.lastName || ""}`.trim() || "His Grace Radheshyam Das",
-          spiritualName: (user.publicMetadata?.spiritualName as string) || "Radheshyam Das",
+          authProviderId: user.id,
+          role: metadataRole,
+          name:
+            `${user.firstName || ""} ${user.lastName || ""}`.trim() ||
+            (metadataRole === "guru" ? "Guru" : "Devotee"),
+          spiritualName: (user.publicMetadata?.spiritualName as string) || undefined,
+          email,
+          status: "active",
+          createdAt: new Date(user.createdAt).toISOString(),
+          updatedAt: new Date(user.updatedAt).toISOString(),
         });
       }
       return metadataRole;
     }
 
     // 2. Check application database by user id or primary email
-    let dbUser =
+    const dbUser =
       (await dbStore.getUserById(user.id)) ||
       (email ? await dbStore.getUserByEmail(email) : null);
 
-    // 3. Development-only Guru provision
-    if (!dbUser && isDevGuruDesignated(email)) {
-      dbUser = await ensureDevGuruProvisioned({
-        id: user.id,
-        email: email || `${user.id}@nityasadhana.org`,
-        name: `${user.firstName || ""} ${user.lastName || ""}`.trim() || "His Grace Radheshyam Das",
-        spiritualName: "Radheshyam Das",
-      });
-    }
-
     if (dbUser && isValidRole(dbUser.role)) {
+      await syncClerkRoleMetadata(user.id, dbUser.role);
       return dbUser.role;
     }
 
-    // Fails closed if role cannot be determined from metadata or database
-    return null;
+    // 3. Fallback for newly created Clerk account: inspect roleIntent in unsafeMetadata
+    const roleIntent =
+      (user.unsafeMetadata?.roleIntent as string) ||
+      (user.unsafeMetadata?.role as string);
+    const assignedRole: UserRole = roleIntent === "guru" ? "guru" : "shishya";
+
+    // Provision fresh application user profile (clean zero-data state)
+    const newUser: DbUser = {
+      id: user.id,
+      authProviderId: user.id,
+      role: assignedRole,
+      name:
+        `${user.firstName || ""} ${user.lastName || ""}`.trim() ||
+        (assignedRole === "guru" ? "Guru" : "Devotee"),
+      spiritualName: undefined,
+      email,
+      status: "active",
+      createdAt: new Date(user.createdAt).toISOString(),
+      updatedAt: new Date(user.updatedAt).toISOString(),
+    };
+
+    await dbStore.upsertUser(newUser);
+    await syncClerkRoleMetadata(user.id, assignedRole);
+
+    return assignedRole;
   } catch (error) {
     if (isDynamicServerError(error)) {
       throw error;
@@ -86,7 +111,7 @@ export async function getCurrentRole(): Promise<UserRole | null> {
 
 /**
  * Returns the normalized Nityasādhanā application user from the server session.
- * Resolves verified role from Clerk publicMetadata or database.
+ * Resolves verified role from Clerk publicMetadata or database without seeding mock data.
  */
 export async function getCurrentAuthUser(): Promise<AuthenticatedUser | null> {
   try {
@@ -94,41 +119,15 @@ export async function getCurrentAuthUser(): Promise<AuthenticatedUser | null> {
     if (!user) return null;
 
     const email = user.emailAddresses?.[0]?.emailAddress?.toLowerCase() || "";
-
-    // Resolve role from metadata or database
-    let role: UserRole | null = null;
-    const metadataRole = user.publicMetadata?.role;
-    if (isValidRole(metadataRole)) {
-      role = metadataRole;
-      if (role === "guru") {
-        await ensureDevGuruProvisioned({
-          id: user.id,
-          email,
-          name: `${user.firstName || ""} ${user.lastName || ""}`.trim() || "His Grace Radheshyam Das",
-          spiritualName: (user.publicMetadata?.spiritualName as string) || "Radheshyam Das",
-        });
-      }
-    }
-
-    let dbUser =
-      (await dbStore.getUserById(user.id)) ||
-      (email ? await dbStore.getUserByEmail(email) : null);
-
-    if (!dbUser && isDevGuruDesignated(email)) {
-      dbUser = await ensureDevGuruProvisioned({
-        id: user.id,
-        email,
-        name: `${user.firstName || ""} ${user.lastName || ""}`.trim() || "His Grace Radheshyam Das",
-        spiritualName: "Radheshyam Das",
-      });
-    }
-
-    if (!role && dbUser && isValidRole(dbUser.role)) {
-      role = dbUser.role;
-    }
+    const role = await getCurrentRole();
 
     if (!role) {
       return null;
+    }
+
+    let dbUser = await dbStore.getUserById(user.id);
+    if (!dbUser && email) {
+      dbUser = await dbStore.getUserByEmail(email);
     }
 
     const spiritualName =
@@ -148,7 +147,10 @@ export async function getCurrentAuthUser(): Promise<AuthenticatedUser | null> {
       authProviderId: user.id,
       email,
       role,
-      name: `${user.firstName || ""} ${user.lastName || ""}`.trim() || dbUser?.name || "Devotee",
+      name:
+        `${user.firstName || ""} ${user.lastName || ""}`.trim() ||
+        dbUser?.name ||
+        "Devotee",
       spiritualName,
       ashramId,
       status,
