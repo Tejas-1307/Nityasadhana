@@ -157,14 +157,6 @@ export function LandingFooter() {
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      href="/design-system"
-                      className="inline-flex items-center gap-1.5 py-1 text-[#66635D] transition-colors hover:text-[#20201D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2457A6] rounded-md"
-                    >
-                      <span>Design System</span>
-                    </Link>
-                  </li>
-                  <li>
                     <a
                       href="#purpose"
                       className="inline-flex items-center gap-1.5 py-1 text-[#66635D] transition-colors hover:text-[#20201D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2457A6] rounded-md"
@@ -247,7 +239,12 @@ export function LandingFooter() {
                   </div>
 
                   {/* GOLDSPADE Craftsmanship Credit */}
-                  <div className="group flex flex-col justify-between rounded-2xl border border-[rgba(32,32,29,0.06)] bg-white/80 p-5 shadow-sm backdrop-blur-sm transition-all hover:border-[#2457A6]/40 hover:shadow-level1">
+                  <a
+                    href="https://goldspade.in/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex flex-col justify-between rounded-2xl border border-[rgba(32,32,29,0.06)] bg-white/80 p-5 shadow-sm backdrop-blur-sm transition-all hover:border-[#2457A6]/40 hover:shadow-level1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2457A6]"
+                  >
                     <div>
                       <div className="flex items-center gap-1.5 text-[11px] font-bold tracking-wider text-[#2457A6] uppercase">
                         <Sparkles className="h-3 w-3" />
@@ -269,7 +266,7 @@ export function LandingFooter() {
                         GOLDSPADE →
                       </span>
                     </div>
-                  </div>
+                  </a>
                 </div>
               </div>
             </div>
@@ -292,7 +289,14 @@ export function LandingFooter() {
               {/* Right: Craftsmanship & Seva Heritage */}
               <div className="flex items-center gap-2 text-[#66635D]">
                 <span>Crafted by</span>
-                <span className="font-semibold tracking-wide text-[#20201D]">GOLDSPADE</span>
+                <a
+                  href="https://goldspade.in/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold tracking-wide text-[#20201D] transition-colors hover:text-[#2457A6] hover:underline"
+                >
+                  GOLDSPADE
+                </a>
                 <span>•</span>
                 <span className="font-serif text-[#D9822B]">हरे कृष्ण</span>
               </div>
