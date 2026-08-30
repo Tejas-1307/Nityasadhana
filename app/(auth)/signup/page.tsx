@@ -7,7 +7,14 @@ import { SignupForm } from "@/components/auth/signup-form";
 
 export const dynamic = "force-dynamic";
 
-export default function SignupPage() {
+export default async function SignupPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ invitation_token?: string }>;
+}) {
+  const { invitation_token: invitationToken } = await searchParams;
+  const hasInvitation = Boolean(invitationToken);
+
   return (
     <div className="flex min-h-screen flex-col justify-between bg-[#EAF7F4]">
       <Section spacing="default" className="flex flex-1 items-center py-10 sm:py-16">
@@ -15,10 +22,12 @@ export default function SignupPage() {
           <div className="mb-6 flex flex-col items-center text-center">
             <Logo size="lg" variant="vertical" className="mb-4" />
             <h1 className="text-[24px] font-bold tracking-tight text-[#193B3B] sm:text-[28px]">
-              Create Devotee Account
+              {hasInvitation ? "Create Shishya Account" : "Create Devotee Account"}
             </h1>
             <p className="mt-1 text-[14px] text-[#547070]">
-              Begin your daily Sādhanā journey with ISKCON Pune.
+              {hasInvitation
+                ? "Register through your Guru invitation to begin your guided Sādhanā journey."
+                : "Begin your daily Sādhanā journey with ISKCON Pune."}
             </p>
           </div>
 

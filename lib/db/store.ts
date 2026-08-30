@@ -14,11 +14,51 @@ import {
 } from "./schema";
 import { hashInvitationSecret } from "@/lib/invitations/crypto";
 
+const getNodeRuntime = () => {
+  if (typeof window !== "undefined") return null;
+  try {
+    const getBuiltin = (name: string) => {
+      if (typeof process !== "undefined" && typeof process.getBuiltinModule === "function") {
+        return process.getBuiltinModule(name);
+      }
+
+      const requireFn = Function("return require")();
+      return requireFn(name);
+    };
+
+    const fs = getBuiltin("node:fs");
+    const path = getBuiltin("node:path");
+    return { fs, path };
+  } catch {
+    return null;
+  }
+};
+
+const getDbFilePath = () => {
+  const runtime = getNodeRuntime();
+  if (!runtime) return "";
+  return runtime.path.join(process.cwd(), ".nityasadhana-db.json");
+};
+
+type PersistedDbState = {
+  users: Record<string, DbUser>;
+  invitations: Record<string, DbInvitation>;
+  relationships: Record<string, DbGuruShishyaRelationship>;
+  reports: Record<string, DbDailySadhanaReport>;
+  followUps: Record<string, DbGuruFollowUp>;
+  privateNotes: Record<string, DbGuruPrivateNote>;
+  sankalpas: Record<string, DbWeeklySankalpa>;
+  reflections: Record<string, DbWeeklyReflection>;
+  notifications: Record<string, DbNotification>;
+  notificationPreferences: Record<string, DbNotificationPreferences>;
+  auditLogs: Record<string, DbAuditLog>;
+};
+
 /**
  * In-memory transactional database store with mutex locks.
  * Ensures ACID guarantees, single-use enforcement, and race-condition prevention.
  */
-class NityasadhanaDbStore {
+export class NityasadhanaDbStore {
   private users: Map<string, DbUser> = new Map();
   private invitations: Map<string, DbInvitation> = new Map();
   private relationships: Map<string, DbGuruShishyaRelationship> = new Map();
@@ -34,10 +74,76 @@ class NityasadhanaDbStore {
   private lockQueue: Array<() => void> = [];
 
   constructor() {
+    this.loadPersistedState();
     this.seedInitialData();
   }
 
+  private persistState() {
+    if (typeof window !== "undefined") return;
+
+    const runtime = getNodeRuntime();
+    if (!runtime) return;
+
+    const dbFilePath = getDbFilePath();
+    if (!dbFilePath) return;
+
+    const snapshot: PersistedDbState = {
+      users: Object.fromEntries(this.users),
+      invitations: Object.fromEntries(this.invitations),
+      relationships: Object.fromEntries(this.relationships),
+      reports: Object.fromEntries(this.reports),
+      followUps: Object.fromEntries(this.followUps),
+      privateNotes: Object.fromEntries(this.privateNotes),
+      sankalpas: Object.fromEntries(this.sankalpas),
+      reflections: Object.fromEntries(this.reflections),
+      notifications: Object.fromEntries(this.notifications),
+      notificationPreferences: Object.fromEntries(this.notificationPreferences),
+      auditLogs: Object.fromEntries(this.auditLogs),
+    };
+
+    runtime.fs.writeFileSync(dbFilePath, JSON.stringify(snapshot, null, 2), "utf8");
+  }
+
+  private loadPersistedState() {
+    if (typeof window !== "undefined") return;
+
+    const runtime = getNodeRuntime();
+    if (!runtime) return;
+
+    const dbFilePath = getDbFilePath();
+    if (!dbFilePath) return;
+
+    try {
+      const raw = runtime.fs.readFileSync(dbFilePath, "utf8");
+      if (!raw.trim()) return;
+
+      const parsed = JSON.parse(raw) as Partial<PersistedDbState>;
+      this.users = new Map(Object.entries(parsed.users ?? {}));
+      this.invitations = new Map(Object.entries(parsed.invitations ?? {}));
+      this.relationships = new Map(Object.entries(parsed.relationships ?? {}));
+      this.reports = new Map(Object.entries(parsed.reports ?? {}));
+      this.followUps = new Map(Object.entries(parsed.followUps ?? {}));
+      this.privateNotes = new Map(Object.entries(parsed.privateNotes ?? {}));
+      this.sankalpas = new Map(Object.entries(parsed.sankalpas ?? {}));
+      this.reflections = new Map(Object.entries(parsed.reflections ?? {}));
+      this.notifications = new Map(Object.entries(parsed.notifications ?? {}));
+      this.notificationPreferences = new Map(Object.entries(parsed.notificationPreferences ?? {}));
+      this.auditLogs = new Map(Object.entries(parsed.auditLogs ?? {}));
+    } catch {
+      // Ignore invalid or absent state files and rely on fresh bootstrap data.
+    }
+  }
+
   private seedInitialData() {
+    if (
+      this.users.size > 0 ||
+      this.invitations.size > 0 ||
+      this.relationships.size > 0 ||
+      this.reports.size > 0
+    ) {
+      return;
+    }
+
     // Seed default Guru for demonstration / testing
     const defaultGuru: DbUser = {
       id: "guru_iskcon_pune_01",
@@ -72,6 +178,8 @@ class NityasadhanaDbStore {
       };
       this.invitations.set(inv.id, inv);
     });
+
+    this.persistState();
   }
 
   /**
@@ -122,10 +230,12 @@ class NityasadhanaDbStore {
       const existing = this.users.get(user.id);
       const updatedUser: DbUser = {
         ...user,
-        createdAt: existing?.createdAt || now,
+        linkedGuruId: user.linkedGuruId ?? existing?.linkedGuruId,
+        createdAt: existing?.createdAt || user.createdAt || now,
         updatedAt: now,
       };
       this.users.set(user.id, updatedUser);
+      this.persistState();
       return updatedUser;
     } finally {
       unlock();
@@ -181,6 +291,7 @@ class NityasadhanaDbStore {
         { intendedRole: invitation.intendedRole, rawCodeMasked: invitation.rawCodeMasked }
       );
 
+      this.persistState();
       return invitation;
     } finally {
       unlock();
@@ -192,6 +303,7 @@ class NityasadhanaDbStore {
   }
 
   async getInvitationByTokenHash(tokenHash: string): Promise<DbInvitation | null> {
+    this.loadPersistedState();
     for (const inv of this.invitations.values()) {
       if (inv.tokenHash === tokenHash) {
         return inv;
@@ -201,6 +313,7 @@ class NityasadhanaDbStore {
   }
 
   async getInvitationByCodeHash(codeHash: string): Promise<DbInvitation | null> {
+    this.loadPersistedState();
     for (const inv of this.invitations.values()) {
       if (inv.codeHash === codeHash) {
         return inv;
@@ -329,6 +442,7 @@ class NityasadhanaDbStore {
       const updatedShishya: DbUser = {
         ...params.shishya,
         role: "shishya",
+        linkedGuruId: invitation.createdByUserId,
         status: "active",
         createdAt: params.shishya.createdAt || nowIso,
         updatedAt: nowIso,
@@ -372,6 +486,7 @@ class NityasadhanaDbStore {
         { guruId: invitation.createdByUserId, relationshipType: relationship.relationshipType }
       );
 
+      this.persistState();
       return {
         success: true,
         relationship,
@@ -492,6 +607,7 @@ class NityasadhanaDbStore {
         { guruId: params.guruId, shishyaId: params.shishyaId }
       );
 
+      this.persistState();
       return {
         success: true,
         relationship: updatedRelationship,
@@ -631,6 +747,7 @@ class NityasadhanaDbStore {
         }
       );
 
+      this.persistState();
       return { ...updatedReport };
     } finally {
       unlock();
@@ -758,6 +875,7 @@ class NityasadhanaDbStore {
         { studentId: record.studentId, followUpDate: record.followUpDate }
       );
 
+      this.persistState();
       return { ...record };
     } finally {
       unlock();
@@ -843,6 +961,7 @@ class NityasadhanaDbStore {
         { studentId: record.studentId }
       );
 
+      this.persistState();
       return { ...record };
     } finally {
       unlock();
@@ -919,6 +1038,7 @@ class NityasadhanaDbStore {
         { category: record.category, startDate: record.startDate, endDate: record.endDate }
       );
 
+      this.persistState();
       return { ...record };
     } finally {
       unlock();
@@ -1092,6 +1212,7 @@ class NityasadhanaDbStore {
           { state: reflection.state }
         );
 
+        this.persistState();
         return { ...newRecord };
       }
     } finally {
@@ -1189,6 +1310,7 @@ class NityasadhanaDbStore {
         metadata: { type: notification.type, eventKey: notification.eventKey },
       });
 
+      this.persistState();
       return { ...notification };
     } finally {
       unlock();
@@ -1345,6 +1467,7 @@ class NityasadhanaDbStore {
     };
 
     this.notificationPreferences.set(userId, defaultPrefs);
+    this.persistState();
     return { ...defaultPrefs };
   }
 
@@ -1359,6 +1482,7 @@ class NityasadhanaDbStore {
         updatedAt: new Date().toISOString(),
       };
       this.notificationPreferences.set(prefs.userId, updated);
+      this.persistState();
       return { ...updated };
     } finally {
       unlock();

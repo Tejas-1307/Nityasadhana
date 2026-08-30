@@ -74,14 +74,22 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const clerkPublishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+
+  if (
+    !clerkPublishableKey ||
+    clerkPublishableKey.includes("placeholder_key_for_development")
+  ) {
+    throw new Error(
+      "Clerk is not configured. Add a valid NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY from https://dashboard.clerk.com/last-active?path=api-keys to your .env.local or .env file and restart the dev server."
+    );
+  }
+
   return (
     <html lang="en" className={`${nunitoSans.variable} ${notoSerifDevanagari.variable}`}>
       <body className="min-h-screen bg-[#EAF7F4] text-[#193B3B] antialiased selection:bg-[#3F9495] selection:text-white">
         <ClerkProvider
-          publishableKey={
-            process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
-            "pk_test_ZHVtbXktbmV4dC5jbGVyay5hY2NvdW50cy5kZXYk"
-          }
+          publishableKey={clerkPublishableKey}
           appearance={{
             variables: {
               colorPrimary: "#3F9495",

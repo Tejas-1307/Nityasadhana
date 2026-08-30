@@ -73,10 +73,24 @@ export function InviteModal({
     }
   };
 
+  const getFullInviteUrl = (url: string) => {
+    if (!url) return url;
+    if (url.startsWith("http://") || url.startsWith("https://")) {
+      return url;
+    }
+
+    if (typeof window !== "undefined") {
+      return `${window.location.origin}${url.startsWith("/") ? url : `/${url}`}`;
+    }
+
+    return url;
+  };
+
   const handleCopy = async () => {
     if (!invitation) return;
     try {
-      await navigator.clipboard.writeText(invitation.inviteUrl);
+      const fullUrl = getFullInviteUrl(invitation.inviteUrl);
+      await navigator.clipboard.writeText(fullUrl);
       setHasCopied(true);
       setTimeout(() => setHasCopied(false), 3000);
     } catch (err) {
@@ -86,12 +100,13 @@ export function InviteModal({
 
   const handleShare = async () => {
     if (!invitation) return;
+    const fullUrl = getFullInviteUrl(invitation.inviteUrl);
     if (typeof navigator !== "undefined" && navigator.share) {
       try {
         await navigator.share({
           title: "Nityasādhanā Shishya Invitation",
           text: `Hare Krishna! You have been invited to connect with your Guru on Nityasādhanā. Join using invitation code ${invitation.rawCode}:`,
-          url: invitation.inviteUrl,
+          url: fullUrl,
         });
       } catch {
         // User cancelled share dialog

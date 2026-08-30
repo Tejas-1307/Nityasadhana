@@ -1,4 +1,6 @@
 import * as React from "react";
+import { redirect } from "next/navigation";
+import { getCurrentAuthUser } from "@/lib/auth";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Logo } from "@/components/branding/logo";
@@ -11,6 +13,15 @@ export default async function InviteTokenPage({ params }: { params: Promise<{ to
   const { token } = await params;
   const decodedToken = decodeURIComponent(token);
   const details = await validateInvitationSecretAction(decodedToken);
+  const authUser = await getCurrentAuthUser();
+
+  if (details.isValid && !authUser) {
+    redirect(`/signup?invitation_token=${encodeURIComponent(decodedToken)}`);
+  }
+
+  if (details.isValid && authUser && authUser.role !== "shishya") {
+    redirect(`/signup?invitation_token=${encodeURIComponent(decodedToken)}`);
+  }
 
   return (
     <div className="flex min-h-screen flex-col justify-between bg-[#EAF7F4]">

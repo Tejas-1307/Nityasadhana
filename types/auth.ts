@@ -19,6 +19,7 @@ export interface AuthenticatedUser {
   name: string;
   spiritualName?: string;
   ashramId?: string;
+  linkedGuruId?: string;
   status: AccountStatus;
   createdAt: string;
   updatedAt: string;

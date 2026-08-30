@@ -120,6 +120,13 @@ export async function acceptInvitationAction(secret: string): Promise<{
       };
     }
 
+    if (authUser.role !== "shishya") {
+      return {
+        success: false,
+        error: "Only a Shishya account can accept this invitation.",
+      };
+    }
+
     const rateCheck = rateLimiter.check(
       `invite_accept:${authUser.id}`,
       RATE_LIMITS.INVITATION_ACCEPT.limit,
@@ -150,21 +157,23 @@ export async function acceptInvitationAction(secret: string): Promise<{
     });
 
     if (result.success) {
-      // Sync authoritative role to Clerk publicMetadata
+      // Sync authoritative role and linked Guru to Clerk publicMetadata.
       try {
         const { clerkClient } = await import("@clerk/nextjs/server");
         const client = await clerkClient();
         await client.users.updateUserMetadata(authUser.id, {
           publicMetadata: {
             role: "shishya",
+            linkedGuruId: result.guruId || undefined,
+          },
+          unsafeMetadata: {
+            roleIntent: "shishya",
+            linkedGuruId: result.guruId || undefined,
           },
         });
       } catch (err) {
         console.warn(`[Auth] Clerk role sync skipped in acceptInvitationAction:`, err instanceof Error ? err.message : err);
       }
-
-      revalidatePath("/student");
-      revalidatePath("/guru/shishyas");
     }
 
     return result;

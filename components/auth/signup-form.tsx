@@ -3,14 +3,15 @@
 import * as React from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useSignUp } from "@clerk/nextjs";
+import { useAuth, useClerk, useSignUp, useUser } from "@clerk/nextjs";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { User, Mail, Lock, KeyRound, ArrowRight, AlertCircle, CheckCircle2, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { resolvePostLoginRedirectAction } from "@/lib/actions/auth";
+import { resolvePostLoginRedirectAction, syncAuthenticatedRoleAction } from "@/lib/actions/auth";
+import { acceptInvitationAction } from "@/lib/actions/invitations";
 
 export function SignupForm() {
   const router = useRouter();
@@ -19,23 +20,59 @@ export function SignupForm() {
   const roleParam = searchParams.get("role"); // "guru" | "student" | "shishya"
 
   const { isLoaded, signUp, setActive } = useSignUp();
+  const { isSignedIn, isLoaded: authLoaded } = useAuth();
+  const { user } = useUser();
+  const { signOut } = useClerk();
+  const currentSessionRole = React.useMemo(() => {
+    const roleFromMetadata = (user?.publicMetadata?.role as string | undefined) || undefined;
+    const roleFromIntent = (user?.unsafeMetadata?.roleIntent as string | undefined) || undefined;
+    const value = roleFromMetadata || roleFromIntent || null;
+    return value && value.toLowerCase() === "shishya" ? "shishya" : value || null;
+  }, [user]);
 
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [confirmPassword, setConfirmPassword] = React.useState("");
   const [code, setCode] = React.useState("");
 
   const [pendingVerification, setPendingVerification] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
 
+  React.useEffect(() => {
+    if (!authLoaded || !isSignedIn || !invitationToken) {
+      return;
+    }
+
+    if (currentSessionRole === "shishya") {
+      return;
+    }
+
+    const redirectUrl = `/signup?invitation_token=${encodeURIComponent(invitationToken)}`;
+    void signOut({ redirectUrl });
+  }, [authLoaded, isSignedIn, invitationToken, currentSessionRole, signOut]);
+
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage(null);
 
+    if (isSignedIn && currentSessionRole !== "shishya") {
+      setErrorMessage(
+        "A different active session was detected. We are signing you out so you can continue with this invitation."
+      );
+      void signOut({ redirectUrl: `/signup?invitation_token=${encodeURIComponent(invitationToken || "")}` });
+      return;
+    }
+
     if (!email || !password || !firstName) {
       setErrorMessage("Please complete all required fields.");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setErrorMessage("Passwords do not match.");
       return;
     }
 
@@ -62,8 +99,17 @@ export function SignupForm() {
     } catch (err: unknown) {
       console.error("[Auth] Signup error:", err);
       const clerkError = err as { errors?: Array<{ message?: string }> };
+      const message = clerkError.errors?.[0]?.message;
+
+      if (message?.toLowerCase().includes("session already exists")) {
+        setErrorMessage(
+          "A session is already active. Please sign out before creating a new Shishya account from this invitation."
+        );
+        return;
+      }
+
       setErrorMessage(
-        clerkError.errors?.[0]?.message || "Unable to create account. Please check your details."
+        message || "Unable to create account. Please check your details."
       );
     } finally {
       setIsLoading(false);
@@ -90,11 +136,22 @@ export function SignupForm() {
 
       if (completeSignUp.status === "complete") {
         await setActive({ session: completeSignUp.createdSessionId });
-        // If an invitation token was attached, return to the invitation acceptance page
+        const selectedRole = roleParam === "guru" ? "guru" : "shishya";
+        await syncAuthenticatedRoleAction(invitationToken ? "shishya" : selectedRole);
+
         if (invitationToken) {
-          router.replace(`/invite/${encodeURIComponent(invitationToken)}`);
+          const acceptance = await acceptInvitationAction(invitationToken);
+          if (acceptance.success) {
+            router.replace("/student");
+          } else {
+            setErrorMessage(
+              acceptance.error ||
+                "Your account was created, but the Guru connection could not be completed. Please retry from the invitation link."
+            );
+            router.replace(`/invite/${encodeURIComponent(invitationToken)}`);
+          }
         } else {
-          const res = await resolvePostLoginRedirectAction();
+          const res = await resolvePostLoginRedirectAction(undefined, selectedRole);
           router.replace(res.redirectUrl);
         }
       } else {
@@ -102,7 +159,7 @@ export function SignupForm() {
         if (invitationToken) {
           router.replace(`/invite/${encodeURIComponent(invitationToken)}`);
         } else {
-          const res = await resolvePostLoginRedirectAction();
+          const res = await resolvePostLoginRedirectAction(undefined, roleParam === "guru" ? "guru" : "shishya");
           router.replace(res.redirectUrl);
         }
       }
@@ -209,6 +266,23 @@ export function SignupForm() {
             <p className="mt-1 text-[12px] text-[#547070]">Must be at least 8 characters long.</p>
           </div>
 
+          <div>
+            <Label htmlFor="confirmPassword" required sanskritHint="पुनः कूटशब्दः">
+              Confirm Password
+            </Label>
+            <Input
+              id="confirmPassword"
+              type="password"
+              placeholder="Re-enter your password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              leftIcon={<Lock className="h-4 w-4" />}
+              autoComplete="new-password"
+              required
+              disabled={isLoading}
+            />
+          </div>
+
           <Button
             type="submit"
             variant="primary"
@@ -265,10 +339,22 @@ export function SignupForm() {
 
       {/* Footer link to sign in */}
       <div className="mt-6 border-t border-[rgba(63,148,149,0.12)] pt-5 text-center text-[13px] text-[#547070]">
-        Already have an account?{" "}
-        <Link href="/login" className="font-semibold text-[#3F9495] hover:underline">
-          Sign In
-        </Link>
+        {isSignedIn ? (
+          <button
+            type="button"
+            onClick={() => signOut({ redirectUrl: invitationToken ? `/login?redirect_url=/invite/${encodeURIComponent(invitationToken)}` : "/login" })}
+            className="font-semibold text-[#3F9495] hover:underline"
+          >
+            Sign out and continue
+          </button>
+        ) : (
+          <>
+            Already have an account?{" "}
+            <Link href="/login" className="font-semibold text-[#3F9495] hover:underline">
+              Sign In
+            </Link>
+          </>
+        )}
       </div>
     </Card>
   );

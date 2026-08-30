@@ -20,6 +20,7 @@ export interface DbUser {
   email: string;
   spiritualName?: string;
   ashramId?: string;
+  linkedGuruId?: string;
   status: AccountStatus;
   createdAt: string;
   updatedAt: string;

@@ -3,14 +3,14 @@
 import * as React from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useSignIn, useAuth } from "@clerk/nextjs";
+import { useSignIn, useAuth, useClerk, useUser } from "@clerk/nextjs";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Mail, Lock, ArrowRight, AlertCircle, Sparkles, Loader2 } from "lucide-react";
-import { resolvePostLoginRedirectAction } from "@/lib/actions/auth";
+import { resolvePostLoginRedirectAction, syncAuthenticatedRoleAction } from "@/lib/actions/auth";
 
 export function LoginForm() {
   const router = useRouter();
@@ -21,6 +21,23 @@ export function LoginForm() {
 
   const { isLoaded, signIn, setActive } = useSignIn();
   const { isSignedIn } = useAuth();
+  const { signOut } = useClerk();
+  const { user } = useUser();
+  const roleHintValue = React.useMemo(
+    () => (roleHint === "guru" ? "guru" : roleHint === "student" ? "shishya" : null),
+    [roleHint]
+  );
+  const currentSessionRole = React.useMemo(() => {
+    const roleFromMetadata = (user?.publicMetadata?.role as string | undefined) || undefined;
+    const roleFromIntent = (user?.unsafeMetadata?.roleIntent as string | undefined) || undefined;
+    const roleValue = roleFromMetadata || roleFromIntent || null;
+    if (!roleValue) return null;
+    return roleValue.toLowerCase() === "student" || roleValue.toLowerCase() === "shishya"
+      ? "shishya"
+      : roleValue.toLowerCase() === "guru"
+        ? "guru"
+        : null;
+  }, [user]);
 
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -37,26 +54,32 @@ export function LoginForm() {
     }
   }, [errorParam]);
 
-  // If already signed in and no active error, resolve server-authoritative role and redirect
-  React.useEffect(() => {
-    if (isSignedIn && !errorParam) {
-      let isMounted = true;
-      setIsResolvingRole(true);
-      resolvePostLoginRedirectAction(redirectParam)
-        .then((res) => {
-          if (isMounted && res.redirectUrl) {
-            router.replace(res.redirectUrl);
-          }
-        })
-        .finally(() => {
-          if (isMounted) setIsResolvingRole(false);
-        });
+  const hasRoleMismatch = Boolean(isSignedIn && roleHintValue && currentSessionRole && currentSessionRole !== roleHintValue);
 
-      return () => {
-        isMounted = false;
-      };
+  // If already signed in and no active error, resolve server-authoritative role and redirect.
+  // Guard against repeated redirect attempts during a valid active session.
+  React.useEffect(() => {
+    if (!isSignedIn || errorParam || hasRoleMismatch) {
+      return;
     }
-  }, [isSignedIn, redirectParam, router, errorParam]);
+
+    let isMounted = true;
+    setIsResolvingRole(true);
+
+    resolvePostLoginRedirectAction(redirectParam, roleHintValue)
+      .then((res) => {
+        if (isMounted && res.redirectUrl) {
+          router.replace(res.redirectUrl);
+        }
+      })
+      .finally(() => {
+        if (isMounted) setIsResolvingRole(false);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [isSignedIn, redirectParam, router, errorParam, roleHintValue, hasRoleMismatch]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,6 +87,13 @@ export function LoginForm() {
 
     if (!email || !password) {
       setErrorMessage("Please enter both email and password.");
+      return;
+    }
+
+    if (isSignedIn) {
+      setIsResolvingRole(true);
+      const res = await resolvePostLoginRedirectAction(redirectParam, roleHintValue);
+      router.replace(res.redirectUrl);
       return;
     }
 
@@ -80,11 +110,20 @@ export function LoginForm() {
       if (result.status === "complete") {
         await setActive({ session: result.createdSessionId });
         setIsResolvingRole(true);
-        const res = await resolvePostLoginRedirectAction(redirectParam);
-        router.replace(res.redirectUrl);
+
+        const [syncResult, redirectResult] = await Promise.all([
+          syncAuthenticatedRoleAction(roleHintValue),
+          resolvePostLoginRedirectAction(redirectParam, roleHintValue),
+        ]);
+
+        if (!syncResult.success) {
+          console.warn("[Auth] syncAuthenticatedRoleAction returned unsuccessful result:", syncResult);
+        }
+
+        router.replace(redirectResult.redirectUrl);
       } else {
         console.log("[Auth] Additional step required:", result.status);
-        const res = await resolvePostLoginRedirectAction(redirectParam);
+        const res = await resolvePostLoginRedirectAction(redirectParam, roleHintValue);
         router.replace(res.redirectUrl);
       }
     } catch (err: unknown) {
@@ -119,6 +158,39 @@ export function LoginForm() {
         <p className="mt-1 text-[13px] text-[#547070]">
           Verifying your account authorization.
         </p>
+      </Card>
+    );
+  }
+
+  if (hasRoleMismatch) {
+    return (
+      <Card className="border-[rgba(63,148,149,0.16)] bg-white p-6 text-center shadow-level2 sm:p-8">
+        <div className="mb-5 flex items-center justify-center gap-3 rounded-xl border border-[#A9824D]/25 bg-[#F7F5EF] p-4 text-[#193B3B]">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#A9824D]/10 text-[#A9824D]">
+            <Sparkles className="h-5 w-5" />
+          </div>
+          <div className="text-left">
+            <div className="text-[12px] font-semibold uppercase tracking-wide text-[#547070]">
+              Active session
+            </div>
+            <div className="text-[15px] font-bold">Switch account to continue</div>
+          </div>
+        </div>
+
+        <p className="mb-5 text-[14px] text-[#547070]">
+          You are currently signed in as a {currentSessionRole === "guru" ? "Guru" : "Shishya"}.
+          To continue as a {roleHintValue === "guru" ? "Guru" : "Shishya"}, sign out and sign back in.
+        </p>
+
+        <Button
+          type="button"
+          variant="primary"
+          size="lg"
+          className="w-full"
+          onClick={() => signOut({ redirectUrl: `/login?role=${roleHintValue || "student"}` })}
+        >
+          Sign out and continue
+        </Button>
       </Card>
     );
   }
@@ -209,7 +281,10 @@ export function LoginForm() {
       <div className="mt-6 space-y-2 border-t border-[rgba(63,148,149,0.12)] pt-5 text-center text-[13px] text-[#547070]">
         <div>
           Don&apos;t have an account yet?{" "}
-          <Link href="/signup" className="font-semibold text-[#3F9495] hover:underline">
+          <Link
+            href={roleHint === "guru" ? "/signup?role=guru" : "/signup?role=student"}
+            className="font-semibold text-[#3F9495] hover:underline"
+          >
             Register
           </Link>
         </div>

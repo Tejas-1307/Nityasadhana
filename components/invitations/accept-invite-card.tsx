@@ -177,7 +177,7 @@ export function AcceptInviteCard({
             className="w-full"
             rightIcon={!isLoading ? <ArrowRight className="h-4 w-4" /> : undefined}
           >
-            Accept & Connect
+            Join this Guru
           </Button>
         ) : (
           <div className="space-y-2.5">

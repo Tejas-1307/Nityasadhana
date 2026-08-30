@@ -57,7 +57,10 @@ export class InvitationService {
     });
 
     const env = getPublicEnv();
-    const inviteUrl = `${env.appUrl}/invite/${rawToken}`;
+    const isLocalDevUrl = /^(https?:\/\/)?(localhost|127\.0\.0\.1)(:\d+)?\/?$/i.test(env.appUrl);
+    const inviteUrl = isLocalDevUrl
+      ? `/invite/${rawToken}`
+      : `${env.appUrl.replace(/\/$/, "")}/invite/${rawToken}`;
 
     return {
       invitationId: id,
@@ -152,7 +155,7 @@ export class InvitationService {
   static async acceptInvitation(params: {
     secret: string;
     shishya: DbUser;
-  }): Promise<{ success: boolean; guruName: string; error?: string }> {
+  }): Promise<{ success: boolean; guruName: string; guruId?: string; error?: string }> {
     const validation = await this.validateInvitationSecret(params.secret);
     if (!validation.isValid) {
       return {
@@ -178,6 +181,7 @@ export class InvitationService {
     return {
       success: true,
       guruName: validation.guruName,
+      guruId: result.relationship?.guruId,
     };
   }
 

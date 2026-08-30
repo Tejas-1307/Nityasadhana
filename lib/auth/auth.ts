@@ -4,6 +4,15 @@ import { isValidRole } from "./roles";
 import { dbStore } from "@/lib/db/store";
 import { DbUser } from "@/lib/db/schema";
 
+export function normalizeRoleValue(value: unknown): UserRole | null {
+  if (!value || typeof value !== "string") return null;
+
+  const role = value.trim().toLowerCase();
+  if (role === "guru") return "guru";
+  if (role === "shishya" || role === "student") return "shishya";
+  return null;
+}
+
 function isDynamicServerError(err: unknown): boolean {
   if (typeof err === "object" && err !== null && "digest" in err) {
     return (err as { digest?: string }).digest === "DYNAMIC_SERVER_USAGE";
@@ -41,11 +50,9 @@ export async function getCurrentRole(): Promise<UserRole | null> {
     if (!user) return null;
 
     const email = user.emailAddresses?.[0]?.emailAddress?.toLowerCase() || "";
-
-    // 1. Check Clerk publicMetadata first
-    const metadataRole = user.publicMetadata?.role;
-    if (isValidRole(metadataRole)) {
-      // Ensure application database user record exists with clean data
+    const metadataRole = normalizeRoleValue(user.publicMetadata?.role);
+    const metadataLinkedGuruId = (user.publicMetadata?.linkedGuruId as string | undefined) || undefined;
+    if (metadataRole) {
       const dbUser = await dbStore.getUserById(user.id);
       if (!dbUser) {
         await dbStore.upsertUser({
@@ -57,6 +64,7 @@ export async function getCurrentRole(): Promise<UserRole | null> {
             (metadataRole === "guru" ? "Guru" : "Devotee"),
           spiritualName: (user.publicMetadata?.spiritualName as string) || undefined,
           email,
+          linkedGuruId: metadataLinkedGuruId,
           status: "active",
           createdAt: new Date(user.createdAt).toISOString(),
           updatedAt: new Date(user.updatedAt).toISOString(),
@@ -65,7 +73,6 @@ export async function getCurrentRole(): Promise<UserRole | null> {
       return metadataRole;
     }
 
-    // 2. Check application database by user id or primary email
     const dbUser =
       (await dbStore.getUserById(user.id)) ||
       (email ? await dbStore.getUserByEmail(email) : null);
@@ -75,31 +82,56 @@ export async function getCurrentRole(): Promise<UserRole | null> {
       return dbUser.role;
     }
 
-    // 3. Fallback for newly created Clerk account: inspect roleIntent in unsafeMetadata
-    const roleIntent =
+    const roleIntent = normalizeRoleValue(
       (user.unsafeMetadata?.roleIntent as string) ||
-      (user.unsafeMetadata?.role as string);
-    const assignedRole: UserRole = roleIntent === "guru" ? "guru" : "shishya";
+        (user.unsafeMetadata?.role as string) ||
+        (user.publicMetadata?.role as string) ||
+        (user.publicMetadata?.roleIntent as string)
+    );
+    if (roleIntent) {
+      const assignedRole: UserRole = roleIntent;
+      const newUser: DbUser = {
+        id: user.id,
+        authProviderId: user.id,
+        role: assignedRole,
+        name:
+          `${user.firstName || ""} ${user.lastName || ""}`.trim() ||
+          (assignedRole === "guru" ? "Guru" : "Devotee"),
+        spiritualName: undefined,
+        email,
+        status: "active",
+        createdAt: new Date(user.createdAt).toISOString(),
+        updatedAt: new Date(user.updatedAt).toISOString(),
+      };
 
-    // Provision fresh application user profile (clean zero-data state)
-    const newUser: DbUser = {
-      id: user.id,
-      authProviderId: user.id,
-      role: assignedRole,
-      name:
-        `${user.firstName || ""} ${user.lastName || ""}`.trim() ||
-        (assignedRole === "guru" ? "Guru" : "Devotee"),
-      spiritualName: undefined,
-      email,
-      status: "active",
-      createdAt: new Date(user.createdAt).toISOString(),
-      updatedAt: new Date(user.updatedAt).toISOString(),
-    };
+      await dbStore.upsertUser(newUser);
+      await syncClerkRoleMetadata(user.id, assignedRole);
+      return assignedRole;
+    }
 
-    await dbStore.upsertUser(newUser);
-    await syncClerkRoleMetadata(user.id, assignedRole);
+    const devGuruEmails = (process.env.DEV_GURU_EMAILS || "")
+      .split(",")
+      .map((entry) => entry.trim().toLowerCase())
+      .filter(Boolean);
+    if (devGuruEmails.includes(email)) {
+      const guruRole: UserRole = "guru";
+      await dbStore.upsertUser({
+        id: user.id,
+        authProviderId: user.id,
+        role: guruRole,
+        name:
+          `${user.firstName || ""} ${user.lastName || ""}`.trim() || "Guru",
+        spiritualName: undefined,
+        email,
+        status: "active",
+        createdAt: new Date(user.createdAt).toISOString(),
+        updatedAt: new Date(user.updatedAt).toISOString(),
+      });
+      await syncClerkRoleMetadata(user.id, guruRole);
+      return guruRole;
+    }
 
-    return assignedRole;
+    return null;
   } catch (error) {
     if (isDynamicServerError(error)) {
       throw error;
@@ -140,6 +172,11 @@ export async function getCurrentAuthUser(): Promise<AuthenticatedUser | null> {
       dbUser?.ashramId ||
       undefined;
 
+    const linkedGuruId =
+      (user.publicMetadata?.linkedGuruId as string | undefined) ||
+      dbUser?.linkedGuruId ||
+      undefined;
+
     const status = dbUser?.status || "active";
 
     return {
@@ -153,6 +190,7 @@ export async function getCurrentAuthUser(): Promise<AuthenticatedUser | null> {
         "Devotee",
       spiritualName,
       ashramId,
+      linkedGuruId,
       status,
       createdAt: dbUser?.createdAt || new Date(user.createdAt).toISOString(),
       updatedAt: dbUser?.updatedAt || new Date(user.updatedAt).toISOString(),

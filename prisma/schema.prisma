@@ -105,6 +105,7 @@ model User {
   email           String         @unique
   spiritualName   String?
   ashramId        String?
+  linkedGuruId    String?
   status          AccountStatus  @default(ACTIVE)
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
@@ -169,6 +170,7 @@ model Mentorship {
   @@index([guruId, status])
   @@index([shishyaId, isPrimary, status])
   @@index([shishyaId, status])
+  @@unique([guruId, shishyaId])
 }
 
 model Invitation {

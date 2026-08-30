@@ -1,0 +1,895 @@
+{
+  "users": {
+    "guru_iskcon_pune_01": {
+      "id": "guru_iskcon_pune_01",
+      "authProviderId": "auth_guru_pune",
+      "role": "guru",
+      "name": "His Grace Radheshyam Das",
+      "spiritualName": "Radheshyam Das",
+      "email": "radheshyam.das@iskconpune.org",
+      "ashramId": "iskcon_nvcc_pune",
+      "status": "active",
+      "createdAt": "2026-08-29T17:49:50.394Z",
+      "updatedAt": "2026-08-29T17:49:50.395Z"
+    },
+    "guru_association_a": {
+      "id": "guru_association_a",
+      "authProviderId": "guru_association_a_auth",
+      "role": "guru",
+      "name": "guru_association_a",
+      "spiritualName": "guru_association_a",
+      "email": "guru_association_a@example.com",
+      "status": "active",
+      "createdAt": "2026-08-29T17:49:50.397Z",
+      "updatedAt": "2026-08-29T17:49:50.397Z"
+    },
+    "guru_association_b": {
+      "id": "guru_association_b",
+      "authProviderId": "guru_association_b_auth",
+      "role": "guru",
+      "name": "guru_association_b",
+      "spiritualName": "guru_association_b",
+      "email": "guru_association_b@example.com",
+      "status": "active",
+      "createdAt": "2026-08-29T17:49:50.397Z",
+      "updatedAt": "2026-08-29T17:49:50.397Z"
+    },
+    "shishya_association_one": {
+      "id": "shishya_association_one",
+      "authProviderId": "shishya_association_one_auth",
+      "role": "shishya",
+      "name": "shishya_association_one",
+      "spiritualName": "shishya_association_one",
+      "email": "shishya_association_one@example.com",
+      "status": "active",
+      "createdAt": "2026-08-29T17:49:50.396Z",
+      "updatedAt": "2026-08-29T17:49:50.402Z"
+    },
+    "shishya_association_two": {
+      "id": "shishya_association_two",
+      "authProviderId": "shishya_association_two_auth",
+      "role": "shishya",
+      "name": "shishya_association_two",
+      "spiritualName": "shishya_association_two",
+      "email": "shishya_association_two@example.com",
+      "status": "active",
+      "createdAt": "2026-08-29T17:49:50.396Z",
+      "updatedAt": "2026-08-29T17:49:50.402Z"
+    },
+    "user_3Ib2c2mgsESWA68o0LNYBMzjYvO": {
+      "id": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "authProviderId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "role": "guru",
+      "name": "Ram Das",
+      "spiritualName": "Ram Das",
+      "email": "ram@sablemail.in",
+      "status": "active",
+      "createdAt": "2026-08-29T17:55:39.699Z",
+      "updatedAt": "2026-08-30T08:50:08.797Z"
+    },
+    "guru_req_fix_001": {
+      "id": "guru_req_fix_001",
+      "authProviderId": "auth_req_fix_001",
+      "role": "guru",
+      "name": "Guru A",
+      "spiritualName": "Guru A",
+      "email": "guruA.fix@example.com",
+      "status": "active",
+      "createdAt": "2026-08-30T06:17:33.638Z",
+      "updatedAt": "2026-08-30T06:17:33.642Z"
+    },
+    "shishya_req_fix_001": {
+      "id": "shishya_req_fix_001",
+      "authProviderId": "auth_req_fix_002",
+      "role": "shishya",
+      "name": "Shishya 4",
+      "spiritualName": "Shishya 4",
+      "email": "shishya4.fix@example.com",
+      "status": "active",
+      "createdAt": "2026-08-30T06:17:33.641Z",
+      "updatedAt": "2026-08-30T06:17:33.649Z",
+      "linkedGuruId": "guru_req_fix_001"
+    },
+    "user_3Icy2LMlJdSiholaVEiDVenlfrx": {
+      "id": "user_3Icy2LMlJdSiholaVEiDVenlfrx",
+      "authProviderId": "user_3Icy2LMlJdSiholaVEiDVenlfrx",
+      "role": "shishya",
+      "name": "ttt tt",
+      "spiritualName": "ttt tt",
+      "email": "t@sablemail.in",
+      "linkedGuruId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "status": "active",
+      "createdAt": "2026-08-30T08:19:02.332Z",
+      "updatedAt": "2026-08-30T08:22:01.491Z"
+    },
+    "user_3Id0EiHbiMyR3Ihw4D1vHheAuyK": {
+      "id": "user_3Id0EiHbiMyR3Ihw4D1vHheAuyK",
+      "authProviderId": "user_3Id0EiHbiMyR3Ihw4D1vHheAuyK",
+      "role": "shishya",
+      "name": "Rohit Pote",
+      "spiritualName": "Rohit Pote",
+      "email": "rohit@sablemail.in",
+      "linkedGuruId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "status": "active",
+      "createdAt": "2026-08-30T08:37:08.845Z",
+      "updatedAt": "2026-08-30T08:49:35.384Z"
+    }
+  },
+  "invitations": {
+    "inv_dev_common_1": {
+      "id": "inv_dev_common_1",
+      "tokenHash": "55e2a70ac1e190c61ad16d0cb77fa615c0b16d71b1edaae300db14d4f467bf63",
+      "codeHash": "ea7146b911b1380454379dd75398e6c2f1e0e761db7a2a7f8bc48e54ba6655eb",
+      "rawCodeMasked": "NITYA••••X9QM",
+      "createdByUserId": "guru_iskcon_pune_01",
+      "intendedRole": "shishya",
+      "status": "pending",
+      "expiresAt": "2099-12-31T23:59:59Z",
+      "createdAt": "2026-08-29T17:49:50.395Z",
+      "updatedAt": "2026-08-29T17:49:50.395Z"
+    },
+    "inv_dev_common_2": {
+      "id": "inv_dev_common_2",
+      "tokenHash": "e57125042cff57af920530ee427dc7b355a72c26632a0354d0b7c167c9cfb68d",
+      "codeHash": "e64dc4a1b43b2829cdfc094e6fbb6b2e88e4ace5d919e43f8762763f782c4d38",
+      "rawCodeMasked": "NITYA••••2026",
+      "createdByUserId": "guru_iskcon_pune_01",
+      "intendedRole": "shishya",
+      "status": "pending",
+      "expiresAt": "2099-12-31T23:59:59Z",
+      "createdAt": "2026-08-29T17:49:50.395Z",
+      "updatedAt": "2026-08-29T17:49:50.395Z"
+    },
+    "inv_dev_common_3": {
+      "id": "inv_dev_common_3",
+      "tokenHash": "ab8102e487a4da4f0dcc273f9898625fc76f60ccc784c9cddb91a83d90dc8975",
+      "codeHash": "7ecd877ee832f0dd6af73c1b9066cf494b2e3aec33bdaeaee040f7570d5d5039",
+      "rawCodeMasked": "GURU2••••2026",
+      "createdByUserId": "guru_iskcon_pune_01",
+      "intendedRole": "shishya",
+      "status": "pending",
+      "expiresAt": "2099-12-31T23:59:59Z",
+      "createdAt": "2026-08-29T17:49:50.395Z",
+      "updatedAt": "2026-08-29T17:49:50.395Z"
+    },
+    "inv_dev_common_4": {
+      "id": "inv_dev_common_4",
+      "tokenHash": "2b5fbc4f8878796b41c434644cec273c1f4ba469c8bcb4036b557b9f893d5881",
+      "codeHash": "f5ce6d39c31280b23c0aac269b7640af72c5a8f9df31baad6a1eb4f18a0379c0",
+      "rawCodeMasked": "NITYA••••GURU",
+      "createdByUserId": "guru_iskcon_pune_01",
+      "intendedRole": "shishya",
+      "status": "pending",
+      "expiresAt": "2099-12-31T23:59:59Z",
+      "createdAt": "2026-08-29T17:49:50.395Z",
+      "updatedAt": "2026-08-29T17:49:50.395Z"
+    },
+    "invite_association_a1": {
+      "id": "invite_association_a1",
+      "tokenHash": "56900a7f0b13f97887d8e7dab5aa559a41b97aa622a5deda9fe2ab05c441097c",
+      "codeHash": "34a543752f4573c57c8c9baf86ac53c31fcdff09c74660b40d41a7723c0996ff",
+      "rawCodeMasked": "NITYA-••••-TEST",
+      "createdByUserId": "guru_association_a",
+      "intendedRole": "shishya",
+      "status": "used",
+      "expiresAt": "2099-12-31T23:59:59.000Z",
+      "createdAt": "2026-08-29T17:49:50.399Z",
+      "updatedAt": "2026-08-29T17:49:50.402Z",
+      "usedAt": "2026-08-29T17:49:50.402Z",
+      "usedByUserId": "shishya_association_one"
+    },
+    "invite_association_a2": {
+      "id": "invite_association_a2",
+      "tokenHash": "366931003f1252767ab6fba02151758a760242f4c573fea5f3776d8f79bdbf42",
+      "codeHash": "8cdb8908cf3f19ca418857a34cbec8885b9bbc99364c515850a712d90cbf9cde",
+      "rawCodeMasked": "NITYA-••••-TEST",
+      "createdByUserId": "guru_association_a",
+      "intendedRole": "shishya",
+      "status": "used",
+      "expiresAt": "2099-12-31T23:59:59.000Z",
+      "createdAt": "2026-08-29T17:49:50.399Z",
+      "updatedAt": "2026-08-29T17:49:50.402Z",
+      "usedAt": "2026-08-29T17:49:50.402Z",
+      "usedByUserId": "shishya_association_two"
+    },
+    "invite_association_b1": {
+      "id": "invite_association_b1",
+      "tokenHash": "580fbbf6cd312ffe0364a0d880526deec3fb79f486adf2e1b1f1515f709474c5",
+      "codeHash": "a188bd59ea71b8a920b1d4f7d573128a86cc35acaccffa6fa77adf0a86c2ada3",
+      "rawCodeMasked": "NITYA-••••-TEST",
+      "createdByUserId": "guru_association_b",
+      "intendedRole": "shishya",
+      "status": "pending",
+      "expiresAt": "2099-12-31T23:59:59.000Z",
+      "createdAt": "2026-08-29T17:49:50.400Z",
+      "updatedAt": "2026-08-29T17:49:50.400Z"
+    },
+    "inv_1788026149152_sflq7h": {
+      "id": "inv_1788026149152_sflq7h",
+      "tokenHash": "96208793b9fff8c11b2a088c362675d47d0b782374723deb9ec5055460d267a1",
+      "codeHash": "44456dd4ffaf19216c90030f12a93cb1b78f0569524b6842206c84d79cfaba3a",
+      "rawCodeMasked": "NITYA-••••-X2SE",
+      "createdByUserId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "intendedRole": "shishya",
+      "status": "used",
+      "expiresAt": "2026-09-05T17:55:49.151Z",
+      "createdAt": "2026-08-29T17:55:49.152Z",
+      "updatedAt": "2026-08-29T17:56:06.981Z",
+      "usedAt": "2026-08-29T17:56:06.981Z",
+      "usedByUserId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO"
+    },
+    "inv_1788067954011_wgo4b1": {
+      "id": "inv_1788067954011_wgo4b1",
+      "tokenHash": "00f1abead6c73766407d088fc147b668be8ac0ab85b2ec010bd9688922d9b094",
+      "codeHash": "6d4603508a5fcb9853dfb25aa78ef45636191432cdc4d24e556b9e8a5ebf93e7",
+      "rawCodeMasked": "NITYA-••••-7MUC",
+      "createdByUserId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "intendedRole": "shishya",
+      "status": "pending",
+      "expiresAt": "2026-09-06T05:32:34.011Z",
+      "createdAt": "2026-08-30T05:32:34.013Z",
+      "updatedAt": "2026-08-30T05:32:34.013Z"
+    },
+    "inv_1788069868685_kp16xr": {
+      "id": "inv_1788069868685_kp16xr",
+      "tokenHash": "e8dcd8bfb78488850601d7deb8a5dc9ce6aa45c2d6dd7801ca08fbf469adb950",
+      "codeHash": "f01ba637c105c3fdb4b83a2e43ffe57e8b2e4a62cf14ca1d402ab0333c823ca7",
+      "rawCodeMasked": "NITYA-••••-G8NP",
+      "createdByUserId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "intendedRole": "shishya",
+      "status": "pending",
+      "expiresAt": "2026-09-06T06:04:28.685Z",
+      "createdAt": "2026-08-30T06:04:28.685Z",
+      "updatedAt": "2026-08-30T06:04:28.685Z"
+    },
+    "inv_1788070653646_jhdckb": {
+      "id": "inv_1788070653646_jhdckb",
+      "tokenHash": "fbec54e4885d9f91dfedddb6bd184f9746d70cb646dc721fc6220a8dc0f5900e",
+      "codeHash": "9f840cb6f75032011868aa8299315e524f45ccb265158d8fd468ef73be89a387",
+      "rawCodeMasked": "NITYA-••••-775E",
+      "createdByUserId": "guru_req_fix_001",
+      "intendedRole": "shishya",
+      "status": "used",
+      "expiresAt": "2026-09-06T06:17:33.646Z",
+      "createdAt": "2026-08-30T06:17:33.646Z",
+      "updatedAt": "2026-08-30T06:17:33.649Z",
+      "usedAt": "2026-08-30T06:17:33.649Z",
+      "usedByUserId": "shishya_req_fix_001"
+    },
+    "inv_1788070742537_usobox": {
+      "id": "inv_1788070742537_usobox",
+      "tokenHash": "e139ffc6ab2d7357abdf74ecb7845b0d9129c5aa59d6d8ac88d298bd2a543796",
+      "codeHash": "dd483f02f395a1ba46031e7dd7c55667c5e71d58fe534bc23b30c7ce23e073d0",
+      "rawCodeMasked": "NITYA-••••-5RA7",
+      "createdByUserId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "intendedRole": "shishya",
+      "status": "pending",
+      "expiresAt": "2026-09-06T06:19:02.537Z",
+      "createdAt": "2026-08-30T06:19:02.537Z",
+      "updatedAt": "2026-08-30T06:19:02.537Z"
+    },
+    "inv_1788071020953_8amqq0": {
+      "id": "inv_1788071020953_8amqq0",
+      "tokenHash": "b27ab290721da3900307ca5c4a383189be48dbbf180e92b12c55bf4316691775",
+      "codeHash": "103783502ef2d8833598dd520daa3f795e9676dde8e2b8bdb1713483e00bf04c",
+      "rawCodeMasked": "NITYA-••••-YKVJ",
+      "createdByUserId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "intendedRole": "shishya",
+      "status": "pending",
+      "expiresAt": "2026-09-06T06:23:40.953Z",
+      "createdAt": "2026-08-30T06:23:40.958Z",
+      "updatedAt": "2026-08-30T06:23:40.958Z"
+    },
+    "inv_1788071532204_wvy4sx": {
+      "id": "inv_1788071532204_wvy4sx",
+      "tokenHash": "c7e06b13e2baf790798d11fdcf3d4778feca91a55b4df6e71d64dd0b499a7403",
+      "codeHash": "4bba37f68f2d5dfde703615f0cc49c1dd3ded2a7f4aa51295a8a64f180ca4575",
+      "rawCodeMasked": "NITYA-••••-2SRU",
+      "createdByUserId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "intendedRole": "shishya",
+      "status": "pending",
+      "expiresAt": "2026-09-06T06:32:12.204Z",
+      "createdAt": "2026-08-30T06:32:12.204Z",
+      "updatedAt": "2026-08-30T06:32:12.204Z"
+    },
+    "inv_1788071704052_bsdo1v": {
+      "id": "inv_1788071704052_bsdo1v",
+      "tokenHash": "9e74af8ee969885b8a30aab218e0fb051e3519771546e128a9eb3227ffcbbd60",
+      "codeHash": "26901301c825e73e3235c7baa007a907c552d22c361c752f5f5ebbcf78ede688",
+      "rawCodeMasked": "NITYA-••••-PVG8",
+      "createdByUserId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "intendedRole": "shishya",
+      "status": "pending",
+      "expiresAt": "2026-09-06T06:35:04.052Z",
+      "createdAt": "2026-08-30T06:35:04.052Z",
+      "updatedAt": "2026-08-30T06:35:04.052Z"
+    },
+    "inv_1788077289328_scv2he": {
+      "id": "inv_1788077289328_scv2he",
+      "tokenHash": "590efecadce0afdfc68d24c8c293b7c2ec1d32ff7e104dd863d6b6adbba30079",
+      "codeHash": "c7456b98693325c0c016495384aa977c00bf0cbd3ed0a3b7efa8a3f22dfadc42",
+      "rawCodeMasked": "NITYA-••••-JNAQ",
+      "createdByUserId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "intendedRole": "shishya",
+      "status": "pending",
+      "expiresAt": "2026-09-06T08:08:09.328Z",
+      "createdAt": "2026-08-30T08:08:09.329Z",
+      "updatedAt": "2026-08-30T08:08:09.329Z"
+    },
+    "inv_1788077728948_e3om4c": {
+      "id": "inv_1788077728948_e3om4c",
+      "tokenHash": "f55e0f57c7356bfa99f9a5d6f51a93c255d4144b6ef2456a51fc805a39603f23",
+      "codeHash": "32481c9fea8cfaab407041a7d3ea9461ecfde81fe519fcc3a35d4fe77af308db",
+      "rawCodeMasked": "NITYA-••••-73QY",
+      "createdByUserId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "intendedRole": "shishya",
+      "status": "used",
+      "expiresAt": "2026-09-06T08:15:28.948Z",
+      "createdAt": "2026-08-30T08:15:28.948Z",
+      "updatedAt": "2026-08-30T08:19:05.817Z",
+      "usedAt": "2026-08-30T08:19:05.817Z",
+      "usedByUserId": "user_3Icy2LMlJdSiholaVEiDVenlfrx"
+    },
+    "inv_1788078592060_ny47b1": {
+      "id": "inv_1788078592060_ny47b1",
+      "tokenHash": "3f700c3dd7795c95fe6ee8692e24f2e9ae0afff089553e2e0d2518eef2fdd4f6",
+      "codeHash": "1e164629c69d891feb269ddd92870fe3c2b23c195368dc40432fcfadbe6a436d",
+      "rawCodeMasked": "NITYA-••••-9EWM",
+      "createdByUserId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "intendedRole": "shishya",
+      "status": "pending",
+      "expiresAt": "2026-09-06T08:29:52.060Z",
+      "createdAt": "2026-08-30T08:29:52.060Z",
+      "updatedAt": "2026-08-30T08:29:52.060Z"
+    },
+    "inv_1788078949120_mrzouq": {
+      "id": "inv_1788078949120_mrzouq",
+      "tokenHash": "95d0164f172e3ef7e68d001a19277a052c047989a3144bbe5d200b12a48bab8b",
+      "codeHash": "8ab6a455df9a8a617e41399cdc3f4ce8eef66c588952b41c9d442031f0c748b6",
+      "rawCodeMasked": "NITYA-••••-5NTJ",
+      "createdByUserId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "intendedRole": "shishya",
+      "status": "used",
+      "expiresAt": "2026-09-06T08:35:49.120Z",
+      "createdAt": "2026-08-30T08:35:49.121Z",
+      "updatedAt": "2026-08-30T08:37:11.671Z",
+      "usedAt": "2026-08-30T08:37:11.671Z",
+      "usedByUserId": "user_3Id0EiHbiMyR3Ihw4D1vHheAuyK"
+    }
+  },
+  "relationships": {
+    "rel_guru_association_a_shishya_association_one": {
+      "id": "rel_guru_association_a_shishya_association_one",
+      "guruId": "guru_association_a",
+      "shishyaId": "shishya_association_one",
+      "relationshipType": "primary_guru",
+      "status": "active",
+      "isPrimary": true,
+      "createdAt": "2026-08-29T17:49:50.402Z",
+      "updatedAt": "2026-08-29T17:49:50.402Z"
+    },
+    "rel_guru_association_a_shishya_association_two": {
+      "id": "rel_guru_association_a_shishya_association_two",
+      "guruId": "guru_association_a",
+      "shishyaId": "shishya_association_two",
+      "relationshipType": "primary_guru",
+      "status": "active",
+      "isPrimary": true,
+      "createdAt": "2026-08-29T17:49:50.402Z",
+      "updatedAt": "2026-08-29T17:49:50.402Z"
+    },
+    "rel_user_3Ib2c2mgsESWA68o0LNYBMzjYvO_user_3Ib2c2mgsESWA68o0LNYBMzjYvO": {
+      "id": "rel_user_3Ib2c2mgsESWA68o0LNYBMzjYvO_user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "guruId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "shishyaId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "relationshipType": "primary_guru",
+      "status": "active",
+      "isPrimary": true,
+      "createdAt": "2026-08-29T17:56:06.981Z",
+      "updatedAt": "2026-08-29T17:56:06.981Z"
+    },
+    "rel_guru_req_fix_001_shishya_req_fix_001": {
+      "id": "rel_guru_req_fix_001_shishya_req_fix_001",
+      "guruId": "guru_req_fix_001",
+      "shishyaId": "shishya_req_fix_001",
+      "relationshipType": "primary_guru",
+      "status": "active",
+      "isPrimary": true,
+      "createdAt": "2026-08-30T06:17:33.649Z",
+      "updatedAt": "2026-08-30T06:17:33.649Z"
+    },
+    "rel_user_3Ib2c2mgsESWA68o0LNYBMzjYvO_user_3Icy2LMlJdSiholaVEiDVenlfrx": {
+      "id": "rel_user_3Ib2c2mgsESWA68o0LNYBMzjYvO_user_3Icy2LMlJdSiholaVEiDVenlfrx",
+      "guruId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "shishyaId": "user_3Icy2LMlJdSiholaVEiDVenlfrx",
+      "relationshipType": "primary_guru",
+      "status": "active",
+      "isPrimary": true,
+      "createdAt": "2026-08-30T08:19:05.817Z",
+      "updatedAt": "2026-08-30T08:19:05.817Z"
+    },
+    "rel_user_3Ib2c2mgsESWA68o0LNYBMzjYvO_user_3Id0EiHbiMyR3Ihw4D1vHheAuyK": {
+      "id": "rel_user_3Ib2c2mgsESWA68o0LNYBMzjYvO_user_3Id0EiHbiMyR3Ihw4D1vHheAuyK",
+      "guruId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "shishyaId": "user_3Id0EiHbiMyR3Ihw4D1vHheAuyK",
+      "relationshipType": "primary_guru",
+      "status": "active",
+      "isPrimary": true,
+      "createdAt": "2026-08-30T08:37:11.671Z",
+      "updatedAt": "2026-08-30T08:37:11.671Z"
+    }
+  },
+  "reports": {
+    "rep_user_3Icy2LMlJdSiholaVEiDVenlfrx_2026-08-30": {
+      "id": "rep_user_3Icy2LMlJdSiholaVEiDVenlfrx_2026-08-30",
+      "studentId": "user_3Icy2LMlJdSiholaVEiDVenlfrx",
+      "practiceDate": "2026-08-30",
+      "sleepTime": "20:45",
+      "wakeUpTime": "03:20",
+      "sleepDurationMinutes": 395,
+      "japaRounds": 22,
+      "extraRounds": 0,
+      "totalRounds": 22,
+      "readingDurationMinutes": 30,
+      "hearingDurationMinutes": 60,
+      "collegeStudyDurationMinutes": 120,
+      "selfStudyDurationMinutes": 120,
+      "totalStudyDurationMinutes": 240,
+      "dayRestDurationMinutes": 30,
+      "timeWastedDurationMinutes": 0,
+      "status": "submitted",
+      "createdAt": "2026-08-30T08:19:37.082Z",
+      "updatedAt": "2026-08-30T08:28:51.920Z",
+      "submittedAt": "2026-08-30T08:19:37.082Z",
+      "timezone": "Asia/Kolkata"
+    },
+    "rep_user_3Id0EiHbiMyR3Ihw4D1vHheAuyK_2026-08-30": {
+      "id": "rep_user_3Id0EiHbiMyR3Ihw4D1vHheAuyK_2026-08-30",
+      "studentId": "user_3Id0EiHbiMyR3Ihw4D1vHheAuyK",
+      "practiceDate": "2026-08-30",
+      "sleepTime": "20:45",
+      "wakeUpTime": "03:20",
+      "sleepDurationMinutes": 395,
+      "japaRounds": 18,
+      "extraRounds": 0,
+      "totalRounds": 18,
+      "readingDurationMinutes": 90,
+      "hearingDurationMinutes": 30,
+      "collegeStudyDurationMinutes": 240,
+      "selfStudyDurationMinutes": 120,
+      "totalStudyDurationMinutes": 360,
+      "dayRestDurationMinutes": 30,
+      "timeWastedDurationMinutes": 0,
+      "status": "submitted",
+      "createdAt": "2026-08-30T08:37:47.525Z",
+      "updatedAt": "2026-08-30T08:37:47.525Z",
+      "submittedAt": "2026-08-30T08:37:47.525Z",
+      "timezone": "Asia/Kolkata"
+    }
+  },
+  "followUps": {},
+  "privateNotes": {},
+  "sankalpas": {},
+  "reflections": {},
+  "notifications": {},
+  "notificationPreferences": {
+    "user_3Ib2c2mgsESWA68o0LNYBMzjYvO": {
+      "id": "pref_user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "userId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "dailyReportReminder": true,
+      "weeklyReflectionReminder": true,
+      "sankalpaReminder": true,
+      "guruDailySummary": true,
+      "guruFollowUpReminder": true,
+      "quietHoursStart": "21:00",
+      "quietHoursEnd": "05:00",
+      "timezone": "Asia/Kolkata",
+      "createdAt": "2026-08-29T17:55:44.816Z",
+      "updatedAt": "2026-08-29T17:55:44.816Z"
+    },
+    "user_3Icy2LMlJdSiholaVEiDVenlfrx": {
+      "id": "pref_user_3Icy2LMlJdSiholaVEiDVenlfrx",
+      "userId": "user_3Icy2LMlJdSiholaVEiDVenlfrx",
+      "dailyReportReminder": true,
+      "weeklyReflectionReminder": true,
+      "sankalpaReminder": true,
+      "guruDailySummary": true,
+      "guruFollowUpReminder": true,
+      "quietHoursStart": "21:00",
+      "quietHoursEnd": "05:00",
+      "timezone": "Asia/Kolkata",
+      "createdAt": "2026-08-30T08:19:13.336Z",
+      "updatedAt": "2026-08-30T08:19:13.336Z"
+    },
+    "user_3Id0EiHbiMyR3Ihw4D1vHheAuyK": {
+      "id": "pref_user_3Id0EiHbiMyR3Ihw4D1vHheAuyK",
+      "userId": "user_3Id0EiHbiMyR3Ihw4D1vHheAuyK",
+      "dailyReportReminder": true,
+      "weeklyReflectionReminder": true,
+      "sankalpaReminder": true,
+      "guruDailySummary": true,
+      "guruFollowUpReminder": true,
+      "quietHoursStart": "21:00",
+      "quietHoursEnd": "05:00",
+      "timezone": "Asia/Kolkata",
+      "createdAt": "2026-08-30T08:37:17.921Z",
+      "updatedAt": "2026-08-30T08:37:17.922Z"
+    }
+  },
+  "auditLogs": {
+    "audit_1788025790399_try7627": {
+      "id": "audit_1788025790399_try7627",
+      "actorId": "guru_association_a",
+      "action": "INVITATION_CREATED",
+      "entityType": "Invitation",
+      "entityId": "invite_association_a1",
+      "timestamp": "2026-08-29T17:49:50.399Z",
+      "metadata": {
+        "intendedRole": "shishya",
+        "rawCodeMasked": "NITYA-••••-TEST"
+      }
+    },
+    "audit_1788025790399_67uefvi": {
+      "id": "audit_1788025790399_67uefvi",
+      "actorId": "guru_association_a",
+      "action": "INVITATION_CREATED",
+      "entityType": "Invitation",
+      "entityId": "invite_association_a2",
+      "timestamp": "2026-08-29T17:49:50.399Z",
+      "metadata": {
+        "intendedRole": "shishya",
+        "rawCodeMasked": "NITYA-••••-TEST"
+      }
+    },
+    "audit_1788025790400_ui11nfr": {
+      "id": "audit_1788025790400_ui11nfr",
+      "actorId": "guru_association_b",
+      "action": "INVITATION_CREATED",
+      "entityType": "Invitation",
+      "entityId": "invite_association_b1",
+      "timestamp": "2026-08-29T17:49:50.400Z",
+      "metadata": {
+        "intendedRole": "shishya",
+        "rawCodeMasked": "NITYA-••••-TEST"
+      }
+    },
+    "audit_1788025790402_jwvos1i": {
+      "id": "audit_1788025790402_jwvos1i",
+      "actorId": "shishya_association_one",
+      "action": "INVITATION_USED",
+      "entityType": "Invitation",
+      "entityId": "invite_association_a1",
+      "timestamp": "2026-08-29T17:49:50.402Z",
+      "metadata": {
+        "guruId": "guru_association_a"
+      }
+    },
+    "audit_1788025790402_nvy50ao": {
+      "id": "audit_1788025790402_nvy50ao",
+      "actorId": "shishya_association_one",
+      "action": "SHISHYA_CONNECTED",
+      "entityType": "Mentorship",
+      "entityId": "rel_guru_association_a_shishya_association_one",
+      "timestamp": "2026-08-29T17:49:50.402Z",
+      "metadata": {
+        "guruId": "guru_association_a",
+        "relationshipType": "primary_guru"
+      }
+    },
+    "audit_1788025790402_5n3pw3e": {
+      "id": "audit_1788025790402_5n3pw3e",
+      "actorId": "shishya_association_two",
+      "action": "INVITATION_USED",
+      "entityType": "Invitation",
+      "entityId": "invite_association_a2",
+      "timestamp": "2026-08-29T17:49:50.402Z",
+      "metadata": {
+        "guruId": "guru_association_a"
+      }
+    },
+    "audit_1788025790402_1i9m168": {
+      "id": "audit_1788025790402_1i9m168",
+      "actorId": "shishya_association_two",
+      "action": "SHISHYA_CONNECTED",
+      "entityType": "Mentorship",
+      "entityId": "rel_guru_association_a_shishya_association_two",
+      "timestamp": "2026-08-29T17:49:50.402Z",
+      "metadata": {
+        "guruId": "guru_association_a",
+        "relationshipType": "primary_guru"
+      }
+    },
+    "audit_1788026149152_m3wa073": {
+      "id": "audit_1788026149152_m3wa073",
+      "actorId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "action": "INVITATION_CREATED",
+      "entityType": "Invitation",
+      "entityId": "inv_1788026149152_sflq7h",
+      "timestamp": "2026-08-29T17:55:49.152Z",
+      "metadata": {
+        "intendedRole": "shishya",
+        "rawCodeMasked": "NITYA-••••-X2SE"
+      }
+    },
+    "audit_1788026166981_eojv4ko": {
+      "id": "audit_1788026166981_eojv4ko",
+      "actorId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "action": "INVITATION_USED",
+      "entityType": "Invitation",
+      "entityId": "inv_1788026149152_sflq7h",
+      "timestamp": "2026-08-29T17:56:06.982Z",
+      "metadata": {
+        "guruId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO"
+      }
+    },
+    "audit_1788026166982_hvclud2": {
+      "id": "audit_1788026166982_hvclud2",
+      "actorId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "action": "SHISHYA_CONNECTED",
+      "entityType": "Mentorship",
+      "entityId": "rel_user_3Ib2c2mgsESWA68o0LNYBMzjYvO_user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "timestamp": "2026-08-29T17:56:06.982Z",
+      "metadata": {
+        "guruId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+        "relationshipType": "primary_guru"
+      }
+    },
+    "audit_1788067954013_5dfisb5": {
+      "id": "audit_1788067954013_5dfisb5",
+      "actorId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "action": "INVITATION_CREATED",
+      "entityType": "Invitation",
+      "entityId": "inv_1788067954011_wgo4b1",
+      "timestamp": "2026-08-30T05:32:34.013Z",
+      "metadata": {
+        "intendedRole": "shishya",
+        "rawCodeMasked": "NITYA-••••-7MUC"
+      }
+    },
+    "audit_1788069868685_wyo3lq3": {
+      "id": "audit_1788069868685_wyo3lq3",
+      "actorId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "action": "INVITATION_CREATED",
+      "entityType": "Invitation",
+      "entityId": "inv_1788069868685_kp16xr",
+      "timestamp": "2026-08-30T06:04:28.685Z",
+      "metadata": {
+        "intendedRole": "shishya",
+        "rawCodeMasked": "NITYA-••••-G8NP"
+      }
+    },
+    "audit_1788070653647_gakz7kp": {
+      "id": "audit_1788070653647_gakz7kp",
+      "actorId": "guru_req_fix_001",
+      "action": "INVITATION_CREATED",
+      "entityType": "Invitation",
+      "entityId": "inv_1788070653646_jhdckb",
+      "timestamp": "2026-08-30T06:17:33.647Z",
+      "metadata": {
+        "intendedRole": "shishya",
+        "rawCodeMasked": "NITYA-••••-775E"
+      }
+    },
+    "audit_1788070653649_t2i3qvn": {
+      "id": "audit_1788070653649_t2i3qvn",
+      "actorId": "shishya_req_fix_001",
+      "action": "INVITATION_USED",
+      "entityType": "Invitation",
+      "entityId": "inv_1788070653646_jhdckb",
+      "timestamp": "2026-08-30T06:17:33.649Z",
+      "metadata": {
+        "guruId": "guru_req_fix_001"
+      }
+    },
+    "audit_1788070653649_xx7qjl8": {
+      "id": "audit_1788070653649_xx7qjl8",
+      "actorId": "shishya_req_fix_001",
+      "action": "SHISHYA_CONNECTED",
+      "entityType": "Mentorship",
+      "entityId": "rel_guru_req_fix_001_shishya_req_fix_001",
+      "timestamp": "2026-08-30T06:17:33.649Z",
+      "metadata": {
+        "guruId": "guru_req_fix_001",
+        "relationshipType": "primary_guru"
+      }
+    },
+    "audit_1788070742537_8rvmlh2": {
+      "id": "audit_1788070742537_8rvmlh2",
+      "actorId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "action": "INVITATION_CREATED",
+      "entityType": "Invitation",
+      "entityId": "inv_1788070742537_usobox",
+      "timestamp": "2026-08-30T06:19:02.537Z",
+      "metadata": {
+        "intendedRole": "shishya",
+        "rawCodeMasked": "NITYA-••••-5RA7"
+      }
+    },
+    "audit_1788071020959_pbavl9k": {
+      "id": "audit_1788071020959_pbavl9k",
+      "actorId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "action": "INVITATION_CREATED",
+      "entityType": "Invitation",
+      "entityId": "inv_1788071020953_8amqq0",
+      "timestamp": "2026-08-30T06:23:40.959Z",
+      "metadata": {
+        "intendedRole": "shishya",
+        "rawCodeMasked": "NITYA-••••-YKVJ"
+      }
+    },
+    "audit_1788071532205_qqzfvpv": {
+      "id": "audit_1788071532205_qqzfvpv",
+      "actorId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "action": "INVITATION_CREATED",
+      "entityType": "Invitation",
+      "entityId": "inv_1788071532204_wvy4sx",
+      "timestamp": "2026-08-30T06:32:12.205Z",
+      "metadata": {
+        "intendedRole": "shishya",
+        "rawCodeMasked": "NITYA-••••-2SRU"
+      }
+    },
+    "audit_1788071704053_coxqvq8": {
+      "id": "audit_1788071704053_coxqvq8",
+      "actorId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "action": "INVITATION_CREATED",
+      "entityType": "Invitation",
+      "entityId": "inv_1788071704052_bsdo1v",
+      "timestamp": "2026-08-30T06:35:04.053Z",
+      "metadata": {
+        "intendedRole": "shishya",
+        "rawCodeMasked": "NITYA-••••-PVG8"
+      }
+    },
+    "audit_1788077289332_knopuu7": {
+      "id": "audit_1788077289332_knopuu7",
+      "actorId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "action": "INVITATION_CREATED",
+      "entityType": "Invitation",
+      "entityId": "inv_1788077289328_scv2he",
+      "timestamp": "2026-08-30T08:08:09.332Z",
+      "metadata": {
+        "intendedRole": "shishya",
+        "rawCodeMasked": "NITYA-••••-JNAQ"
+      }
+    },
+    "audit_1788077728949_rbtlddl": {
+      "id": "audit_1788077728949_rbtlddl",
+      "actorId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "action": "INVITATION_CREATED",
+      "entityType": "Invitation",
+      "entityId": "inv_1788077728948_e3om4c",
+      "timestamp": "2026-08-30T08:15:28.949Z",
+      "metadata": {
+        "intendedRole": "shishya",
+        "rawCodeMasked": "NITYA-••••-73QY"
+      }
+    },
+    "audit_1788077945817_apyiwlj": {
+      "id": "audit_1788077945817_apyiwlj",
+      "actorId": "user_3Icy2LMlJdSiholaVEiDVenlfrx",
+      "action": "INVITATION_USED",
+      "entityType": "Invitation",
+      "entityId": "inv_1788077728948_e3om4c",
+      "timestamp": "2026-08-30T08:19:05.817Z",
+      "metadata": {
+        "guruId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO"
+      }
+    },
+    "audit_1788077945817_gqhtey8": {
+      "id": "audit_1788077945817_gqhtey8",
+      "actorId": "user_3Icy2LMlJdSiholaVEiDVenlfrx",
+      "action": "SHISHYA_CONNECTED",
+      "entityType": "Mentorship",
+      "entityId": "rel_user_3Ib2c2mgsESWA68o0LNYBMzjYvO_user_3Icy2LMlJdSiholaVEiDVenlfrx",
+      "timestamp": "2026-08-30T08:19:05.817Z",
+      "metadata": {
+        "guruId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+        "relationshipType": "primary_guru"
+      }
+    },
+    "audit_1788077977083_08ase2e": {
+      "id": "audit_1788077977083_08ase2e",
+      "actorId": "user_3Icy2LMlJdSiholaVEiDVenlfrx",
+      "action": "REPORT_SUBMITTED",
+      "entityType": "DailyReport",
+      "entityId": "rep_user_3Icy2LMlJdSiholaVEiDVenlfrx_2026-08-30",
+      "timestamp": "2026-08-30T08:19:37.083Z",
+      "metadata": {
+        "practiceDate": "2026-08-30",
+        "status": "submitted",
+        "totalRounds": 16,
+        "sleepDuration": 395
+      }
+    },
+    "audit_1788077980377_usl1srb": {
+      "id": "audit_1788077980377_usl1srb",
+      "actorId": "user_3Icy2LMlJdSiholaVEiDVenlfrx",
+      "action": "REPORT_EDITED",
+      "entityType": "DailyReport",
+      "entityId": "rep_user_3Icy2LMlJdSiholaVEiDVenlfrx_2026-08-30",
+      "timestamp": "2026-08-30T08:19:40.377Z",
+      "metadata": {
+        "practiceDate": "2026-08-30",
+        "status": "submitted",
+        "totalRounds": 16,
+        "sleepDuration": 395
+      }
+    },
+    "audit_1788078531920_ljmihrm": {
+      "id": "audit_1788078531920_ljmihrm",
+      "actorId": "user_3Icy2LMlJdSiholaVEiDVenlfrx",
+      "action": "REPORT_EDITED",
+      "entityType": "DailyReport",
+      "entityId": "rep_user_3Icy2LMlJdSiholaVEiDVenlfrx_2026-08-30",
+      "timestamp": "2026-08-30T08:28:51.920Z",
+      "metadata": {
+        "practiceDate": "2026-08-30",
+        "status": "submitted",
+        "totalRounds": 22,
+        "sleepDuration": 395
+      }
+    },
+    "audit_1788078592060_vakre5e": {
+      "id": "audit_1788078592060_vakre5e",
+      "actorId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "action": "INVITATION_CREATED",
+      "entityType": "Invitation",
+      "entityId": "inv_1788078592060_ny47b1",
+      "timestamp": "2026-08-30T08:29:52.060Z",
+      "metadata": {
+        "intendedRole": "shishya",
+        "rawCodeMasked": "NITYA-••••-9EWM"
+      }
+    },
+    "audit_1788078949122_9n7wquz": {
+      "id": "audit_1788078949122_9n7wquz",
+      "actorId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+      "action": "INVITATION_CREATED",
+      "entityType": "Invitation",
+      "entityId": "inv_1788078949120_mrzouq",
+      "timestamp": "2026-08-30T08:35:49.122Z",
+      "metadata": {
+        "intendedRole": "shishya",
+        "rawCodeMasked": "NITYA-••••-5NTJ"
+      }
+    },
+    "audit_1788079031671_qda1b8q": {
+      "id": "audit_1788079031671_qda1b8q",
+      "actorId": "user_3Id0EiHbiMyR3Ihw4D1vHheAuyK",
+      "action": "INVITATION_USED",
+      "entityType": "Invitation",
+      "entityId": "inv_1788078949120_mrzouq",
+      "timestamp": "2026-08-30T08:37:11.671Z",
+      "metadata": {
+        "guruId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO"
+      }
+    },
+    "audit_1788079031671_avavhjh": {
+      "id": "audit_1788079031671_avavhjh",
+      "actorId": "user_3Id0EiHbiMyR3Ihw4D1vHheAuyK",
+      "action": "SHISHYA_CONNECTED",
+      "entityType": "Mentorship",
+      "entityId": "rel_user_3Ib2c2mgsESWA68o0LNYBMzjYvO_user_3Id0EiHbiMyR3Ihw4D1vHheAuyK",
+      "timestamp": "2026-08-30T08:37:11.671Z",
+      "metadata": {
+        "guruId": "user_3Ib2c2mgsESWA68o0LNYBMzjYvO",
+        "relationshipType": "primary_guru"
+      }
+    },
+    "audit_1788079067525_9l64ewe": {
+      "id": "audit_1788079067525_9l64ewe",
+      "actorId": "user_3Id0EiHbiMyR3Ihw4D1vHheAuyK",
+      "action": "REPORT_SUBMITTED",
+      "entityType": "DailyReport",
+      "entityId": "rep_user_3Id0EiHbiMyR3Ihw4D1vHheAuyK_2026-08-30",
+      "timestamp": "2026-08-30T08:37:47.525Z",
+      "metadata": {
+        "practiceDate": "2026-08-30",
+        "status": "submitted",
+        "totalRounds": 18,
+        "sleepDuration": 395
+      }
+    }
+  }
+}

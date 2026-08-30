@@ -7,14 +7,78 @@
 // based strictly on the authenticated user's verified role.
 // ============================================================
 
-import { getCurrentRole } from "@/lib/auth/auth";
+import { currentUser, clerkClient } from "@clerk/nextjs/server";
+import { getCurrentRole, normalizeRoleValue } from "@/lib/auth/auth";
 import { getPostAuthRedirectUrl, sanitizeRedirectUrl } from "@/lib/auth/redirects";
+import { dbStore } from "@/lib/db/store";
+import { UserRole } from "@/types/auth";
+
+export async function syncAuthenticatedRoleAction(
+  preferredRole?: string | null
+): Promise<{ success: boolean; role: UserRole | null }> {
+  try {
+    const user = await currentUser();
+    if (!user) {
+      return { success: false, role: null };
+    }
+
+    const normalizedPreferredRole = normalizeRoleValue(preferredRole);
+    const email = user.emailAddresses?.[0]?.emailAddress?.toLowerCase() || "";
+
+    const existingUser = email ? await dbStore.getUserByEmail(email) : null;
+    const currentRole = existingUser?.role || (await getCurrentRole());
+    const assignedRole: UserRole =
+      normalizedPreferredRole ||
+      (currentRole === "guru" || currentRole === "shishya" ? currentRole : "shishya");
+
+    const linkedGuruId =
+      existingUser?.linkedGuruId ||
+      ((user.publicMetadata?.linkedGuruId as string | undefined) ?? undefined);
+
+    const nextUser = {
+      id: user.id,
+      authProviderId: user.id,
+      role: assignedRole,
+      name:
+        `${user.firstName || ""} ${user.lastName || ""}`.trim() ||
+        existingUser?.name ||
+        (assignedRole === "guru" ? "Guru" : "Devotee"),
+      spiritualName: existingUser?.spiritualName || undefined,
+      email,
+      ashramId: existingUser?.ashramId,
+      linkedGuruId,
+      status: existingUser?.status || "active",
+      createdAt: existingUser?.createdAt || new Date(user.createdAt).toISOString(),
+      updatedAt: new Date(user.updatedAt).toISOString(),
+    };
+
+    await dbStore.upsertUser(nextUser);
+
+    const client = await clerkClient();
+    await client.users.updateUserMetadata(user.id, {
+      publicMetadata: {
+        role: assignedRole,
+        linkedGuruId: linkedGuruId ?? undefined,
+      },
+      unsafeMetadata: {
+        roleIntent: assignedRole,
+        linkedGuruId: linkedGuruId ?? undefined,
+      },
+    });
+
+    return { success: true, role: assignedRole };
+  } catch (err) {
+    console.error("[Auth] syncAuthenticatedRoleAction error:", err);
+    return { success: false, role: null };
+  }
+}
 
 export async function resolvePostLoginRedirectAction(
-  intendedUrl?: string | null
+  intendedUrl?: string | null,
+  preferredRole?: UserRole | null
 ): Promise<{ success: boolean; redirectUrl: string }> {
   try {
-    const role = await getCurrentRole();
+    const role = preferredRole || (await getCurrentRole());
 
     if (!role) {
       return {
@@ -25,7 +89,6 @@ export async function resolvePostLoginRedirectAction(
 
     if (intendedUrl) {
       const sanitized = sanitizeRedirectUrl(intendedUrl);
-      // Ensure role cannot accidentally enter forbidden areas
       if (role === "guru" && sanitized.startsWith("/student")) {
         return { success: true, redirectUrl: "/guru" };
       }
