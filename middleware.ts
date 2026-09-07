@@ -1,36 +1,7 @@
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 // Define public route patterns that do not require authentication
-const isPublicRoute = createRouteMatcher([
-  "/",
-  "/about",
-  "/design-system",
-  "/login(.*)",
-  "/signup(.*)",
-  "/forgot-password(.*)",
-  "/invite(.*)",
-  "/manifest.webmanifest",
-  "/favicon.ico",
-  "/icon.svg",
-  "/brand/(.*)",
-  "/icons/(.*)",
-  "/sw.js",
-  "/workbox-(.*)",
-]);
-
-export default clerkMiddleware(async (auth, req) => {
-  // Fail-Closed Security Policy: Enforce authentication on all routes by default
-  // unless explicitly included in the public allowlist
-  if (!isPublicRoute(req)) {
-    const { userId } = await auth();
-    if (!userId) {
-      const signInUrl = new URL("/login", req.url);
-      signInUrl.searchParams.set("redirect_url", req.nextUrl.pathname);
-      return NextResponse.redirect(signInUrl);
-    }
-  }
-
+export default function middleware() {
   const response = NextResponse.next();
 
   // Attach defense-in-depth HTTP security headers
@@ -47,7 +18,7 @@ export default clerkMiddleware(async (auth, req) => {
   );
 
   return response;
-});
+}
 
 export const config = {
   matcher: [

@@ -2,12 +2,12 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { useAuth } from "@clerk/nextjs";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { PublicInvitationDetails } from "@/lib/db/schema";
-import { acceptInvitationAction } from "@/lib/actions/invitations";
+import { api } from "@/lib/api/client";
+import { getCachedUser } from "@/lib/auth/client";
 import {
   Sparkles,
   ArrowRight,
@@ -25,7 +25,8 @@ export function AcceptInviteCard({
   token: string;
   details: PublicInvitationDetails;
 }) {
-  const { isSignedIn, isLoaded } = useAuth();
+  const [isSignedIn, setIsSignedIn] = React.useState(false);
+  React.useEffect(() => { setIsSignedIn(Boolean(getCachedUser())); }, []);
 
   const [isLoading, setIsLoading] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState<string | null>(
@@ -38,9 +39,9 @@ export function AcceptInviteCard({
     setErrorMessage(null);
 
     try {
-      const res = await acceptInvitationAction(token);
-      if (res.success && res.guruName) {
-        setConnectedGuruName(res.guruName);
+      const res = await api.post<{ guru_name?: string; error?: string }>("/api/invitations/accept", { secret: token });
+      if (res.guru_name) {
+        setConnectedGuruName(res.guru_name);
       } else {
         setErrorMessage(res.error || "Failed to accept invitation.");
       }
@@ -168,7 +169,7 @@ export function AcceptInviteCard({
 
       {/* Actions */}
       <div className="space-y-3 pt-1">
-        {isLoaded && isSignedIn ? (
+        {isSignedIn ? (
           <Button
             variant="primary"
             size="lg"

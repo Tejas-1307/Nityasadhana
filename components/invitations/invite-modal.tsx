@@ -3,8 +3,8 @@
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { createInvitationAction } from "@/lib/actions/invitations";
-import { GeneratedInvitationResult } from "@/lib/invitations/service";
+import { api } from "@/lib/api/client";
+import type { InvitationResponse } from "@/lib/invitations/types";
 import {
   UserPlus,
   X,
@@ -37,7 +37,7 @@ export function InviteModal({
   const [isOpen, setIsOpen] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
-  const [invitation, setInvitation] = React.useState<GeneratedInvitationResult | null>(null);
+  const [invitation, setInvitation] = React.useState<InvitationResponse | null>(null);
   const [hasCopied, setHasCopied] = React.useState(false);
 
   const handleOpen = () => {
@@ -59,12 +59,12 @@ export function InviteModal({
     setError(null);
 
     try {
-      const res = await createInvitationAction();
-      if (res.success && res.data) {
-        setInvitation(res.data);
+      const res = await api.post<InvitationResponse>("/api/invitations");
+      if (res) {
+        setInvitation(res);
         if (onInvitationCreated) onInvitationCreated();
       } else {
-        setError(res.error || "Failed to generate invitation.");
+        setError("Failed to generate invitation.");
       }
     } catch {
       setError("An unexpected error occurred. Please try again.");
@@ -89,7 +89,7 @@ export function InviteModal({
   const handleCopy = async () => {
     if (!invitation) return;
     try {
-      const fullUrl = getFullInviteUrl(invitation.inviteUrl);
+      const fullUrl = getFullInviteUrl(`/invite/${invitation.token}`);
       await navigator.clipboard.writeText(fullUrl);
       setHasCopied(true);
       setTimeout(() => setHasCopied(false), 3000);
@@ -100,12 +100,12 @@ export function InviteModal({
 
   const handleShare = async () => {
     if (!invitation) return;
-    const fullUrl = getFullInviteUrl(invitation.inviteUrl);
+    const fullUrl = getFullInviteUrl(`/invite/${invitation.token}`);
     if (typeof navigator !== "undefined" && navigator.share) {
       try {
         await navigator.share({
           title: "Nityasādhanā Shishya Invitation",
-          text: `Hare Krishna! You have been invited to connect with your Guru on Nityasādhanā. Join using invitation code ${invitation.rawCode}:`,
+          text: `Hare Krishna! You have been invited to connect with your Guru on Nityasādhanā. Join using invitation code ${invitation.code}:`,
           url: fullUrl,
         });
       } catch {
@@ -220,13 +220,13 @@ export function InviteModal({
                     Invitation Code
                   </span>
                   <div className="font-mono text-[22px] font-bold tracking-widest text-[#193B3B] selection:bg-[#3F9495] selection:text-white sm:text-[24px]">
-                    {invitation.rawCode}
+                    {invitation.code}
                   </div>
                   <div className="flex items-center justify-center gap-1.5 text-[12px] text-[#547070]">
                     <Calendar className="h-3.5 w-3.5 text-[#A9824D]" />
                     <span>
                       Expires in 7 days (
-                      {new Date(invitation.expiresAt).toLocaleDateString("en-IN", {
+                      {new Date(invitation.expires_at).toLocaleDateString("en-IN", {
                         month: "short",
                         day: "numeric",
                       })}

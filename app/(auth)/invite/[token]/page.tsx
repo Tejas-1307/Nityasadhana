@@ -5,14 +5,16 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Logo } from "@/components/branding/logo";
 import { AcceptInviteCard } from "@/components/invitations/accept-invite-card";
-import { validateInvitationSecretAction } from "@/lib/actions/invitations";
 
 export const dynamic = "force-dynamic";
 
 export default async function InviteTokenPage({ params }: { params: Promise<{ token: string }> }) {
   const { token } = await params;
   const decodedToken = decodeURIComponent(token);
-  const details = await validateInvitationSecretAction(decodedToken);
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+  const validationResponse = await fetch(`${apiUrl}/api/invitations/validate/${encodeURIComponent(decodedToken)}`, { cache: "no-store" });
+  const validation = await validationResponse.json() as { id?: number; guru_name?: string; expires_at?: string; is_valid: boolean; error_reason?: string };
+  const details = { id: String(validation.id || ""), guruName: validation.guru_name || "", expiresAt: validation.expires_at || "", isValid: validation.is_valid, errorReason: validation.error_reason };
   const authUser = await getCurrentAuthUser();
 
   if (details.isValid && !authUser) {

@@ -1,11 +1,11 @@
 import * as React from "react";
 import Link from "next/link";
-import { SignOutButton } from "@clerk/nextjs";
 import { Container } from "@/components/layout/container";
 import { Card } from "@/components/ui/card";
 import { Avatar } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { LogoutButton } from "@/components/auth/logout-button";
 import { requireShishya, getActiveRelationshipForShishya } from "@/lib/auth";
 import { formatPracticeDate } from "@/lib/utils/greeting";
 import {
@@ -138,16 +138,10 @@ export default async function StudentProfilePage() {
 
         {/* Sign Out Action */}
         <div className="flex justify-center pt-2">
-          <SignOutButton redirectUrl="/login">
-            <Button
-              variant="secondary"
-              size="default"
+          <LogoutButton
               className="w-full text-[#B33927] hover:bg-[#B33927]/10 hover:text-[#992E1E] sm:w-auto"
               leftIcon={<LogOut className="h-4 w-4" />}
-            >
-              Sign Out of Nityasādhanā
-            </Button>
-          </SignOutButton>
+            >Sign Out of Nityasādhanā</LogoutButton>
         </div>
       </Container>
     </main>

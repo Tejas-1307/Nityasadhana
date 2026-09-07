@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { validateInvitationSecretAction } from "@/lib/actions/invitations";
+import { api } from "@/lib/api/client";
 import { KeyRound, ArrowRight, AlertCircle } from "lucide-react";
 
 export function CodeEntryForm() {
@@ -28,12 +28,12 @@ export function CodeEntryForm() {
     setIsLoading(true);
 
     try {
-      const validation = await validateInvitationSecretAction(trimmed);
-      if (validation.isValid) {
+      const validation = await api.get<{ is_valid: boolean; error_reason?: string }>(`/api/invitations/validate/${encodeURIComponent(trimmed)}`);
+      if (validation.is_valid) {
         // Route to the invite acceptance page with the code
         router.push(`/invite/${encodeURIComponent(trimmed)}`);
       } else {
-        setErrorMessage(validation.errorReason || "Invalid or expired invitation code.");
+        setErrorMessage(validation.error_reason || "Invalid or expired invitation code.");
       }
     } catch {
       setErrorMessage("Unable to verify invitation. Please check your connection.");

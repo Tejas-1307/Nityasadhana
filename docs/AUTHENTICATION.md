@@ -91,17 +91,17 @@ Located in `middleware.ts`:
 ### B. Signup Flow (`/signup`)
 
 - Collects First Name, Last Name, Email, and Password.
-- Employs email verification code step before account activation.
-- Assigns default role securely on server.
+- Creates the account immediately after FastAPI validates the registration payload; registration does not use OTP or email verification.
+- Assigns the role securely on the FastAPI server.
 
 ### C. Password Recovery Flow (`/forgot-password`)
 
-- Secure OTP recovery code sent to devotee's email.
+- Secure, single-use password-reset token sent to the configured email service.
 - Account enumeration protected (generic success message prevents user probing).
 
 ### D. Sign Out Flow
 
-- Triggered via `UserMenu` (`components/auth/user-menu.tsx`) using supported Clerk `SignOutButton`.
+- Triggered via `UserMenu` (`components/auth/user-menu.tsx`) through the FastAPI session endpoint.
 - Invalidates session and redirects to `/login`.
 
 ---

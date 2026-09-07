@@ -1,0 +1,1 @@
+export type InvitationResponse = { id: number; token: string; code: string; raw_code_masked: string; expires_at: string };

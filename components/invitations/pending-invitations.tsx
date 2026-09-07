@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { DbInvitation } from "@/lib/db/schema";
-import { revokeInvitationAction } from "@/lib/actions/invitations";
+import { api } from "@/lib/api/client";
 import { Clock, CheckCircle2, XCircle, AlertTriangle, Trash2, KeyRound } from "lucide-react";
 
 export function PendingInvitationsList({
@@ -21,10 +21,8 @@ export function PendingInvitationsList({
   const handleRevoke = async (id: string) => {
     setRevokingId(id);
     try {
-      const res = await revokeInvitationAction(id);
-      if (res.success && onRefresh) {
-        onRefresh();
-      }
+      await api.post(`/api/invitations/${id}/revoke`);
+      if (onRefresh) onRefresh();
     } finally {
       setRevokingId(null);
       setConfirmRevokeId(null);

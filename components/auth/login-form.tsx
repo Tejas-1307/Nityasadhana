@@ -3,14 +3,14 @@
 import * as React from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useSignIn, useAuth, useClerk, useUser } from "@clerk/nextjs";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Mail, Lock, ArrowRight, AlertCircle, Sparkles, Loader2 } from "lucide-react";
-import { resolvePostLoginRedirectAction, syncAuthenticatedRoleAction } from "@/lib/actions/auth";
+import { login } from "@/lib/auth/client";
+import { Eye, EyeOff } from "lucide-react";
 
 export function LoginForm() {
   const router = useRouter();
@@ -19,28 +19,16 @@ export function LoginForm() {
   const redirectParam = searchParams.get("redirect_url");
   const errorParam = searchParams.get("error");
 
-  const { isLoaded, signIn, setActive } = useSignIn();
-  const { isSignedIn } = useAuth();
-  const { signOut } = useClerk();
-  const { user } = useUser();
   const roleHintValue = React.useMemo(
     () => (roleHint === "guru" ? "guru" : roleHint === "student" ? "shishya" : null),
     [roleHint]
   );
-  const currentSessionRole = React.useMemo(() => {
-    const roleFromMetadata = (user?.publicMetadata?.role as string | undefined) || undefined;
-    const roleFromIntent = (user?.unsafeMetadata?.roleIntent as string | undefined) || undefined;
-    const roleValue = roleFromMetadata || roleFromIntent || null;
-    if (!roleValue) return null;
-    return roleValue.toLowerCase() === "student" || roleValue.toLowerCase() === "shishya"
-      ? "shishya"
-      : roleValue.toLowerCase() === "guru"
-        ? "guru"
-        : null;
-  }, [user]);
+  const isSignedIn = false;
+  const currentSessionRole = null;
 
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [showPassword, setShowPassword] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
   const [isResolvingRole, setIsResolvingRole] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
@@ -66,15 +54,7 @@ export function LoginForm() {
     let isMounted = true;
     setIsResolvingRole(true);
 
-    resolvePostLoginRedirectAction(redirectParam, roleHintValue)
-      .then((res) => {
-        if (isMounted && res.redirectUrl) {
-          router.replace(res.redirectUrl);
-        }
-      })
-      .finally(() => {
-        if (isMounted) setIsResolvingRole(false);
-      });
+    if (isMounted) setIsResolvingRole(false);
 
     return () => {
       isMounted = false;
@@ -91,56 +71,18 @@ export function LoginForm() {
     }
 
     if (isSignedIn) {
-      setIsResolvingRole(true);
-      const res = await resolvePostLoginRedirectAction(redirectParam, roleHintValue);
-      router.replace(res.redirectUrl);
+      router.replace(roleHintValue === "guru" ? "/guru" : "/student");
       return;
     }
-
-    if (!isLoaded) return;
 
     setIsLoading(true);
 
     try {
-      const result = await signIn.create({
-        identifier: email,
-        password,
-      });
-
-      if (result.status === "complete") {
-        await setActive({ session: result.createdSessionId });
-        setIsResolvingRole(true);
-
-        const [syncResult, redirectResult] = await Promise.all([
-          syncAuthenticatedRoleAction(roleHintValue),
-          resolvePostLoginRedirectAction(redirectParam, roleHintValue),
-        ]);
-
-        if (!syncResult.success) {
-          console.warn("[Auth] syncAuthenticatedRoleAction returned unsuccessful result:", syncResult);
-        }
-
-        router.replace(redirectResult.redirectUrl);
-      } else {
-        console.log("[Auth] Additional step required:", result.status);
-        const res = await resolvePostLoginRedirectAction(redirectParam, roleHintValue);
-        router.replace(res.redirectUrl);
-      }
+      const user = await login(email, password);
+      const redirect = redirectParam && redirectParam.startsWith("/") ? redirectParam : user.role === "guru" ? "/guru" : "/student";
+      router.replace(redirect);
     } catch (err: unknown) {
-      console.error("[Auth] Login error:", err);
-      const clerkError = err as { errors?: Array<{ message?: string; code?: string }> };
-      const firstError = clerkError.errors?.[0];
-
-      if (
-        firstError?.code === "form_identifier_not_found" ||
-        firstError?.code === "form_password_incorrect"
-      ) {
-        setErrorMessage("Incorrect email or password. Please check and try again.");
-      } else if (firstError?.message) {
-        setErrorMessage(firstError.message);
-      } else {
-        setErrorMessage("Unable to sign in. Please verify your connection or try again.");
-      }
+      setErrorMessage(err instanceof Error ? err.message : "Unable to sign in. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -187,7 +129,7 @@ export function LoginForm() {
           variant="primary"
           size="lg"
           className="w-full"
-          onClick={() => signOut({ redirectUrl: `/login?role=${roleHintValue || "student"}` })}
+          onClick={() => router.replace(`/login?role=${roleHintValue || "student"}`)}
         >
           Sign out and continue
         </Button>
@@ -254,7 +196,7 @@ export function LoginForm() {
           </div>
           <Input
             id="password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="••••••••••••"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -262,6 +204,7 @@ export function LoginForm() {
             autoComplete="current-password"
             required
             disabled={isLoading}
+            rightIcon={<button type="button" aria-label={showPassword ? "Hide password" : "Show password"} onClick={() => setShowPassword((value) => !value)}>{showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}</button>}
           />
         </div>
 

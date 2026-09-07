@@ -2,28 +2,29 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useSignIn } from "@clerk/nextjs";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Mail, Lock, KeyRound, ArrowRight, AlertCircle, CheckCircle2 } from "lucide-react";
+import { Mail, Lock, ArrowRight, AlertCircle, CheckCircle2, Eye, EyeOff } from "lucide-react";
+import { api } from "@/lib/api/client";
 
 export function ForgotPasswordForm() {
   const router = useRouter();
-  const { isLoaded, signIn, setActive } = useSignIn();
+  const searchParams = useSearchParams();
+  const resetToken = searchParams.get("token") || "";
 
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [code, setCode] = React.useState("");
-
-  const [isCodeSent, setIsCodeSent] = React.useState(false);
+  const [confirmPassword, setConfirmPassword] = React.useState("");
+  const [showPassword, setShowPassword] = React.useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
   const [successMessage, setSuccessMessage] = React.useState<string | null>(null);
 
-  const handleSendCode = async (e: React.FormEvent) => {
+  const handleSendResetLink = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage(null);
 
@@ -32,26 +33,18 @@ export function ForgotPasswordForm() {
       return;
     }
 
-    if (!isLoaded) return;
-
     setIsLoading(true);
 
     try {
-      await signIn.create({
-        strategy: "reset_password_email_code",
-        identifier: email,
-      });
-
-      setIsCodeSent(true);
+      await api.post("/api/auth/password-reset/request", { email });
       setSuccessMessage(
-        "If an account exists with this email, a password reset code has been sent."
+        "If an account exists with this email, a password reset link has been sent."
       );
     } catch (err: unknown) {
       console.error("[Auth] Password reset error:", err);
       // To prevent account enumeration, show generic guidance
-      setIsCodeSent(true);
       setSuccessMessage(
-        "If an account exists with this email, a password reset code has been sent."
+        "If an account exists with this email, a password reset link has been sent."
       );
     } finally {
       setIsLoading(false);
@@ -62,32 +55,27 @@ export function ForgotPasswordForm() {
     e.preventDefault();
     setErrorMessage(null);
 
-    if (!code || !password) {
-      setErrorMessage("Please enter the reset code and your new password.");
+    if (!resetToken || !password || !confirmPassword) {
+      setErrorMessage("Please open the password reset link and enter your new password.");
       return;
     }
-
-    if (!isLoaded) return;
+    if (password.length < 8) {
+      setErrorMessage("Password must be at least 8 characters long.");
+      return;
+    }
+    if (password !== confirmPassword) {
+      setErrorMessage("Passwords do not match.");
+      return;
+    }
 
     setIsLoading(true);
 
     try {
-      const result = await signIn.attemptFirstFactor({
-        strategy: "reset_password_email_code",
-        code,
-        password,
-      });
-
-      if (result.status === "complete") {
-        await setActive({ session: result.createdSessionId });
-        router.replace("/student");
-      } else {
-        router.replace("/login?message=password_reset_success");
-      }
+      await api.post("/api/auth/password-reset/confirm", { token: resetToken || code, password });
+      router.replace("/login?message=password_reset_success");
     } catch (err: unknown) {
       console.error("[Auth] Reset confirmation error:", err);
-      const clerkError = err as { errors?: Array<{ message?: string }> };
-      setErrorMessage(clerkError.errors?.[0]?.message || "Invalid reset code. Please try again.");
+      setErrorMessage(err instanceof Error ? err.message : "Invalid or expired reset link. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -117,8 +105,8 @@ export function ForgotPasswordForm() {
         </div>
       )}
 
-      {!isCodeSent ? (
-        <form onSubmit={handleSendCode} className="space-y-4" noValidate>
+      {!resetToken ? (
+        <form onSubmit={handleSendResetLink} className="space-y-4" noValidate>
           <div>
             <Label htmlFor="email" required sanskritHint="विद्युत्पत्रम्">
               Registered Email Address
@@ -144,39 +132,39 @@ export function ForgotPasswordForm() {
             isLoading={isLoading}
             rightIcon={!isLoading ? <ArrowRight className="h-4 w-4" /> : undefined}
           >
-            Send Password Reset Code
+            Send Password Reset Link
           </Button>
         </form>
       ) : (
         <form onSubmit={handleResetPassword} className="space-y-4" noValidate>
-          <div>
-            <Label htmlFor="code" required sanskritHint="सत्यापनसङ्केतः">
-              Reset Code
-            </Label>
-            <Input
-              id="code"
-              placeholder="e.g. 123456"
-              value={code}
-              onChange={(e) => setCode(e.target.value)}
-              leftIcon={<KeyRound className="h-4 w-4" />}
-              className="text-center font-mono text-[18px] tracking-widest"
-              autoComplete="one-time-code"
-              required
-              disabled={isLoading}
-            />
-          </div>
-
           <div>
             <Label htmlFor="password" required sanskritHint="नवीनकूटशब्दः">
               New Password
             </Label>
             <Input
               id="password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Enter new strong password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               leftIcon={<Lock className="h-4 w-4" />}
+              autoComplete="new-password"
+              required
+              disabled={isLoading}
+              rightIcon={<button type="button" aria-label={showPassword ? "Hide password" : "Show password"} onClick={() => setShowPassword((value) => !value)}>{showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}</button>}
+            />
+          </div>
+
+          <div>
+            <Label htmlFor="confirmPassword" required>Confirm New Password</Label>
+            <Input
+              id="confirmPassword"
+              type={showConfirmPassword ? "text" : "password"}
+              placeholder="Re-enter your new password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              leftIcon={<Lock className="h-4 w-4" />}
+              rightIcon={<button type="button" aria-label={showConfirmPassword ? "Hide password" : "Show password"} onClick={() => setShowConfirmPassword((value) => !value)}>{showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}</button>}
               autoComplete="new-password"
               required
               disabled={isLoading}

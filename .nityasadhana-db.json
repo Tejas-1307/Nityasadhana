@@ -113,6 +113,16 @@
       "status": "active",
       "createdAt": "2026-08-30T08:37:08.845Z",
       "updatedAt": "2026-08-30T08:49:35.384Z"
+    },
+    "user_3IzWOVi5zX5TWjyhhFTRq8jJL6n": {
+      "id": "user_3IzWOVi5zX5TWjyhhFTRq8jJL6n",
+      "authProviderId": "user_3IzWOVi5zX5TWjyhhFTRq8jJL6n",
+      "role": "guru",
+      "name": "Tejas Salunkhe",
+      "email": "amittest@sablemail.in",
+      "status": "active",
+      "createdAt": "2026-09-07T07:57:25.472Z",
+      "updatedAt": "2026-09-07T07:57:30.600Z"
     }
   },
   "invitations": {
@@ -355,6 +365,18 @@
       "updatedAt": "2026-08-30T08:37:11.671Z",
       "usedAt": "2026-08-30T08:37:11.671Z",
       "usedByUserId": "user_3Id0EiHbiMyR3Ihw4D1vHheAuyK"
+    },
+    "inv_1788767869034_ekksdg": {
+      "id": "inv_1788767869034_ekksdg",
+      "tokenHash": "01cc3b9a7a31d8723d3ad2000c4defae7c008a45989300f4ec40eed8562f5b76",
+      "codeHash": "6a300adef25a2ac9cc9f2d8584bcac50d57dae2a164ee4492ea1e7327133d962",
+      "rawCodeMasked": "NITYA-••••-Q4N4",
+      "createdByUserId": "user_3IzWOVi5zX5TWjyhhFTRq8jJL6n",
+      "intendedRole": "shishya",
+      "status": "pending",
+      "expiresAt": "2026-09-14T07:57:49.033Z",
+      "createdAt": "2026-09-07T07:57:49.035Z",
+      "updatedAt": "2026-09-07T07:57:49.035Z"
     }
   },
   "relationships": {
@@ -514,6 +536,20 @@
       "timezone": "Asia/Kolkata",
       "createdAt": "2026-08-30T08:37:17.921Z",
       "updatedAt": "2026-08-30T08:37:17.922Z"
+    },
+    "user_3IzWOVi5zX5TWjyhhFTRq8jJL6n": {
+      "id": "pref_user_3IzWOVi5zX5TWjyhhFTRq8jJL6n",
+      "userId": "user_3IzWOVi5zX5TWjyhhFTRq8jJL6n",
+      "dailyReportReminder": true,
+      "weeklyReflectionReminder": true,
+      "sankalpaReminder": true,
+      "guruDailySummary": true,
+      "guruFollowUpReminder": true,
+      "quietHoursStart": "21:00",
+      "quietHoursEnd": "05:00",
+      "timezone": "Asia/Kolkata",
+      "createdAt": "2026-09-07T07:57:41.286Z",
+      "updatedAt": "2026-09-07T07:57:41.286Z"
     }
   },
   "auditLogs": {
@@ -889,6 +925,18 @@
         "status": "submitted",
         "totalRounds": 18,
         "sleepDuration": 395
+      }
+    },
+    "audit_1788767869035_27pi7i8": {
+      "id": "audit_1788767869035_27pi7i8",
+      "actorId": "user_3IzWOVi5zX5TWjyhhFTRq8jJL6n",
+      "action": "INVITATION_CREATED",
+      "entityType": "Invitation",
+      "entityId": "inv_1788767869034_ekksdg",
+      "timestamp": "2026-09-07T07:57:49.035Z",
+      "metadata": {
+        "intendedRole": "shishya",
+        "rawCodeMasked": "NITYA-••••-Q4N4"
       }
     }
   }

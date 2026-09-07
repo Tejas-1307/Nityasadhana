@@ -7,18 +7,19 @@ import { GuruBottomNav } from "@/components/navigation/guru-bottom-nav";
 import { ShishyaDirectory } from "@/components/guru/shishya-directory";
 import { PendingInvitationsList } from "@/components/invitations/pending-invitations";
 import { requireGuru } from "@/lib/auth/guards";
-import { GuruService } from "@/lib/guru/service";
-import { dbStore } from "@/lib/db/store";
 
 export const dynamic = "force-dynamic";
 
 export default async function GuruShishyasPage() {
   const user = await requireGuru();
 
-  const [overview, invitations] = await Promise.all([
-    GuruService.getDashboardOverview(user.id),
-    dbStore.getInvitationsByGuru(user.id),
-  ]);
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+  const cookieHeader = (await import("next/headers")).cookies;
+  const cookieValue = (await cookieHeader()).toString();
+  const response = await fetch(`${apiUrl}/api/relationships/guru`, { headers: { Cookie: cookieValue }, cache: "no-store" });
+  const relationshipData = await response.json() as { shishyas: any[]; invitations: any[] };
+  const overview = { totalActiveShishyas: relationshipData.shishyas.filter((item) => item.relationship?.status === "active").length, allShishyas: relationshipData.shishyas };
+  const invitations = relationshipData.invitations;
 
   return (
     <div className="flex min-h-screen flex-col bg-[#EAF7F4] pb-20 md:pb-10">
