@@ -1,7 +1,9 @@
+import logging
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 
 from app.api.routes.auth import router as auth_router
 from app.api.routes.invitations import router as invitations_router
@@ -14,6 +16,8 @@ from app.api.routes.guru import router as guru_router
 from app.api.routes.guru_dashboard import router as guru_dashboard_router
 from app.core.config import get_settings
 from app.core.database import Base, engine
+
+logger = logging.getLogger("nityasadhana.backend")
 
 
 @asynccontextmanager
@@ -32,6 +36,17 @@ app.add_middleware(
     allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allow_headers=["Authorization", "Content-Type"],
 )
+
+
+@app.exception_handler(Exception)
+async def unhandled_exception_handler(request: Request, exc: Exception):
+    logger.exception("Unhandled server error processing %s %s: %s", request.method, request.url.path, exc)
+    return JSONResponse(
+        status_code=500,
+        content={"detail": "Internal Server Error"},
+    )
+
+
 app.include_router(auth_router, prefix="/api")
 app.include_router(invitations_router, prefix="/api")
 app.include_router(relationships_router, prefix="/api")
@@ -46,3 +61,4 @@ app.include_router(guru_dashboard_router, prefix="/api")
 @app.get("/health", tags=["system"])
 def health() -> dict[str, str]:
     return {"status": "ok"}
+
