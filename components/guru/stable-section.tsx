@@ -77,7 +77,13 @@ export function StableSection({ shishyas }: StableSectionProps) {
                   </div>
                 </div>
 
-                <Link href={`/guru/shishyas/${item.shishya.id}`}>
+                <Link
+                  href={
+                    (item.inspectReport || item.todayReport)
+                      ? `/guru/shishyas/${encodeURIComponent(item.shishya.id)}/reports/${encodeURIComponent((item.inspectReport || item.todayReport)!.id)}`
+                      : `/guru/shishyas/${encodeURIComponent(item.shishya.id)}`
+                  }
+                >
                   <Button variant="ghost" size="sm" className="h-8 text-[12px]">
                     <Eye className="mr-1 h-3.5 w-3.5" />
                     <span>View</span>

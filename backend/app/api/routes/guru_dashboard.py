@@ -69,6 +69,19 @@ def dashboard(guru: User = Depends(require_guru), db: Session = Depends(get_db))
                     "submittedAt": today_report.submitted_at.isoformat() if today_report.submitted_at else None,
                 }
             ),
+            "inspectReport": (
+                None
+                if not reports
+                else {
+                    "id": str(reports[0].id),
+                    "status": reports[0].status,
+                    "practiceDate": reports[0].practice_date,
+                    "totalRounds": reports[0].total_rounds,
+                    "japaRounds": reports[0].japa_rounds,
+                    "wakeUpTime": reports[0].wake_up_time,
+                    "submittedAt": reports[0].submitted_at.isoformat() if reports[0].submitted_at else None,
+                }
+            ),
             "attentionLevel": assessment["level"],
             "assessment": assessment,
             "signals": assessment["signals"],

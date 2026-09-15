@@ -87,7 +87,7 @@
   body {
     min-height: 100vh;
     font-family:
-      var(--font-nunito-sans),
+      "Nunito Sans",
       system-ui,
       -apple-system,
       sans-serif;

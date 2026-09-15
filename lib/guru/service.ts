@@ -35,6 +35,8 @@ export interface ShishyaOverviewItem {
   relationship: DbGuruShishyaRelationship;
   reportingState: ReportingState;
   todayReport: DbDailySadhanaReport | null;
+  /** Most recent report used by Guru inspection when today's report is absent. */
+  inspectReport?: Pick<DbDailySadhanaReport, "id" | "status" | "practiceDate" | "totalRounds" | "japaRounds" | "wakeUpTime" | "submittedAt"> | null;
   attentionLevel: AttentionLevel;
   assessment: AttentionAssessment;
   signals: AttentionSignal[];

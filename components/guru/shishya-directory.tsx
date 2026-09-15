@@ -373,23 +373,27 @@ export function ShishyaDirectory({
                   {/* Right: Inspect Profile Action */}
                   <div className="flex items-center justify-end self-end sm:self-center">
                     <Link
-                      href={`/guru/shishyas/${item.shishya.id}${
-                        primarySignal?.type === "JAPA_CHANGE"
-                          ? "?focus=japa"
-                          : primarySignal?.type === "WAKE_TIME_CHANGE"
-                            ? "?focus=wakeup"
-                            : ""
-                      }`}
-                    >
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        rightIcon={<ArrowRight className="h-3.5 w-3.5" />}
-                        className="text-[12px] font-semibold"
+                        href={
+                          (item.inspectReport || item.todayReport)
+                            ? `/guru/shishyas/${encodeURIComponent(item.shishya.id)}/reports/${encodeURIComponent((item.inspectReport || item.todayReport)!.id)}`
+                            : `/guru/shishyas/${encodeURIComponent(item.shishya.id)}${
+                                primarySignal?.type === "JAPA_CHANGE"
+                                  ? "?focus=japa"
+                                  : primarySignal?.type === "WAKE_TIME_CHANGE"
+                                    ? "?focus=wakeup"
+                                    : ""
+                              }`
+                        }
                       >
-                        Inspect
-                      </Button>
-                    </Link>
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          rightIcon={<ArrowRight className="h-3.5 w-3.5" />}
+                          className="text-[12px] font-semibold"
+                        >
+                          Inspect
+                        </Button>
+                      </Link>
                   </div>
                 </div>
               </Card>

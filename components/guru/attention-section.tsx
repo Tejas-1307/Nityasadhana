@@ -114,7 +114,13 @@ export function AttentionSection({ shishyas }: AttentionSectionProps) {
 
                 {/* Direct Action Button */}
                 <div className="flex items-center justify-end self-end sm:self-center">
-                  <Link href={`/guru/shishyas/${item.shishya.id}${focusParam}`}>
+                  <Link
+                    href={
+                      (item.inspectReport || item.todayReport)
+                        ? `/guru/shishyas/${encodeURIComponent(item.shishya.id)}/reports/${encodeURIComponent((item.inspectReport || item.todayReport)!.id)}`
+                        : `/guru/shishyas/${encodeURIComponent(item.shishya.id)}${focusParam}`
+                    }
+                  >
                     <Button
                       variant="secondary"
                       size="sm"

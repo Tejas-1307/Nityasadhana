@@ -71,7 +71,7 @@ export function ForgotPasswordForm() {
     setIsLoading(true);
 
     try {
-      await api.post("/api/auth/password-reset/confirm", { token: resetToken || code, password });
+      await api.post("/api/auth/password-reset/confirm", { token: resetToken, password });
       router.replace("/login?message=password_reset_success");
     } catch (err: unknown) {
       console.error("[Auth] Reset confirmation error:", err);

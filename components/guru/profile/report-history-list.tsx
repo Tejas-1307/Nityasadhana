@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -57,7 +58,6 @@ export function ReportHistoryList({
             {reports.map((rep) => (
               <div
                 key={rep.id}
-                onClick={() => setSelectedReport(rep)}
                 className="flex cursor-pointer items-center justify-between rounded-xl border border-[rgba(63,148,149,0.14)] bg-white p-3 transition-all hover:border-[#3F9495]/40 hover:bg-[#EAF7F4] sm:p-3.5"
               >
                 <div className="flex items-center gap-3">
@@ -91,10 +91,13 @@ export function ReportHistoryList({
                   </div>
                 </div>
 
-                <Button variant="ghost" size="sm" className="h-8 text-[12px]">
+                <Link
+                  href={`/guru/shishyas/${rep.studentId}/reports/${rep.id}`}
+                  className="inline-flex h-8 items-center rounded-md px-3 text-[12px] font-medium text-[#547070] hover:bg-[#EAF7F4] hover:text-[#193B3B]"
+                >
                   <Eye className="mr-1 h-3.5 w-3.5" />
                   <span>Inspect</span>
-                </Button>
+                </Link>
               </div>
             ))}
           </div>

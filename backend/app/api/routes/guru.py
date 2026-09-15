@@ -280,6 +280,62 @@ def student_reports(student_id: int, guru: User = Depends(require_guru), db: Ses
     return {"reports": [{"id": str(x.id), "practiceDate": x.practice_date, "status": x.status, "totalRounds": x.total_rounds} for x in rows], "total": len(rows)}
 
 
+@router.get("/shishyas/{student_id}/reports/{report_id}")
+def student_report_detail(
+    student_id: str,
+    report_id: str,
+    guru: User = Depends(require_guru),
+    db: Session = Depends(get_db),
+):
+    student = db.get(User, int(student_id)) if student_id.isdigit() else db.scalar(
+        select(User).where(User.auth_provider_id == student_id)
+    )
+    if student is None:
+        raise HTTPException(status_code=404, detail="Sadhana record not found")
+    owns(guru, student.id, db)
+
+    report = None
+    if report_id.isdigit():
+        report = db.scalar(select(Report).where(Report.id == int(report_id), Report.student_id == student.id))
+    else:
+        legacy_prefix = f"rep_{student_id}_"
+        if report_id.startswith(legacy_prefix):
+            practice_date = report_id.removeprefix(legacy_prefix)
+            report = db.scalar(select(Report).where(Report.student_id == student.id, Report.practice_date == practice_date))
+    if report is None:
+        raise HTTPException(status_code=404, detail="Sadhana record not found")
+
+    return {
+        "report": {
+            "id": str(report.id),
+            "studentId": str(report.student_id),
+            "practiceDate": report.practice_date,
+            "status": report.status,
+            "timezone": report.timezone,
+            "sleepTime": report.sleep_time,
+            "wakeUpTime": report.wake_up_time,
+            "sleepDurationMinutes": report.sleep_duration_minutes,
+            "japaRounds": report.japa_rounds,
+            "extraRounds": report.extra_rounds,
+            "totalRounds": report.total_rounds,
+            "japaCompletedAt": report.japa_completed_at,
+            "readingDurationMinutes": report.reading_duration_minutes,
+            "readingNote": report.reading_note,
+            "hearingDurationMinutes": report.hearing_duration_minutes,
+            "hearingNote": report.hearing_note,
+            "collegeStudyDurationMinutes": report.college_study_duration_minutes,
+            "selfStudyDurationMinutes": report.self_study_duration_minutes,
+            "totalStudyDurationMinutes": report.total_study_duration_minutes,
+            "dayRestDurationMinutes": report.day_rest_duration_minutes,
+            "timeWastedDurationMinutes": report.time_wasted_duration_minutes,
+            "notes": report.notes,
+            "submittedAt": report.submitted_at.isoformat() if report.submitted_at else None,
+            "createdAt": report.created_at.isoformat(),
+            "updatedAt": report.updated_at.isoformat(),
+        }
+    }
+
+
 @router.post("/follow-ups")
 def add_followup(payload: FollowUpInput, guru: User = Depends(require_guru), db: Session = Depends(get_db)):
     owns(guru, payload.shishyaId, db)

@@ -1,0 +1,27 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: unless-stopped
+
+    environment:
+      MYSQL_ROOT_PASSWORD: tejassalunkhe@123
+      MYSQL_DATABASE: docker_db
+      MYSQL_USER: nityasadhana
+      MYSQL_PASSWORD: apppassword
+
+    ports:
+      - "3307:3306"
+
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+    networks:
+      - app-network
+
+volumes:
+  mysql_data:
+
+networks:
+  app-network:
+    driver: bridge
