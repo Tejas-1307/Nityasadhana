@@ -34,12 +34,12 @@ This document describes the environment variable separation for deploying the **
 
 Configure these variables in **Vercel Dashboard** → **Project Settings** → **Environment Variables** (for _Production_ and _Preview_ environments).
 
-| Variable Name          | Required | Default / Example (Local) | Example (Production Vercel)             | Description                                                                            |
-| :--------------------- | :------: | :------------------------ | :-------------------------------------- | :------------------------------------------------------------------------------------- |
-| `NEXT_PUBLIC_APP_URL`  | **Yes**  | `http://localhost:3000`   | `https://nityasadhana.vercel.app`       | Canonical public URL of the web application.                                           |
-| `NEXT_PUBLIC_APP_NAME` |    No    | `Nityasādhanā`            | `Nityasādhanā`                          | Brand name displayed across metadata and UI headers.                                   |
-| `NEXT_PUBLIC_APP_ENV`  | **Yes**  | `development`             | `production`                            | Environment tier. Setting to `production` prevents mock test data seeding.             |
-| `NEXT_PUBLIC_API_URL`  | **Yes**  | `http://localhost:8000`   | `https://nityasadhana-api.onrender.com` | Base URL of the deployed FastAPI service on Render. **Do not include trailing slash.** |
+| Variable Name          | Required | Default / Example (Local) | Example (Production Vercel)              | Description                                                                            |
+| :--------------------- | :------: | :------------------------ | :--------------------------------------- | :------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_APP_URL`  | **Yes**  | `http://localhost:3000`   | `https://nityasadhanaiskon.vercel.app`   | Canonical public URL of the web application.                                           |
+| `NEXT_PUBLIC_APP_NAME` |    No    | `Nityasādhanā`            | `Nityasādhanā`                           | Brand name displayed across metadata and UI headers.                                   |
+| `NEXT_PUBLIC_APP_ENV`  | **Yes**  | `development`             | `production`                             | Environment tier. Setting to `production` prevents mock test data seeding.             |
+| `NEXT_PUBLIC_API_URL`  | **Yes**  | `http://localhost:8000`   | `https://nityasadhna-iskon.onrender.com` | Base URL of the deployed FastAPI service on Render. **Do not include trailing slash.** |
 
 ### Local Development (Frontend)
 
@@ -68,21 +68,21 @@ Configure these variables in **Render Dashboard** → **Your Web Service** → *
 
 ### Environment Variables on Render
 
-| Variable Name          |     Required      | Default / Example (Local) | Example (Production Render)                       | Description                                                                                                                                                         |
-| :--------------------- | :---------------: | :------------------------ | :------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `DATABASE_URL`         |      **Yes**      | `sqlite:///./test.db`     | `postgresql://user:password@host:5432/dbname`     | Database connection string. See [Section 4](#4-production-database-safety--persistence) for critical persistence instructions.                                      |
-| `JWT_SECRET`           |      **Yes**      | `change-me-in-production` | `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b...` | 64-character high-entropy secret for signing session JWT tokens. Generate with `openssl rand -hex 32`.                                                              |
-| `JWT_ALGORITHM`        |        No         | `HS256`                   | `HS256`                                           | Cryptographic algorithm for JWT signatures.                                                                                                                         |
-| `ACCESS_TOKEN_MINUTES` |        No         | `60`                      | `60`                                              | JWT session lifetime before expiration (in minutes).                                                                                                                |
-| `CORS_ORIGINS`         |      **Yes**      | `http://localhost:3000`   | `https://nityasadhana.vercel.app`                 | Comma-separated list of allowed origins. Must match your production Vercel domain. Multiple origins supported: `https://app.domain.com,https://preview.vercel.app`. |
-| `FRONTEND_URL`         |      **Yes**      | `http://localhost:3000`   | `https://nityasadhana.vercel.app`                 | Frontend base URL used for email links (such as password reset).                                                                                                    |
-| `APP_NAME`             |        No         | `Nityasadhana API`        | `Nityasadhana API`                                | OpenAPI title for FastAPI documentation.                                                                                                                            |
-| `ENVIRONMENT`          |        No         | `development`             | `production`                                      | Operational environment tag.                                                                                                                                        |
-| `SMTP_HOST`            | Feature-dependent | _(Empty)_                 | `smtp.sendgrid.net`                               | Outgoing SMTP host for password reset emails.                                                                                                                       |
-| `SMTP_PORT`            | Feature-dependent | `587`                     | `587`                                             | SMTP port (typically `587` for STARTTLS).                                                                                                                           |
-| `SMTP_USERNAME`        | Feature-dependent | _(Empty)_                 | `apikey`                                          | SMTP username.                                                                                                                                                      |
-| `SMTP_PASSWORD`        | Feature-dependent | _(Empty)_                 | `SG.xxxxxxxx`                                     | SMTP password / API token.                                                                                                                                          |
-| `SMTP_SENDER`          | Feature-dependent | _(Empty)_                 | `noreply@nityasadhana.org`                        | "From" address for notification emails.                                                                                                                             |
+| Variable Name          |     Required      | Default / Example (Local) | Example (Production Render)                                                        | Description                                                                                                                                                         |
+| :--------------------- | :---------------: | :------------------------ | :--------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `DATABASE_URL`         |      **Yes**      | `sqlite:///./test.db`     | `postgresql://user:password@host:5432/dbname`                                      | Database connection string. See [Section 4](#4-production-database-safety--persistence) for critical persistence instructions.                                      |
+| `JWT_SECRET`           |      **Yes**      | `change-me-in-production` | `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b...`                                  | 64-character high-entropy secret for signing session JWT tokens. Generate with `openssl rand -hex 32`.                                                              |
+| `JWT_ALGORITHM`        |        No         | `HS256`                   | `HS256`                                                                            | Cryptographic algorithm for JWT signatures.                                                                                                                         |
+| `ACCESS_TOKEN_MINUTES` |        No         | `60`                      | `60`                                                                               | JWT session lifetime before expiration (in minutes).                                                                                                                |
+| `CORS_ORIGINS`         |      **Yes**      | `http://localhost:3000`   | `http://localhost:3000,http://127.0.0.1:3000,https://nityasadhanaiskon.vercel.app` | Comma-separated list of allowed origins. Must match your production Vercel domain. Multiple origins supported: `https://app.domain.com,https://preview.vercel.app`. |
+| `FRONTEND_URL`         |      **Yes**      | `http://localhost:3000`   | `https://nityasadhanaiskon.vercel.app`                                             | Frontend base URL used for email links (such as password reset).                                                                                                    |
+| `APP_NAME`             |        No         | `Nityasadhana API`        | `Nityasadhana API`                                                                 | OpenAPI title for FastAPI documentation.                                                                                                                            |
+| `ENVIRONMENT`          |        No         | `development`             | `production`                                                                       | Operational environment tag.                                                                                                                                        |
+| `SMTP_HOST`            | Feature-dependent | _(Empty)_                 | `smtp.sendgrid.net`                                                                | Outgoing SMTP host for password reset emails.                                                                                                                       |
+| `SMTP_PORT`            | Feature-dependent | `587`                     | `587`                                                                              | SMTP port (typically `587` for STARTTLS).                                                                                                                           |
+| `SMTP_USERNAME`        | Feature-dependent | _(Empty)_                 | `apikey`                                                                           | SMTP username.                                                                                                                                                      |
+| `SMTP_PASSWORD`        | Feature-dependent | _(Empty)_                 | `SG.xxxxxxxx`                                                                      | SMTP password / API token.                                                                                                                                          |
+| `SMTP_SENDER`          | Feature-dependent | _(Empty)_                 | `noreply@nityasadhana.org`                                                         | "From" address for notification emails.                                                                                                                             |
 
 ### Local Development (Backend)
 
@@ -141,12 +141,12 @@ DATABASE_URL=sqlite:///./test.db
    - Set Build Command: `pip install -r backend/requirements.txt`
    - Set Start Command: `uvicorn app.main:app --app-dir backend --host 0.0.0.0 --port $PORT`
    - Fill in backend environment variables (`JWT_SECRET`, `DATABASE_URL`, `CORS_ORIGINS`, etc.).
-   - Deploy and verify health endpoint: `GET https://<your-render-service>.onrender.com/health` returns `{"status":"ok"}`.
+   - Deploy and verify health endpoint: `GET https://nityasadhna-iskon.onrender.com/health` returns `{"status":"ok"}`.
 2. **Deploy Frontend on Vercel**:
    - Import the repository in Vercel.
    - Configure environment variables:
-     - `NEXT_PUBLIC_APP_URL` = `https://<your-vercel-domain>.vercel.app`
-     - `NEXT_PUBLIC_API_URL` = `https://<your-render-service>.onrender.com`
+     - `NEXT_PUBLIC_APP_URL` = `https://nityasadhanaiskon.vercel.app`
+     - `NEXT_PUBLIC_API_URL` = `https://nityasadhna-iskon.onrender.com`
      - `NEXT_PUBLIC_APP_ENV` = `production`
      - `NEXT_PUBLIC_APP_NAME` = `Nityasādhanā`
    - Deploy project.

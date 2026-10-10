@@ -14,8 +14,8 @@ class Settings(BaseSettings):
     jwt_secret: str = "change-me-in-production"
     jwt_algorithm: str = "HS256"
     access_token_minutes: int = 60
-    cors_origins: str = "http://localhost:3000"
-    frontend_url: str = "http://localhost:3000"
+    cors_origins: str = "http://localhost:3000,http://127.0.0.1:3000,https://nityasadhanaiskon.vercel.app"
+    frontend_url: str = "https://nityasadhanaiskon.vercel.app"
     smtp_host: str | None = None
     smtp_port: int = 587
     smtp_username: str | None = None
@@ -29,7 +29,12 @@ class Settings(BaseSettings):
 
     @property
     def cors_origin_list(self) -> list[str]:
-        return [origin.strip() for origin in self.cors_origins.split(",") if origin.strip()]
+        origins: list[str] = []
+        for origin in self.cors_origins.split(","):
+            cleaned = origin.strip().rstrip("/")
+            if cleaned and cleaned not in origins:
+                origins.append(cleaned)
+        return origins
 
 
 @lru_cache

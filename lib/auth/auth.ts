@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { UserRole, AccountStatus, AuthenticatedUser } from "@/types/auth";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API_URL = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000").replace(/\/+$/, "");
 
 export function normalizeRoleValue(value: unknown): UserRole | null {
   if (typeof value !== "string") return null;
