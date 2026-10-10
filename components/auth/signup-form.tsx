@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,7 +11,6 @@ import { User, Mail, Lock, AlertCircle, Sparkles, Eye, EyeOff } from "lucide-rea
 import { register } from "@/lib/auth/client";
 
 export function SignupForm() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const invitationToken = searchParams.get("invitation_token");
   const roleParam = searchParams.get("role");
@@ -33,9 +32,18 @@ export function SignupForm() {
     if (password !== confirmPassword) return setErrorMessage("Passwords do not match.");
     setIsLoading(true);
     try {
-      const user = await register({ name: `${firstName} ${lastName}`.trim(), email, password, role: roleParam === "guru" && !invitationToken ? "guru" : "shishya" });
-      if (invitationToken) router.replace(`/invite/${encodeURIComponent(invitationToken)}`);
-      else router.replace(user.role === "guru" ? "/guru" : "/student");
+      const user = await register({
+        name: `${firstName} ${lastName}`.trim(),
+        email,
+        password,
+        role: roleParam === "guru" && !invitationToken ? "guru" : "shishya",
+      });
+      const target = invitationToken
+        ? `/invite/${encodeURIComponent(invitationToken)}`
+        : user.role === "guru"
+          ? "/guru"
+          : "/student";
+      window.location.assign(target);
     } catch (error) {
       setErrorMessage(error instanceof Error ? error.message : "Unable to create account.");
     } finally {

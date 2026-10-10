@@ -80,7 +80,7 @@ export function LoginForm() {
     try {
       const user = await login(email, password);
       const redirect = redirectParam && redirectParam.startsWith("/") ? redirectParam : user.role === "guru" ? "/guru" : "/student";
-      router.replace(redirect);
+      window.location.assign(redirect);
     } catch (err: unknown) {
       setErrorMessage(err instanceof Error ? err.message : "Unable to sign in. Please try again.");
     } finally {

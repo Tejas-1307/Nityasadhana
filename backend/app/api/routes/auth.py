@@ -47,7 +47,16 @@ def register(payload: RegisterRequest, response: Response, db: Session = Depends
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="An account with this email already exists") from exc
 
     result = TokenResponse(access_token=create_access_token(str(user.id), user.role.value), user=user)
-    response.set_cookie("nityasadhana_session", result.access_token, httponly=True, samesite="lax", secure=False, max_age=3600, path="/")
+    is_prod = get_settings().environment.lower() == "production"
+    response.set_cookie(
+        "nityasadhana_session",
+        result.access_token,
+        httponly=True,
+        samesite="none" if is_prod else "lax",
+        secure=is_prod,
+        max_age=86400,
+        path="/",
+    )
     return result
 
 
@@ -63,13 +72,29 @@ def login(payload: LoginRequest, db: Session = Depends(get_db)) -> TokenResponse
 
 @router.post("/logout", status_code=status.HTTP_204_NO_CONTENT)
 def logout(response: Response, _: User = Depends(get_current_user)) -> None:
-    response.delete_cookie("nityasadhana_session", httponly=True, samesite="lax")
+    is_prod = get_settings().environment.lower() == "production"
+    response.delete_cookie(
+        "nityasadhana_session",
+        httponly=True,
+        samesite="none" if is_prod else "lax",
+        secure=is_prod,
+        path="/",
+    )
 
 
 @router.post("/session", response_model=TokenResponse)
 def create_session(payload: LoginRequest, response: Response, db: Session = Depends(get_db)) -> TokenResponse:
     result = login(payload, db)
-    response.set_cookie("nityasadhana_session", result.access_token, httponly=True, samesite="lax", secure=False, max_age=3600, path="/")
+    is_prod = get_settings().environment.lower() == "production"
+    response.set_cookie(
+        "nityasadhana_session",
+        result.access_token,
+        httponly=True,
+        samesite="none" if is_prod else "lax",
+        secure=is_prod,
+        max_age=86400,
+        path="/",
+    )
     return result
 
 @router.post("/password-reset/request", status_code=status.HTTP_202_ACCEPTED)
