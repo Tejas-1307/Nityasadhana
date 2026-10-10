@@ -21,7 +21,7 @@ export default async function GuruShishyasPage() {
   let fetchError: string | null = null;
 
   try {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+    const apiUrl = (process.env.NEXT_PUBLIC_API_URL || process.env.API_URL || "http://localhost:8000").replace(/\/+$/, "");
     const cookieHeader = (await import("next/headers")).cookies;
     const cookieValue = (await cookieHeader()).toString();
     const response = await fetch(`${apiUrl}/api/relationships/guru`, {

@@ -53,7 +53,7 @@ export default async function GuruSadhanaReportPage({ params }: PageProps) {
   const guru = await requireGuru();
   if (!id || !reportId) notFound();
 
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+  const apiUrl = (process.env.NEXT_PUBLIC_API_URL || process.env.API_URL || "http://localhost:8000").replace(/\/+$/, "");
   const cookieHeader = (await cookies()).toString();
   const response = await fetch(
     `${apiUrl}/api/guru/shishyas/${encodeURIComponent(id)}/reports/${encodeURIComponent(reportId)}`,

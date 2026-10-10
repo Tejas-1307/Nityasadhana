@@ -24,7 +24,7 @@ interface ShishyaProfilePageProps {
 export async function generateMetadata({ params }: ShishyaProfilePageProps): Promise<Metadata> {
   const { id } = await params;
   try {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+    const apiUrl = (process.env.NEXT_PUBLIC_API_URL || process.env.API_URL || "http://localhost:8000").replace(/\/+$/, "");
     const cookieStore = await cookies();
     const cookieValue = cookieStore.toString();
     const response = await fetch(`${apiUrl}/api/guru/shishyas/${encodeURIComponent(id)}`, {
@@ -59,7 +59,7 @@ export default async function ShishyaProfilePage({ params }: ShishyaProfilePageP
   let statusError: { code: number; message: string } | null = null;
 
   try {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+    const apiUrl = (process.env.NEXT_PUBLIC_API_URL || process.env.API_URL || "http://localhost:8000").replace(/\/+$/, "");
     const cookieStore = await cookies();
     const cookieValue = cookieStore.toString();
 

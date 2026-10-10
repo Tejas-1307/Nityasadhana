@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Container } from "@/components/layout/container";
-import { requireShishya } from "@/lib/auth";
+import { requireShishya } from "@/lib/auth/guards";
 import { reportService } from "@/lib/reports/service";
 import { SankalpaService } from "@/lib/sankalpa";
 import { ReflectionService } from "@/lib/reflection";

@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { UserRole, AccountStatus, AuthenticatedUser } from "@/types/auth";
 
-const API_URL = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000").replace(/\/+$/, "");
+const API_URL = (process.env.NEXT_PUBLIC_API_URL || process.env.API_URL || "http://localhost:8000").replace(/\/+$/, "");
 
 export function normalizeRoleValue(value: unknown): UserRole | null {
   if (typeof value !== "string") return null;
@@ -14,7 +14,10 @@ export async function getCurrentAuthUser(): Promise<AuthenticatedUser | null> {
   if (!token) return null;
   try {
     const response = await fetch(`${API_URL}/api/auth/me`, {
-      headers: { Cookie: `nityasadhana_session=${token}` },
+      headers: {
+        Cookie: `nityasadhana_session=${token}`,
+        Authorization: `Bearer ${token}`,
+      },
       cache: "no-store",
     });
     if (!response.ok) return null;

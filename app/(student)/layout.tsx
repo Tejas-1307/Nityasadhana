@@ -1,5 +1,5 @@
 import * as React from "react";
-import { requireShishya } from "@/lib/auth";
+import { requireShishya } from "@/lib/auth/guards";
 import { StudentTopNav } from "@/components/navigation/student-top-nav";
 import { BottomNavigation } from "@/components/navigation/bottom-nav";
 import { STUDENT_NAV_ITEMS } from "@/lib/constants/nav";

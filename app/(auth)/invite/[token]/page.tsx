@@ -1,6 +1,6 @@
 import * as React from "react";
 import { redirect } from "next/navigation";
-import { getCurrentAuthUser } from "@/lib/auth";
+import { getCurrentAuthUser } from "@/lib/auth/auth";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Logo } from "@/components/branding/logo";
@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 export default async function InviteTokenPage({ params }: { params: Promise<{ token: string }> }) {
   const { token } = await params;
   const decodedToken = decodeURIComponent(token);
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+  const apiUrl = (process.env.NEXT_PUBLIC_API_URL || process.env.API_URL || "http://localhost:8000").replace(/\/+$/, "");
   const validationResponse = await fetch(`${apiUrl}/api/invitations/validate/${encodeURIComponent(decodedToken)}`, { cache: "no-store" });
   const validation = await validationResponse.json() as { id?: number; guru_name?: string; expires_at?: string; is_valid: boolean; error_reason?: string };
   const details = { id: String(validation.id || ""), guruName: validation.guru_name || "", expiresAt: validation.expires_at || "", isValid: validation.is_valid, errorReason: validation.error_reason };

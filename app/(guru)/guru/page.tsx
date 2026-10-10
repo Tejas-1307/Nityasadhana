@@ -27,7 +27,7 @@ export default async function GuruOverviewPage() {
   let fetchError: string | null = null;
 
   try {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+    const apiUrl = (process.env.NEXT_PUBLIC_API_URL || process.env.API_URL || "http://localhost:8000").replace(/\/+$/, "");
     const cookieStore = await cookies();
     const cookieValue = cookieStore.toString();
     const response = await fetch(`${apiUrl}/api/guru-dashboard`, {

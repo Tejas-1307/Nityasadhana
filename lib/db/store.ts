@@ -37,6 +37,23 @@ const getNodeRuntime = () => {
 const getDbFilePath = () => {
   const runtime = getNodeRuntime();
   if (!runtime) return "";
+  try {
+    const getBuiltin = (name: string) => {
+      if (typeof process !== "undefined" && typeof process.getBuiltinModule === "function") {
+        return process.getBuiltinModule(name);
+      }
+
+      const requireFn = Function("return require")();
+      return requireFn(name);
+    };
+
+    const os = getBuiltin("node:os");
+    if (process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME) {
+      return runtime.path.join(os.tmpdir(), ".nityasadhana-db.json");
+    }
+  } catch {
+    // fallback to process.cwd()
+  }
   return runtime.path.join(process.cwd(), ".nityasadhana-db.json");
 };
 
@@ -87,21 +104,26 @@ export class NityasadhanaDbStore {
     const dbFilePath = getDbFilePath();
     if (!dbFilePath) return;
 
-    const snapshot: PersistedDbState = {
-      users: Object.fromEntries(this.users),
-      invitations: Object.fromEntries(this.invitations),
-      relationships: Object.fromEntries(this.relationships),
-      reports: Object.fromEntries(this.reports),
-      followUps: Object.fromEntries(this.followUps),
-      privateNotes: Object.fromEntries(this.privateNotes),
-      sankalpas: Object.fromEntries(this.sankalpas),
-      reflections: Object.fromEntries(this.reflections),
-      notifications: Object.fromEntries(this.notifications),
-      notificationPreferences: Object.fromEntries(this.notificationPreferences),
-      auditLogs: Object.fromEntries(this.auditLogs),
-    };
+    try {
+      const snapshot: PersistedDbState = {
+        users: Object.fromEntries(this.users),
+        invitations: Object.fromEntries(this.invitations),
+        relationships: Object.fromEntries(this.relationships),
+        reports: Object.fromEntries(this.reports),
+        followUps: Object.fromEntries(this.followUps),
+        privateNotes: Object.fromEntries(this.privateNotes),
+        sankalpas: Object.fromEntries(this.sankalpas),
+        reflections: Object.fromEntries(this.reflections),
+        notifications: Object.fromEntries(this.notifications),
+        notificationPreferences: Object.fromEntries(this.notificationPreferences),
+        auditLogs: Object.fromEntries(this.auditLogs),
+      };
 
-    runtime.fs.writeFileSync(dbFilePath, JSON.stringify(snapshot, null, 2), "utf8");
+      runtime.fs.writeFileSync(dbFilePath, JSON.stringify(snapshot, null, 2), "utf8");
+    } catch (err) {
+      // Gracefully fall back to memory-only state in read-only or serverless environments
+      console.warn("[DbStore] Persist state skipped or unavailable:", err);
+    }
   }
 
   private loadPersistedState() {

@@ -1,4 +1,4 @@
-const RAW_API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const RAW_API_URL = process.env.NEXT_PUBLIC_API_URL || process.env.API_URL || "http://localhost:8000";
 const API_URL = RAW_API_URL.replace(/\/+$/, "");
 
 export async function apiRequest<T>(path: string, init: RequestInit = {}): Promise<T> {

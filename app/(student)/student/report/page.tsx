@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Container } from "@/components/layout/container";
 import { Badge } from "@/components/ui/badge";
-import { requireShishya } from "@/lib/auth";
+import { requireShishya } from "@/lib/auth/guards";
 import { reportService } from "@/lib/reports/service";
 import { ReportForm } from "@/components/reports/report-form";
 import { ReportHistoryList } from "@/components/reports/report-history-list";

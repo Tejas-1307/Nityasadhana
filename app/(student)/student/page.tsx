@@ -2,7 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { Badge } from "@/components/ui/badge";
-import { requireShishya } from "@/lib/auth";
+import { requireShishya } from "@/lib/auth/guards";
 import { reportService } from "@/lib/reports/service";
 import { SankalpaService } from "@/lib/sankalpa";
 import { getTimeBasedGreeting, formatDevoteeDate } from "@/lib/utils/greeting";
