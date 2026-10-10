@@ -22,7 +22,10 @@ class Settings(BaseSettings):
     smtp_password: str | None = None
     smtp_sender: str | None = None
 
-    model_config = SettingsConfigDict(env_file=(PROJECT_ROOT / ".env"), extra="ignore")
+    model_config = SettingsConfigDict(
+        env_file=(PROJECT_ROOT / ".env", PROJECT_ROOT / "backend" / ".env"),
+        extra="ignore",
+    )
 
     @property
     def cors_origin_list(self) -> list[str]:
