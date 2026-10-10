@@ -79,19 +79,19 @@ export default async function GuruShishyasPage() {
         <Container size="default">
           <div className="mb-6">
             <h1 className="text-[22px] font-bold tracking-tight text-[#193B3B] sm:text-[26px]">
-              My Shishyas
+              My Counselees
             </h1>
             <p className="text-[14px] text-[#547070]">
               {fetchError
                 ? "There was an issue loading your devotee directory."
-                : `Guide and care for your ${activeShishyasCount} active students on their spiritual journey.`}
+                : `Guide and care for your ${activeShishyasCount} active counselees on their spiritual journey.`}
             </p>
           </div>
 
           {fetchError ? (
             <div className="space-y-4 py-6">
               <ErrorState
-                title="Could not load Shishyas data"
+                title="Could not load Counselees data"
                 message={fetchError}
               />
               <div className="flex justify-center">

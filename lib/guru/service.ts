@@ -85,6 +85,24 @@ export interface TrendSummaries {
   overall: string;
 }
 
+export interface MonthAggregateDataPoint {
+  monthKey: string;
+  monthLabel: string;
+  expectedDays: number;
+  submittedCount: number;
+  missingCount: number;
+  consistencyPercentage: number;
+  avgRounds: number | null;
+  totalRounds: number;
+  avgWakeUpTime: string | null;
+  avgReadingMinutes: number | null;
+  avgHearingMinutes: number | null;
+  avgStudyMinutes: number | null;
+  avgDayRestMinutes?: number | null;
+  avgUnusedMinutes?: number | null;
+  hasData: boolean;
+}
+
 export interface ShishyaDetailForGuru {
   shishya: DbUser;
   relationship: DbGuruShishyaRelationship;
@@ -95,6 +113,7 @@ export interface ShishyaDetailForGuru {
   baseline: PersonalBaseline;
   sevenDayTrend: SevenDayDataPoint[];
   thirtyDayTrend: SevenDayDataPoint[];
+  yearlyTrend?: MonthAggregateDataPoint[];
   thirtyDayStats: {
     totalSubmitted: number;
     consistencyPercentage: number;

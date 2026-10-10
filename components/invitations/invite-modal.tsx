@@ -28,7 +28,7 @@ export interface InviteModalProps {
 
 export function InviteModal({
   onInvitationCreated,
-  triggerText = "Invite Shishya",
+  triggerText = "Invite Counselee",
   triggerVariant = "primary",
   triggerSize = "default",
   triggerClassName,
@@ -104,8 +104,8 @@ export function InviteModal({
     if (typeof navigator !== "undefined" && navigator.share) {
       try {
         await navigator.share({
-          title: "Nityasādhanā Shishya Invitation",
-          text: `Hare Krishna! You have been invited to connect with your Guru on Nityasādhanā. Join using invitation code ${invitation.code}:`,
+          title: "Nityasādhanā Counselee Invitation",
+          text: `Hare Krishna! You have been invited to connect with your Counsellor on Nityasādhanā. Join using invitation code ${invitation.code}:`,
           url: fullUrl,
         });
       } catch {
@@ -143,10 +143,10 @@ export function InviteModal({
                 </div>
                 <div>
                   <h2 className="text-[18px] font-bold text-[#193B3B]">
-                    {invitation ? "Invitation Ready" : "Invite a Shishya"}
+                    {invitation ? "Invitation Ready" : "Invite a Counselee"}
                   </h2>
                   <p className="text-[12px] text-[#547070]">
-                    {invitation ? "Share with your student" : "शिष्यसंयोजनम्"}
+                    {invitation ? "Share with your counselee" : "शिष्यसंयोजनम्"}
                   </p>
                 </div>
               </div>
@@ -174,7 +174,7 @@ export function InviteModal({
               /* State 1: Generation Prompt */
               <div className="space-y-5">
                 <p className="text-[14px] leading-relaxed text-[#547070]">
-                  Create a unique, single-use invitation for your Shishya. Once accepted, they will
+                  Create a unique, single-use invitation for your Counselee. Once accepted, they will
                   automatically be connected under your guidance with zero manual configuration.
                 </p>
 

@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { getCurrentAuthUser, getCurrentRole } from "./auth";
+import { getCurrentAuthUser } from "./auth";
 import { AuthenticatedUser } from "@/types/auth";
 
 /**
@@ -25,11 +25,10 @@ export async function requireAuth(redirectTo: string = "/login"): Promise<Authen
  */
 export async function requireGuru(): Promise<AuthenticatedUser> {
   const user = await requireAuth("/login?role=guru");
-  const role = await getCurrentRole();
 
-  if (role !== "guru") {
-    // If a Shishya attempts to enter /guru, redirect them safely to their own area
-    if (role === "shishya") {
+  if (user.role !== "guru") {
+    // If a Shishya/Counselee attempts to enter /guru, redirect them safely to their own area
+    if (user.role === "shishya") {
       redirect("/student");
     }
     // Unknown or missing role: fail closed and redirect to login
@@ -47,11 +46,10 @@ export async function requireGuru(): Promise<AuthenticatedUser> {
  */
 export async function requireShishya(): Promise<AuthenticatedUser> {
   const user = await requireAuth("/login?role=student");
-  const role = await getCurrentRole();
 
-  if (role !== "shishya") {
-    // If a Guru attempts to enter /student, redirect them safely to their own area
-    if (role === "guru") {
+  if (user.role !== "shishya") {
+    // If a Guru/Counsellor attempts to enter /student, redirect them safely to their own area
+    if (user.role === "guru") {
       redirect("/guru");
     }
     // Unknown or missing role: fail closed and redirect to login

@@ -120,8 +120,8 @@ export function LoginForm() {
         </div>
 
         <p className="mb-5 text-[14px] text-[#547070]">
-          You are currently signed in as a {currentSessionRole === "guru" ? "Guru" : "Shishya"}.
-          To continue as a {roleHintValue === "guru" ? "Guru" : "Shishya"}, sign out and sign back in.
+          You are currently signed in as a {currentSessionRole === "guru" ? "Counsellor" : "Counselee"}.
+          To continue as a {roleHintValue === "guru" ? "Counsellor" : "Counselee"}, sign out and sign back in.
         </p>
 
         <Button
@@ -144,7 +144,7 @@ export function LoginForm() {
         <div className="mb-5 flex items-center justify-between rounded-xl border border-[rgba(63,148,149,0.14)] bg-[#F7F5EF] p-3">
           <div className="flex items-center gap-2 text-[13px] font-medium text-[#193B3B]">
             <Sparkles className="h-4 w-4 text-[#A9824D]" />
-            <span>Signing in as {roleHint === "guru" ? "Guru" : "Shishya"}</span>
+            <span>Signing in as {roleHint === "guru" ? "Counsellor" : "Counselee"}</span>
           </div>
           <Badge variant={roleHint === "guru" ? "saffron" : "krishna"} size="sm">
             <span className="font-serif">{roleHint === "guru" ? "गुरुमार्गः" : "शिष्यमार्गः"}</span>
@@ -232,7 +232,7 @@ export function LoginForm() {
           </Link>
         </div>
         <div>
-          Received an invitation from your Guru?{" "}
+          Received an invitation from your Counsellor?{" "}
           <Link href="/invite" className="font-semibold text-[#A9824D] hover:underline">
             Accept Invite
           </Link>

@@ -43,7 +43,7 @@ export function RoleEntrySection() {
                 </Badge>
               </div>
 
-              <h3 className="mb-2 text-[20px] font-bold text-[#193B3B]">Shishya Entry</h3>
+              <h3 className="mb-2 text-[20px] font-bold text-[#193B3B]">Counselee Entry</h3>
               <p className="mb-6 text-[14px] leading-relaxed text-[#547070]">
                 Log today&apos;s Japa rounds, temple morning programs, and evening reflections in 30
                 seconds.
@@ -57,7 +57,7 @@ export function RoleEntrySection() {
                 className="w-full"
                 rightIcon={<ArrowRight className="h-4 w-4" />}
               >
-                Enter as Shishya
+                Enter as Counselee
               </Button>
             </Link>
           </Card>
@@ -74,9 +74,9 @@ export function RoleEntrySection() {
                 </Badge>
               </div>
 
-              <h3 className="mb-2 text-[20px] font-bold text-[#193B3B]">Guru Entry</h3>
+              <h3 className="mb-2 text-[20px] font-bold text-[#193B3B]">Counsellor Entry</h3>
               <p className="mb-6 text-[14px] leading-relaxed text-[#547070]">
-                Review your students&apos; daily consistency, understand routine patterns, and guide
+                Review your counselees&apos; daily consistency, understand routine patterns, and guide
                 with spiritual care.
               </p>
             </div>
@@ -88,7 +88,7 @@ export function RoleEntrySection() {
                 className="w-full border-[rgba(63,148,149,0.22)] bg-white hover:bg-[#D8F1EE]/50"
                 rightIcon={<ArrowRight className="h-4 w-4" />}
               >
-                Enter as Guru
+                Enter as Counsellor
               </Button>
             </Link>
           </Card>

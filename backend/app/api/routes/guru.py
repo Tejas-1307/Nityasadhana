@@ -1,3 +1,4 @@
+import calendar
 from datetime import date, datetime, timedelta
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
@@ -57,7 +58,7 @@ def student_detail(student_id: int, guru: User = Depends(require_guru), db: Sess
         select(Report)
         .where(Report.student_id == student_id)
         .order_by(Report.practice_date.desc())
-        .limit(30)
+        .limit(365)
     ).all()
     total_count = db.scalar(select(func.count()).select_from(Report).where(Report.student_id == student_id)) or 0
 
@@ -99,7 +100,87 @@ def student_detail(student_id: int, guru: User = Depends(require_guru), db: Sess
     seven_day_trend = build_trend_series(7)
     thirty_day_trend = build_trend_series(30)
 
-    submitted_in_30 = [r for r in all_reports if r.status == "submitted"]
+    # 12-Month Historical Monthly Aggregation
+    today_dt = date.fromisoformat(today)
+    reports_by_month: dict[str, list[Report]] = {}
+    for r in all_reports:
+        if r.practice_date and len(r.practice_date) >= 7:
+            m_key = r.practice_date[:7]
+            reports_by_month.setdefault(m_key, []).append(r)
+
+    month_abbr = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    yearly_trend = []
+    curr_y, curr_m = today_dt.year, today_dt.month
+
+    for i in range(11, -1, -1):
+        target_m = curr_m - i
+        target_y = curr_y
+        while target_m <= 0:
+            target_m += 12
+            target_y -= 1
+
+        m_key = f"{target_y:04d}-{target_m:02d}"
+        m_label = f"{month_abbr[target_m]} '{str(target_y)[-2:]}"
+        _, days_in_month = calendar.monthrange(target_y, target_m)
+        expected_days = today_dt.day if (target_y == curr_y and target_m == curr_m) else days_in_month
+
+        month_reps = [r for r in reports_by_month.get(m_key, []) if r.status == "submitted"]
+        sub_count = len(month_reps)
+
+        if sub_count > 0:
+            m_rounds = sum(r.total_rounds or r.japa_rounds or 0 for r in month_reps)
+            m_reading = sum(r.reading_duration_minutes or 0 for r in month_reps)
+            m_hearing = sum(r.hearing_duration_minutes or 0 for r in month_reps)
+            m_study = sum((r.college_study_duration_minutes or 0) + (r.self_study_duration_minutes or 0) for r in month_reps)
+            m_rest = sum(r.day_rest_duration_minutes or 0 for r in month_reps)
+            m_unused = sum(r.time_wasted_duration_minutes or 0 for r in month_reps)
+
+            m_wake = []
+            for r in month_reps:
+                if r.wake_up_time and ":" in r.wake_up_time:
+                    p = r.wake_up_time.split(":")
+                    m_wake.append(int(p[0]) * 60 + int(p[1]))
+            avg_w = round(sum(m_wake) / len(m_wake)) if m_wake else None
+
+            yearly_trend.append({
+                "monthKey": m_key,
+                "monthLabel": m_label,
+                "expectedDays": expected_days,
+                "submittedCount": sub_count,
+                "missingCount": max(0, expected_days - sub_count),
+                "consistencyPercentage": round((sub_count / expected_days) * 100),
+                "avgRounds": round((m_rounds / sub_count) * 10) / 10,
+                "totalRounds": m_rounds,
+                "avgWakeUpTime": f"{avg_w // 60:02d}:{avg_w % 60:02d}" if avg_w is not None else None,
+                "avgReadingMinutes": round(m_reading / sub_count),
+                "avgHearingMinutes": round(m_hearing / sub_count),
+                "avgStudyMinutes": round(m_study / sub_count),
+                "avgDayRestMinutes": round(m_rest / sub_count),
+                "avgUnusedMinutes": round(m_unused / sub_count),
+                "hasData": True,
+            })
+        else:
+            yearly_trend.append({
+                "monthKey": m_key,
+                "monthLabel": m_label,
+                "expectedDays": expected_days,
+                "submittedCount": 0,
+                "missingCount": expected_days,
+                "consistencyPercentage": 0,
+                "avgRounds": None,
+                "totalRounds": 0,
+                "avgWakeUpTime": None,
+                "avgReadingMinutes": None,
+                "avgHearingMinutes": None,
+                "avgStudyMinutes": None,
+                "avgDayRestMinutes": None,
+                "avgUnusedMinutes": None,
+                "hasData": False,
+            })
+
+    # 30-Day aggregate statistics (restricted to last 30 days)
+    past_30_dates = {(today_dt - timedelta(days=d)).isoformat() for d in range(30)}
+    submitted_in_30 = [r for r in all_reports if r.status == "submitted" and r.practice_date in past_30_dates]
     consistency_pct = round((len(submitted_in_30) / 30) * 100) if all_reports else 0
 
     count = len(submitted_in_30) or 1
@@ -200,6 +281,7 @@ def student_detail(student_id: int, guru: User = Depends(require_guru), db: Sess
         "baseline": assessment["baseline"],
         "sevenDayTrend": seven_day_trend,
         "thirtyDayTrend": thirty_day_trend,
+        "yearlyTrend": yearly_trend,
         "thirtyDayStats": thirty_day_stats,
         "trendSummaries": trend_summaries,
         "recentHistory": [

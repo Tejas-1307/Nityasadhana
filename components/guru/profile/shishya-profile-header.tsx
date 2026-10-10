@@ -41,14 +41,23 @@ export function ShishyaProfileHeader({
   return (
     <div className="space-y-4">
       {/* Top Back Navigation Bar */}
-      <div className="flex items-center justify-between">
-        <Link
-          href="/guru/shishyas"
-          className="inline-flex items-center gap-1.5 rounded-lg py-1 text-[13px] font-semibold text-[#3F9495] transition-colors hover:text-[#337B7C] hover:underline"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          <span>Back to Shishyas</span>
-        </Link>
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <div className="flex items-center gap-2 text-[13px]">
+          <Link
+            href="/guru"
+            className="font-medium text-[#547070] transition-colors hover:text-[#193B3B] hover:underline"
+          >
+            Dashboard
+          </Link>
+          <span className="text-[#547070]/60">/</span>
+          <Link
+            href="/guru/shishyas"
+            className="inline-flex items-center gap-1.5 font-semibold text-[#3F9495] transition-colors hover:text-[#337B7C] hover:underline"
+          >
+            <ArrowLeft className="h-3.5 w-3.5" />
+            <span>My Counselees</span>
+          </Link>
+        </div>
 
         {/* Header Quick Actions */}
         <div className="flex items-center gap-2">
@@ -99,7 +108,7 @@ export function ShishyaProfileHeader({
                 {isActive ? (
                   <Badge variant="krishna" size="sm">
                     <ShieldCheck className="mr-1 h-3 w-3" />
-                    <span>Shishya</span>
+                    <span>Counselee</span>
                   </Badge>
                 ) : (
                   <Badge variant="neutral" size="sm" className="text-[#547070]">

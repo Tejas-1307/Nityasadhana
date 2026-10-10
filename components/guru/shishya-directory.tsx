@@ -149,7 +149,7 @@ export function ShishyaDirectory({
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search Shishyas by name or email..."
+            placeholder="Search Counselees by name or email..."
             className="h-11 w-full rounded-2xl border border-[rgba(63,148,149,0.16)] bg-white pl-10 pr-4 text-[14px] text-[#193B3B] placeholder:text-[#547070] focus:border-[#3F9495] focus:outline-none focus:ring-2 focus:ring-[#3F9495]/20"
           />
         </div>
@@ -264,11 +264,11 @@ export function ShishyaDirectory({
           <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#EAF7F4] text-[#547070]">
             <UserX className="h-6 w-6" />
           </div>
-          <h3 className="mt-3 text-[16px] font-bold text-[#193B3B]">No Shishyas Found</h3>
+          <h3 className="mt-3 text-[16px] font-bold text-[#193B3B]">No Counselees Found</h3>
           <p className="mt-1 text-[13px] text-[#547070]">
             {searchQuery
-              ? `No students matched your search "${searchQuery}".`
-              : "No students in this filter view."}
+              ? `No counselees matched your search "${searchQuery}".`
+              : "No counselees in this filter view."}
           </p>
           {searchQuery && (
             <Button
@@ -391,7 +391,7 @@ export function ShishyaDirectory({
                           rightIcon={<ArrowRight className="h-3.5 w-3.5" />}
                           className="text-[12px] font-semibold"
                         >
-                          Inspect
+                          Inspect Counselee
                         </Button>
                       </Link>
                   </div>

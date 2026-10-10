@@ -195,7 +195,7 @@ export function ShishyaCard({
                 id="end-mentorship-desc"
                 className="text-[14px] leading-relaxed text-[#547070]"
               >
-                This will end the active Guru–Shishya connection. The devotee&apos;s account,
+                This will end the active Counsellor–Counselee connection. The devotee&apos;s account,
                 daily records, and spiritual history will remain completely safe. They will no
                 longer be actively connected to you.
               </p>

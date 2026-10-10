@@ -108,20 +108,20 @@ export default async function GuruOverviewPage() {
                   totalActiveCount={overview.totalActiveShishyas}
                 />
 
-                {/* If Guru has NO Shishyas yet, show welcoming empty state */}
+                {/* If Counsellor has NO Counselees yet, show welcoming empty state */}
                 {overview.totalActiveShishyas === 0 ? (
                   <div className="rounded-3xl border border-[rgba(63,148,149,0.16)] bg-white p-8 text-center shadow-level2 sm:p-10">
                     <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#A9824D]/10 text-[#A9824D]">
                       <Users className="h-7 w-7" />
                     </div>
                     <h2 className="mt-4 text-[20px] font-bold text-[#193B3B]">
-                      Welcome, His Grace {user.name}
+                      Welcome, {user.name}
                     </h2>
                     <p className="mx-auto mt-2 max-w-md text-[14px] leading-relaxed text-[#547070]">
-                      Your Shishyas will appear here once they join through your invitation link or code.
+                      Your Counselees will appear here once they join through your invitation link or code.
                     </p>
                     <div className="mt-6 flex justify-center">
-                      <InviteModal triggerText="Generate First Shishya Invite" triggerSize="lg" />
+                      <InviteModal triggerText="Generate First Counselee Invite" triggerSize="lg" />
                     </div>
                   </div>
                 ) : (
@@ -146,7 +146,7 @@ export default async function GuruOverviewPage() {
                       <div className="flex items-center gap-2.5">
                         <Users className="h-4 w-4 text-[#547070]" />
                         <span className="text-[13px] font-semibold text-[#193B3B]">
-                          View all {overview.totalActiveShishyas} Shishyas
+                          View all {overview.totalActiveShishyas} Counselees
                         </span>
                       </div>
                       <Link href="/guru/shishyas">

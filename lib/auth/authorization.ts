@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { getCurrentAuthUser, getCurrentRole } from "./auth";
+import { getCurrentAuthUser } from "./auth";
 import { AuthenticatedUser } from "@/types/auth";
 import { dbStore } from "@/lib/db/store";
 import { DbGuruShishyaRelationship, DbUser } from "@/lib/db/schema";
@@ -32,10 +32,9 @@ export async function requireAuthenticatedUser(
  */
 export async function requireGuruUser(): Promise<AuthenticatedUser> {
   const user = await requireAuthenticatedUser("/login?role=guru");
-  const role = await getCurrentRole();
 
-  if (role !== "guru") {
-    if (role === "shishya") {
+  if (user.role !== "guru") {
+    if (user.role === "shishya") {
       redirect("/student");
     }
     redirect("/login?error=unauthorized_role");
@@ -53,10 +52,9 @@ export async function requireGuruUser(): Promise<AuthenticatedUser> {
  */
 export async function requireShishyaUser(): Promise<AuthenticatedUser> {
   const user = await requireAuthenticatedUser("/login?role=student");
-  const role = await getCurrentRole();
 
-  if (role !== "shishya") {
-    if (role === "guru") {
+  if (user.role !== "shishya") {
+    if (user.role === "guru") {
       redirect("/guru");
     }
     redirect("/login?error=unauthorized_role");

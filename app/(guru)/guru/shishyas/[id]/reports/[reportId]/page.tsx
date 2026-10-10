@@ -88,7 +88,7 @@ export default async function GuruSadhanaReportPage({ params }: PageProps) {
         <Container size="reading">
           <div className="mb-6 flex items-center justify-between gap-3">
             <div>
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#547070]">Read-only Guru inspection</span>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#547070]">Read-only Counsellor inspection</span>
               <h1 className="mt-1 text-[24px] font-bold text-[#193B3B]">Sādhanā for {report.practiceDate}</h1>
             </div>
             <Badge variant={report.status === "submitted" ? "feather" : "saffron"}>{report.status === "submitted" ? "Received" : "Draft"}</Badge>
@@ -98,9 +98,9 @@ export default async function GuruSadhanaReportPage({ params }: PageProps) {
             <Card className="border-[rgba(63,148,149,0.16)] bg-white p-5 shadow-level1"><div className="flex items-center justify-between text-[13px] font-bold text-[#193B3B]"><span className="flex items-center gap-1.5"><CircleDot className="h-4 w-4 text-[#A9824D]" /> Japa Meditation</span><span>{report.totalRounds || report.japaRounds} rounds</span></div><div className="mt-2 text-[12px] text-[#547070]">Standard: {report.japaRounds}{report.extraRounds ? ` · Extra: +${report.extraRounds}` : ""}{report.japaCompletedAt ? ` · Completed: ${report.japaCompletedAt}` : ""}</div></Card>
             <Card className="border-[rgba(63,148,149,0.16)] bg-white p-5 shadow-level1"><div className="flex items-center gap-1.5 text-[13px] font-bold text-[#193B3B]"><BookOpen className="h-4 w-4 text-[#328A7A]" /> Hearing &amp; Reading</div><div className="mt-2 space-y-1 text-[12px] text-[#547070]"><div>Reading: {formatDuration(report.readingDurationMinutes || 0)} {report.readingNote && `(${report.readingNote})`}</div><div>Hearing: {formatDuration(report.hearingDurationMinutes || 0)} {report.hearingNote && `(${report.hearingNote})`}</div></div></Card>
             <Card className="border-[rgba(63,148,149,0.16)] bg-white p-5 shadow-level1"><div className="flex items-center gap-1.5 text-[13px] font-bold text-[#193B3B]"><GraduationCap className="h-4 w-4 text-[#547070]" /> Study &amp; Time</div><div className="mt-2 space-y-1 text-[12px] text-[#547070]"><div>College Study: {formatDuration(report.collegeStudyDurationMinutes || 0)}</div><div>Self Study: {formatDuration(report.selfStudyDurationMinutes || 0)}</div><div>Total Study: {formatDuration(report.totalStudyDurationMinutes || 0)}</div><div>Day Rest: {formatDuration(report.dayRestDurationMinutes || 0)}</div><div>Unused Time: {formatDuration(report.timeWastedDurationMinutes || 0)}</div></div></Card>
-            {report.notes && <Card className="border-[rgba(63,148,149,0.16)] bg-white p-5 shadow-level1"><div className="flex items-center gap-1.5 text-[13px] font-bold text-[#193B3B]"><Sparkles className="h-4 w-4 text-[#A9824D]" /> Student Reflection</div><blockquote className="mt-2 text-[13px] italic text-[#193B3B]">&ldquo;{report.notes}&rdquo;</blockquote></Card>}
+            {report.notes && <Card className="border-[rgba(63,148,149,0.16)] bg-white p-5 shadow-level1"><div className="flex items-center gap-1.5 text-[13px] font-bold text-[#193B3B]"><Sparkles className="h-4 w-4 text-[#A9824D]" /> Counselee Reflection</div><blockquote className="mt-2 text-[13px] italic text-[#193B3B]">&ldquo;{report.notes}&rdquo;</blockquote></Card>}
           </div>
-          <div className="mt-6"><Link href={`/guru/shishyas/${encodeURIComponent(id)}`}><Button variant="secondary" leftIcon={<ArrowLeft className="h-4 w-4" />}>Back to Shishya Profile</Button></Link></div>
+          <div className="mt-6 flex flex-wrap gap-2.5"><Link href={`/guru/shishyas/${encodeURIComponent(id)}`}><Button variant="secondary" leftIcon={<ArrowLeft className="h-4 w-4" />}>Back to Counselee Profile</Button></Link><Link href="/guru"><Button variant="ghost">Counsellor Dashboard</Button></Link></div>
         </Container>
       </main>
       <GuruBottomNav />
@@ -109,5 +109,5 @@ export default async function GuruSadhanaReportPage({ params }: PageProps) {
 }
 
 function ReportErrorState({ title, detail, backHref }: { title: string; detail: string; backHref: string }) {
-  return <div className="flex min-h-screen items-center justify-center bg-[#EAF7F4] p-6"><Card className="w-full max-w-lg border-[rgba(63,148,149,0.16)] bg-white p-8 text-center shadow-level1"><Calendar className="mx-auto h-8 w-8 text-[#A9824D]" /><h1 className="mt-4 text-[20px] font-bold text-[#193B3B]">{title}</h1><p className="mt-2 text-[14px] text-[#547070]">{detail}</p><Link href={backHref}><Button className="mt-6" variant="secondary">Back to Guru Dashboard</Button></Link></Card></div>;
+  return <div className="flex min-h-screen items-center justify-center bg-[#EAF7F4] p-6"><Card className="w-full max-w-lg border-[rgba(63,148,149,0.16)] bg-white p-8 text-center shadow-level1"><Calendar className="mx-auto h-8 w-8 text-[#A9824D]" /><h1 className="mt-4 text-[20px] font-bold text-[#193B3B]">{title}</h1><p className="mt-2 text-[14px] text-[#547070]">{detail}</p><Link href={backHref}><Button className="mt-6" variant="secondary">Back to Counsellor Dashboard</Button></Link></Card></div>;
 }

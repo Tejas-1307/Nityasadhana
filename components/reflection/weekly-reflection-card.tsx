@@ -105,7 +105,7 @@ export function WeeklyReflectionCard({
             <div className="rounded-xl border border-[rgba(63,148,149,0.14)] bg-[#F7F5EF]/60 p-3">
               <div className="flex items-center gap-1.5 text-[11px] font-bold text-[#A9824D]">
                 <HeartHandshake className="h-3.5 w-3.5" />
-                <span>Message for Guru</span>
+                <span>Message for Counsellor</span>
               </div>
               <p className="mt-1 text-[12px] text-[#193B3B] italic">
                 &ldquo;{reflection.guruMessage}&rdquo;

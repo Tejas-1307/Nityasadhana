@@ -224,10 +224,10 @@ export function WeeklyReflectionForm({
               <HeartHandshake className="h-4 w-4 text-[#A9824D]" />
               <div>
                 <span className="text-[13px] font-bold text-[#193B3B]">
-                  Message for Guru
+                  Message for Counsellor
                 </span>
                 <span className="ml-2 text-[11px] font-normal text-[#547070]">
-                  (Optional · Visible to your Guru)
+                  (Optional · Visible to your Counsellor)
                 </span>
               </div>
             </div>
@@ -243,7 +243,7 @@ export function WeeklyReflectionForm({
               <textarea
                 value={guruMessage}
                 onChange={(e) => setGuruMessage(e.target.value)}
-                placeholder="Anything you'd like your Guru to know or seek guidance on..."
+                placeholder="Anything you'd like your Counsellor to know or seek guidance on..."
                 maxLength={300}
                 rows={3}
                 className="w-full rounded-xl border border-[rgba(63,148,149,0.18)] bg-white p-3 text-[13px] text-[#193B3B] placeholder:text-[#547070]/50 focus:border-[#A9824D] focus:outline-hidden focus:ring-1 focus:ring-[#A9824D]"

@@ -54,10 +54,11 @@ export function ShishyaProfileView({ detail }: ShishyaProfileViewProps) {
         latestReflection={detail.latestReflection || null}
       />
 
-      {/* 5. Interactive Trends (7 Days / 30 Days Multi-Metric) */}
+      {/* 5. Interactive Trends (7 Days / 1 Month / 1 Year Multi-Metric) */}
       <InteractiveTrendCard
         sevenDayTrend={detail.sevenDayTrend}
         thirtyDayTrend={detail.thirtyDayTrend}
+        yearlyTrend={detail.yearlyTrend}
         baseline={detail.baseline}
         trendSummaries={detail.trendSummaries}
       />

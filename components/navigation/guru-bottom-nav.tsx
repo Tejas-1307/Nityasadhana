@@ -24,7 +24,7 @@ export function GuruBottomNav() {
       isActive: pathname.startsWith("/guru/digest"),
     },
     {
-      name: "Shishyas",
+      name: "Counselees",
       href: "/guru/shishyas",
       icon: Users,
       isActive: pathname.startsWith("/guru/shishyas"),

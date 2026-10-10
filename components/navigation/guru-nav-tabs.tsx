@@ -25,7 +25,7 @@ export function GuruNavTabs() {
       isActive: pathname.startsWith("/guru/digest"),
     },
     {
-      name: "My Shishyas",
+      name: "My Counselees",
       sanskrit: "मम शिष्याः",
       href: "/guru/shishyas",
       icon: Users,

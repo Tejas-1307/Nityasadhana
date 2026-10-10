@@ -33,7 +33,7 @@ export function ReportHistoryList({
   if (reports.length === 0) {
     return (
       <Card className="border-[rgba(63,148,149,0.16)] bg-white p-6 text-center shadow-level1">
-        <p className="text-[13px] text-[#547070]">No past daily reports found for this student.</p>
+        <p className="text-[13px] text-[#547070]">No past daily reports found for this counselee.</p>
       </Card>
     );
   }

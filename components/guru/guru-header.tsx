@@ -40,7 +40,7 @@ export function GuruHeader({
             </h1>
 
             <p className="text-[13px] text-[#547070]">
-              Guiding <span className="font-semibold text-[#193B3B]">{totalActiveCount} Shishyas</span> under your spiritual shelter.
+              Guiding <span className="font-semibold text-[#193B3B]">{totalActiveCount} Counselees</span> under your spiritual guidance.
             </p>
           </div>
 

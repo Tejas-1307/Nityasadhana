@@ -34,8 +34,8 @@ export function UserMenu({ role = "shishya", userName, userEmail }: UserMenuProp
               {displayName}
             </span>
             <Badge variant={displayRole === "guru" ? "saffron" : "krishna"} size="sm">
-              <span className="font-serif text-[10px]">
-                {displayRole === "guru" ? "गुरुः" : "शिष्यः"}
+              <span className="text-[10px] font-semibold">
+                {displayRole === "guru" ? "Counsellor" : "Counselee"}
               </span>
             </Badge>
           </div>
