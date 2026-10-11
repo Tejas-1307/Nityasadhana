@@ -58,6 +58,11 @@ app.include_router(guru_router, prefix="/api")
 app.include_router(guru_dashboard_router, prefix="/api")
 
 
+@app.get("/", tags=["system"])
+def root() -> dict[str, str]:
+    return {"status": "ok", "app": settings.app_name}
+
+
 @app.get("/health", tags=["system"])
 def health() -> dict[str, str]:
     return {"status": "ok"}
