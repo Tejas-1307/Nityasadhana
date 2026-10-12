@@ -1,5 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "@/components/layout/container";
 import { Badge } from "@/components/ui/badge";
 import { requireShishya } from "@/lib/auth/guards";
@@ -38,19 +39,32 @@ export default async function StudentDashboardPage() {
   return (
     <main className="py-6 sm:py-10">
       <Container size="reading">
-        {/* Contextual Header */}
-        <div className="mb-6 space-y-1 sm:mb-8">
-          <div className="flex items-center gap-1.5 text-[13px] font-medium text-[#A9824D]">
-            <Sparkles className="h-3.5 w-3.5" />
-            <span className="font-serif">नित्यसाधना • मुख्यपृष्ठम्</span>
+        {/* Contextual Header with Devotional Greeting Motif */}
+        <div className="mb-6 flex items-center justify-between gap-3 sm:mb-8">
+          <div className="space-y-1">
+            <div className="flex items-center gap-1.5 text-[12px] font-medium text-[#A9824D]">
+              <Sparkles className="h-3.5 w-3.5" />
+              <span className="font-serif">नित्यसाधना • मुख्यपृष्ठम्</span>
+            </div>
+            <h1 className="text-[22px] font-bold tracking-tight text-[#193B3B] sm:text-[28px]">
+              {greeting.fullGreeting(displayName)}
+            </h1>
+            <p className="text-[13px] text-[#547070] sm:text-[14px]">
+              {greeting.timeGreeting}. Today is{" "}
+              <span className="font-medium text-[#193B3B]">{todayFormatted}</span>.
+            </p>
           </div>
-          <h1 className="text-[24px] font-bold tracking-tight text-[#193B3B] sm:text-[28px]">
-            {greeting.fullGreeting(displayName)}
-          </h1>
-          <p className="text-[14px] text-[#547070]">
-            {greeting.timeGreeting}. Today is{" "}
-            <span className="font-medium text-[#193B3B]">{todayFormatted}</span>.
-          </p>
+          <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-2xl border border-[#A9824D]/30 shadow-sm sm:h-20 sm:w-20">
+            <Image
+              src="/images/vrindavan-welcome.jpg"
+              alt=""
+              aria-hidden="true"
+              fill
+              sizes="(max-width: 640px) 56px, 80px"
+              className="object-cover"
+              priority
+            />
+          </div>
         </div>
 
         {/* 1. ABOVE-THE-FOLD PRIMARY SUMMARY CARD (Answers status in <= 3s) */}
@@ -92,9 +106,9 @@ export default async function StudentDashboardPage() {
           <RecentReportsSection reports={dashboard.recentReports} />
         </div>
 
-        {/* 6. SECONDARY ATTACHMENTS (Guiding Guru & Journey Shortcut) */}
+        {/* 6. SECONDARY ATTACHMENTS (Guiding Counsellor & Journey Shortcut) */}
         <div className="space-y-3.5 pt-2">
-          {/* Connected Guru Card */}
+          {/* Connected Counsellor Card */}
           {dashboard.guidingGuru ? (
             <div className="flex items-center justify-between gap-3 rounded-2xl border border-[rgba(63,148,149,0.16)] bg-white p-4 shadow-level1">
               <div className="flex items-center gap-3">
@@ -103,7 +117,7 @@ export default async function StudentDashboardPage() {
                 </div>
                 <div>
                   <span className="text-[11px] font-semibold uppercase tracking-wider text-[#547070]">
-                    Guiding Guru
+                    Counsellor
                   </span>
                   <div className="text-[14px] font-bold text-[#193B3B]">
                     {dashboard.guidingGuru.spiritualName || dashboard.guidingGuru.name}
@@ -112,7 +126,7 @@ export default async function StudentDashboardPage() {
               </div>
 
               <Badge variant="krishna" size="sm">
-                <span>Active Guru</span>
+                <span>Active Counsellor</span>
               </Badge>
             </div>
           ) : (
@@ -126,7 +140,7 @@ export default async function StudentDashboardPage() {
                     Mentorship
                   </span>
                   <div className="text-[13px] text-[#547070]">
-                    Not yet connected with a Guiding Guru
+                    Not yet connected with a Counsellor
                   </div>
                 </div>
               </div>

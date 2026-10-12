@@ -75,7 +75,7 @@ export function TodaySummaryCard({
                 Today&apos;s Sādhanā is Recorded
               </h2>
               <p className="text-[13px] text-[#547070]">
-                Your daily practice has been peacefully documented.
+                Daily practice recorded.
               </p>
             </div>
           ) : isDraft ? (
@@ -84,16 +84,16 @@ export function TodaySummaryCard({
                 Continue Today&apos;s Sādhanā
               </h2>
               <p className="text-[13px] text-[#547070]">
-                You have an unfinished draft from earlier today.
+                Draft saved earlier today.
               </p>
             </div>
           ) : (
             <div className="space-y-1">
               <h2 className="text-[20px] font-bold tracking-tight text-[#193B3B] sm:text-[24px]">
-                Begin Today&apos;s Sādhanā Record
+                Record Today&apos;s Sādhanā
               </h2>
               <p className="text-[13px] text-[#547070]">
-                A quiet moment to observe your rounds, study, and routine.
+                Record your rounds, study, and daily routine.
               </p>
             </div>
           )}

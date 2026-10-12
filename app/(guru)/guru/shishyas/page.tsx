@@ -84,7 +84,7 @@ export default async function GuruShishyasPage() {
             <p className="text-[14px] text-[#547070]">
               {fetchError
                 ? "There was an issue loading your devotee directory."
-                : `Guide and care for your ${activeShishyasCount} active counselees on their spiritual journey.`}
+                : `Guide and care for your ${activeShishyasCount} active Counselees.`}
             </p>
           </div>
 

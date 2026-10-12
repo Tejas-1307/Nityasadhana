@@ -24,14 +24,13 @@ export function RoleEntrySection() {
             Begin your daily journey.
           </h2>
           <p className="mt-3 text-[15px] leading-relaxed text-[#547070] sm:text-[16px]">
-            Nityasādhanā is built to make recording simple, so the practice itself can remain the
-            sacred focus. Choose your entry pathway below.
+            Simple daily recording so your practice remains the sacred focus.
           </p>
         </div>
 
         {/* Dual Role Entry Cards */}
         <div className="mx-auto grid max-w-3xl grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
-          {/* Shishya Entry Card */}
+          {/* Counselee Entry Card */}
           <Card className="flex flex-col justify-between border-[#3F9495]/35 bg-[#F7F5EF]/80 p-7 transition-all hover:shadow-level2 sm:p-8">
             <div>
               <div className="mb-4 flex items-center justify-between">
@@ -45,8 +44,7 @@ export function RoleEntrySection() {
 
               <h3 className="mb-2 text-[20px] font-bold text-[#193B3B]">Counselee Entry</h3>
               <p className="mb-6 text-[14px] leading-relaxed text-[#547070]">
-                Log today&apos;s Japa rounds, temple morning programs, and evening reflections in 30
-                seconds.
+                Complete today&apos;s Sādhanā in a few simple taps.
               </p>
             </div>
 
@@ -62,7 +60,7 @@ export function RoleEntrySection() {
             </Link>
           </Card>
 
-          {/* Guru Entry Card */}
+          {/* Counsellor Entry Card */}
           <Card className="flex flex-col justify-between border-[#A9824D]/35 bg-[#F7F5EF]/80 p-7 transition-all hover:shadow-level2 sm:p-8">
             <div>
               <div className="mb-4 flex items-center justify-between">
@@ -76,8 +74,7 @@ export function RoleEntrySection() {
 
               <h3 className="mb-2 text-[20px] font-bold text-[#193B3B]">Counsellor Entry</h3>
               <p className="mb-6 text-[14px] leading-relaxed text-[#547070]">
-                Review your counselees&apos; daily consistency, understand routine patterns, and guide
-                with spiritual care.
+                Review daily progress and guide with care.
               </p>
             </div>
 

@@ -74,7 +74,7 @@ export function LandingFooter() {
                       </span>
                     </div>
                     <p className="text-[12px] font-medium tracking-wide text-[#547070] sm:text-[13px]">
-                      A digital companion for conscious daily Sādhanā
+                      Your daily Sādhanā, simply recorded
                     </p>
                   </div>
                 </div>
@@ -88,9 +88,7 @@ export function LandingFooter() {
                     A life of Sādhana.
                   </h2>
                   <p className="max-w-xl text-[14px] leading-relaxed text-[#547070] sm:text-[15px]">
-                    Nurturing the sacred Guru–Shishya relationship through calm, contemplative
-                    technology designed specifically for Brahmacharya students and spiritual teachers
-                    at ISKCON Pune.
+                    Supporting daily spiritual discipline and counselling guidance through calm technology for ISKCON Pune.
                   </p>
                 </div>
 
@@ -186,7 +184,7 @@ export function LandingFooter() {
                       href="/login?role=student"
                       className="inline-flex items-center gap-1.5 py-1 text-[#547070] transition-colors hover:text-[#193B3B] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3F9495] rounded-md"
                     >
-                      <span>Shishya Sādhanā Portal</span>
+                      <span>Counselee Sādhanā Portal</span>
                     </Link>
                   </li>
                   <li>
@@ -194,7 +192,7 @@ export function LandingFooter() {
                       href="/login?role=guru"
                       className="inline-flex items-center gap-1.5 py-1 text-[#547070] transition-colors hover:text-[#193B3B] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3F9495] rounded-md"
                     >
-                      <span>Guru Mentorship Portal</span>
+                      <span>Counsellor Mentorship Portal</span>
                     </Link>
                   </li>
                   <li>
@@ -210,7 +208,7 @@ export function LandingFooter() {
                       href="#guru-shishya"
                       className="inline-flex items-center gap-1.5 py-1 text-[#547070] transition-colors hover:text-[#193B3B] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3F9495] rounded-md"
                     >
-                      <span>Guru–Shishya Sacred Bond</span>
+                      <span>Guidance &amp; Mentorship</span>
                     </a>
                   </li>
                 </ul>

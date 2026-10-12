@@ -1,4 +1,5 @@
 import * as React from "react";
+import Image from "next/image";
 import { cn } from "@/lib/utils/cn";
 import { Button } from "@/components/ui/button";
 import { Compass } from "lucide-react";
@@ -11,16 +12,18 @@ export interface EmptyStateProps {
   onAction?: () => void;
   icon?: React.ReactNode;
   className?: string;
+  showDevotionalImage?: boolean;
 }
 
 export function EmptyState({
   title = "Your journey begins here",
-  description = "No entries recorded yet. Begin your daily Sadhana practice with peaceful determination.",
+  description = "No entries recorded yet. Begin your daily Sādhanā practice with peaceful determination.",
   sanskritSubtitle = "आरम्भः शुभो भवतु",
   actionLabel,
   onAction,
   icon,
   className,
+  showDevotionalImage = true,
 }: EmptyStateProps) {
   return (
     <div
@@ -29,9 +32,22 @@ export function EmptyState({
         className
       )}
     >
-      <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#D8F1EE]/60 text-[#3F9495]">
-        {icon || <Compass className="h-7 w-7 stroke-[1.75]" />}
-      </div>
+      {showDevotionalImage && !icon ? (
+        <div className="relative mb-3 h-20 w-20 overflow-hidden rounded-2xl border border-[rgba(63,148,149,0.2)] shadow-sm">
+          <Image
+            src="/images/devotional-path-empty.jpg"
+            alt=""
+            aria-hidden="true"
+            fill
+            sizes="80px"
+            className="object-cover"
+          />
+        </div>
+      ) : (
+        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#D8F1EE]/60 text-[#3F9495]">
+          {icon || <Compass className="h-7 w-7 stroke-[1.75]" />}
+        </div>
+      )}
       {sanskritSubtitle && (
         <p className="mb-1 font-serif text-[13px] font-medium text-[#A9824D]">{sanskritSubtitle}</p>
       )}

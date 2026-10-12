@@ -76,9 +76,9 @@ export default async function StudentProfilePage() {
           </div>
         </Card>
 
-        {/* Connected Guru Card */}
+        {/* Connected Counsellor Card */}
         <div className="mb-6 space-y-2">
-          <h3 className="text-[14px] font-bold text-[#193B3B]">Your Guru</h3>
+          <h3 className="text-[14px] font-bold text-[#193B3B]">Your Counsellor</h3>
           {connectedGuru ? (
             <div className="flex items-center justify-between gap-3 rounded-2xl border border-[rgba(63,148,149,0.16)] bg-white p-4 shadow-level1 sm:p-5">
               <div className="flex items-center gap-3">
@@ -101,9 +101,9 @@ export default async function StudentProfilePage() {
           ) : (
             <div className="flex items-center justify-between gap-3 rounded-2xl border border-[rgba(63,148,149,0.16)] bg-white p-4 shadow-level1 sm:p-5">
               <div>
-                <div className="text-[14px] font-bold text-[#193B3B]">No Guru Connected Yet</div>
+                <div className="text-[14px] font-bold text-[#193B3B]">No Counsellor Connected Yet</div>
                 <div className="text-[12px] text-[#547070]">
-                  Have an invitation link or code from your Guru?
+                  Have an invitation link or code from your Counsellor?
                 </div>
               </div>
               <Link href="/invite">
@@ -141,7 +141,7 @@ export default async function StudentProfilePage() {
           <LogoutButton
               className="w-full text-[#B33927] hover:bg-[#B33927]/10 hover:text-[#992E1E] sm:w-auto"
               leftIcon={<LogOut className="h-4 w-4" />}
-            >Sign Out of Nityasādhanā</LogoutButton>
+            >Sign Out</LogoutButton>
         </div>
       </Container>
     </main>

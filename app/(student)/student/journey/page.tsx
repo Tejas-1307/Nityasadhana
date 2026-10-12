@@ -46,7 +46,7 @@ export default async function StudentJourneyPage() {
             Your Journey
           </h1>
           <p className="text-[14px] text-[#547070]">
-            A quiet reflection of your daily Sādhanā patterns, weekly intentions, and personal progress.
+            Review daily consistency, weekly intentions, and reflection.
           </p>
         </div>
 

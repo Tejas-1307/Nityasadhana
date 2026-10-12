@@ -130,7 +130,7 @@ export function NotificationDrawer({
                 Reminders • स्मृतयः
               </h2>
               <span className="text-[11px] text-[#547070]">
-                Peaceful, non-intrusive notifications
+                Gentle reminders
               </span>
             </div>
           </div>
@@ -231,8 +231,8 @@ export function NotificationDrawer({
               </h3>
               <p className="mt-1 max-w-xs text-[12px] text-[#547070]">
                 {activeTab === "unread"
-                  ? "No unread reminders. Your Sādhanā routine is flowing smoothly."
-                  : "No notifications recorded yet. Gentle reminders will appear here when relevant."}
+                  ? "No unread reminders."
+                  : "No reminders recorded yet."}
               </p>
             </div>
           ) : (

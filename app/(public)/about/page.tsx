@@ -33,8 +33,7 @@ export default function AboutPage() {
                   About Nityasādhanā
                 </h1>
                 <p className="mt-2 text-[16px] text-[#547070]">
-                  A dedicated platform designed for ISKCON Pune to support Brahmacharya students and
-                  their Gurus in daily spiritual practice.
+                  A dedicated platform created for ISKCON Pune to support devotees and their Counsellors in daily spiritual practice.
                 </p>
               </div>
 
@@ -52,14 +51,10 @@ export default function AboutPage() {
                   work.&rdquo;
                 </blockquote>
                 <p className="text-[15px] leading-relaxed text-[#547070]">
-                  In the traditional Gurukul system, spiritual life flourished through personal
-                  guidance, regular discipline, and unbroken contemplation. Modern administrative
-                  tracking often introduces distractions, heavy spreadsheets, and burnout.
+                  In the traditional Gurukul system, spiritual life flourished through personal guidance, regular discipline, and unbroken contemplation. Modern administrative tracking often introduces distractions, heavy spreadsheets, and burnout.
                 </p>
                 <p className="text-[15px] leading-relaxed text-[#547070]">
-                  Nityasādhanā bridges timeless spiritual heritage with calm, minimalist technology.
-                  Every interaction is designed to require minimal typing, fewest possible clicks,
-                  and zero unnecessary gamification.
+                  Nityasādhanā bridges timeless spiritual heritage with calm, minimalist technology. Every interaction is designed to require minimal typing, fewest possible clicks, and zero unnecessary gamification.
                 </p>
               </Card>
 
@@ -78,9 +73,9 @@ export default function AboutPage() {
                   <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[#A9824D]/15 text-[#A9824D]">
                     <Users className="h-5 w-5" />
                   </div>
-                  <h3 className="text-[16px] font-semibold text-[#193B3B]">Guru–Shishya Focus</h3>
+                  <h3 className="text-[16px] font-semibold text-[#193B3B]">Counsellor Guidance</h3>
                   <p className="mt-1.5 text-[14px] text-[#547070]">
-                    Strengthening the personal mentoring connection without intrusive management.
+                    Strengthening the personal mentoring connection without intrusive administrative overhead.
                   </p>
                 </Card>
               </div>

@@ -25,7 +25,7 @@ export function RecentReportsSection({
         </div>
         <h4 className="mt-3 text-[14px] font-bold text-[#193B3B]">No reports yet</h4>
         <p className="mt-1 text-[12px] text-[#547070]">
-          Your recent practice records will appear here as you submit them.
+          Recent practice records will appear here.
         </p>
       </div>
     );

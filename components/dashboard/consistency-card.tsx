@@ -45,7 +45,7 @@ export function ConsistencyCard({ consistency, className }: ConsistencyCardProps
           <div className="flex items-center gap-3 text-[13px] text-[#547070]">
             <Sparkles className="h-4 w-4 text-[#A9824D] shrink-0" />
             <p>
-              Your practice consistency will build steadily each day you record your Sādhanā.
+              Consistency builds each day you record your Sādhanā.
             </p>
           </div>
         ) : (
@@ -76,9 +76,8 @@ export function ConsistencyCard({ consistency, className }: ConsistencyCardProps
               />
             </div>
 
-            <div className="flex items-center justify-between text-[11px] text-[#547070] pt-0.5">
+            <div className="text-[11px] text-[#547070] pt-0.5">
               <span>{totalSubmitted} total {totalSubmitted === 1 ? "report" : "reports"} submitted</span>
-              <span>Encouragement · Non-judgmental</span>
             </div>
           </div>
         )}

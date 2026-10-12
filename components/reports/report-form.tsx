@@ -254,9 +254,7 @@ export function ReportForm({
     setTimeWastedMinutes(0);
     
     setQuickSelectionsCount((prev) => prev + 1);
-    setYesterdaySummary(
-      `Yesterday's routine loaded: Sleep (${previousReport.sleepTime} → ${previousReport.wakeUpTime}), Japa (${previousReport.japaRounds} rds), Reading (${previousReport.readingDurationMinutes || 0}m), Hearing (${previousReport.hearingDurationMinutes || 0}m), Study (${(previousReport.collegeStudyDurationMinutes || 0) + (previousReport.selfStudyDurationMinutes || 0)}m). Personal reflections and unused time were excluded.`
-    );
+    setYesterdaySummary("Loaded yesterday's routine.");
   };
 
   const handleSaveDraft = async () => {
@@ -397,7 +395,7 @@ export function ReportForm({
   // STEP 1: FAST INPUT FORM
   // -------------------------------------------------------------------------
   return (
-    <form onSubmit={(e) => { e.preventDefault(); setStep("review"); }} className="space-y-5">
+    <form onSubmit={handleSubmit} className="space-y-4">
       {/* Read-only warning if outside edit window */}
       {!isEditable && (
         <div className="flex items-center gap-2 rounded-xl border border-[rgba(63,148,149,0.16)] bg-amber-50 p-4 text-[13px] text-amber-900">
@@ -445,15 +443,14 @@ export function ReportForm({
 
       {/* FAST PATH HELPER: "Fill from yesterday" */}
       {previousReport && isEditable && (!initialReport || initialReport.status === "draft") && (
-        <div className="space-y-2.5">
-          <div className="flex items-center justify-between gap-3 rounded-2xl border border-[rgba(63,148,149,0.16)] bg-white p-3.5 shadow-level1">
-            <div className="flex items-center gap-2.5 text-[13px] text-[#193B3B]">
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#A9824D]/10 text-[#A9824D]">
-                <Zap className="h-4 w-4" />
+        <div className="space-y-2">
+          <div className="flex items-center justify-between gap-3 rounded-2xl border border-[rgba(63,148,149,0.16)] bg-white p-3 shadow-level1">
+            <div className="flex items-center gap-2 text-[13px] text-[#193B3B]">
+              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#A9824D]/10 text-[#A9824D]">
+                <Zap className="h-3.5 w-3.5" />
               </div>
               <div>
-                <div className="font-bold">Fast Path</div>
-                <div className="text-[11px] text-[#547070]">Routine similar to yesterday?</div>
+                <span className="font-bold">Same as yesterday?</span>
               </div>
             </div>
             <Button
@@ -463,16 +460,16 @@ export function ReportForm({
               onClick={handleFillFromYesterday}
               className="text-[12px] font-semibold"
             >
-              ⚡ Fill from yesterday
+              Fill from yesterday
             </Button>
           </div>
 
           {/* Yesterday Loaded Detail Summary */}
           {yesterdaySummary && (
-            <div className="flex items-start gap-2.5 rounded-xl border border-[rgba(63,148,149,0.22)] bg-[#3F9495]/8 p-3 text-[12px] text-[#3F9495]">
-              <Info className="mt-0.5 h-4 w-4 shrink-0" />
-              <div className="flex-1 leading-relaxed">
-                {yesterdaySummary}
+            <div className="flex items-center justify-between gap-2 rounded-xl border border-[rgba(63,148,149,0.22)] bg-[#3F9495]/8 px-3 py-2 text-[12px] text-[#3F9495]">
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="h-3.5 w-3.5 shrink-0" />
+                <span>{yesterdaySummary}</span>
               </div>
               <button
                 type="button"
@@ -548,7 +545,7 @@ export function ReportForm({
             <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#A9824D]/12 text-[#A9824D]">
               <CircleDot className="h-3.5 w-3.5" />
             </div>
-            <h3 className="text-[14px] font-bold text-[#193B3B]">2. Japa Meditation</h3>
+            <h3 className="text-[14px] font-bold text-[#193B3B]">2. Japa</h3>
           </div>
           <Badge variant="saffron" size="sm">
             <span>{totalRounds} rounds</span>
@@ -654,7 +651,7 @@ export function ReportForm({
             <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#547070]/12 text-[#547070]">
               <GraduationCap className="h-3.5 w-3.5" />
             </div>
-            <h3 className="text-[14px] font-bold text-[#193B3B]">4. Study & Seva</h3>
+            <h3 className="text-[14px] font-bold text-[#193B3B]">4. Study</h3>
           </div>
           <Badge variant="neutral" size="sm">
             <span>Total {formatDuration(totalStudy)}</span>
@@ -701,7 +698,7 @@ export function ReportForm({
             <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#547070]/12 text-[#547070]">
               <Clock className="h-3.5 w-3.5" />
             </div>
-            <h3 className="text-[14px] font-bold text-[#193B3B]">5. Rest & Awareness</h3>
+            <h3 className="text-[14px] font-bold text-[#193B3B]">5. Rest & Time</h3>
           </div>
         </div>
 
@@ -745,7 +742,7 @@ export function ReportForm({
             </div>
             <div>
               <h3 className="text-[14px] font-bold text-[#193B3B]">6. Reflection</h3>
-              <span className="text-[11px] text-[#547070]">Optional personal notes</span>
+              <span className="text-[11px] text-[#547070]">Optional notes</span>
             </div>
           </div>
           <span className="text-[11px] text-[#547070]">
@@ -770,27 +767,43 @@ export function ReportForm({
       {isEditable && (
         <div className="sticky bottom-20 z-20 rounded-2xl border border-[rgba(63,148,149,0.16)] bg-[#EAF7F4]/95 p-3 shadow-level3 backdrop-blur-md sm:bottom-6 sm:p-4">
           <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
-            <Button
-              type="button"
-              variant="secondary"
-              size="default"
-              disabled={isDraftSaving || isSubmitting}
-              onClick={handleSaveDraft}
-              leftIcon={<Save className="h-4 w-4" />}
-              className="w-full text-[14px] sm:w-auto"
-            >
-              {isDraftSaving ? "Saving..." : "Save Draft"}
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button
+                type="button"
+                variant="secondary"
+                size="default"
+                disabled={isDraftSaving || isSubmitting}
+                onClick={handleSaveDraft}
+                leftIcon={<Save className="h-4 w-4" />}
+                className="w-full text-[14px] sm:w-auto"
+              >
+                {isDraftSaving ? "Saving..." : "Save Draft"}
+              </Button>
+              <Button
+                type="button"
+                variant="ghost"
+                size="default"
+                disabled={isDraftSaving || isSubmitting}
+                onClick={() => setStep("review")}
+                className="hidden text-[13px] text-[#2457A6] hover:bg-[#2457A6]/10 sm:inline-flex"
+              >
+                Preview Summary
+              </Button>
+            </div>
 
             <Button
               type="submit"
               variant="primary"
               size="default"
               disabled={isSubmitting || isDraftSaving}
-              rightIcon={<ArrowRight className="h-4 w-4" />}
+              leftIcon={<Check className="h-4 w-4" />}
               className="w-full text-[15px] font-bold shadow-md sm:w-auto"
             >
-              Review Sādhanā
+              {isSubmitting
+                ? "Recording..."
+                : isSubmitted
+                  ? "Update Today's Sādhanā"
+                  : "Submit Today's Sādhanā"}
             </Button>
           </div>
         </div>

@@ -101,7 +101,7 @@ export function AcceptInviteCard({
         </div>
 
         <p className="mx-auto max-w-sm text-[13px] text-[#547070]">
-          Your Shishya profile has been activated. You can now record your daily Sadhana and seva.
+          Your Counselee profile is active. You can now record your daily Sādhanā.
         </p>
 
         <div className="pt-2">
@@ -134,7 +134,7 @@ export function AcceptInviteCard({
           Nityasādhanā Invitation
         </h2>
         <p className="text-[14px] text-[#547070]">
-          Your Guru has invited you to begin your daily Sādhanā journey.
+          Your Counsellor has invited you to connect.
         </p>
       </div>
 
@@ -178,7 +178,7 @@ export function AcceptInviteCard({
             className="w-full"
             rightIcon={!isLoading ? <ArrowRight className="h-4 w-4" /> : undefined}
           >
-            Join this Guru
+            Connect with Counsellor
           </Button>
         ) : (
           <div className="space-y-2.5">
@@ -189,7 +189,7 @@ export function AcceptInviteCard({
                 className="w-full"
                 leftIcon={<UserPlus className="h-4 w-4" />}
               >
-                Create Shishya Account
+                Create Counselee Account
               </Button>
             </Link>
 
@@ -200,7 +200,7 @@ export function AcceptInviteCard({
                 className="w-full"
                 leftIcon={<LogIn className="h-4 w-4" />}
               >
-                Sign In to Existing Account
+                Sign In
               </Button>
             </Link>
           </div>

@@ -16,30 +16,28 @@ export function GuruShishyaSection() {
         {/* Section Header */}
         <div className="mx-auto mb-12 max-w-2xl text-center sm:mb-16">
           <Badge variant="saffron" size="default" className="mb-3">
-            <span className="font-serif">गुरुशिष्यपरम्परा</span> • Sacred Relationship
+            <span className="font-serif">मार्गदर्शनम्</span> • Spiritual Guidance
           </Badge>
           <h2 className="text-balance text-[26px] font-bold tracking-tight text-[#193B3B] sm:text-[34px]">
             Technology should support guidance, not replace it.
           </h2>
           <p className="mt-3 text-[15px] leading-relaxed text-[#547070] sm:text-[16px]">
-            The heart of spiritual growth lies in personal guidance and care. Nityasādhanā acts as a
-            quiet bridge of transparency and dedication.
+            Personal guidance is at the heart of devotional growth. Nityasādhanā provides a quiet bridge of transparency and care.
           </p>
         </div>
 
         {/* The Two Sides of Guidance Diagram */}
         <div className="mx-auto max-w-4xl">
           <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-3">
-            {/* Shishya Role Side */}
+            {/* Counselee Role Side */}
             <Card className="border-[rgba(63,148,149,0.16)] bg-[#F7F5EF]/70 p-6 text-center">
               <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[#D8F1EE] text-[#3F9495]">
                 <Users className="h-6 w-6" />
               </div>
               <span className="font-serif text-[13px] font-semibold text-[#A9824D]">शिष्यः</span>
-              <h3 className="mb-2 mt-0.5 text-[18px] font-bold text-[#193B3B]">The Shishya</h3>
+              <h3 className="mb-2 mt-0.5 text-[18px] font-bold text-[#193B3B]">The Counselee</h3>
               <p className="text-[13px] leading-relaxed text-[#547070]">
-                Practices daily discipline, logs rounds and study with honesty, and reflects on
-                personal spiritual growth.
+                Maintains daily disciplines, logs rounds and study with honesty, and shares personal reflections.
               </p>
             </Card>
 
@@ -57,16 +55,15 @@ export function GuruShishyaSection() {
               </p>
             </div>
 
-            {/* Guru Role Side */}
+            {/* Counsellor Role Side */}
             <Card className="border-[rgba(63,148,149,0.16)] bg-[#F7F5EF]/70 p-6 text-center">
               <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[#A9824D]/15 text-[#A9824D]">
                 <Eye className="h-6 w-6" />
               </div>
               <span className="font-serif text-[13px] font-semibold text-[#A9824D]">गुरुः</span>
-              <h3 className="mb-2 mt-0.5 text-[18px] font-bold text-[#193B3B]">The Guru</h3>
+              <h3 className="mb-2 mt-0.5 text-[18px] font-bold text-[#193B3B]">The Counsellor</h3>
               <p className="text-[13px] leading-relaxed text-[#547070]">
-                Observes spiritual consistency without spreadsheets, provides timely encouragement,
-                and guides with deep context.
+                Observes consistency with zero spreadsheets, provides timely encouragement, and guides with care.
               </p>
             </Card>
           </div>

@@ -9,6 +9,7 @@ import {
   formatDuration,
   generateWhatsAppSummary,
 } from "@/lib/reports/calculations";
+import Image from "next/image";
 import { ReportReviewCard } from "./report-review-card";
 import {
   History,
@@ -49,15 +50,21 @@ export function ReportHistoryList({ reports }: ReportHistoryListProps) {
   if (!reports || reports.length === 0) {
     return (
       <Card className="border-[rgba(63,148,149,0.16)] bg-white p-6 text-center shadow-level1">
-        <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-[#EAF7F4] text-[#3F9495]">
-          <History className="h-5 w-5" />
+        <div className="relative mx-auto mb-3 h-20 w-20 overflow-hidden rounded-2xl border border-[rgba(63,148,149,0.2)] shadow-sm">
+          <Image
+            src="/images/devotional-path-empty.jpg"
+            alt=""
+            aria-hidden="true"
+            fill
+            sizes="80px"
+            className="object-cover"
+          />
         </div>
-        <h4 className="mt-2 text-[14px] font-bold text-[#193B3B]">
-          Your previous reports will appear here
+        <h4 className="text-[14px] font-bold text-[#193B3B]">
+          No reports yet
         </h4>
         <p className="mt-1 text-[12px] text-[#547070]">
-          As you submit daily reports, your historical entries and practice reflections will be
-          organized here.
+          Completed daily reports will appear here.
         </p>
       </Card>
     );

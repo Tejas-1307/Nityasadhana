@@ -50,7 +50,7 @@ export default async function StudentReportPage() {
             Today&apos;s Sādhanā
           </h1>
           <p className="text-[14px] text-[#547070]">
-            Record your day with honesty and simplicity.
+            Complete today&apos;s Sādhanā.
           </p>
         </div>
 
@@ -58,7 +58,7 @@ export default async function StudentReportPage() {
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[rgba(63,148,149,0.16)] bg-white p-4 shadow-level1 sm:p-5">
           <div className="flex items-center gap-2 text-[14px] font-semibold text-[#193B3B]">
             <Calendar className="h-4 w-4 text-[#3F9495]" />
-            <span>Practice Date: {formattedLongDate}</span>
+            <span>{formattedLongDate}</span>
           </div>
 
           <Badge

@@ -25,14 +25,14 @@ export function ShishyaSection() {
       title: "Evening Realizations",
       sanskrit: "आत्मनिरीक्षणम्",
       description:
-        "Record brief personal insights, spiritual gratitude, or difficulties for your Guru to review.",
+        "Share today's reflection, personal gratitude, or difficulties for your Counsellor to review.",
       icon: <Sparkles className="h-5 w-5 text-[#328A7A]" />,
     },
     {
       title: "Focused Spiritual Growth",
       sanskrit: "परिशुद्धिः",
       description:
-        "Build steady devotion with quiet clarity and the loving accountability of your spiritual mentor.",
+        "Build steady devotion with quiet clarity and the loving accountability of your Counsellor.",
       icon: <CheckCircle2 className="h-5 w-5 text-[#56BFC0]" />,
     },
   ];
@@ -44,14 +44,13 @@ export function ShishyaSection() {
           {/* Left Column Narrative */}
           <div className="space-y-4 lg:col-span-5">
             <Badge variant="krishna" size="default">
-              <span className="font-serif">शिष्यमार्गः</span> • For Shishyas
+              <span className="font-serif">शिष्यमार्गः</span> • For Counselees
             </Badge>
             <h2 className="text-balance text-[26px] font-bold leading-tight tracking-tight text-[#193B3B] sm:text-[34px]">
               Your practice. Your rhythm. Your journey.
             </h2>
             <p className="text-[15px] leading-relaxed text-[#547070] sm:text-[16px]">
-              Designed from the ground up for mobile convenience. Recording your Sādhanā takes only
-              a few mindful taps at the end of the day.
+              Designed from the ground up for mobile convenience. Complete today&apos;s Sādhanā with a few mindful taps.
             </p>
             <div className="pt-2">
               <span className="font-serif text-[14px] italic text-[#A9824D]">

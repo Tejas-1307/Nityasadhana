@@ -70,7 +70,7 @@ export function CodeEntryForm() {
             disabled={isLoading}
           />
           <p className="mt-1.5 text-[12px] text-[#547070]">
-            Provided in the invitation message from your Guru.
+            Provided in the invitation from your Counsellor.
           </p>
         </div>
 

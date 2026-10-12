@@ -61,13 +61,13 @@ export default async function GuruSadhanaReportPage({ params }: PageProps) {
   );
 
   if (response.status === 404) {
-    return <ReportErrorState title="Sadhana record not found" detail="This record may have been removed or does not belong to this Shishya." backHref={`/guru/shishyas/${encodeURIComponent(id)}`} />;
+    return <ReportErrorState title="Sadhana record not found" detail="This record may have been removed or does not belong to this Counselee." backHref={`/guru/shishyas/${encodeURIComponent(id)}`} />;
   }
   if (response.status === 401 || response.status === 403) {
     return <ReportErrorState title="Access denied" detail="You are not authorized to inspect this Sadhana record." backHref="/guru" />;
   }
   if (!response.ok) {
-    return <ReportErrorState title="Unable to load Sadhana record" detail="Please return to the Guru dashboard and try again." backHref="/guru" />;
+    return <ReportErrorState title="Unable to load Sadhana record" detail="Please return to the Counsellor dashboard and try again." backHref="/guru" />;
   }
 
   const body = await response.json() as { report: Report };

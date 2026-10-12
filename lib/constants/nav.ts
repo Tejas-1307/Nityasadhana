@@ -41,7 +41,7 @@ export const GURU_NAV_ITEMS: NavItem[] = [
     sanskritLabel: "अवलोकन",
   },
   {
-    title: "Shishyas",
+    title: "Counselees",
     href: "/guru/shishyas",
     iconName: "Users",
     sanskritLabel: "शिष्याः",

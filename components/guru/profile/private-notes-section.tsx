@@ -90,7 +90,7 @@ export function PrivateNotesSection({
             </div>
             <div>
               <h2 className="text-[16px] font-bold text-[#193B3B] sm:text-[17px]">
-                Private Guru Notes
+                Private Counsellor Notes
               </h2>
             </div>
           </div>
@@ -152,7 +152,7 @@ export function PrivateNotesSection({
 
               <div className="flex items-center justify-between pt-1">
                 <span className="text-[11px] text-[#547070]">
-                  🔒 Visible only to you as Guru
+                  🔒 Visible only to you as Counsellor
                 </span>
                 <div className="flex items-center gap-2">
                   <Button

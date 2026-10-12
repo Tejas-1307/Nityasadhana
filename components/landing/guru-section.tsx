@@ -11,28 +11,28 @@ export function GuruSection() {
       title: "Ashram-Wide Clarity",
       sanskrit: "समग्रदृष्टिः",
       description:
-        "Instantly see daily Sadhana status across your Brahmachari students without chasing individual messages.",
+        "Instantly see daily Sādhanā status across your Counselees without chasing individual messages.",
       icon: <Eye className="h-5 w-5 text-[#A9824D]" />,
     },
     {
       title: "Proactive Spiritual Care",
       sanskrit: "वात्सल्यम्",
       description:
-        "Quickly notice when a student is struggling with morning waking or rounds so you can offer timely encouragement.",
+        "Quickly notice when a counselee needs encouragement with morning waking or rounds.",
       icon: <HeartHandshake className="h-5 w-5 text-[#3F9495]" />,
     },
     {
       title: "Zero Spreadsheets",
       sanskrit: "प्रशासनमुक्तिः",
       description:
-        "Spend your seva in study, japa, and direct devotional counseling rather than manual data entry.",
+        "Spend your seva in study, japa, and direct devotional guidance rather than manual data entry.",
       icon: <ShieldCheck className="h-5 w-5 text-[#328A7A]" />,
     },
     {
-      title: "Deepened Spiritual Mentorship",
+      title: "Deepened Spiritual Guidance",
       sanskrit: "मार्गदर्शनम्",
       description:
-        "Read your Shishyas' daily realizations and understand their devotional journey with authentic context.",
+        "Read your Counselees' daily reflections and understand their devotional journey with authentic context.",
       icon: <Compass className="h-5 w-5 text-[#56BFC0]" />,
     },
   ];
@@ -65,14 +65,13 @@ export function GuruSection() {
           {/* Right Column Narrative */}
           <div className="order-1 space-y-4 lg:order-2 lg:col-span-5">
             <Badge variant="saffron" size="default">
-              <span className="font-serif">गुरुमार्गः</span> • For Gurus
+              <span className="font-serif">गुरुमार्गः</span> • For Counsellors
             </Badge>
             <h2 className="text-balance text-[26px] font-bold leading-tight tracking-tight text-[#193B3B] sm:text-[34px]">
               Less administration. More guidance.
             </h2>
             <p className="text-[15px] leading-relaxed text-[#547070] sm:text-[16px]">
-              Nityasādhanā eliminates administrative friction so spiritual teachers can focus their
-              energy on what truly matters: caring for their students&apos; spiritual well-being.
+              Nityasādhanā eliminates administrative friction so counsellors can focus on what truly matters: supporting spiritual growth.
             </p>
             <div className="pt-2">
               <span className="font-serif text-[14px] italic text-[#3F9495]">

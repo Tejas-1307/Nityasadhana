@@ -1,13 +1,13 @@
 import * as React from "react";
+import Image from "next/image";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
-import { BrandMark } from "@/components/branding/brand-mark";
 
 export function SpiritualInterlude() {
   return (
     <Section
       spacing="lg"
-      className="relative overflow-hidden bg-[#EAF7F4] py-16 text-center sm:py-24"
+      className="relative overflow-hidden bg-[#EAF7F4] py-14 text-center sm:py-20"
     >
       {/* Delicate background geometry */}
       <div
@@ -19,10 +19,18 @@ export function SpiritualInterlude() {
       </div>
 
       <Container size="reading">
-        <div className="flex flex-col items-center space-y-5">
-          {/* Subtle Spiritual Mark */}
-          <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(63,148,149,0.22)] bg-white/80 shadow-sm">
-            <BrandMark size={28} />
+        <div className="flex flex-col items-center space-y-4">
+          {/* Subtle Devotional Artwork Vignette */}
+          <div className="relative h-20 w-20 overflow-hidden rounded-2xl border border-[rgba(63,148,149,0.22)] bg-white p-1 shadow-sm sm:h-24 sm:w-24">
+            <div className="relative h-full w-full overflow-hidden rounded-xl">
+              <Image
+                src="/images/spiritual-reflection.jpg"
+                alt=""
+                fill
+                sizes="96px"
+                className="object-cover"
+              />
+            </div>
           </div>
 
           {/* Authentic Shloka */}

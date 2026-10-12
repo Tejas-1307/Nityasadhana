@@ -146,7 +146,7 @@ export function InviteModal({
                     {invitation ? "Invitation Ready" : "Invite a Counselee"}
                   </h2>
                   <p className="text-[12px] text-[#547070]">
-                    {invitation ? "Share with your counselee" : "शिष्यसंयोजनम्"}
+                    {invitation ? "Share with your Counselee" : "शिष्यसंयोजनम्"}
                   </p>
                 </div>
               </div>
@@ -174,14 +174,13 @@ export function InviteModal({
               /* State 1: Generation Prompt */
               <div className="space-y-5">
                 <p className="text-[14px] leading-relaxed text-[#547070]">
-                  Create a unique, single-use invitation for your Counselee. Once accepted, they will
-                  automatically be connected under your guidance with zero manual configuration.
+                  Generate a single-use invite for your Counselee to connect directly with your guidance.
                 </p>
 
                 <div className="space-y-2 rounded-2xl border border-[rgba(63,148,149,0.14)] bg-[#F7F5EF] p-4">
                   <div className="flex items-center gap-2 text-[13px] font-semibold text-[#193B3B]">
                     <ShieldCheck className="h-4 w-4 text-[#328A7A]" />
-                    <span>Cryptographically Protected</span>
+                    <span>Secure Invitation</span>
                   </div>
                   <ul className="list-inside list-disc space-y-1 text-[12px] text-[#547070]">
                     <li>Single-use bearer token (cannot be reused)</li>
@@ -236,7 +235,7 @@ export function InviteModal({
                 </Card>
 
                 <p className="text-center text-[13px] text-[#547070]">
-                  Anyone with this invitation can use it once to join under your guidance.
+                  Your Counselee can use this code once to connect with you.
                 </p>
 
                 {/* Primary Action Buttons */}
