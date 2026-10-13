@@ -12,7 +12,6 @@ import {
 import Image from "next/image";
 import { ReportReviewCard } from "./report-review-card";
 import {
-  History,
   ChevronDown,
   ChevronUp,
   Moon,

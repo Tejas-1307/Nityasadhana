@@ -21,8 +21,11 @@ import { QuickDurationPicker } from "./quick-duration-picker";
 import { NumberStepper } from "./number-stepper";
 import { ReportProgressBar } from "./report-progress-bar";
 import { ReportReviewCard } from "./report-review-card";
+import { TimePicker12Hour } from "./time-picker-12h";
+import { DailySadhanaReportInput } from "@/lib/reports/validation";
 import {
   saveLocalDraft,
+  getLocalDraft,
   clearLocalDraft,
   SyncState,
   getSyncStatusMeta,
@@ -39,10 +42,8 @@ import {
   AlertCircle,
   Check,
   Zap,
-  ArrowRight,
   ArrowLeft,
   Edit3,
-  Info,
 } from "lucide-react";
 
 export interface ReportFormProps {
@@ -65,12 +66,12 @@ export function ReportForm({
   // Step state: "form" | "review"
   const [step, setStep] = React.useState<"form" | "review">("form");
 
-  // Form State (initialized from initialReport, or smart defaults)
+  // Form State (initialized from initialReport, or production defaults 9:00 PM / 3:30 AM)
   const [sleepTime, setSleepTime] = React.useState<string>(
-    initialReport?.sleepTime || previousReport?.sleepTime || "20:45"
+    initialReport?.sleepTime || "21:00"
   );
   const [wakeUpTime, setWakeUpTime] = React.useState<string>(
-    initialReport?.wakeUpTime || previousReport?.wakeUpTime || "03:20"
+    initialReport?.wakeUpTime || "03:30"
   );
   const [japaRounds, setJapaRounds] = React.useState<number>(
     initialReport?.japaRounds !== undefined
@@ -201,8 +202,25 @@ export function ReportForm({
     notes,
   ]);
 
-  // Auto-save local draft on changes
+  const isDraftRestoredRef = React.useRef(false);
+
+  // Restore unsaved local draft if no server report exists
   React.useEffect(() => {
+    if (!initialReport && typeof window !== "undefined") {
+      const local = getLocalDraft<DailySadhanaReportInput>(practiceDate);
+      if (local?.sleepTime) {
+        setSleepTime(local.sleepTime);
+      }
+      if (local?.wakeUpTime) {
+        setWakeUpTime(local.wakeUpTime);
+      }
+    }
+    isDraftRestoredRef.current = true;
+  }, [practiceDate, initialReport]);
+
+  // Auto-save local draft on changes (after local draft restoration check)
+  React.useEffect(() => {
+    if (!isDraftRestoredRef.current && !initialReport) return;
     if (isEditable && (!initialReport || initialReport.status === "draft")) {
       saveLocalDraft(practiceDate, getPayload());
       setSyncState((prev) => (prev === "offline" ? "offline" : "saved"));
@@ -499,42 +517,24 @@ export function ReportForm({
           )}
         </div>
 
-        <div className="mt-3.5 grid grid-cols-2 gap-3">
-          <div>
-            <label
-              htmlFor="sleepTime"
-              className="block text-[11px] font-semibold uppercase tracking-wider text-[#547070]"
-            >
-              Slept at
-            </label>
-            <input
-              id="sleepTime"
-              type="time"
-              disabled={!isEditable}
-              value={sleepTime}
-              onChange={(e) => setSleepTime(e.target.value)}
-              className="mt-1 h-11 w-full rounded-xl border border-[rgba(63,148,149,0.18)] bg-[#F7F5EF]/30 px-2.5 text-[14px] font-bold text-[#193B3B] focus:border-[#3F9495] focus:outline-none focus:ring-2 focus:ring-[#3F9495]/20 disabled:opacity-60"
-              required
-            />
-          </div>
+        <div className="mt-3.5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <TimePicker12Hour
+            id="sleepTime"
+            label="Slept at"
+            value={sleepTime}
+            onChange={(val) => setSleepTime(val)}
+            disabled={!isEditable}
+            presetType="sleep"
+          />
 
-          <div>
-            <label
-              htmlFor="wakeUpTime"
-              className="block text-[11px] font-semibold uppercase tracking-wider text-[#547070]"
-            >
-              Woke up at
-            </label>
-            <input
-              id="wakeUpTime"
-              type="time"
-              disabled={!isEditable}
-              value={wakeUpTime}
-              onChange={(e) => setWakeUpTime(e.target.value)}
-              className="mt-1 h-11 w-full rounded-xl border border-[rgba(63,148,149,0.18)] bg-[#F7F5EF]/30 px-2.5 text-[14px] font-bold text-[#193B3B] focus:border-[#3F9495] focus:outline-none focus:ring-2 focus:ring-[#3F9495]/20 disabled:opacity-60"
-              required
-            />
-          </div>
+          <TimePicker12Hour
+            id="wakeUpTime"
+            label="Woke up at"
+            value={wakeUpTime}
+            onChange={(val) => setWakeUpTime(val)}
+            disabled={!isEditable}
+            presetType="wake"
+          />
         </div>
       </Card>
 
