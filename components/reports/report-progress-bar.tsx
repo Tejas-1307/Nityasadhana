@@ -7,12 +7,14 @@ export interface ReportProgressBarProps {
   completedSections: number;
   totalRequiredSections?: number;
   className?: string;
+  syncBadge?: React.ReactNode;
 }
 
 export function ReportProgressBar({
   completedSections,
   totalRequiredSections = 5,
   className,
+  syncBadge,
 }: ReportProgressBarProps) {
   const percentage = Math.min(
     100,
@@ -24,22 +26,25 @@ export function ReportProgressBar({
   return (
     <div className={`space-y-1.5 ${className || ""}`}>
       <div className="flex items-center justify-between text-[12px]">
-        <span className="flex items-center gap-1 font-medium text-[#547070]">
+        <span className="flex items-center gap-1.5 font-medium text-[#547070]">
           {isAllComplete ? (
             <>
               <CheckCircle2 className="h-3.5 w-3.5 text-[#328A7A]" />
-              <span className="font-semibold text-[#193B3B]">All required sections complete</span>
+              <span className="font-semibold text-[#193B3B]">All 5 sections ready</span>
             </>
           ) : (
             <>
               <Sparkles className="h-3.5 w-3.5 text-[#3F9495]" />
-              <span>
+              <span className="font-medium text-[#193B3B]">
                 {completedSections} of {totalRequiredSections} sections completed
               </span>
             </>
           )}
         </span>
-        <span className="font-bold text-[#193B3B]">{percentage}%</span>
+        <div className="flex items-center gap-2">
+          {syncBadge}
+          <span className="font-bold text-[#193B3B]">{percentage}%</span>
+        </div>
       </div>
 
       {/* Progress Track */}

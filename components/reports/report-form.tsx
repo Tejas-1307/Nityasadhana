@@ -44,6 +44,8 @@ import {
   Zap,
   ArrowLeft,
   Edit3,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 
 export interface ReportFormProps {
@@ -145,6 +147,13 @@ export function ReportForm({
   const [isDraftSaving, setIsDraftSaving] = React.useState<boolean>(false);
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
   const [successMessage, setSuccessMessage] = React.useState<string | null>(null);
+
+  // Progressive disclosure: Collapsible sections (default open for 0-tap reporting)
+  const [collapsedSections, setCollapsedSections] = React.useState<Record<number, boolean>>({});
+  const toggleSection = (section: number) => {
+    setCollapsedSections((prev) => ({ ...prev, [section]: !prev[section] }));
+  };
+  const isCollapsed = (section: number) => !!collapsedSections[section];
 
   // Network listener
   React.useEffect(() => {
@@ -337,7 +346,7 @@ export function ReportForm({
   // -------------------------------------------------------------------------
   if (step === "review") {
     return (
-      <div className="space-y-6">
+      <div className="space-y-4 pb-16 sm:pb-8">
         <div className="flex items-center justify-between">
           <button
             type="button"
@@ -370,12 +379,12 @@ export function ReportForm({
           timeWastedDurationMinutes={timeWastedMinutes}
           notes={notes}
           status="submitted"
-          className="border-[rgba(63,148,149,0.16)] bg-white p-5 shadow-level2 sm:p-6"
+          className="border-[rgba(63,148,149,0.16)] bg-white p-4 shadow-level2 sm:p-6"
         />
 
         {/* Final Confirmation Buttons */}
-        <div className="rounded-2xl border border-[rgba(63,148,149,0.16)] bg-[#EAF7F4]/95 p-4 shadow-level2">
-          <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
+        <div className="rounded-2xl border border-[rgba(63,148,149,0.16)] bg-[#EAF7F4]/95 p-3 shadow-level2 sm:p-4">
+          <div className="flex items-center gap-2.5 sm:justify-between">
             <Button
               type="button"
               variant="secondary"
@@ -383,7 +392,7 @@ export function ReportForm({
               disabled={isSubmitting}
               onClick={() => setStep("form")}
               leftIcon={<Edit3 className="h-4 w-4" />}
-              className="w-full text-[14px] sm:w-auto"
+              className="h-11 px-3 text-[13px] font-semibold sm:w-auto"
             >
               Make Changes
             </Button>
@@ -395,13 +404,13 @@ export function ReportForm({
               disabled={isSubmitting}
               onClick={() => handleSubmit()}
               leftIcon={<Check className="h-4 w-4" />}
-              className="w-full text-[15px] font-bold shadow-md sm:w-auto"
+              className="h-11 flex-1 text-[13px] font-bold shadow-md sm:flex-none sm:w-auto sm:text-[14px]"
             >
               {isSubmitting
                 ? "Recording..."
                 : isSubmitted
-                  ? "Update Today's Sādhanā"
-                  : "Submit Today's Sādhanā"}
+                  ? "Update Sādhanā"
+                  : "Submit Sādhanā"}
             </Button>
           </div>
         </div>
@@ -413,7 +422,7 @@ export function ReportForm({
   // STEP 1: FAST INPUT FORM
   // -------------------------------------------------------------------------
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-3.5 pb-28 sm:pb-12">
       {/* Read-only warning if outside edit window */}
       {!isEditable && (
         <div className="flex items-center gap-2 rounded-xl border border-[rgba(63,148,149,0.16)] bg-amber-50 p-4 text-[13px] text-amber-900">
@@ -441,28 +450,25 @@ export function ReportForm({
         </div>
       )}
 
-      {/* Progress & Sync Status Indicator */}
-      <div className="space-y-2">
-        <div className="flex items-center justify-between">
-          <span className="text-[12px] font-bold text-[#193B3B]">
-            Sādhanā Sections ({completedSections}/5 completed)
-          </span>
-          {(() => {
+      {/* Progress & Sync Status Unified Strip */}
+      <div className="rounded-xl border border-[rgba(63,148,149,0.14)] bg-white/80 p-2.5 shadow-level1">
+        <ReportProgressBar
+          completedSections={completedSections}
+          syncBadge={(() => {
             const meta = getSyncStatusMeta(syncState);
             return (
-              <Badge variant={meta.variant} size="sm" className={meta.colorClass}>
+              <Badge variant={meta.variant} size="sm" className={`text-[10px] py-0 px-2 h-5 ${meta.colorClass}`}>
                 <span>{meta.label}</span>
               </Badge>
             );
           })()}
-        </div>
-        <ReportProgressBar completedSections={completedSections} />
+        />
       </div>
 
       {/* FAST PATH HELPER: "Fill from yesterday" */}
       {previousReport && isEditable && (!initialReport || initialReport.status === "draft") && (
         <div className="space-y-2">
-          <div className="flex items-center justify-between gap-3 rounded-2xl border border-[rgba(63,148,149,0.16)] bg-white p-3 shadow-level1">
+          <div className="flex items-center justify-between gap-3 rounded-2xl border border-[rgba(63,148,149,0.16)] bg-white p-2.5 shadow-level1 sm:p-3">
             <div className="flex items-center gap-2 text-[13px] text-[#193B3B]">
               <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#A9824D]/10 text-[#A9824D]">
                 <Zap className="h-3.5 w-3.5" />
@@ -476,7 +482,7 @@ export function ReportForm({
               variant="secondary"
               size="sm"
               onClick={handleFillFromYesterday}
-              className="text-[12px] font-semibold"
+              className="h-8 px-2.5 text-[12px] font-semibold"
             >
               Fill from yesterday
             </Button>
@@ -502,242 +508,321 @@ export function ReportForm({
       )}
 
       {/* SECTION 1: SLEEP & WAKE */}
-      <Card className="border-[rgba(63,148,149,0.16)] bg-white p-4 shadow-level1 sm:p-5">
-        <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.12)] pb-2.5">
+      <Card className="border-[rgba(63,148,149,0.16)] bg-white p-3.5 shadow-level1 sm:p-5">
+        <button
+          type="button"
+          onClick={() => toggleSection(1)}
+          aria-expanded={!isCollapsed(1)}
+          className="flex w-full items-center justify-between text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3F9495]"
+        >
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#3F9495]/12 text-[#3F9495]">
+            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#3F9495]/12 text-[#3F9495]">
               <Moon className="h-3.5 w-3.5" />
             </div>
             <h3 className="text-[14px] font-bold text-[#193B3B]">1. Sleep & Wake</h3>
           </div>
-          {sleepTime && wakeUpTime && (
-            <Badge variant="krishna" size="sm">
-              <span>{formatDuration(sleepDuration)}</span>
-            </Badge>
-          )}
-        </div>
+          <div className="flex items-center gap-2">
+            {sleepTime && wakeUpTime && (
+              <Badge variant="krishna" size="sm" className="font-semibold">
+                <span>{formatDuration(sleepDuration)}</span>
+              </Badge>
+            )}
+            <span className="text-[#547070]">
+              {isCollapsed(1) ? <ChevronDown className="h-4 w-4" /> : <ChevronUp className="h-4 w-4" />}
+            </span>
+          </div>
+        </button>
 
-        <div className="mt-3.5 grid grid-cols-1 gap-3 sm:grid-cols-2">
-          <TimePicker12Hour
-            id="sleepTime"
-            label="Slept at"
-            value={sleepTime}
-            onChange={(val) => setSleepTime(val)}
-            disabled={!isEditable}
-            presetType="sleep"
-          />
+        {!isCollapsed(1) && (
+          <div className="mt-3.5 pt-3 border-t border-[rgba(63,148,149,0.12)]">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <TimePicker12Hour
+                id="sleepTime"
+                label="Slept at"
+                value={sleepTime}
+                onChange={(val) => setSleepTime(val)}
+                disabled={!isEditable}
+                presetType="sleep"
+              />
 
-          <TimePicker12Hour
-            id="wakeUpTime"
-            label="Woke up at"
-            value={wakeUpTime}
-            onChange={(val) => setWakeUpTime(val)}
-            disabled={!isEditable}
-            presetType="wake"
-          />
-        </div>
+              <TimePicker12Hour
+                id="wakeUpTime"
+                label="Woke up at"
+                value={wakeUpTime}
+                onChange={(val) => setWakeUpTime(val)}
+                disabled={!isEditable}
+                presetType="wake"
+              />
+            </div>
+          </div>
+        )}
       </Card>
 
       {/* SECTION 2: JAPA */}
-      <Card className="border-[rgba(63,148,149,0.16)] bg-white p-4 shadow-level1 sm:p-5">
-        <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.12)] pb-2.5">
+      <Card className="border-[rgba(63,148,149,0.16)] bg-white p-3.5 shadow-level1 sm:p-5">
+        <button
+          type="button"
+          onClick={() => toggleSection(2)}
+          aria-expanded={!isCollapsed(2)}
+          className="flex w-full items-center justify-between text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3F9495]"
+        >
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#A9824D]/12 text-[#A9824D]">
+            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#A9824D]/12 text-[#A9824D]">
               <CircleDot className="h-3.5 w-3.5" />
             </div>
             <h3 className="text-[14px] font-bold text-[#193B3B]">2. Japa</h3>
           </div>
-          <Badge variant="saffron" size="sm">
-            <span>{totalRounds} rounds</span>
-          </Badge>
-        </div>
-
-        <div className="mt-3.5 grid grid-cols-1 gap-3 sm:grid-cols-3">
-          <NumberStepper
-            id="japaRounds"
-            label="Standard Rounds"
-            value={japaRounds}
-            onChange={(val) => setJapaRounds(val)}
-            min={0}
-            max={REPORT_CONFIG.MAX_JAPA_ROUNDS}
-            disabled={!isEditable}
-            suggestedValue={previousReport?.japaRounds}
-          />
-
-          <NumberStepper
-            id="extraRounds"
-            label="Extra Rounds"
-            value={extraRounds}
-            onChange={(val) => setExtraRounds(val)}
-            min={0}
-            max={REPORT_CONFIG.MAX_EXTRA_ROUNDS}
-            disabled={!isEditable}
-            suggestedValue={previousReport?.extraRounds}
-          />
-
-          <div>
-            <label
-              htmlFor="japaCompletedAt"
-              className="block text-[11px] font-semibold uppercase tracking-wider text-[#547070]"
-            >
-              Completed At <span className="text-[10px] lowercase text-[#547070]">(optional)</span>
-            </label>
-            <input
-              id="japaCompletedAt"
-              type="time"
-              disabled={!isEditable}
-              value={japaCompletedAt}
-              onChange={(e) => setJapaCompletedAt(e.target.value)}
-              className="mt-1 h-12 w-full rounded-xl border border-[rgba(63,148,149,0.18)] bg-[#F7F5EF]/30 px-2.5 text-[14px] font-medium text-[#193B3B] focus:border-[#3F9495] focus:outline-none focus:ring-2 focus:ring-[#3F9495]/20 disabled:opacity-60"
-            />
+          <div className="flex items-center gap-2">
+            <Badge variant="saffron" size="sm" className="font-semibold">
+              <span>{totalRounds} rounds</span>
+            </Badge>
+            <span className="text-[#547070]">
+              {isCollapsed(2) ? <ChevronDown className="h-4 w-4" /> : <ChevronUp className="h-4 w-4" />}
+            </span>
           </div>
-        </div>
+        </button>
+
+        {!isCollapsed(2) && (
+          <div className="mt-3.5 pt-3 border-t border-[rgba(63,148,149,0.12)]">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+              <NumberStepper
+                id="japaRounds"
+                label="Standard Rounds"
+                value={japaRounds}
+                onChange={(val) => setJapaRounds(val)}
+                min={0}
+                max={REPORT_CONFIG.MAX_JAPA_ROUNDS}
+                disabled={!isEditable}
+                suggestedValue={previousReport?.japaRounds}
+              />
+
+              <NumberStepper
+                id="extraRounds"
+                label="Extra Rounds"
+                value={extraRounds}
+                onChange={(val) => setExtraRounds(val)}
+                min={0}
+                max={REPORT_CONFIG.MAX_EXTRA_ROUNDS}
+                disabled={!isEditable}
+                suggestedValue={previousReport?.extraRounds}
+              />
+
+              <div>
+                <label
+                  htmlFor="japaCompletedAt"
+                  className="block text-[11px] font-semibold uppercase tracking-wider text-[#547070]"
+                >
+                  Completed At <span className="text-[10px] lowercase text-[#547070]">(optional)</span>
+                </label>
+                <input
+                  id="japaCompletedAt"
+                  type="time"
+                  disabled={!isEditable}
+                  value={japaCompletedAt}
+                  onChange={(e) => setJapaCompletedAt(e.target.value)}
+                  className="mt-1 h-11 w-full rounded-xl border border-[rgba(63,148,149,0.18)] bg-[#F7F5EF]/30 px-2.5 text-[14px] font-medium text-[#193B3B] focus:border-[#3F9495] focus:outline-none focus:ring-2 focus:ring-[#3F9495]/20 disabled:opacity-60"
+                />
+              </div>
+            </div>
+          </div>
+        )}
       </Card>
 
       {/* SECTION 3: READING & HEARING */}
-      <Card className="border-[rgba(63,148,149,0.16)] bg-white p-4 shadow-level1 sm:p-5">
-        <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.12)] pb-2.5">
+      <Card className="border-[rgba(63,148,149,0.16)] bg-white p-3.5 shadow-level1 sm:p-5">
+        <button
+          type="button"
+          onClick={() => toggleSection(3)}
+          aria-expanded={!isCollapsed(3)}
+          className="flex w-full items-center justify-between text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3F9495]"
+        >
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#328A7A]/12 text-[#328A7A]">
+            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#328A7A]/12 text-[#328A7A]">
               <BookOpen className="h-3.5 w-3.5" />
             </div>
             <h3 className="text-[14px] font-bold text-[#193B3B]">3. Reading & Hearing</h3>
           </div>
-        </div>
+          <div className="flex items-center gap-2">
+            {(readingDuration > 0 || hearingDuration > 0) && (
+              <Badge variant="feather" size="sm" className="font-semibold">
+                <span>{formatDuration(readingDuration + hearingDuration)}</span>
+              </Badge>
+            )}
+            <span className="text-[#547070]">
+              {isCollapsed(3) ? <ChevronDown className="h-4 w-4" /> : <ChevronUp className="h-4 w-4" />}
+            </span>
+          </div>
+        </button>
 
-        <div className="mt-3.5 space-y-4">
-          <QuickDurationPicker
-            id="readingDuration"
-            label="Reading"
-            value={readingDuration}
-            onChange={(val) => {
-              setReadingDuration(val);
-              setQuickSelectionsCount((c) => c + 1);
-            }}
-            presets={[0, 15, 30, 45, 60, 90]}
-            suggestedValue={previousReport?.readingDurationMinutes}
-            disabled={!isEditable}
-            themeColor="forest"
-            optionalNote={readingNote}
-            onNoteChange={setReadingNote}
-            notePlaceholder="Book title e.g. Coming Back (optional)"
-          />
-
-          <div className="border-t border-[rgba(63,148,149,0.12)] pt-3.5">
+        {!isCollapsed(3) && (
+          <div className="mt-3.5 pt-3 border-t border-[rgba(63,148,149,0.12)] space-y-3.5">
             <QuickDurationPicker
-              id="hearingDuration"
-              label="Hearing"
-              value={hearingDuration}
+              id="readingDuration"
+              label="Reading"
+              value={readingDuration}
               onChange={(val) => {
-                setHearingDuration(val);
+                setReadingDuration(val);
                 setQuickSelectionsCount((c) => c + 1);
               }}
-              presets={[0, 30, 45, 60, 90, 120]}
-              suggestedValue={previousReport?.hearingDurationMinutes}
+              presets={[0, 15, 30, 45, 60, 90]}
+              suggestedValue={previousReport?.readingDurationMinutes}
               disabled={!isEditable}
-              themeColor="krishna"
-              optionalNote={hearingNote}
-              onNoteChange={setHearingNote}
-              notePlaceholder="Lecture topic e.g. SB 1.2.6 (optional)"
+              themeColor="forest"
+              optionalNote={readingNote}
+              onNoteChange={setReadingNote}
+              notePlaceholder="Book title e.g. Coming Back (optional)"
             />
+
+            <div className="border-t border-[rgba(63,148,149,0.12)] pt-3">
+              <QuickDurationPicker
+                id="hearingDuration"
+                label="Hearing"
+                value={hearingDuration}
+                onChange={(val) => {
+                  setHearingDuration(val);
+                  setQuickSelectionsCount((c) => c + 1);
+                }}
+                presets={[0, 30, 45, 60, 90, 120]}
+                suggestedValue={previousReport?.hearingDurationMinutes}
+                disabled={!isEditable}
+                themeColor="krishna"
+                optionalNote={hearingNote}
+                onNoteChange={setHearingNote}
+                notePlaceholder="Lecture topic e.g. SB 1.2.6 (optional)"
+              />
+            </div>
           </div>
-        </div>
+        )}
       </Card>
 
       {/* SECTION 4: STUDY */}
-      <Card className="border-[rgba(63,148,149,0.16)] bg-white p-4 shadow-level1 sm:p-5">
-        <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.12)] pb-2.5">
+      <Card className="border-[rgba(63,148,149,0.16)] bg-white p-3.5 shadow-level1 sm:p-5">
+        <button
+          type="button"
+          onClick={() => toggleSection(4)}
+          aria-expanded={!isCollapsed(4)}
+          className="flex w-full items-center justify-between text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3F9495]"
+        >
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#547070]/12 text-[#547070]">
+            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#547070]/12 text-[#547070]">
               <GraduationCap className="h-3.5 w-3.5" />
             </div>
             <h3 className="text-[14px] font-bold text-[#193B3B]">4. Study</h3>
           </div>
-          <Badge variant="neutral" size="sm">
-            <span>Total {formatDuration(totalStudy)}</span>
-          </Badge>
-        </div>
+          <div className="flex items-center gap-2">
+            <Badge variant="neutral" size="sm" className="font-semibold">
+              <span>Total {formatDuration(totalStudy)}</span>
+            </Badge>
+            <span className="text-[#547070]">
+              {isCollapsed(4) ? <ChevronDown className="h-4 w-4" /> : <ChevronUp className="h-4 w-4" />}
+            </span>
+          </div>
+        </button>
 
-        <div className="mt-3.5 space-y-4">
-          <QuickDurationPicker
-            id="collegeStudy"
-            label="College / Academy Study"
-            value={collegeStudyMinutes}
-            onChange={(val) => {
-              setCollegeStudyMinutes(val);
-              setQuickSelectionsCount((c) => c + 1);
-            }}
-            presets={[0, 120, 240, 360, 480]}
-            suggestedValue={previousReport?.collegeStudyDurationMinutes}
-            disabled={!isEditable}
-            themeColor="neutral"
-          />
-
-          <div className="border-t border-[rgba(63,148,149,0.12)] pt-3.5">
+        {!isCollapsed(4) && (
+          <div className="mt-3.5 pt-3 border-t border-[rgba(63,148,149,0.12)] space-y-3.5">
             <QuickDurationPicker
-              id="selfStudy"
-              label="Self Study"
-              value={selfStudyMinutes}
+              id="collegeStudy"
+              label="College / Academy Study"
+              value={collegeStudyMinutes}
               onChange={(val) => {
-                setSelfStudyMinutes(val);
+                setCollegeStudyMinutes(val);
                 setQuickSelectionsCount((c) => c + 1);
               }}
-              presets={[0, 60, 120, 180, 240]}
-              suggestedValue={previousReport?.selfStudyDurationMinutes}
+              presets={[0, 120, 240, 360, 480]}
+              suggestedValue={previousReport?.collegeStudyDurationMinutes}
               disabled={!isEditable}
               themeColor="neutral"
             />
+
+            <div className="border-t border-[rgba(63,148,149,0.12)] pt-3">
+              <QuickDurationPicker
+                id="selfStudy"
+                label="Self Study"
+                value={selfStudyMinutes}
+                onChange={(val) => {
+                  setSelfStudyMinutes(val);
+                  setQuickSelectionsCount((c) => c + 1);
+                }}
+                presets={[0, 60, 120, 180, 240]}
+                suggestedValue={previousReport?.selfStudyDurationMinutes}
+                disabled={!isEditable}
+                themeColor="neutral"
+              />
+            </div>
           </div>
-        </div>
+        )}
       </Card>
 
       {/* SECTION 5: REST & TIME */}
-      <Card className="border-[rgba(63,148,149,0.16)] bg-white p-4 shadow-level1 sm:p-5">
-        <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.12)] pb-2.5">
+      <Card className="border-[rgba(63,148,149,0.16)] bg-white p-3.5 shadow-level1 sm:p-5">
+        <button
+          type="button"
+          onClick={() => toggleSection(5)}
+          aria-expanded={!isCollapsed(5)}
+          className="flex w-full items-center justify-between text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3F9495]"
+        >
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#547070]/12 text-[#547070]">
+            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#547070]/12 text-[#547070]">
               <Clock className="h-3.5 w-3.5" />
             </div>
             <h3 className="text-[14px] font-bold text-[#193B3B]">5. Rest & Time</h3>
           </div>
-        </div>
+          <div className="flex items-center gap-2">
+            {(dayRestMinutes > 0 || timeWastedMinutes > 0) && (
+              <Badge variant="neutral" size="sm" className="font-semibold">
+                <span>Rest {formatDuration(dayRestMinutes)}</span>
+              </Badge>
+            )}
+            <span className="text-[#547070]">
+              {isCollapsed(5) ? <ChevronDown className="h-4 w-4" /> : <ChevronUp className="h-4 w-4" />}
+            </span>
+          </div>
+        </button>
 
-        <div className="mt-3.5 space-y-4">
-          <QuickDurationPicker
-            id="dayRest"
-            label="Day Rest"
-            value={dayRestMinutes}
-            onChange={(val) => {
-              setDayRestMinutes(val);
-              setQuickSelectionsCount((c) => c + 1);
-            }}
-            presets={[0, 15, 30, 45, 60]}
-            disabled={!isEditable}
-            themeColor="neutral"
-          />
-
-          <div className="border-t border-[rgba(63,148,149,0.12)] pt-3.5">
+        {!isCollapsed(5) && (
+          <div className="mt-3.5 pt-3 border-t border-[rgba(63,148,149,0.12)] space-y-3.5">
             <QuickDurationPicker
-              id="timeWasted"
-              label="Unused Time (Reflection)"
-              value={timeWastedMinutes}
+              id="dayRest"
+              label="Day Rest"
+              value={dayRestMinutes}
               onChange={(val) => {
-                setTimeWastedMinutes(val);
+                setDayRestMinutes(val);
                 setQuickSelectionsCount((c) => c + 1);
               }}
               presets={[0, 15, 30, 45, 60]}
               disabled={!isEditable}
               themeColor="neutral"
             />
+
+            <div className="border-t border-[rgba(63,148,149,0.12)] pt-3">
+              <QuickDurationPicker
+                id="timeWasted"
+                label="Unused Time (Reflection)"
+                value={timeWastedMinutes}
+                onChange={(val) => {
+                  setTimeWastedMinutes(val);
+                  setQuickSelectionsCount((c) => c + 1);
+                }}
+                presets={[0, 15, 30, 45, 60]}
+                disabled={!isEditable}
+                themeColor="neutral"
+              />
+            </div>
           </div>
-        </div>
+        )}
       </Card>
 
       {/* SECTION 6: REFLECTION (OPTIONAL) */}
-      <Card className="border-[rgba(63,148,149,0.16)] bg-white p-4 shadow-level1 sm:p-5">
-        <div className="flex items-center justify-between border-b border-[rgba(63,148,149,0.12)] pb-2.5">
+      <Card className="border-[rgba(63,148,149,0.16)] bg-white p-3.5 shadow-level1 sm:p-5">
+        <button
+          type="button"
+          onClick={() => toggleSection(6)}
+          aria-expanded={!isCollapsed(6)}
+          className="flex w-full items-center justify-between text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3F9495]"
+        >
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#A9824D]/12 text-[#A9824D]">
+            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#A9824D]/12 text-[#A9824D]">
               <Sparkles className="h-3.5 w-3.5" />
             </div>
             <div>
@@ -745,65 +830,72 @@ export function ReportForm({
               <span className="text-[11px] text-[#547070]">Optional notes</span>
             </div>
           </div>
-          <span className="text-[11px] text-[#547070]">
-            {notes.length}/{REPORT_CONFIG.MAX_NOTES_LENGTH}
-          </span>
-        </div>
+          <div className="flex items-center gap-2">
+            <span className="text-[11px] text-[#547070]">
+              {notes.length}/{REPORT_CONFIG.MAX_NOTES_LENGTH}
+            </span>
+            <span className="text-[#547070]">
+              {isCollapsed(6) ? <ChevronDown className="h-4 w-4" /> : <ChevronUp className="h-4 w-4" />}
+            </span>
+          </div>
+        </button>
 
-        <div className="mt-3">
-          <textarea
-            rows={2}
-            maxLength={REPORT_CONFIG.MAX_NOTES_LENGTH}
-            disabled={!isEditable}
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
-            className="w-full rounded-xl border border-[rgba(63,148,149,0.18)] bg-[#F7F5EF]/30 p-2.5 text-[13px] leading-relaxed text-[#193B3B] placeholder:text-[#547070]/60 focus:border-[#3F9495] focus:outline-none focus:ring-2 focus:ring-[#3F9495]/20 disabled:opacity-60"
-            placeholder="Anything to remember from today's practice..."
-          />
-        </div>
+        {!isCollapsed(6) && (
+          <div className="mt-3.5 pt-3 border-t border-[rgba(63,148,149,0.12)]">
+            <textarea
+              rows={2}
+              maxLength={REPORT_CONFIG.MAX_NOTES_LENGTH}
+              disabled={!isEditable}
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              className="w-full rounded-xl border border-[rgba(63,148,149,0.18)] bg-[#F7F5EF]/30 p-2.5 text-[13px] leading-relaxed text-[#193B3B] placeholder:text-[#547070]/60 focus:border-[#3F9495] focus:outline-none focus:ring-2 focus:ring-[#3F9495]/20 disabled:opacity-60"
+              placeholder="Anything to remember from today's practice..."
+            />
+          </div>
+        )}
       </Card>
 
       {/* STICKY BOTTOM ACTIONS BAR */}
       {isEditable && (
-        <div className="sticky bottom-20 z-20 rounded-2xl border border-[rgba(63,148,149,0.16)] bg-[#EAF7F4]/95 p-3 shadow-level3 backdrop-blur-md sm:bottom-6 sm:p-4">
-          <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-center gap-2">
-              <Button
-                type="button"
-                variant="secondary"
-                size="default"
-                disabled={isDraftSaving || isSubmitting}
-                onClick={handleSaveDraft}
-                leftIcon={<Save className="h-4 w-4" />}
-                className="w-full text-[14px] sm:w-auto"
-              >
-                {isDraftSaving ? "Saving..." : "Save Draft"}
-              </Button>
-              <Button
-                type="button"
-                variant="ghost"
-                size="default"
-                disabled={isDraftSaving || isSubmitting}
-                onClick={() => setStep("review")}
-                className="hidden text-[13px] text-[#2457A6] hover:bg-[#2457A6]/10 sm:inline-flex"
-              >
-                Preview Summary
-              </Button>
-            </div>
+        <div className="sticky bottom-20 z-20 rounded-2xl border border-[rgba(63,148,149,0.2)] bg-[#EAF7F4]/95 p-2.5 shadow-level3 backdrop-blur-md sm:bottom-6 sm:p-3.5">
+          <div className="flex items-center gap-2">
+            <Button
+              type="button"
+              variant="secondary"
+              size="default"
+              disabled={isDraftSaving || isSubmitting}
+              onClick={handleSaveDraft}
+              leftIcon={<Save className="h-4 w-4 shrink-0" />}
+              className="h-11 px-3 text-[13px] font-semibold text-[#193B3B] shrink-0"
+            >
+              <span className="hidden xs:inline">Save</span> Draft
+            </Button>
+
+            <Button
+              type="button"
+              variant="ghost"
+              size="default"
+              disabled={isDraftSaving || isSubmitting}
+              onClick={() => setStep("review")}
+              className="h-11 px-2.5 text-[12px] font-semibold text-[#2457A6] hover:bg-[#2457A6]/10 shrink-0"
+              title="Preview Summary"
+            >
+              <span>Preview</span>
+            </Button>
 
             <Button
               type="submit"
               variant="primary"
               size="default"
               disabled={isSubmitting || isDraftSaving}
-              leftIcon={<Check className="h-4 w-4" />}
-              className="w-full text-[15px] font-bold shadow-md sm:w-auto"
+              leftIcon={<Check className="h-4 w-4 shrink-0" />}
+              className="h-11 flex-1 text-[13px] sm:text-[14px] font-bold shadow-md truncate justify-center"
             >
               {isSubmitting
                 ? "Recording..."
                 : isSubmitted
-                  ? "Update Today's Sādhanā"
-                  : "Submit Today's Sādhanā"}
+                  ? "Update Sādhanā"
+                  : "Submit Sādhanā"}
             </Button>
           </div>
         </div>

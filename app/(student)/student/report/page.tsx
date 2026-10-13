@@ -41,21 +41,18 @@ export default async function StudentReportPage() {
     <main className="py-6 sm:py-10">
       <Container size="reading">
         {/* Report Page Header */}
-        <div className="mb-6 space-y-1 sm:mb-8">
-          <div className="flex items-center gap-1.5 text-[13px] font-medium text-[#A9824D]">
+        <div className="mb-4 sm:mb-6">
+          <div className="flex items-center gap-1.5 text-[12px] font-semibold text-[#A9824D]">
             <Sparkles className="h-3.5 w-3.5" />
             <span className="font-serif">दैनिकप्रतिवेदनम्</span>
           </div>
-          <h1 className="text-[24px] font-bold tracking-tight text-[#193B3B] sm:text-[28px]">
+          <h1 className="mt-0.5 text-[22px] font-bold tracking-tight text-[#193B3B] sm:text-[26px]">
             Today&apos;s Sādhanā
           </h1>
-          <p className="text-[14px] text-[#547070]">
-            Complete today&apos;s Sādhanā.
-          </p>
         </div>
 
         {/* Date & Practice Status Card */}
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[rgba(63,148,149,0.16)] bg-white p-4 shadow-level1 sm:p-5">
+        <div className="mb-5 flex flex-wrap items-center justify-between gap-2.5 rounded-2xl border border-[rgba(63,148,149,0.16)] bg-white p-3.5 shadow-level1 sm:p-4">
           <div className="flex items-center gap-2 text-[14px] font-semibold text-[#193B3B]">
             <Calendar className="h-4 w-4 text-[#3F9495]" />
             <span>{formattedLongDate}</span>
