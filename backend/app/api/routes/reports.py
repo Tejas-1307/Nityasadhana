@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone, tzinfo
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
@@ -13,6 +13,7 @@ from app.models.domain import Report
 
 router = APIRouter(prefix="/reports", tags=["reports"])
 DEFAULT_TZ = "Asia/Kolkata"
+IST = timezone(timedelta(hours=5, minutes=30))
 
 class ReportInput(BaseModel):
     practiceDate: str | None = None
@@ -33,17 +34,32 @@ class ReportInput(BaseModel):
     timezone: str = DEFAULT_TZ
 
 
-def today(tz: str) -> str:
+def get_timezone(tz: str | None) -> tzinfo:
+    name = (tz or DEFAULT_TZ).strip()
     try:
-        return datetime.now(ZoneInfo(tz)).date().isoformat()
-    except ZoneInfoNotFoundError:
-        return datetime.utcnow().date().isoformat()
+        return ZoneInfo(name)
+    except (ZoneInfoNotFoundError, Exception):
+        pass
+    if name in ("Asia/Kolkata", "Asia/Calcutta", "IST") or "kolkata" in name.lower() or "calcutta" in name.lower():
+        return IST
+    return timezone.utc
+
+
+def today(tz: str) -> str:
+    return datetime.now(get_timezone(tz)).date().isoformat()
+
+
+def parse_date_only(date_str: str) -> datetime.date:
+    clean = (date_str or "").strip().split("T")[0]
+    return datetime.fromisoformat(clean).date()
 
 
 def editable(date: str, tz: str) -> bool:
     try:
-        return datetime.fromisoformat(today(tz)).date() - datetime.fromisoformat(date).date() in (timedelta(0), timedelta(days=1))
-    except ValueError:
+        today_date = datetime.fromisoformat(today(tz)).date()
+        target_date = parse_date_only(date)
+        return today_date - target_date in (timedelta(0), timedelta(days=1))
+    except (ValueError, Exception):
         return False
 
 
@@ -71,7 +87,7 @@ def serialize(item: Report) -> dict:
 
 
 def build_report(payload: ReportInput, student: User, status_value: str, db: Session) -> Report:
-    date = payload.practiceDate or today(payload.timezone)
+    date = (payload.practiceDate or today(payload.timezone)).split("T")[0].strip()
     if not editable(date, payload.timezone): raise HTTPException(422, "This report is outside the allowed 1-day edit window.")
     if status_value == "submitted" and (not payload.sleepTime or not payload.wakeUpTime): raise HTTPException(422, "Please enter your sleep time and wake-up time.")
     if status_value == "submitted" and payload.japaRounds is None: raise HTTPException(422, "Please enter your completed Japa rounds.")

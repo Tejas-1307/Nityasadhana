@@ -1,8 +1,10 @@
-const RAW_API_URL = process.env.NEXT_PUBLIC_API_URL || process.env.API_URL || "http://localhost:8000";
+const RAW_API_URL =
+  process.env.NEXT_PUBLIC_API_URL || process.env.API_URL || "http://localhost:8000";
 const API_URL = RAW_API_URL.replace(/\/+$/, "");
 
 export async function apiRequest<T>(path: string, init: RequestInit = {}): Promise<T> {
-  const token = typeof window !== "undefined" ? window.sessionStorage.getItem("nityasadhana_token") : null;
+  const token =
+    typeof window !== "undefined" ? window.sessionStorage.getItem("nityasadhana_token") : null;
   const headers = new Headers(init.headers);
   if (!headers.has("Content-Type")) {
     headers.set("Content-Type", "application/json");
@@ -22,9 +24,21 @@ export async function apiRequest<T>(path: string, init: RequestInit = {}): Promi
   if (!response.ok) {
     let message = `Request failed with status ${response.status}`;
     if (isJson) {
-      const body = (await response.json().catch(() => null)) as { detail?: string; message?: string } | null;
-      if (body?.detail) message = body.detail;
-      else if (body?.message) message = body.message;
+      const body = (await response.json().catch(() => null)) as {
+        detail?: unknown;
+        message?: string;
+      } | null;
+      if (body?.detail) {
+        if (typeof body.detail === "string") {
+          message = body.detail;
+        } else if (Array.isArray(body.detail)) {
+          message = body.detail.map((err: any) => err?.msg || JSON.stringify(err)).join(", ");
+        } else if (typeof body.detail === "object") {
+          message = JSON.stringify(body.detail);
+        }
+      } else if (body?.message) {
+        message = body.message;
+      }
     } else {
       const text = await response.text().catch(() => "");
       if (text.trim()) message = text.trim();
@@ -41,8 +55,10 @@ export async function apiRequest<T>(path: string, init: RequestInit = {}): Promi
 
 export const api = {
   get: <T>(path: string) => apiRequest<T>(path),
-  post: <T>(path: string, body?: unknown) => apiRequest<T>(path, { method: "POST", body: JSON.stringify(body ?? {}) }),
-  patch: <T>(path: string, body?: unknown) => apiRequest<T>(path, { method: "PATCH", body: JSON.stringify(body ?? {}) }),
+  post: <T>(path: string, body?: unknown) =>
+    apiRequest<T>(path, { method: "POST", body: JSON.stringify(body ?? {}) }),
+  patch: <T>(path: string, body?: unknown) =>
+    apiRequest<T>(path, { method: "PATCH", body: JSON.stringify(body ?? {}) }),
   delete: <T>(path: string) => apiRequest<T>(path, { method: "DELETE" }),
 };
 

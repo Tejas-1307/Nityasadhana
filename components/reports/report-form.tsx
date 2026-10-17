@@ -6,10 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { DbDailySadhanaReport } from "@/lib/db/schema";
-import {
-  saveReportDraftAction,
-  submitDailyReportAction,
-} from "@/lib/actions/reports";
+import { saveReportDraftAction, submitDailyReportAction } from "@/lib/actions/reports";
 import {
   calculateSleepDuration,
   calculateTotalRounds,
@@ -69,12 +66,8 @@ export function ReportForm({
   const [step, setStep] = React.useState<"form" | "review">("form");
 
   // Form State (initialized from initialReport, or production defaults 9:00 PM / 3:30 AM)
-  const [sleepTime, setSleepTime] = React.useState<string>(
-    initialReport?.sleepTime || "21:00"
-  );
-  const [wakeUpTime, setWakeUpTime] = React.useState<string>(
-    initialReport?.wakeUpTime || "03:30"
-  );
+  const [sleepTime, setSleepTime] = React.useState<string>(initialReport?.sleepTime || "21:00");
+  const [wakeUpTime, setWakeUpTime] = React.useState<string>(initialReport?.wakeUpTime || "03:30");
   const [japaRounds, setJapaRounds] = React.useState<number>(
     initialReport?.japaRounds !== undefined
       ? initialReport.japaRounds
@@ -97,17 +90,13 @@ export function ReportForm({
       ? initialReport.readingDurationMinutes
       : previousReport?.readingDurationMinutes || 30
   );
-  const [readingNote, setReadingNote] = React.useState<string>(
-    initialReport?.readingNote || ""
-  );
+  const [readingNote, setReadingNote] = React.useState<string>(initialReport?.readingNote || "");
   const [hearingDuration, setHearingDuration] = React.useState<number>(
     initialReport?.hearingDurationMinutes !== undefined
       ? initialReport.hearingDurationMinutes
       : previousReport?.hearingDurationMinutes || 60
   );
-  const [hearingNote, setHearingNote] = React.useState<string>(
-    initialReport?.hearingNote || ""
-  );
+  const [hearingNote, setHearingNote] = React.useState<string>(initialReport?.hearingNote || "");
   const [collegeStudyMinutes, setCollegeStudyMinutes] = React.useState<number>(
     initialReport?.collegeStudyDurationMinutes !== undefined
       ? initialReport.collegeStudyDurationMinutes
@@ -123,9 +112,7 @@ export function ReportForm({
         : 120
   );
   const [dayRestMinutes, setDayRestMinutes] = React.useState<number>(
-    initialReport?.dayRestDurationMinutes !== undefined
-      ? initialReport.dayRestDurationMinutes
-      : 0
+    initialReport?.dayRestDurationMinutes !== undefined ? initialReport.dayRestDurationMinutes : 0
   );
   const [timeWastedMinutes, setTimeWastedMinutes] = React.useState<number>(
     initialReport?.timeWastedDurationMinutes !== undefined
@@ -177,39 +164,43 @@ export function ReportForm({
     };
   }, []);
 
-  const getPayload = React.useCallback(() => ({
-    practiceDate,
-    sleepTime,
-    wakeUpTime,
-    japaRounds: Number(japaRounds) || 0,
-    extraRounds: Number(extraRounds) || 0,
-    japaCompletedAt: japaCompletedAt.trim() || undefined,
-    readingDurationMinutes: Number(readingDuration) || 0,
-    readingNote: readingNote.trim() || undefined,
-    hearingDurationMinutes: Number(hearingDuration) || 0,
-    hearingNote: hearingNote.trim() || undefined,
-    collegeStudyDurationMinutes: Number(collegeStudyMinutes) || 0,
-    selfStudyDurationMinutes: Number(selfStudyMinutes) || 0,
-    dayRestDurationMinutes: Number(dayRestMinutes) || 0,
-    timeWastedDurationMinutes: Number(timeWastedMinutes) || 0,
-    notes: notes.trim() || undefined,
-  }), [
-    practiceDate,
-    sleepTime,
-    wakeUpTime,
-    japaRounds,
-    extraRounds,
-    japaCompletedAt,
-    readingDuration,
-    readingNote,
-    hearingDuration,
-    hearingNote,
-    collegeStudyMinutes,
-    selfStudyMinutes,
-    dayRestMinutes,
-    timeWastedMinutes,
-    notes,
-  ]);
+  const getPayload = React.useCallback(
+    () => ({
+      practiceDate,
+      sleepTime,
+      wakeUpTime,
+      japaRounds: Number(japaRounds) || 0,
+      extraRounds: Number(extraRounds) || 0,
+      japaCompletedAt: japaCompletedAt.trim() || undefined,
+      readingDurationMinutes: Number(readingDuration) || 0,
+      readingNote: readingNote.trim() || undefined,
+      hearingDurationMinutes: Number(hearingDuration) || 0,
+      hearingNote: hearingNote.trim() || undefined,
+      collegeStudyDurationMinutes: Number(collegeStudyMinutes) || 0,
+      selfStudyDurationMinutes: Number(selfStudyMinutes) || 0,
+      dayRestDurationMinutes: Number(dayRestMinutes) || 0,
+      timeWastedDurationMinutes: Number(timeWastedMinutes) || 0,
+      notes: notes.trim() || undefined,
+      timezone: REPORT_CONFIG.DEFAULT_TIMEZONE,
+    }),
+    [
+      practiceDate,
+      sleepTime,
+      wakeUpTime,
+      japaRounds,
+      extraRounds,
+      japaCompletedAt,
+      readingDuration,
+      readingNote,
+      hearingDuration,
+      hearingNote,
+      collegeStudyMinutes,
+      selfStudyMinutes,
+      dayRestMinutes,
+      timeWastedMinutes,
+      notes,
+    ]
+  );
 
   const isDraftRestoredRef = React.useRef(false);
 
@@ -279,7 +270,7 @@ export function ReportForm({
     setDayRestMinutes(previousReport.dayRestDurationMinutes || 0);
     // Safety rule: Time wasted and Reflections are NEVER copied automatically
     setTimeWastedMinutes(0);
-    
+
     setQuickSelectionsCount((prev) => prev + 1);
     setYesterdaySummary("Loaded yesterday's routine.");
   };
@@ -302,9 +293,9 @@ export function ReportForm({
         setSyncState("failed_sync");
         setErrorMessage(res.error || "Failed to save draft to server. Saved locally.");
       }
-    } catch {
+    } catch (err: any) {
       setSyncState("failed_sync");
-      setErrorMessage("Network error. Saved locally on this device.");
+      setErrorMessage(err?.message || "Failed to save draft to server. Saved locally.");
     } finally {
       setIsDraftSaving(false);
     }
@@ -332,9 +323,12 @@ export function ReportForm({
         setErrorMessage(res.error || "Failed to submit report.");
         setStep("form"); // return to form if submission error
       }
-    } catch {
+    } catch (err: any) {
       setSyncState("failed_sync");
-      setErrorMessage("Network error. Your draft is preserved locally. Please check your connection and resubmit.");
+      setErrorMessage(
+        err?.message ||
+          "Failed to submit report. Your draft is preserved locally. Please check your connection and resubmit."
+      );
       setStep("form");
     } finally {
       setIsSubmitting(false);
@@ -404,13 +398,9 @@ export function ReportForm({
               disabled={isSubmitting}
               onClick={() => handleSubmit()}
               leftIcon={<Check className="h-4 w-4" />}
-              className="h-11 flex-1 text-[13px] font-bold shadow-md sm:flex-none sm:w-auto sm:text-[14px]"
+              className="h-11 flex-1 text-[13px] font-bold shadow-md sm:w-auto sm:flex-none sm:text-[14px]"
             >
-              {isSubmitting
-                ? "Recording..."
-                : isSubmitted
-                  ? "Update Sādhanā"
-                  : "Submit Sādhanā"}
+              {isSubmitting ? "Recording..." : isSubmitted ? "Update Sādhanā" : "Submit Sādhanā"}
             </Button>
           </div>
         </div>
@@ -428,8 +418,8 @@ export function ReportForm({
         <div className="flex items-center gap-2 rounded-xl border border-[rgba(63,148,149,0.16)] bg-amber-50 p-4 text-[13px] text-amber-900">
           <AlertCircle className="h-4 w-4 shrink-0 text-amber-700" />
           <span>
-            This report is outside the allowed {REPORT_CONFIG.REPORT_EDIT_WINDOW_DAYS}-day edit window
-            and cannot be modified.
+            This report is outside the allowed {REPORT_CONFIG.REPORT_EDIT_WINDOW_DAYS}-day edit
+            window and cannot be modified.
           </span>
         </div>
       )}
@@ -457,7 +447,11 @@ export function ReportForm({
           syncBadge={(() => {
             const meta = getSyncStatusMeta(syncState);
             return (
-              <Badge variant={meta.variant} size="sm" className={`text-[10px] py-0 px-2 h-5 ${meta.colorClass}`}>
+              <Badge
+                variant={meta.variant}
+                size="sm"
+                className={`h-5 px-2 py-0 text-[10px] ${meta.colorClass}`}
+              >
                 <span>{meta.label}</span>
               </Badge>
             );
@@ -490,7 +484,7 @@ export function ReportForm({
 
           {/* Yesterday Loaded Detail Summary */}
           {yesterdaySummary && (
-            <div className="flex items-center justify-between gap-2 rounded-xl border border-[rgba(63,148,149,0.22)] bg-[#3F9495]/8 px-3 py-2 text-[12px] text-[#3F9495]">
+            <div className="bg-[#3F9495]/8 flex items-center justify-between gap-2 rounded-xl border border-[rgba(63,148,149,0.22)] px-3 py-2 text-[12px] text-[#3F9495]">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-3.5 w-3.5 shrink-0" />
                 <span>{yesterdaySummary}</span>
@@ -516,7 +510,7 @@ export function ReportForm({
           className="flex w-full items-center justify-between text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3F9495]"
         >
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#3F9495]/12 text-[#3F9495]">
+            <div className="bg-[#3F9495]/12 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-[#3F9495]">
               <Moon className="h-3.5 w-3.5" />
             </div>
             <h3 className="text-[14px] font-bold text-[#193B3B]">1. Sleep & Wake</h3>
@@ -528,13 +522,17 @@ export function ReportForm({
               </Badge>
             )}
             <span className="text-[#547070]">
-              {isCollapsed(1) ? <ChevronDown className="h-4 w-4" /> : <ChevronUp className="h-4 w-4" />}
+              {isCollapsed(1) ? (
+                <ChevronDown className="h-4 w-4" />
+              ) : (
+                <ChevronUp className="h-4 w-4" />
+              )}
             </span>
           </div>
         </button>
 
         {!isCollapsed(1) && (
-          <div className="mt-3.5 pt-3 border-t border-[rgba(63,148,149,0.12)]">
+          <div className="mt-3.5 border-t border-[rgba(63,148,149,0.12)] pt-3">
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <TimePicker12Hour
                 id="sleepTime"
@@ -567,7 +565,7 @@ export function ReportForm({
           className="flex w-full items-center justify-between text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3F9495]"
         >
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#A9824D]/12 text-[#A9824D]">
+            <div className="bg-[#A9824D]/12 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-[#A9824D]">
               <CircleDot className="h-3.5 w-3.5" />
             </div>
             <h3 className="text-[14px] font-bold text-[#193B3B]">2. Japa</h3>
@@ -577,13 +575,17 @@ export function ReportForm({
               <span>{totalRounds} rounds</span>
             </Badge>
             <span className="text-[#547070]">
-              {isCollapsed(2) ? <ChevronDown className="h-4 w-4" /> : <ChevronUp className="h-4 w-4" />}
+              {isCollapsed(2) ? (
+                <ChevronDown className="h-4 w-4" />
+              ) : (
+                <ChevronUp className="h-4 w-4" />
+              )}
             </span>
           </div>
         </button>
 
         {!isCollapsed(2) && (
-          <div className="mt-3.5 pt-3 border-t border-[rgba(63,148,149,0.12)]">
+          <div className="mt-3.5 border-t border-[rgba(63,148,149,0.12)] pt-3">
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
               <NumberStepper
                 id="japaRounds"
@@ -612,7 +614,8 @@ export function ReportForm({
                   htmlFor="japaCompletedAt"
                   className="block text-[11px] font-semibold uppercase tracking-wider text-[#547070]"
                 >
-                  Completed At <span className="text-[10px] lowercase text-[#547070]">(optional)</span>
+                  Completed At{" "}
+                  <span className="text-[10px] lowercase text-[#547070]">(optional)</span>
                 </label>
                 <input
                   id="japaCompletedAt"
@@ -637,7 +640,7 @@ export function ReportForm({
           className="flex w-full items-center justify-between text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3F9495]"
         >
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#328A7A]/12 text-[#328A7A]">
+            <div className="bg-[#328A7A]/12 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-[#328A7A]">
               <BookOpen className="h-3.5 w-3.5" />
             </div>
             <h3 className="text-[14px] font-bold text-[#193B3B]">3. Reading & Hearing</h3>
@@ -649,13 +652,17 @@ export function ReportForm({
               </Badge>
             )}
             <span className="text-[#547070]">
-              {isCollapsed(3) ? <ChevronDown className="h-4 w-4" /> : <ChevronUp className="h-4 w-4" />}
+              {isCollapsed(3) ? (
+                <ChevronDown className="h-4 w-4" />
+              ) : (
+                <ChevronUp className="h-4 w-4" />
+              )}
             </span>
           </div>
         </button>
 
         {!isCollapsed(3) && (
-          <div className="mt-3.5 pt-3 border-t border-[rgba(63,148,149,0.12)] space-y-3.5">
+          <div className="mt-3.5 space-y-3.5 border-t border-[rgba(63,148,149,0.12)] pt-3">
             <QuickDurationPicker
               id="readingDuration"
               label="Reading"
@@ -704,7 +711,7 @@ export function ReportForm({
           className="flex w-full items-center justify-between text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3F9495]"
         >
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#547070]/12 text-[#547070]">
+            <div className="bg-[#547070]/12 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-[#547070]">
               <GraduationCap className="h-3.5 w-3.5" />
             </div>
             <h3 className="text-[14px] font-bold text-[#193B3B]">4. Study</h3>
@@ -714,13 +721,17 @@ export function ReportForm({
               <span>Total {formatDuration(totalStudy)}</span>
             </Badge>
             <span className="text-[#547070]">
-              {isCollapsed(4) ? <ChevronDown className="h-4 w-4" /> : <ChevronUp className="h-4 w-4" />}
+              {isCollapsed(4) ? (
+                <ChevronDown className="h-4 w-4" />
+              ) : (
+                <ChevronUp className="h-4 w-4" />
+              )}
             </span>
           </div>
         </button>
 
         {!isCollapsed(4) && (
-          <div className="mt-3.5 pt-3 border-t border-[rgba(63,148,149,0.12)] space-y-3.5">
+          <div className="mt-3.5 space-y-3.5 border-t border-[rgba(63,148,149,0.12)] pt-3">
             <QuickDurationPicker
               id="collegeStudy"
               label="College / Academy Study"
@@ -763,7 +774,7 @@ export function ReportForm({
           className="flex w-full items-center justify-between text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3F9495]"
         >
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#547070]/12 text-[#547070]">
+            <div className="bg-[#547070]/12 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-[#547070]">
               <Clock className="h-3.5 w-3.5" />
             </div>
             <h3 className="text-[14px] font-bold text-[#193B3B]">5. Rest & Time</h3>
@@ -775,13 +786,17 @@ export function ReportForm({
               </Badge>
             )}
             <span className="text-[#547070]">
-              {isCollapsed(5) ? <ChevronDown className="h-4 w-4" /> : <ChevronUp className="h-4 w-4" />}
+              {isCollapsed(5) ? (
+                <ChevronDown className="h-4 w-4" />
+              ) : (
+                <ChevronUp className="h-4 w-4" />
+              )}
             </span>
           </div>
         </button>
 
         {!isCollapsed(5) && (
-          <div className="mt-3.5 pt-3 border-t border-[rgba(63,148,149,0.12)] space-y-3.5">
+          <div className="mt-3.5 space-y-3.5 border-t border-[rgba(63,148,149,0.12)] pt-3">
             <QuickDurationPicker
               id="dayRest"
               label="Day Rest"
@@ -822,7 +837,7 @@ export function ReportForm({
           className="flex w-full items-center justify-between text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3F9495]"
         >
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#A9824D]/12 text-[#A9824D]">
+            <div className="bg-[#A9824D]/12 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-[#A9824D]">
               <Sparkles className="h-3.5 w-3.5" />
             </div>
             <div>
@@ -835,13 +850,17 @@ export function ReportForm({
               {notes.length}/{REPORT_CONFIG.MAX_NOTES_LENGTH}
             </span>
             <span className="text-[#547070]">
-              {isCollapsed(6) ? <ChevronDown className="h-4 w-4" /> : <ChevronUp className="h-4 w-4" />}
+              {isCollapsed(6) ? (
+                <ChevronDown className="h-4 w-4" />
+              ) : (
+                <ChevronUp className="h-4 w-4" />
+              )}
             </span>
           </div>
         </button>
 
         {!isCollapsed(6) && (
-          <div className="mt-3.5 pt-3 border-t border-[rgba(63,148,149,0.12)]">
+          <div className="mt-3.5 border-t border-[rgba(63,148,149,0.12)] pt-3">
             <textarea
               rows={2}
               maxLength={REPORT_CONFIG.MAX_NOTES_LENGTH}
@@ -866,9 +885,9 @@ export function ReportForm({
               disabled={isDraftSaving || isSubmitting}
               onClick={handleSaveDraft}
               leftIcon={<Save className="h-4 w-4 shrink-0" />}
-              className="h-11 px-3 text-[13px] font-semibold text-[#193B3B] shrink-0"
+              className="h-11 shrink-0 px-3 text-[13px] font-semibold text-[#193B3B]"
             >
-              <span className="hidden xs:inline">Save</span> Draft
+              <span className="xs:inline hidden">Save</span> Draft
             </Button>
 
             <Button
@@ -877,7 +896,7 @@ export function ReportForm({
               size="default"
               disabled={isDraftSaving || isSubmitting}
               onClick={() => setStep("review")}
-              className="h-11 px-2.5 text-[12px] font-semibold text-[#2457A6] hover:bg-[#2457A6]/10 shrink-0"
+              className="h-11 shrink-0 px-2.5 text-[12px] font-semibold text-[#2457A6] hover:bg-[#2457A6]/10"
               title="Preview Summary"
             >
               <span>Preview</span>
@@ -889,13 +908,9 @@ export function ReportForm({
               size="default"
               disabled={isSubmitting || isDraftSaving}
               leftIcon={<Check className="h-4 w-4 shrink-0" />}
-              className="h-11 flex-1 text-[13px] sm:text-[14px] font-bold shadow-md truncate justify-center"
+              className="h-11 flex-1 justify-center truncate text-[13px] font-bold shadow-md sm:text-[14px]"
             >
-              {isSubmitting
-                ? "Recording..."
-                : isSubmitted
-                  ? "Update Sādhanā"
-                  : "Submit Sādhanā"}
+              {isSubmitting ? "Recording..." : isSubmitted ? "Update Sādhanā" : "Submit Sādhanā"}
             </Button>
           </div>
         </div>
