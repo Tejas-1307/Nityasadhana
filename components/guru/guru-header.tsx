@@ -13,13 +13,27 @@ export function GuruHeader({
   totalActiveCount,
 }: GuruHeaderProps) {
   // Format current date in Asia/Kolkata friendly format
-  const dateObj = currentDateStr ? new Date(currentDateStr) : new Date();
-  const formattedDate = dateObj.toLocaleDateString("en-IN", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+  const formattedDate = React.useMemo(() => {
+    if (currentDateStr) {
+      const parts = currentDateStr.split("-").map(Number);
+      if (parts.length === 3 && !parts.some(isNaN)) {
+        const [y, m, d] = parts;
+        return new Date(y, m - 1, d).toLocaleDateString("en-IN", {
+          weekday: "long",
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        });
+      }
+    }
+    return new Date().toLocaleDateString("en-IN", {
+      timeZone: "Asia/Kolkata",
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  }, [currentDateStr]);
 
   return (
     <div className="space-y-4">

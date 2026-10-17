@@ -7,13 +7,12 @@ from sqlalchemy import select, func
 from sqlalchemy.orm import Session
 
 from app.core.database import get_db
+from app.core.time import DEFAULT_TZ, IST, get_timezone, today_date, today_str
 from app.dependencies.auth import require_shishya, require_guru
 from app.models import Mentorship, RelationshipStatus, User
 from app.models.domain import Report
 
 router = APIRouter(prefix="/reports", tags=["reports"])
-DEFAULT_TZ = "Asia/Kolkata"
-IST = timezone(timedelta(hours=5, minutes=30))
 
 class ReportInput(BaseModel):
     practiceDate: str | None = None
@@ -34,19 +33,8 @@ class ReportInput(BaseModel):
     timezone: str = DEFAULT_TZ
 
 
-def get_timezone(tz: str | None) -> tzinfo:
-    name = (tz or DEFAULT_TZ).strip()
-    try:
-        return ZoneInfo(name)
-    except (ZoneInfoNotFoundError, Exception):
-        pass
-    if name in ("Asia/Kolkata", "Asia/Calcutta", "IST") or "kolkata" in name.lower() or "calcutta" in name.lower():
-        return IST
-    return timezone.utc
-
-
-def today(tz: str) -> str:
-    return datetime.now(get_timezone(tz)).date().isoformat()
+def today(tz: str = DEFAULT_TZ) -> str:
+    return today_str(tz)
 
 
 def parse_date_only(date_str: str) -> datetime.date:

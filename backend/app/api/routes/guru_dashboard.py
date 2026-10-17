@@ -1,8 +1,8 @@
-from datetime import date
 from fastapi import APIRouter, Depends
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 from app.core.database import get_db
+from app.core.time import DEFAULT_TZ, today_str
 from app.dependencies.auth import require_guru
 from app.models import Mentorship, RelationshipStatus, User
 from app.models.domain import Report
@@ -13,7 +13,7 @@ router = APIRouter(prefix="/guru-dashboard", tags=["guru-dashboard"])
 
 @router.get("")
 def dashboard(guru: User = Depends(require_guru), db: Session = Depends(get_db)) -> dict:
-    today = date.today().isoformat()
+    today = today_str(DEFAULT_TZ)
     relationships = db.scalars(select(Mentorship).where(Mentorship.guru_id == guru.id)).all()
     active = [row for row in relationships if row.status == RelationshipStatus.ACTIVE]
     inactive = [row for row in relationships if row.status != RelationshipStatus.ACTIVE]

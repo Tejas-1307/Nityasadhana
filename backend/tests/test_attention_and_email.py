@@ -24,7 +24,8 @@ def test_guru_dashboard_uses_attention_pipeline() -> None:
     _, student_id = account("shishya")
     db = SessionLocal()
     db.add(Mentorship(guru_id=guru_id, shishya_id=student_id, status=RelationshipStatus.ACTIVE))
-    today = date.today()
+    from app.core.time import today_date
+    today = today_date()
     for offset in range(1, 7):
         day = today - timedelta(days=offset)
         db.add(Report(student_id=student_id, practice_date=day.isoformat(), status="submitted", sleep_time="21:00", wake_up_time="04:00", sleep_duration_minutes=420, japa_rounds=16, total_rounds=16, total_study_duration_minutes=120))

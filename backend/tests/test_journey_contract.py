@@ -13,7 +13,8 @@ def test_journey_returns_full_comparison_contract() -> None:
     registered = client.post("/api/auth/register", json={"name":"Journey","email":email,"password":"12345678","role":"shishya"})
     assert registered.status_code == 201
     user_id = registered.json()["user"]["id"]
-    today = date.today()
+    from app.core.time import today_date
+    today = today_date()
     db = SessionLocal()
     for offset in range(3):
         day = today - timedelta(days=offset)

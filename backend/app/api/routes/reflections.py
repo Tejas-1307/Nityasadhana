@@ -4,6 +4,7 @@ from pydantic import BaseModel, Field
 from sqlalchemy import select, func
 from sqlalchemy.orm import Session
 from app.core.database import get_db
+from app.core.time import DEFAULT_TZ, today_date
 from app.dependencies.auth import require_shishya, require_guru
 from app.models import Mentorship, RelationshipStatus, User
 from app.models.domain import WeeklyReflection
@@ -12,7 +13,7 @@ router = APIRouter(prefix="/reflections", tags=["reflections"])
 class ReflectionInput(BaseModel):
     sankalpaId: int | None = None; weekStartDate: str | None = None; weekEndDate: str | None = None; state: str; wentWell: str | None = Field(default=None, max_length=300); difficult: str | None = Field(default=None, max_length=300); improve: str | None = Field(default=None, max_length=300); guruMessage: str | None = Field(default=None, max_length=300)
 def bounds():
-    start = date.today() - timedelta(days=date.today().weekday()); return start.isoformat(), (start+timedelta(days=6)).isoformat()
+    t = today_date(DEFAULT_TZ); start = t - timedelta(days=t.weekday()); return start.isoformat(), (start+timedelta(days=6)).isoformat()
 def serial(x: WeeklyReflection) -> dict:
     return {"id": str(x.id), "studentId": str(x.student_id), "sankalpaId": x.sankalpa_id, "weekStartDate": x.week_start_date, "weekEndDate": x.week_end_date, "state": x.state, "wentWell": x.went_well, "difficult": x.difficult, "improve": x.improve, "guruMessage": x.guru_message, "createdAt": x.created_at.isoformat(), "updatedAt": x.updated_at.isoformat(), "submittedAt": x.submitted_at.isoformat()}
 @router.post("")

@@ -5,6 +5,7 @@ from pydantic import BaseModel, Field
 from sqlalchemy import select, func
 from sqlalchemy.orm import Session
 from app.core.database import get_db
+from app.core.time import DEFAULT_TZ, today_str
 from app.dependencies.auth import require_guru
 from app.models import (
     FollowUp,
@@ -53,7 +54,7 @@ def student_detail(student_id: int, guru: User = Depends(require_guru), db: Sess
         )
     )
 
-    today = date.today().isoformat()
+    today = today_str(DEFAULT_TZ)
     all_reports = db.scalars(
         select(Report)
         .where(Report.student_id == student_id)

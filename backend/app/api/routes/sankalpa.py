@@ -4,6 +4,7 @@ from pydantic import BaseModel, Field
 from sqlalchemy import select, func
 from sqlalchemy.orm import Session
 from app.core.database import get_db
+from app.core.time import DEFAULT_TZ, today_date
 from app.dependencies.auth import require_shishya
 from app.models import User
 from app.models.domain import Report, Sankalpa
@@ -17,7 +18,7 @@ class ReflectionInput(BaseModel):
 def week(today: date) -> tuple[str, str]:
     start = today - timedelta(days=today.weekday()); return start.isoformat(), (start + timedelta(days=6)).isoformat()
 def todict(item: Sankalpa, reports: list[Report]) -> dict:
-    start = date.fromisoformat(item.start_date); end = date.fromisoformat(item.end_date); current = date.today(); aligned = 0; daily = []
+    start = date.fromisoformat(item.start_date); end = date.fromisoformat(item.end_date); current = today_date(DEFAULT_TZ); aligned = 0; daily = []
     config = item.target_config or {}; metric = config.get("metric"); target = config.get("targetValue")
     for index in range((end-start).days+1):
         day = start + timedelta(days=index); row = next((r for r in reports if r.practice_date == day.isoformat() and r.status == "submitted"), None)
@@ -47,7 +48,7 @@ def history(limit: int = 20, offset: int = 0, user: User = Depends(require_shish
 def create(payload: SankalpaInput, user: User = Depends(require_shishya), db: Session = Depends(get_db)) -> dict:
     if db.scalar(select(Sankalpa).where(Sankalpa.student_id == user.id, Sankalpa.status == "active")): raise HTTPException(409, "You already have an active Sankalpa for this period.")
     start, end = payload.startDate, payload.endDate
-    if not start or not end: start, end = week(date.today())
+    if not start or not end: start, end = week(today_date(DEFAULT_TZ))
     if end <= start: raise HTTPException(422, "Sankalpa end date must be after start date.")
     item = Sankalpa(student_id=user.id, category=payload.category, title=payload.title.strip(), description=payload.description.strip() if payload.description else None, target_type=payload.targetType, target_config=payload.targetConfig, start_date=start, end_date=end)
     db.add(item); db.commit(); db.refresh(item); return {"sankalpa": todict(item, [])}

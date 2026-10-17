@@ -38,6 +38,7 @@ export function getTimeBasedGreeting(date: Date = new Date()): GreetingInfo {
  */
 export function formatDevoteeDate(date: Date = new Date()): string {
   return date.toLocaleDateString("en-IN", {
+    timeZone: "Asia/Kolkata",
     weekday: "long",
     day: "numeric",
     month: "long",
@@ -51,6 +52,7 @@ export function formatDevoteeDate(date: Date = new Date()): string {
  */
 export function formatPracticeDate(date: Date = new Date()): string {
   return date.toLocaleDateString("en-IN", {
+    timeZone: "Asia/Kolkata",
     day: "numeric",
     month: "long",
     year: "numeric",

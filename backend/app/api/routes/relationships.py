@@ -4,6 +4,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.core.database import get_db
+from app.core.time import DEFAULT_TZ, today_str
 from app.dependencies.auth import require_guru, require_shishya
 from app.models import Invitation, Mentorship, RelationshipStatus, Report, User
 from app.services.attention import assess
@@ -101,7 +102,7 @@ def serialize_shishya_item(relation: Mentorship, student: User, db: Session, tod
 
 @router.get("/guru")
 def guru_relationships(guru: User = Depends(require_guru), db: Session = Depends(get_db)) -> dict:
-    today = date.today().isoformat()
+    today = today_str(DEFAULT_TZ)
     relations = db.scalars(select(Mentorship).where(Mentorship.guru_id == guru.id)).all()
 
     shishyas = []

@@ -24,7 +24,8 @@ def test_guru_report_detail_is_relationship_scoped() -> None:
     _, student_id = register("shishya")
     db = SessionLocal()
     db.add(Mentorship(guru_id=guru_id, shishya_id=student_id, status=RelationshipStatus.ACTIVE))
-    report = Report(student_id=student_id, practice_date=date.today().isoformat(), status="submitted", sleep_time="21:00", wake_up_time="04:00", sleep_duration_minutes=420, japa_rounds=16, total_rounds=16)
+    from app.core.time import today_str
+    report = Report(student_id=student_id, practice_date=today_str(), status="submitted", sleep_time="21:00", wake_up_time="04:00", sleep_duration_minutes=420, japa_rounds=16, total_rounds=16)
     db.add(report)
     db.commit(); db.refresh(report); db.close()
 
