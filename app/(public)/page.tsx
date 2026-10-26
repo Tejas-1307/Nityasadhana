@@ -27,22 +27,22 @@ export default function LandingPage() {
         <HeroSection />
 
         {/* 03 — Why Nityasādhanā / Purpose */}
-        <PurposeSection />
+        {/* <PurposeSection /> */}
 
         {/* 04 — The Daily Sādhanā Journey */}
-        <DailyJourneySection />
+        {/* <DailyJourneySection /> */}
 
         {/* 05 — The Guru–Shishya Sacred Bond */}
-        <GuruShishyaSection />
+        {/* <GuruShishyaSection /> */}
 
         {/* 06 — Designed for Shishyas */}
-        <ShishyaSection />
+        {/* <ShishyaSection /> */}
 
         {/* 07 — Designed for Gurus */}
-        <GuruSection />
+        {/* <GuruSection /> */}
 
         {/* 08 — Spiritual Interlude (Breathing Space) */}
-        <SpiritualInterlude />
+        {/* <SpiritualInterlude /> */}
 
         {/* 09, 10, 11 — A Quiet Invitation & Role Entry */}
         <RoleEntrySection />
